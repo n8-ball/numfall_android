@@ -13,6 +13,10 @@ var ceilNum = 4
 func _ready():
 	rng.randomize()
 
+func _process(delta):
+	if board != null && board.bigPiece != null && board.smallPiece != null:
+		findRange()
+
 func findRange():
 	if board.bigPiece - 3 > ceilNum:
 		ceilNum = board.bigPiece - 3
@@ -48,17 +52,20 @@ func spawnPiece():
 				scaleCnt = 0
 		
 		var pieceChoice = (rng.randi_range(1, totShares))
+		var coordChoice = rng.randi_range(0, board.brdWd-1)
 		for j in range(numOptions - 1, -1, -1):
 			if pieceChoice <= oddsTable[j]:
-				makePiece(floorNum + j, rng.randi_range(0, board.brdWd-1))
+				while(!board.isEmpty(coordChoice, 0)):
+					coordChoice = rng.randi_range(0, board.brdWd-1)
+				makePiece(floorNum + j, coordChoice, 0)
 				break
 		
 		print(oddsTable)
 
-func makePiece(value, xPos):
+func makePiece(value, xPos, yPos):
 	var newPiece = newPieceName.instance()
 	newPiece.setValue(value)
 	board.add_child(newPiece)
-	board.board[0][xPos] = newPiece
+	board.board[yPos][xPos] = newPiece
 	newPiece.setState(newPiece.SPAWN_STATE)
-	newPiece.setPos(board.getPos(xPos, 0))
+	newPiece.setPos(board.getPos(xPos, yPos))

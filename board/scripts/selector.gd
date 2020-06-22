@@ -20,18 +20,18 @@ func getCoord(pos):
 func _input(event):
 	#Select First
 	if event is InputEventMouseButton && event.is_action_pressed("ui_select")\
-	&& !justClicked:
+	&& !justClicked: #&& board.swapReady:
 		justClicked = true
 		coordSelect = getCoord(event.position)
 		if coordSelect.x < board.brdWd && coordSelect.x >= 0 \
 		&& coordSelect.y < board.brdHt && coordSelect.y >= 0:
 			select = board.board[coordSelect.y][coordSelect.x]
-			if select != null && select.getState() == select.IDLE_STATE:
+			if nodeAvailable(select) && select.getState() == select.IDLE_STATE:
 				select.setSelect(select.SOLO_SELECTED)
 			else:
 				select = null
 	
-	elif event is InputEventMouseMotion && select != null && board.swapReady:
+	elif event is InputEventMouseMotion && nodeAvailable(select) && board.swapReady:
 		if getCoord(event.position).x < board.brdWd\
 		&& getCoord(event.position).x >= 0:
 			#Right
@@ -53,7 +53,17 @@ func _input(event):
 		clearSelect()
 
 func clearSelect():
-	if select != null:
+	if nodeAvailable(select):
 		select.setSelect(select.UNSELECTED)
 	select = null
 	coordSelect = Vector2(-1, -1)
+
+func nodeAvailable(node):
+	if node == null:
+	  return false
+	var ref = weakref(node).get_ref()
+	if ref == null:
+	  return false
+	if ref.is_queued_for_deletion():
+	  return false
+	return true

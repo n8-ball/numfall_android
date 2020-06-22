@@ -9,13 +9,15 @@ var board = []
 const brdWd = 6
 const brdHt = 10
 const brdX = 120
-const brdY = 300
+const brdY = 250
 const pieceSize = 200
 
 var smallPiece = null
 var bigPiece = null
 var scheduleSpawn = false
 var swapReady = false
+
+var score = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -95,6 +97,7 @@ func handlePiece(curPiece, chkPiece, x, y, allReady):
 		curPiece.setState(curPiece.COMBINE_TOP_STATE)
 		chkPiece.setState(chkPiece.COMBINE_BOT_STATE)
 		curPiece.setPos(getPos(x, y+1))
+		score += curPiece.getValue()
 		board[y+1][x] = curPiece
 		board[y][x] = null
 	# Fall
@@ -145,3 +148,9 @@ func getPos(x, y):
 	var newY = brdY + (pieceSize * (y+1))
 	var newPos = Vector2(newX, newY)
 	return newPos
+
+func isEmpty(x, y):
+	return board[y][x] == null
+
+func getPieceType():
+	return newPieceName
