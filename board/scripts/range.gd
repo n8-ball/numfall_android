@@ -25,9 +25,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if floorPiece.getValue() < spawner.floorNum && floorPiece.isReady():
-		floorPiece.setValue(floorPiece.getValue() + 1)
+	if floorPiece.getValue() != spawner.floorNum && floorPiece.isReady():
+		floorPiece.setValue(spawner.floorNum)
 		floorPiece.setState(floorPiece.INCREMENT_STATE)
-	if ceilPiece.getValue() < spawner.ceilNum && ceilPiece.isReady():
-		ceilPiece.setValue(ceilPiece.getValue() + 1)
+	if ceilPiece.getValue() != spawner.ceilNum && ceilPiece.isReady():
+		ceilPiece.setValue(spawner.ceilNum)
 		ceilPiece.setState(ceilPiece.INCREMENT_STATE)

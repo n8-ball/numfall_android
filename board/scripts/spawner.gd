@@ -18,17 +18,16 @@ func _process(delta):
 		findRange()
 
 func findRange():
-	if board.bigPiece - 3 > ceilNum:
-		ceilNum = board.bigPiece - 3
-	if (board.bigPiece/2) - 1 > floorPot:
-		floorPot = (board.bigPiece/2) - 1
+	if board.bigPiece - 4 > ceilNum:
+		ceilNum = board.bigPiece - 4
+	if int(board.bigPiece/1.5) - 1 > floorPot:
+		floorPot = int(board.bigPiece/1.5) - 1
 	if board.smallPiece > floorNum && floorNum < floorPot:
 		floorNum += 1
 	if board.smallPiece < floorNum:
 		floorNum = board.smallPiece
 
 func spawnPiece():
-	findRange()
 	var freeSpace = false
 	for x in range(board.brdWd):
 		if board.board[0][x] == null:
@@ -69,3 +68,8 @@ func makePiece(value, xPos, yPos):
 	board.board[yPos][xPos] = newPiece
 	newPiece.setState(newPiece.SPAWN_STATE)
 	newPiece.setPos(board.getPos(xPos, yPos))
+
+func resetRange():
+	floorNum = 1
+	floorPot = 1
+	ceilNum = 4

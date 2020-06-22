@@ -18,20 +18,35 @@ var scheduleSpawn = false
 var swapReady = false
 
 var score = 0
+var startPieces = 4
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	createBoard()
+	for i in range(startPieces):
+		spawner.spawnPiece()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	updateBoard()
 	if Input.is_action_just_pressed("ui_accept"):
-		var newPiece = newPieceName.instance()
-		self.add_child(newPiece)
-		board[0][0] = newPiece
-		newPiece.setState(newPiece.SPAWN_STATE)
-		newPiece.setPos(getPos(0, 0))
+		restartGame()
+		#var newPiece = newPieceName.instance()
+		#self.add_child(newPiece)
+		#board[0][0] = newPiece
+		#newPiece.setState(newPiece.SPAWN_STATE)
+		#newPiece.setPos(getPos(0, 0))
+
+func restartGame():
+	for y in range(brdHt):
+		for x in range(brdWd):
+			if !isEmpty(x, y):
+				board[y][x].queue_free()
+				board[y][x] = null
+	score = 0
+	spawner.resetRange()
+	for i in range(startPieces):
+		spawner.spawnPiece()
 
 func createBoard():
 	for y in range(brdHt):
