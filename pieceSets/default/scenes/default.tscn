@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://pieceSets/pixel/sprites/pixel.png" type="Texture" id=1]
+[ext_resource path="res://pieceSets/default/sprites/default.png" type="Texture" id=1]
 [ext_resource path="res://pieceSets/pixel/sprites/pixelSelect.png" type="Texture" id=2]
 [ext_resource path="res://pieceSets/pixel/sprites/pixelTier.png" type="Texture" id=3]
 [ext_resource path="res://pieceSets/pixel/scripts/pixelPiece.gd" type="Script" id=4]
@@ -546,11 +546,11 @@ tracks/1/keys = {
 script = ExtResource( 4 )
 
 [node name="scalar" type="Node2D" parent="."]
-scale = Vector2( 6.25, 6.25 )
 
 [node name="block" type="Sprite" parent="scalar"]
+scale = Vector2( 1, 0.75 )
 texture = ExtResource( 1 )
-offset = Vector2( 0, -16 )
+offset = Vector2( 0, -100 )
 hframes = 26
 
 [node name="blockAnimation" type="AnimationPlayer" parent="scalar/block"]
@@ -584,10 +584,13 @@ anims/4 = SubResource( 14 )
 script = ExtResource( 8 )
 
 [node name="select" type="Sprite" parent="scalar/block"]
+visible = false
 z_index = 1
 texture = ExtResource( 2 )
-offset = Vector2( 0, -16 )
+offset = Vector2( 16, -16 )
+vframes = 2
 hframes = 4
+frame = 1
 
 [node name="selectAnimation" type="AnimationPlayer" parent="scalar/block/select"]
 autoplay = "unselected"
