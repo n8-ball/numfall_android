@@ -20,8 +20,8 @@ func _process(delta):
 func findRange():
 	if board.bigPiece - 4 > ceilNum:
 		ceilNum = board.bigPiece - 4
-	if int(board.bigPiece/1.5) - 1 > floorPot:
-		floorPot = int(board.bigPiece/1.5) - 1
+	if int(board.bigPiece/2) - 1 > floorPot:
+		floorPot = int(board.bigPiece/2) - 1
 	if board.smallPiece > floorNum && floorNum < floorPot:
 		floorNum += 1
 	if board.smallPiece < floorNum:

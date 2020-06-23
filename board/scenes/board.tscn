@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://board/scripts/board.gd" type="Script" id=1]
 [ext_resource path="res://debug/sprites/debugBackground.png" type="Texture" id=2]
@@ -7,9 +7,7 @@
 [ext_resource path="res://board/scripts/spawner.gd" type="Script" id=5]
 [ext_resource path="res://debug/fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://board/scripts/score.gd" type="Script" id=7]
-[ext_resource path="res://debug/sprites/debugGear.png" type="Texture" id=8]
 [ext_resource path="res://board/scripts/range.gd" type="Script" id=9]
-[ext_resource path="res://board/scripts/settings.gd" type="Script" id=10]
 [ext_resource path="res://menu/scenes/mainMenu.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=1]
@@ -66,15 +64,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="settings" type="TextureButton" parent="."]
-margin_left = 1277.27
-margin_top = 34.5456
-margin_right = 1405.27
-margin_bottom = 162.546
-texture_normal = ExtResource( 8 )
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="menu" parent="settings" instance=ExtResource( 11 )]
+[node name="menu" parent="." instance=ExtResource( 11 )]
+layer = 2
