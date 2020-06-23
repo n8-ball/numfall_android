@@ -7,3 +7,6 @@ func _process(delta):
 		self.visible = true
 	else:
 		self.visible = false
+
+func _pressed():
+	menu.setOpen(false)
