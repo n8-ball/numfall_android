@@ -29,6 +29,7 @@ var desPos = Vector2()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	blockAnimation.connect("animation_finished", self, "_animationEnd")
+	blockAnimation.updateValue()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

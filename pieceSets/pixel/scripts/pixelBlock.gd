@@ -14,7 +14,7 @@ func _process(delta):
 	updateValue()
 
 func updateValue():
-	block.frame = (piece.value - 1) % maxPiece
+	block.frame = int(piece.value - 1) % maxPiece
 
 func runAnimation():
 	if piece.state == piece.IDLE_STATE:

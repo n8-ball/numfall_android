@@ -2,6 +2,7 @@ extends Node2D
 
 onready var spawner : Node2D = $"spawner"
 onready var selector : Node2D = $"selector"
+onready var saveLoad : Node2D = $"saveLoad"
 
 var newPieceName = load("res://pieceSets/pixel/scenes/pixel.tscn")
 
@@ -23,21 +24,15 @@ var startPieces = 4
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	createBoard()
-	for i in range(startPieces):
-		spawner.spawnPiece()
+	saveLoad.loadBoard()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	updateBoard()
-	if Input.is_action_just_pressed("ui_accept"):
-		restartGame()
-		#var newPiece = newPieceName.instance()
-		#self.add_child(newPiece)
-		#board[0][0] = newPiece
-		#newPiece.setState(newPiece.SPAWN_STATE)
-		#newPiece.setPos(getPos(0, 0))
 
 func restartGame():
+	var saveDir = Directory.new()
+	saveDir.remove("user://numfall.save")
 	for y in range(brdHt):
 		for x in range(brdWd):
 			if !isEmpty(x, y):
@@ -78,6 +73,7 @@ func updateBoard():
 	if scheduleSpawn && allReady:
 		scheduleSpawn = false
 		spawner.spawnPiece()
+		saveLoad.saveBoard()
 
 func checkBig(chkNum, chkPiece):
 	if chkNum == null:
@@ -169,3 +165,31 @@ func isEmpty(x, y):
 
 func getPieceType():
 	return newPieceName
+
+func save():
+	var simpBoard = []
+	simpBoard.resize(brdHt * brdWd)
+	for y in range(brdHt):
+		for x in range(brdWd):
+			if !isEmpty(x, y):
+				simpBoard[(y*brdWd) + x] = board[y][x].getValue()
+			else:
+				simpBoard[(y*brdWd) + x] = 0
+	var saveDict = {
+		"score" : score,
+		"board" : simpBoard
+	}
+	return saveDict
+
+func loadBoard(newBoard):
+	for y in range(brdHt):
+		for x in range(brdWd):
+			if !isEmpty(x, y):
+				board[y][x].queue_free()
+			if newBoard[(y*brdWd) + x] == 0:
+				board[y][x] = null
+			else:
+				spawner.makePiece(newBoard[(y*brdWd) + x], x, y)
+
+func loadScore(newScore):
+	score = newScore
