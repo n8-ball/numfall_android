@@ -2,13 +2,14 @@ extends Node2D
 
 onready var board : Node2D = $".."
 
-var newPieceName = load("res://pieceSets/pixel/scenes/pixel.tscn")
-
 var rng = RandomNumberGenerator.new()
 
-var floorNum = 1
-var floorPot = 1
-var ceilNum = 4
+const initFloor = 1
+const initCeil = 2
+
+var floorNum = initFloor
+var floorPot = 0
+var ceilNum = initCeil
 
 func _ready():
 	rng.randomize()
@@ -18,10 +19,10 @@ func _process(delta):
 		findRange()
 
 func findRange():
-	if board.bigPiece - 4 > ceilNum:
-		ceilNum = board.bigPiece - 4
-	if int(board.bigPiece/2) - 1 > floorPot:
-		floorPot = int(board.bigPiece/2) - 1
+	if board.bigPiece - 3 > ceilNum:
+		ceilNum = board.bigPiece - 3
+	if int(board.bigPiece/2) - 4 + int(sqrt(board.bigPiece)) > floorPot:
+		floorPot = int(board.bigPiece/2) - 4 + int(sqrt(board.bigPiece))
 	if board.smallPiece > floorNum && floorNum < floorPot:
 		floorNum += 1
 	if board.smallPiece < floorNum:
@@ -62,7 +63,7 @@ func spawnPiece():
 		print(oddsTable)
 
 func makePiece(value, xPos, yPos):
-	var newPiece = newPieceName.instance()
+	var newPiece = board.getPieceType().instance()
 	newPiece.setValue(value)
 	board.add_child(newPiece)
 	board.board[yPos][xPos] = newPiece
@@ -70,6 +71,6 @@ func makePiece(value, xPos, yPos):
 	newPiece.setPos(board.getPos(xPos, yPos))
 
 func resetRange():
-	floorNum = 1
-	floorPot = 1
-	ceilNum = 4
+	floorNum = initFloor
+	floorPot = 0
+	ceilNum = initCeil

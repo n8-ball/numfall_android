@@ -4,7 +4,7 @@ onready var spawner : Node2D = $"spawner"
 onready var selector : Node2D = $"selector"
 onready var saveLoad : Node2D = $"saveLoad"
 
-var newPieceName = load("res://pieceSets/pixel/scenes/pixel.tscn")
+var newPieceName = load("res://pieceSets/default/scenes/default.tscn")
 
 var board = []
 const brdWd = 6
@@ -25,10 +25,13 @@ var startPieces = 4
 func _ready():
 	createBoard()
 	saveLoad.loadBoard()
+	spawner.makePiece(1, 0, 9)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	updateBoard()
+	if Input.is_action_just_pressed("ui_accept"):
+		board[9][0].setValue(board[9][0].getValue() + 1)
 
 func restartGame():
 	var saveDir = Directory.new()
@@ -40,13 +43,13 @@ func restartGame():
 				board[y][x] = null
 	score = 0
 	spawner.resetRange()
-	for i in range(startPieces):
+	for _i in range(startPieces):
 		spawner.spawnPiece()
 
 func createBoard():
 	for y in range(brdHt):
 		board.append([])
-		for x in range(brdWd):
+		for _x in range(brdWd):
 			board[y].append(null)
 
 func updateBoard():
@@ -103,8 +106,8 @@ func checkSmall(chkNum, chkPiece):
 
 func handlePiece(curPiece, chkPiece, x, y, allReady):
 	# Combine
-	if curPiece.comparePiece(chkPiece) == 0 && curPiece.isReady() && chkPiece.isReady()\
-	&& y < brdHt - 1:
+	if curPiece.comparePiece(chkPiece) == 0 && curPiece.isReady()\
+	&& chkPiece.isReady() && y < brdHt - 1:
 		curPiece.setState(curPiece.COMBINE_TOP_STATE)
 		chkPiece.setState(chkPiece.COMBINE_BOT_STATE)
 		curPiece.setPos(getPos(x, y+1))
@@ -112,13 +115,15 @@ func handlePiece(curPiece, chkPiece, x, y, allReady):
 		board[y+1][x] = curPiece
 		board[y][x] = null
 	# Fall
-	elif curPiece.comparePiece(chkPiece) == -1 && curPiece.isReady() && y < brdHt - 1 && allReady:
+	elif curPiece.comparePiece(chkPiece) == -1 && curPiece.isReady()\
+	&& y < brdHt - 1 && allReady:
 		curPiece.setState(curPiece.FALL_STATE)
 		curPiece.setPos(getPos(x, y+1))
 		board[y+1][x] = curPiece
 		board[y][x] = null
 	# Landing/Idle
-	elif (curPiece.comparePiece(chkPiece) == 1 || y >= brdHt - 1) && curPiece.isReady():
+	elif (curPiece.comparePiece(chkPiece) == 1 || y >= brdHt - 1)\
+	&& curPiece.isReady():
 		if curPiece.getState() == curPiece.FALL_STATE:
 			curPiece.setState(curPiece.LAND_STATE)
 		else:
@@ -155,6 +160,7 @@ func swapPieces(firstCoord, secondCoord):
 	scheduleSpawn = true
 
 func getPos(x, y):
+# warning-ignore:integer_division
 	var newX = brdX + (pieceSize * x) + (pieceSize/2)
 	var newY = brdY + (pieceSize * (y+1))
 	var newPos = Vector2(newX, newY)
