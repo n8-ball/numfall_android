@@ -21,17 +21,17 @@ var swapReady = false
 var score = 0
 var startPieces = 4
 
+var musicOn = true
+var soundMuted = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	createBoard()
 	saveLoad.loadBoard()
-	spawner.makePiece(1, 0, 9)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	updateBoard()
-	if Input.is_action_just_pressed("ui_accept"):
-		board[9][0].setValue(board[9][0].getValue() + 1)
 
 func restartGame():
 	var saveDir = Directory.new()
@@ -158,6 +158,12 @@ func swapPieces(firstCoord, secondCoord):
 			secondPiece.setState(secondPiece.SWITCH_LEFT_STATE)
 		secondPiece.setPos(getPos(firstCoord.x, firstCoord.y))
 	scheduleSpawn = true
+
+func getMusic():
+	return musicOn
+
+func setMusic(newMusic):
+	musicOn = newMusic
 
 func getPos(x, y):
 # warning-ignore:integer_division

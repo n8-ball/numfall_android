@@ -7,6 +7,12 @@ var open = true
 func _process(delta):
 	get_tree().paused = getOpen()
 
+func getMusic():
+	return board.getMusic()
+
+func setMusic(newMusic):
+	board.setMusic(newMusic)
+
 func getOpen():
 	return open
 
