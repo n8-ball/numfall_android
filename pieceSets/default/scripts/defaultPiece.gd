@@ -4,6 +4,9 @@ onready var blockAnimation : Node2D = $scalar/block/blockAnimation
 onready var tierAnimation : Node2D = $scalar/block/tier/tierAnimation
 onready var selectAnimation : Node2D = $scalar/block/select/selectAnimation
 
+onready var combineSound : AudioStreamPlayer2D = $combine
+onready var landSound : AudioStreamPlayer2D = $land
+
 #State
 const IDLE_STATE = 0
 const FALL_STATE = 1
@@ -59,6 +62,10 @@ func getValue():
 func setState(newState):
 	state = newState
 	blockAnimation.runAnimation()
+	if newState == COMBINE_TOP_STATE:
+		combineSound.play(0)
+	if newState == LAND_STATE:
+		landSound.play(0)
 
 func getState():
 	return state
