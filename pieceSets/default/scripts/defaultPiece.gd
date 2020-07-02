@@ -29,6 +29,8 @@ var selState = UNSELECTED
 var value = 1
 var desPos = Vector2()
 
+var board
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	blockAnimation.connect("animation_finished", self, "_animationEnd")
@@ -62,9 +64,9 @@ func getValue():
 func setState(newState):
 	state = newState
 	blockAnimation.runAnimation()
-	if newState == COMBINE_TOP_STATE:
+	if newState == COMBINE_TOP_STATE && board.getSound():
 		combineSound.play(0)
-	if newState == LAND_STATE:
+	if newState == LAND_STATE && board.getSound():
 		landSound.play(0)
 
 func getState():
@@ -87,3 +89,6 @@ func _animationEnd(animName):
 		self.queue_free()
 	else:
 		setState(IDLE_STATE)
+
+func setBoard(newBoard):
+	board = newBoard

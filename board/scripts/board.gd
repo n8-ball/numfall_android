@@ -22,7 +22,7 @@ var score = 0
 var startPieces = 4
 
 var musicOn = true
-var soundMuted = false
+var soundOn = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -159,12 +159,6 @@ func swapPieces(firstCoord, secondCoord):
 		secondPiece.setPos(getPos(firstCoord.x, firstCoord.y))
 	scheduleSpawn = true
 
-func getMusic():
-	return musicOn
-
-func setMusic(newMusic):
-	musicOn = newMusic
-
 func getPos(x, y):
 # warning-ignore:integer_division
 	var newX = brdX + (pieceSize * x) + (pieceSize/2)
@@ -205,3 +199,15 @@ func loadBoard(newBoard):
 
 func loadScore(newScore):
 	score = newScore
+
+func getMusic():
+	return musicOn
+
+func setMusic(newMusic):
+	musicOn = newMusic
+
+func getSound():
+	return soundOn
+
+func setSound(newSound):
+	soundOn = newSound

@@ -1,14 +1,16 @@
 extends Node2D
 
+onready var cir : Sprite = $cir
+
 onready var spectrum = AudioServer.get_bus_effect_instance(0, 0)
 
 const numBars = 50
-const totalHeight = 150
+const totalHeight = 50
 
-const minFreq = 20
+const minFreq = 2000
 const maxFreq = 4000
-const maxDb = -10
-const minDb = -35
+const maxDb = -20
+const minDb = -50
 const cirMin = 400
 const cirMult = 100
 
@@ -16,7 +18,7 @@ var realArray = []
 var idealArray = []
 var realCircleMag = 0
 var idealCircleMag = 0
-const matchSpeed = 0.1
+const matchSpeed = 0.2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -72,6 +74,7 @@ func _draw():
 		draw_line(centerPos,\
 			centerPos+Vector2(0, (realArray[i] * totalHeight) + cirRad),\
 			Color.white, 128.0, true)
-	draw_circle(centerPos, cirRad, Color.black)
-	draw_arc(centerPos, cirRad, 0, 360, 1000,\
-		Color.black, 16.0, true)
+	#draw_circle(centerPos, cirRad, Color.black)
+	#draw_arc(centerPos, cirRad, 0, 360, 1000,\
+	#	Color.black, 16.0, true)
+	cir.scale = Vector2(.5 + (realCircleMag * .08), .5 + (realCircleMag * .08))

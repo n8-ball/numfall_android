@@ -13,6 +13,12 @@ func getMusic():
 func setMusic(newMusic):
 	board.setMusic(newMusic)
 
+func getSound():
+	return board.getSound()
+
+func setSound(newSound):
+	board.setSound(newSound)
+
 func getOpen():
 	return open
 

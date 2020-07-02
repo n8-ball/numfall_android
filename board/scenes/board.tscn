@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://board/scripts/board.gd" type="Script" id=1]
-[ext_resource path="res://debug/sprites/debugBackground.png" type="Texture" id=2]
+[ext_resource path="res://debug/sprites/debugCity.png" type="Texture" id=2]
 [ext_resource path="res://debug/sprites/debugBoard.png" type="Texture" id=3]
 [ext_resource path="res://board/scripts/selector.gd" type="Script" id=4]
 [ext_resource path="res://board/scripts/spawner.gd" type="Script" id=5]
@@ -11,7 +11,7 @@
 [ext_resource path="res://board/scripts/range.gd" type="Script" id=9]
 [ext_resource path="res://board/scripts/music.gd" type="Script" id=10]
 [ext_resource path="res://menu/scenes/mainMenu.tscn" type="PackedScene" id=11]
-[ext_resource path="res://debug/sounds/Rome in Silver - Too Much.wav" type="AudioStream" id=12]
+[ext_resource path="res://debug/sounds/Original Tetris theme (Tetris Soundtrack).wav" type="AudioStream" id=12]
 [ext_resource path="res://backgrounds/cirVisual/scenes/cirVisual.tscn" type="PackedScene" id=13]
 
 [sub_resource type="DynamicFont" id=1]
@@ -25,13 +25,13 @@ font_data = ExtResource( 6 )
 [node name="board" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="visualizer" parent="." instance=ExtResource( 13 )]
-position = Vector2( 720, 850 )
-
 [node name="debugBackground" type="Sprite" parent="."]
-visible = false
+position = Vector2( -1469.86, -609.576 )
 texture = ExtResource( 2 )
 centered = false
+
+[node name="visualizer" parent="." instance=ExtResource( 13 )]
+position = Vector2( 720, 850 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 120, 250 )

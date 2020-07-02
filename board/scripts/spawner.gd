@@ -65,6 +65,7 @@ func spawnPiece():
 func makePiece(value, xPos, yPos):
 	var newPiece = board.getPieceType().instance()
 	newPiece.setValue(value)
+	newPiece.setBoard(board)
 	board.add_child(newPiece)
 	board.board[yPos][xPos] = newPiece
 	newPiece.setState(newPiece.SPAWN_STATE)
