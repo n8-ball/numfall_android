@@ -599,4 +599,3 @@ stream = ExtResource( 7 )
 
 [node name="land" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
-attenuation = 5.27803

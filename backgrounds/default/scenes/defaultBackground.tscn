@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://backgrounds/default/sprites/white.png" type="Texture" id=1]
+[ext_resource path="res://backgrounds/default/scripts/defaultBackground.gd" type="Script" id=3]
+[ext_resource path="res://backgrounds/default/shaders/blur.tres" type="Material" id=4]
+
+[node name="background" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="white" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="filter" type="Sprite" parent="."]
+material = ExtResource( 4 )
+z_index = 1
+texture = ExtResource( 1 )
+centered = false

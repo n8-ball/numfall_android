@@ -4,7 +4,7 @@ onready var spawner : Node2D = $"spawner"
 onready var selector : Node2D = $"selector"
 onready var saveLoad : Node2D = $"saveLoad"
 
-var newPieceName = load("res://pieceSets/default/scenes/default.tscn")
+var pieceName = load("res://pieceSets/pixel/scenes/pixel.tscn")
 
 var board = []
 const brdWd = 6
@@ -34,8 +34,6 @@ func _process(_delta):
 	updateBoard()
 
 func restartGame():
-	var saveDir = Directory.new()
-	saveDir.remove("user://numfall.save")
 	for y in range(brdHt):
 		for x in range(brdWd):
 			if !isEmpty(x, y):
@@ -45,6 +43,7 @@ func restartGame():
 	spawner.resetRange()
 	for _i in range(startPieces):
 		spawner.spawnPiece()
+	saveLoad.saveBoard()
 
 func createBoard():
 	for y in range(brdHt):
@@ -170,7 +169,7 @@ func isEmpty(x, y):
 	return board[y][x] == null
 
 func getPieceType():
-	return newPieceName
+	return pieceName
 
 func save():
 	var simpBoard = []
@@ -211,3 +210,6 @@ func getSound():
 
 func setSound(newSound):
 	soundOn = newSound
+
+func changePiece(newPieceName):
+	pieceName = load(newPieceName)
