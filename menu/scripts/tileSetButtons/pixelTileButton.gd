@@ -1,6 +1,6 @@
 extends Button
 
-onready var customize : Node2D = $"../../../.."
+onready var customize : Node2D = $"../../../../.."
 
 var tileSet = "res://pieceSets/pixel/scenes/pixel.tscn"
 

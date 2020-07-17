@@ -5,6 +5,9 @@
 [ext_resource path="res://backgrounds/default/shaders/blur.tres" type="Material" id=4]
 
 [node name="background" type="Node2D"]
+pause_mode = 2
+z_index = -2
+z_as_relative = false
 script = ExtResource( 2 )
 
 [node name="yellow" type="Sprite" parent="."]

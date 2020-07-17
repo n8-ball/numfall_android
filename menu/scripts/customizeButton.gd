@@ -1,6 +1,9 @@
 extends TextureButton
 
 onready var menu : CanvasLayer = $".."
+onready var customizeMenu : CanvasLayer = $"../../customize"
+
+var customizeOpen = false
 
 func _process(delta):
 	if menu.getOpen():
@@ -9,5 +12,4 @@ func _process(delta):
 		self.visible = false
 
 func _pressed():
-	menu.restartGame()
-	menu.setOpen(false)
+	customizeMenu.setOpen(!customizeMenu.getOpen())

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://pieceSets/pixel/sprites/pixel0.png" type="Texture" id=1]
 [ext_resource path="res://pieceSets/default/sprites/default4.png" type="Texture" id=2]
@@ -11,10 +11,12 @@
 [ext_resource path="res://pieceSets/pixel/sprites/pixel3.png" type="Texture" id=9]
 [ext_resource path="res://pieceSets/pixel/sprites/pixel4.png" type="Texture" id=10]
 [ext_resource path="res://menu/scripts/customize.gd" type="Script" id=11]
-[ext_resource path="res://menu/scripts/tileSetButtons/defaultButton.gd" type="Script" id=12]
-[ext_resource path="res://menu/scripts/tileSetButtons/pixelButton.gd" type="Script" id=13]
+[ext_resource path="res://menu/scripts/tileSetButtons/defaultTileButton.gd" type="Script" id=12]
+[ext_resource path="res://menu/scripts/tileSetButtons/pixelTileButton.gd" type="Script" id=13]
 [ext_resource path="res://backgrounds/default/sprites/defaultBackgroundPreview.png" type="Texture" id=14]
 [ext_resource path="res://backgrounds/autumn/sprites/autumnBackgroundDefault.png" type="Texture" id=15]
+[ext_resource path="res://menu/scripts/backgroundButtons/defaultBackButton.gd" type="Script" id=16]
+[ext_resource path="res://menu/scripts/backgroundButtons/autumnBackButton.gd" type="Script" id=17]
 
 [sub_resource type="AnimatedTexture" id=1]
 flags = 4
@@ -47,20 +49,27 @@ frame_4/delay_sec = 0.0
 pause_mode = 2
 script = ExtResource( 11 )
 
-[node name="pieceSets" type="Control" parent="."]
-anchor_left = 0.5
-anchor_top = 0.25
-anchor_right = 0.5
-anchor_bottom = 0.25
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
+[node name="root" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScrollContainer" type="ScrollContainer" parent="pieceSets"]
+[node name="pieceSets" type="Control" parent="root"]
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.25
+margin_left = 680.0
+margin_top = 610.0
+margin_right = 720.0
+margin_bottom = 650.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="root/pieceSets"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -73,7 +82,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="pieceSets/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="root/pieceSets/ScrollContainer"]
 margin_right = 474.0
 margin_bottom = 206.0
 custom_constants/separation = 50
@@ -81,33 +90,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="default" type="Button" parent="pieceSets/ScrollContainer/HBoxContainer"]
+[node name="default" type="Button" parent="root/pieceSets/ScrollContainer/HBoxContainer"]
 margin_right = 212.0
 margin_bottom = 206.0
 icon = SubResource( 1 )
 script = ExtResource( 12 )
 
-[node name="pixel" type="Button" parent="pieceSets/ScrollContainer/HBoxContainer"]
+[node name="pixel" type="Button" parent="root/pieceSets/ScrollContainer/HBoxContainer"]
 margin_left = 262.0
 margin_right = 474.0
 margin_bottom = 206.0
 icon = SubResource( 2 )
 script = ExtResource( 13 )
 
-[node name="background" type="Control" parent="."]
+[node name="background" type="Control" parent="root"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
+margin_left = 680.0
+margin_top = 1240.0
+margin_right = 720.0
+margin_bottom = 1280.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScrollContainer" type="ScrollContainer" parent="background"]
+[node name="ScrollContainer" type="ScrollContainer" parent="root/background"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -120,7 +129,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="background/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="root/background/ScrollContainer"]
 margin_right = 474.0
 margin_bottom = 206.0
 custom_constants/separation = 50
@@ -128,15 +137,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="default" type="Button" parent="background/ScrollContainer/HBoxContainer"]
+[node name="default" type="Button" parent="root/background/ScrollContainer/HBoxContainer"]
 margin_right = 212.0
 margin_bottom = 206.0
 icon = ExtResource( 14 )
-script = ExtResource( 12 )
+script = ExtResource( 16 )
 
-[node name="autumn" type="Button" parent="background/ScrollContainer/HBoxContainer"]
+[node name="autumn" type="Button" parent="root/background/ScrollContainer/HBoxContainer"]
 margin_left = 262.0
 margin_right = 474.0
 margin_bottom = 206.0
 icon = ExtResource( 15 )
-script = ExtResource( 13 )
+script = ExtResource( 17 )
