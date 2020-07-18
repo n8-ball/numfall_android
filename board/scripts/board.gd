@@ -17,6 +17,7 @@ var smallPiece = null
 var bigPiece = null
 var scheduleSpawn = false
 var swapReady = false
+var saveReady = false
 
 var score = 0
 var startPieces = 4
@@ -72,10 +73,13 @@ func updateBoard():
 				allReady = checkReady(allReady, curPiece)
 	smallPiece = tempSmall
 	bigPiece = tempBig
+	if swapReady && saveReady:
+		saveLoad.saveBoard()
+		saveReady = false
 	if scheduleSpawn && allReady:
 		scheduleSpawn = false
 		spawner.spawnPiece()
-		saveLoad.saveBoard()
+		saveReady = true
 
 func checkBig(chkNum, chkPiece):
 	if chkNum == null:

@@ -10,6 +10,7 @@ func _process(delta):
 		self.visible = true
 	else:
 		self.visible = false
+		customizeMenu.setOpen(false)
 
 func _pressed():
 	customizeMenu.setOpen(!customizeMenu.getOpen())

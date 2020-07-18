@@ -52,6 +52,7 @@ func checkDir(delta):
 	
 	dir = dir.normalized()
 
+
 func setPos(newPos):
 	self.position = newPos
 

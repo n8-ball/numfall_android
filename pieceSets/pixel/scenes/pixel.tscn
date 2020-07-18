@@ -557,6 +557,7 @@ tracks/1/keys = {
 }
 
 [node name="piece" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 4 )
 
 [node name="scalar" type="Node2D" parent="."]
