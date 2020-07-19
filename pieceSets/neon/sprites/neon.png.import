@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/neon.svg-4f070faab571ef02ba7275c2689543ac.stex"
+path="res://.import/neon.png-c21a8a16f94070f4c06d0e8528c67973.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pieceSets/neon/neon.svg"
-dest_files=[ "res://.import/neon.svg-4f070faab571ef02ba7275c2689543ac.stex" ]
+source_file="res://pieceSets/neon/sprites/neon.png"
+dest_files=[ "res://.import/neon.png-c21a8a16f94070f4c06d0e8528c67973.stex" ]
 
 [params]
 

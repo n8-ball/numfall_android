@@ -3,7 +3,7 @@ extends AnimationPlayer
 onready var piece : Node2D = $"../../.."
 onready var block : Sprite = $".."
 
-const maxPiece = 52
+const maxPiece = 26
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

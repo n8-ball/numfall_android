@@ -4,7 +4,7 @@ onready var spawner : Node2D = $"spawner"
 onready var selector : Node2D = $"selector"
 onready var saveLoad : Node2D = $"saveLoad"
 
-var pieceName = load("res://pieceSets/default/scenes/default.tscn")
+var pieceName = load("res://pieceSets/neon/scenes/neon.tscn")
 
 var board = []
 const brdWd = 6

@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var blockAnimation : Node2D = $scalar/block/blockAnimation
+onready var tierAnimation : Node2D = $scalar/block/tier/tierAnimation
 onready var selectAnimation : Node2D = $scalar/block/select/selectAnimation
 
 onready var combineSound : AudioStreamPlayer2D = $combine
