@@ -4,17 +4,21 @@ onready var board : Node2D = $".."
 onready var background : Node2D = $"../background"
 onready var root : Node2D = $root
 onready var saveLoad : Node2D = $"../saveLoad"
+onready var achievements : CanvasLayer = $"../achievements"
 
 var open = false
 var changingBackground = false
 var backgroundFade = 1
 var fadeRate = 1
 
+var achievementDict = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	background.connect("doneFading", self, "_on_done_fading")
 
 func setOpen(newOpen):
+	achievementDict = achievements.getAchievements()
 	open = newOpen
 	root.visible = open
 
@@ -23,7 +27,7 @@ func getOpen():
 
 func changeTileSet(newTileSet):
 	board.changePiece(newTileSet)
-	saveLoad.loadBoard()
+	saveLoad.loadGame()
 
 func changeBackground(newBackground):
 	background.fadeOut()

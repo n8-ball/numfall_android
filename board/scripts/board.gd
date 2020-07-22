@@ -3,6 +3,7 @@ extends Node2D
 onready var spawner : Node2D = $"spawner"
 onready var selector : Node2D = $"selector"
 onready var saveLoad : Node2D = $"saveLoad"
+onready var achievements : CanvasLayer = $"achievements"
 
 var pieceName = load("res://pieceSets/neon/scenes/neon.tscn")
 
@@ -28,7 +29,7 @@ var soundOn = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	createBoard()
-	saveLoad.loadBoard()
+	saveLoad.loadGame()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -44,7 +45,7 @@ func restartGame():
 	spawner.resetRange()
 	for _i in range(startPieces):
 		spawner.spawnPiece()
-	saveLoad.saveBoard()
+	saveLoad.saveGame()
 
 func createBoard():
 	for y in range(brdHt):
@@ -74,7 +75,8 @@ func updateBoard():
 	smallPiece = tempSmall
 	bigPiece = tempBig
 	if swapReady && saveReady:
-		saveLoad.saveBoard()
+		achievements.checkAchievements()
+		saveLoad.saveGame()
 		saveReady = false
 	if scheduleSpawn && allReady:
 		scheduleSpawn = false
@@ -175,7 +177,7 @@ func isEmpty(x, y):
 func getPieceType():
 	return pieceName
 
-func save():
+func saveBoard():
 	var simpBoard = []
 	simpBoard.resize(brdHt * brdWd)
 	for y in range(brdHt):

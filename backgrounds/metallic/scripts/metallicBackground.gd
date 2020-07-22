@@ -11,9 +11,9 @@ onready var cirName = load("res://backgrounds/default/scenes/cirle.tscn")
 
 var cirArray = []
 var colorArray = [\
-	Color(.96, .55, 1, 0.6),\
-	Color(.7, .84, 1, 0.8),\
-	Color(.79, .28, .96, 0.6)\
+	Color(.80, .50, .2, 0.6),\
+	Color(.75, .75, .75, 0.8),\
+	Color(.83, .69, .22, 0.6)\
 ]
 
 var posArray = [\

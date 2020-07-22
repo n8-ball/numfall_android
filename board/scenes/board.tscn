@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://board/scripts/board.gd" type="Script" id=1]
 [ext_resource path="res://backgrounds/default/scenes/defaultBackground.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://menu/scenes/mainMenu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://debug/sounds/Original Tetris theme (Tetris Soundtrack).wav" type="AudioStream" id=12]
 [ext_resource path="res://menu/scenes/customize.tscn" type="PackedScene" id=13]
+[ext_resource path="res://menu/scenes/achievements.tscn" type="PackedScene" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 192
@@ -73,6 +74,8 @@ layer = 2
 
 [node name="customize" parent="." instance=ExtResource( 13 )]
 layer = 3
+
+[node name="achievements" parent="." instance=ExtResource( 14 )]
 
 [node name="music" type="AudioStreamPlayer2D" parent="."]
 pause_mode = 2
