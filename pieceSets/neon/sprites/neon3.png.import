@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/defaultBackgroundPreview.png-82f62642cf048822ab1f54eb31f7e3d9.stex"
+path="res://.import/neon3.png-ef34e76e24a1baf28568a758c589afa0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://backgrounds/metallic/sprites/defaultBackgroundPreview.png"
-dest_files=[ "res://.import/defaultBackgroundPreview.png-82f62642cf048822ab1f54eb31f7e3d9.stex" ]
+source_file="res://pieceSets/neon/sprites/neon3.png"
+dest_files=[ "res://.import/neon3.png-ef34e76e24a1baf28568a758c589afa0.stex" ]
 
 [params]
 

@@ -8,12 +8,13 @@ var fadeSpeed = 3
 signal doneFading
 
 onready var cirName = load("res://backgrounds/default/scenes/cirle.tscn")
+onready var viewPort : Viewport = $pixelContainer/pixelPort/blurContainer/blurPort
 
 var cirArray = []
 var colorArray = [\
-	Color(.80, .50, .2, 0.6),\
-	Color(.75, .75, .75, 0.8),\
-	Color(.83, .69, .22, 0.6)\
+	Color(.96, .55, 1, 0.6),\
+	Color(.7, .84, 1, 0.8),\
+	Color(.79, .28, .96, 0.6)\
 ]
 
 var posArray = [\
@@ -36,7 +37,7 @@ var scaleArray = [
 func _ready():
 	for i in range(numCircles):
 		var newCir = cirName.instance()
-		add_child(newCir)
+		viewPort.add_child(newCir)
 		newCir.setPos(posArray[i])
 		newCir.setDir(dirArray[i])
 		newCir.setCol(colorArray[i])

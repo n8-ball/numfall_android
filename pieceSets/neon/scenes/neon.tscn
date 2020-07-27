@@ -2,9 +2,9 @@
 
 [ext_resource path="res://pieceSets/neon/sprites/neon.png" type="Texture" id=1]
 [ext_resource path="res://pieceSets/default/sprites/defaultSelect.png" type="Texture" id=2]
-[ext_resource path="res://pieceSets/neon/sprites/highlight.png" type="Texture" id=3]
+[ext_resource path="res://pieceSets/neon/sprites/neonTop.png" type="Texture" id=3]
 [ext_resource path="res://pieceSets/default/scripts/defaultPiece.gd" type="Script" id=4]
-[ext_resource path="res://pieceSets/default/scripts/defaultBlock.gd" type="Script" id=5]
+[ext_resource path="res://pieceSets/neon/scripts/neonBlock.gd" type="Script" id=5]
 [ext_resource path="res://pieceSets/default/scripts/defaultSelect.gd" type="Script" id=6]
 [ext_resource path="res://pieceSets/default/sounds/combine.wav" type="AudioStream" id=7]
 [ext_resource path="res://pieceSets/default/sounds/land.wav" type="AudioStream" id=9]
@@ -293,6 +293,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("top:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.133333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [sub_resource type="Animation" id=8]
 resource_name = "switchLeft"
@@ -414,13 +426,19 @@ script = ExtResource( 4 )
 [node name="scalar" type="Node2D" parent="."]
 
 [node name="block" type="Sprite" parent="scalar"]
-z_index = -1
-z_as_relative = false
+position = Vector2( 0, -100 )
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 1 )
+vframes = 2
+hframes = 26
+
+[node name="top" type="Sprite" parent="scalar/block"]
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 3 )
 offset = Vector2( 0, -100 )
 vframes = 2
 hframes = 26
-region_rect = Rect2( 0, 0, 999.993, 1000 )
 
 [node name="blockAnimation" type="AnimationPlayer" parent="scalar/block"]
 autoplay = "spawn"
@@ -435,13 +453,9 @@ anims/switchLeft = SubResource( 8 )
 anims/switchRight = SubResource( 9 )
 script = ExtResource( 5 )
 
-[node name="highlight" type="Sprite" parent="scalar/block"]
-z_as_relative = false
-texture = ExtResource( 3 )
-offset = Vector2( 0, -100 )
-
 [node name="select" type="Sprite" parent="scalar/block"]
 z_index = 1
+z_as_relative = false
 texture = ExtResource( 2 )
 offset = Vector2( 0, -100 )
 hframes = 4

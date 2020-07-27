@@ -3,7 +3,7 @@ extends AnimationPlayer
 onready var piece : Node2D = $"../../.."
 onready var block : Sprite = $".."
 
-const maxPiece = 52
+const maxPiece = 26
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,9 +37,4 @@ func runAnimation():
 	
 	if piece.state == piece.INCREMENT_STATE:
 		set_current_animation("increment")
-	
-	if piece.state == piece.SWITCH_LEFT_STATE:
-		set_current_animation("switchLeft")
-	
-	if piece.state == piece.SWITCH_RIGHT_STATE:
-		set_current_animation("switchRight")
+		

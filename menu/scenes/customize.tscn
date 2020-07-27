@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://pieceSets/pixel/sprites/pixel0.png" type="Texture" id=1]
 [ext_resource path="res://pieceSets/default/sprites/default4.png" type="Texture" id=2]
@@ -17,6 +17,12 @@
 [ext_resource path="res://backgrounds/autumn/sprites/autumnBackgroundDefault.png" type="Texture" id=15]
 [ext_resource path="res://menu/scripts/backgroundButtons/defaultBackButton.gd" type="Script" id=16]
 [ext_resource path="res://menu/scripts/backgroundButtons/autumnBackButton.gd" type="Script" id=17]
+[ext_resource path="res://menu/scripts/tileSetButtons/neonTileButton.gd" type="Script" id=18]
+[ext_resource path="res://pieceSets/neon/sprites/neon2.png" type="Texture" id=19]
+[ext_resource path="res://pieceSets/neon/sprites/neon1.png" type="Texture" id=20]
+[ext_resource path="res://pieceSets/neon/sprites/neon0.png" type="Texture" id=21]
+[ext_resource path="res://pieceSets/neon/sprites/neon3.png" type="Texture" id=22]
+[ext_resource path="res://pieceSets/neon/sprites/neon4.png" type="Texture" id=23]
 
 [sub_resource type="AnimatedTexture" id=1]
 flags = 4
@@ -43,6 +49,20 @@ frame_2/delay_sec = 0.0
 frame_3/texture = ExtResource( 9 )
 frame_3/delay_sec = 0.0
 frame_4/texture = ExtResource( 10 )
+frame_4/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=3]
+flags = 4
+frames = 5
+fps = 1.0
+frame_0/texture = ExtResource( 21 )
+frame_1/texture = ExtResource( 20 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 19 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 22 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 23 )
 frame_4/delay_sec = 0.0
 
 [node name="customize" type="CanvasLayer"]
@@ -83,7 +103,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="root/pieceSets/ScrollContainer"]
-margin_right = 474.0
+margin_right = 736.0
 margin_bottom = 206.0
 custom_constants/separation = 50
 __meta__ = {
@@ -102,6 +122,13 @@ margin_right = 474.0
 margin_bottom = 206.0
 icon = SubResource( 2 )
 script = ExtResource( 13 )
+
+[node name="neon" type="Button" parent="root/pieceSets/ScrollContainer/HBoxContainer"]
+margin_left = 524.0
+margin_right = 736.0
+margin_bottom = 206.0
+icon = SubResource( 3 )
+script = ExtResource( 18 )
 
 [node name="background" type="Control" parent="root"]
 anchor_left = 0.5
