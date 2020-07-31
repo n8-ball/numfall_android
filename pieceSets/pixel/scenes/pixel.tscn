@@ -294,6 +294,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("tier:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 16 ), Vector2( 0, 12 ), Vector2( 0, 8 ), Vector2( 0, 4 ), Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=8]
 resource_name = "switchLeft"
@@ -564,12 +576,13 @@ script = ExtResource( 4 )
 scale = Vector2( 6.25, 6.25 )
 
 [node name="block" type="Sprite" parent="scalar"]
-scale = Vector2( 0.3, 0.3 )
+position = Vector2( 0, -16 )
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 1 )
-offset = Vector2( 0, -16 )
 hframes = 26
 
 [node name="blockAnimation" type="AnimationPlayer" parent="scalar/block"]
+pause_mode = 2
 autoplay = "spawn"
 anims/combineBot = SubResource( 1 )
 anims/combineTop = SubResource( 2 )
@@ -584,11 +597,12 @@ script = ExtResource( 5 )
 
 [node name="tier" type="Sprite" parent="scalar/block"]
 visible = false
+position = Vector2( 0, 16 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -16 )
 vframes = 3
 hframes = 7
-frame = 20
+frame = 1
 
 [node name="tierAnimation" type="AnimationPlayer" parent="scalar/block/tier"]
 autoplay = "0"

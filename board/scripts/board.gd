@@ -5,7 +5,7 @@ onready var selector : Node2D = $"selector"
 onready var saveLoad : Node2D = $"saveLoad"
 onready var achievements : CanvasLayer = $"achievements"
 
-var pieceName = load("res://pieceSets/neon/scenes/neon.tscn")
+var pieceName = load("res://pieceSets/default/scenes/default.tscn")
 
 var board = []
 const brdWd = 6
