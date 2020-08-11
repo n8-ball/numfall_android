@@ -1,6 +1,6 @@
 extends Node2D
 
-const numCircles = 3
+const numCircles = 0
 
 var fadingOut = false
 var fadingIn = false
@@ -11,25 +11,33 @@ onready var cirName = load("res://backgrounds/default/scenes/cirle.tscn")
 
 var cirArray = []
 var colorArray = [\
-	Color(.96, .55, 1, 0.6),\
-	Color(.7, .84, 1, 0.8),\
-	Color(.79, .28, .96, 0.6)\
+	Color(.57, .89, .96, 0.9),\
+	Color(.58, .57, .95, 0.9),\
+	Color(.93, .81, .70, 0.9),\
+	Color(.84, .34, .46, 0.9),\
+	Color(.88, .69, .96, 0.9)\
 ]
 
 var posArray = [\
-	Vector2(200, 600),\
-	Vector2(800, 1800),\
-	Vector2(900, 1000)\
+	Vector2(400, 400),\
+	Vector2(1220, 350),\
+	Vector2(700, 1000),\
+	Vector2(250, 2400),\
+	Vector2(1200, 2350)\
 ]
 var dirArray = [\
 	Vector2(4, 3),\
 	Vector2(-4, 1),\
-	Vector2(3, -3)\
+	Vector2(3, -3),\
+	Vector2(2, -1),\
+	Vector2(-2, 1)\
 ]
 var scaleArray = [
-	Vector2(4.0, 4.0),\
+	Vector2(8.0, 8.0),\
+	Vector2(6.0, 6.0),\
+	Vector2(2.5, 2.5),\
 	Vector2(3.5, 3.5),\
-	Vector2(3.0, 3.0)\
+	Vector2(2.0, 2.0)\
 ]
 
 # Called when the node enters the scene tree for the first time.

@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://debug/sprites/debugGear.png" type="Texture" id=1]
+[ext_resource path="res://menu/sprites/gearNormal.png" type="Texture" id=1]
 [ext_resource path="res://menu/scripts/mainMenu.gd" type="Script" id=2]
 [ext_resource path="res://menu/scripts/newGame.gd" type="Script" id=3]
 [ext_resource path="res://menu/scripts/continue.gd" type="Script" id=4]
@@ -9,6 +9,19 @@
 [ext_resource path="res://menu/scripts/customizeButton.gd" type="Script" id=7]
 [ext_resource path="res://menu/scripts/musicButton.gd" type="Script" id=8]
 [ext_resource path="res://menu/scripts/soundButton.gd" type="Script" id=9]
+[ext_resource path="res://menu/sprites/newGamePressed.png" type="Texture" id=10]
+[ext_resource path="res://menu/sprites/soundOn.png" type="Texture" id=11]
+[ext_resource path="res://menu/sprites/continueNormal.png" type="Texture" id=12]
+[ext_resource path="res://menu/sprites/musicOff.png" type="Texture" id=13]
+[ext_resource path="res://menu/sprites/musicOn.png" type="Texture" id=14]
+[ext_resource path="res://menu/sprites/soundOff.png" type="Texture" id=15]
+[ext_resource path="res://menu/sprites/continuePressed.png" type="Texture" id=16]
+[ext_resource path="res://menu/sprites/newGameNormal.png" type="Texture" id=17]
+[ext_resource path="res://menu/sprites/continueGrey.png" type="Texture" id=18]
+[ext_resource path="res://menu/sprites/customizePressed.png" type="Texture" id=19]
+[ext_resource path="res://menu/sprites/customizeNormal.png" type="Texture" id=20]
+[ext_resource path="res://menu/sprites/numFallLogo.png" type="Texture" id=21]
+[ext_resource path="res://menu/scripts/logo.gd" type="Script" id=22]
 
 [node name="menu" type="CanvasLayer"]
 pause_mode = 2
@@ -17,17 +30,24 @@ script = ExtResource( 2 )
 [node name="overlay" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.490196 )
+color = Color( 1, 1, 1, 0.490196 )
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="logo" type="Sprite" parent="."]
+position = Vector2( 720, 600 )
+texture = ExtResource( 21 )
+script = ExtResource( 22 )
+
 [node name="menuButton" type="TextureButton" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -128.0
-margin_bottom = 128.0
+margin_left = -200.0
+margin_top = 40.0
+margin_right = -40.0
+margin_bottom = 207.0
 texture_normal = ExtResource( 1 )
 script = ExtResource( 5 )
 __meta__ = {
@@ -35,22 +55,33 @@ __meta__ = {
 }
 
 [node name="continueButton" type="TextureButton" parent="."]
-margin_left = 664.0
-margin_top = 247.659
-margin_right = 767.121
-margin_bottom = 375.659
-texture_normal = ExtResource( 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -361.5
+margin_top = -430.0
+margin_right = 361.5
+margin_bottom = -228.0
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 16 )
+texture_disabled = ExtResource( 18 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="newGameButton" type="TextureButton" parent="."]
-margin_left = 655.099
-margin_top = 699.039
-margin_right = 783.099
-margin_bottom = 827.039
-texture_normal = ExtResource( 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -361.0
+margin_top = -180.0
+margin_right = 361.0
+margin_bottom = 21.0
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 10 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -61,33 +92,55 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -63.9999
-margin_top = -180.0
-margin_right = 64.0001
-margin_bottom = -52.0
-texture_normal = ExtResource( 1 )
+margin_left = -361.5
+margin_top = 70.0001
+margin_right = 361.5
+margin_bottom = 272.0
+texture_normal = ExtResource( 20 )
+texture_pressed = ExtResource( 19 )
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="musicButton" type="TextureButton" parent="."]
-margin_left = 356.157
-margin_top = 1308.93
-margin_right = 484.157
-margin_bottom = 1436.93
-texture_normal = ExtResource( 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -106.5
+margin_top = 370.0
+margin_right = 106.5
+margin_bottom = 583.0
+toggle_mode = true
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 13 )
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="soundButton" type="TextureButton" parent="."]
-margin_left = 909.261
-margin_top = 1295.92
-margin_right = 1037.26
-margin_bottom = 1423.92
-texture_normal = ExtResource( 1 )
+margin_left = 252.0
+margin_top = 1650.0
+margin_right = 465.0
+margin_bottom = 1863.0
+toggle_mode = true
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 15 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="helpButton" type="TextureButton" parent="."]
+margin_left = 975.0
+margin_top = 1650.0
+margin_right = 1188.0
+margin_bottom = 1863.0
+toggle_mode = true
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 15 )
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
