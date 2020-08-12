@@ -9,4 +9,5 @@ func _process(delta):
 		self.visible = false
 
 func _pressed():
+	menu.board.saveLoad.loadGame()
 	menu.setOpen(false)

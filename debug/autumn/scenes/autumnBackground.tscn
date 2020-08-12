@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://backgrounds/default/sprites/white.png" type="Texture" id=1]
-[ext_resource path="res://backgrounds/autumn/scripts/autumnBackground.gd" type="Script" id=2]
+[ext_resource path="res://debug/autumn/scripts/autumnBackground.gd" type="Script" id=2]
 [ext_resource path="res://backgrounds/default/shaders/blur.tres" type="Material" id=4]
+
 
 [node name="background" type="Node2D"]
 pause_mode = 2

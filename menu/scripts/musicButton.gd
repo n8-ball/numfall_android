@@ -8,4 +8,10 @@ func _process(delta):
 	self.visible = menu.getOpen()
 
 func _pressed():
-	menu.setMusic(!menu.getMusic())
+	musicOn = !musicOn
+	self.pressed = !musicOn
+	menu.board.setMusic(musicOn)
+
+func setMusic(newMusic):
+	musicOn = newMusic
+	self.pressed = !musicOn

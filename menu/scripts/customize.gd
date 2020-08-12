@@ -2,7 +2,7 @@ extends CanvasLayer
 
 onready var board : Node2D = $".."
 onready var background : Node2D = $"../background"
-onready var root : Node2D = $root
+onready var root : Control = $root
 onready var saveLoad : Node2D = $"../saveLoad"
 onready var achievements : CanvasLayer = $"../achievements"
 
@@ -27,7 +27,6 @@ func getOpen():
 
 func changeTileSet(newTileSet):
 	board.changePiece(newTileSet)
-	saveLoad.loadGame()
 
 func changeBackground(newBackground):
 	background.fadeOut()

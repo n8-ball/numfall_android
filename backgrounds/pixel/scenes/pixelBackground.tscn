@@ -1,48 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://backgrounds/default/shaders/blur.tres" type="Material" id=1]
 [ext_resource path="res://backgrounds/pixel/scripts/pixelBackground.gd" type="Script" id=2]
-[ext_resource path="res://backgrounds/default/sprites/white.png" type="Texture" id=3]
-
-
-[sub_resource type="Shader" id=3]
-code = "shader_type canvas_item;
-
-uniform float size_x = 0.02;
-uniform float size_y = 0.02;
-uniform float blur_amount = 5.5;
-
-void fragment() {
-	vec2 uv = SCREEN_UV;
-	uv -= mod(uv, vec2(size_x, size_y));
-	COLOR = textureLod(TEXTURE, uv, 0.0);
-}"
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
-shader_param/size_x = 0.02
-shader_param/size_y = 0.02
-shader_param/blur_amount = 5.5
-
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-uniform float size_x = 0.02;
-uniform float size_y = 0.02;
-uniform float blur_amount = 5.5;
-
-void fragment() {
-    vec2 uv = SCREEN_UV;
-    uv -= mod(uv, vec2(size_x, size_y));
-	COLOR = textureLod(SCREEN_TEXTURE, SCREEN_UV, blur_amount);
-	COLOR = textureLod(TEXTURE, uv, 0.0);
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/size_x = 0.02
-shader_param/size_y = 0.02
-shader_param/blur_amount = 5.5
+[ext_resource path="res://backgrounds/pixel/sprites/pixelBackground.png" type="Texture" id=3]
 
 [node name="background" type="Node2D"]
 pause_mode = 2
@@ -50,50 +9,6 @@ z_index = -2
 z_as_relative = false
 script = ExtResource( 2 )
 
-[node name="filter" type="Sprite" parent="."]
-visible = false
-material = ExtResource( 1 )
-z_index = 1
-texture = ExtResource( 3 )
-centered = false
-
-[node name="pixelContainer" type="ViewportContainer" parent="."]
-material = SubResource( 4 )
-margin_right = 1440.0
-margin_bottom = 2560.0
-stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="pixelPort" type="Viewport" parent="pixelContainer"]
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="blurContainer" type="ViewportContainer" parent="pixelContainer/pixelPort"]
-material = ExtResource( 1 )
-margin_right = 1440.0
-margin_bottom = 2560.0
-stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="blurPort" type="Viewport" parent="pixelContainer/pixelPort/blurContainer"]
-size = Vector2( 1440, 2560 )
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="white" type="Sprite" parent="pixelContainer/pixelPort/blurContainer/blurPort"]
-texture = ExtResource( 3 )
-centered = false
-
-[node name="Camera2D" type="Camera2D" parent="pixelContainer/pixelPort/blurContainer/blurPort"]
-current = true
-
-[node name="pixelFilter" type="Sprite" parent="pixelContainer"]
-visible = false
-material = SubResource( 2 )
-z_index = 1
+[node name="gradient" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 centered = false

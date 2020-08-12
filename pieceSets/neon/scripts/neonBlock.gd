@@ -16,7 +16,7 @@ func _process(delta):
 
 func updateValue():
 	block.frame = int(piece.value - 1) % maxPiece
-	top.frame = int(piece.value - 1) % maxPiece
+	top.frame = block.frame
 
 func runAnimation():
 	if piece.state == piece.IDLE_STATE:
@@ -46,8 +46,5 @@ func runAnimation():
 	if piece.state == piece.SWITCH_RIGHT_STATE:
 		set_current_animation("switchRight")
 	
-	if piece.state == piece.SWITCH_LEFT_STATE:
-		set_current_animation("switchLeft")
-	
-	if piece.state == piece.SWITCH_RIGHT_STATE:
-		set_current_animation("switchRight")
+	if piece.state == piece.DELETE_STATE:
+		play_backwards("spawn")

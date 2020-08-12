@@ -300,10 +300,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.133333 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.133333 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ false, true ]
+"values": [ false, false, true ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -433,6 +433,7 @@ vframes = 2
 hframes = 26
 
 [node name="top" type="Sprite" parent="scalar/block"]
+visible = false
 z_index = 1
 z_as_relative = false
 texture = ExtResource( 3 )

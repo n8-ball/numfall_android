@@ -1,6 +1,6 @@
 extends Button
 
-onready var customize : Node2D = $"../../../../.."
+onready var customize : CanvasLayer = $"../../../../.."
 
 var tileSet = "res://pieceSets/default/scenes/default.tscn"
 

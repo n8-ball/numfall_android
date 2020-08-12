@@ -14,9 +14,9 @@
 [ext_resource path="res://menu/scripts/tileSetButtons/defaultTileButton.gd" type="Script" id=12]
 [ext_resource path="res://menu/scripts/tileSetButtons/pixelTileButton.gd" type="Script" id=13]
 [ext_resource path="res://backgrounds/default/sprites/defaultBackgroundPreview.png" type="Texture" id=14]
-[ext_resource path="res://backgrounds/autumn/sprites/autumnBackgroundDefault.png" type="Texture" id=15]
+[ext_resource path="res://backgrounds/pixel/sprites/pixelBackgroundPreview.png" type="Texture" id=15]
 [ext_resource path="res://menu/scripts/backgroundButtons/defaultBackButton.gd" type="Script" id=16]
-[ext_resource path="res://menu/scripts/backgroundButtons/autumnBackButton.gd" type="Script" id=17]
+[ext_resource path="res://menu/scripts/backgroundButtons/pixelBackButton.gd" type="Script" id=17]
 [ext_resource path="res://menu/scripts/tileSetButtons/neonTileButton.gd" type="Script" id=18]
 [ext_resource path="res://pieceSets/neon/sprites/neon2.png" type="Texture" id=19]
 [ext_resource path="res://pieceSets/neon/sprites/neon1.png" type="Texture" id=20]
@@ -170,7 +170,7 @@ margin_bottom = 206.0
 icon = ExtResource( 14 )
 script = ExtResource( 16 )
 
-[node name="autumn" type="Button" parent="root/background/ScrollContainer/HBoxContainer"]
+[node name="pixel" type="Button" parent="root/background/ScrollContainer/HBoxContainer"]
 margin_left = 262.0
 margin_right = 474.0
 margin_bottom = 206.0

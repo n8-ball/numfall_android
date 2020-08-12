@@ -558,7 +558,7 @@ script = ExtResource( 4 )
 [node name="scalar" type="Node2D" parent="."]
 
 [node name="block" type="Sprite" parent="scalar"]
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 1, 0.75 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -100 )
 hframes = 26
@@ -578,6 +578,7 @@ anims/switchRight = SubResource( 9 )
 script = ExtResource( 5 )
 
 [node name="tier" type="Sprite" parent="scalar/block"]
+visible = false
 texture = ExtResource( 3 )
 offset = Vector2( 0, -100 )
 vframes = 3

@@ -3,6 +3,7 @@ extends Node2D
 onready var spawner : Node2D = $"spawner"
 onready var selector : Node2D = $"selector"
 onready var saveLoad : Node2D = $"saveLoad"
+onready var menu : CanvasLayer = $"menu"
 onready var achievements : CanvasLayer = $"achievements"
 
 var pieceName = load("res://pieceSets/default/scenes/default.tscn")
@@ -29,18 +30,22 @@ var soundOn = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	createBoard()
-	saveLoad.loadGame()
+	saveLoad.loadInitial()
+	menu.forceSettings()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	updateBoard()
 
-func restartGame():
+func clearBoard():
 	for y in range(brdHt):
 		for x in range(brdWd):
 			if !isEmpty(x, y):
-				board[y][x].queue_free()
+				board[y][x].setState(board[y][x].DELETE_STATE)
 				board[y][x] = null
+
+func restartGame():
+	clearBoard()
 	score = 0
 	spawner.resetRange()
 	for _i in range(startPieces):
@@ -204,6 +209,19 @@ func loadBoard(newBoard):
 
 func loadScore(newScore):
 	score = newScore
+
+func saveSettings():
+	var saveDict = {
+		"music" : musicOn,
+		"sound" : soundOn
+	}
+	return saveDict
+
+func loadSettings(newSettings):
+	if newSettings.has("music"):
+		setMusic(newSettings["music"])
+	if newSettings.has("sound"):
+		setSound(newSettings["sound"])
 
 func getMusic():
 	return musicOn

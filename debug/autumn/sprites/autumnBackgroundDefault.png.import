@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/metal.svg-310cc74dd92ff5b872f4b39e12b65e00.stex"
+path="res://.import/autumnBackgroundDefault.png-6df9d91227c06c6d1fd648e6d3d57985.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pieceSets/metal/sprites/metal.svg"
-dest_files=[ "res://.import/metal.svg-310cc74dd92ff5b872f4b39e12b65e00.stex" ]
+source_file="res://debug/autumn/sprites/autumnBackgroundDefault.png"
+dest_files=[ "res://.import/autumnBackgroundDefault.png-6df9d91227c06c6d1fd648e6d3d57985.stex" ]
 
 [params]
 

@@ -20,15 +20,15 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	checkAchievements()
 
 func getAchievements():
 	return achieveDict
 
 func checkAchievements():
-	 checkPixelTile()
-	
+	checkPixelTile()
+	checkNeonTile()
 
 func loadAchieve(newAchieve):
 	if newAchieve != null:

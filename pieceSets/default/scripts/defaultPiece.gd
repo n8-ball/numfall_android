@@ -1,7 +1,7 @@
 extends Node2D
 
-onready var blockAnimation : Node2D = $scalar/block/blockAnimation
-onready var selectAnimation : Node2D = $scalar/block/select/selectAnimation
+onready var blockAnimation : AnimationPlayer = $scalar/block/blockAnimation
+onready var selectAnimation : AnimationPlayer = $scalar/block/select/selectAnimation
 
 onready var combineSound : AudioStreamPlayer2D = $combine
 onready var landSound : AudioStreamPlayer2D = $land
@@ -16,6 +16,7 @@ const COMBINE_BOT_STATE = 5
 const INCREMENT_STATE = 6
 const SWITCH_LEFT_STATE = 7
 const SWITCH_RIGHT_STATE = 8
+const DELETE_STATE = 9
 var state = SPAWN_STATE
 
 #Selection
@@ -84,7 +85,8 @@ func _animationEnd(animName):
 	if animName == "combineTop":
 		value += 1
 		setState(INCREMENT_STATE)
-	elif animName == "combineBot":
+	elif animName == "combineBot" || \
+		(animName == "spawn" && state == DELETE_STATE):
 		self.queue_free()
 	else:
 		setState(IDLE_STATE)
