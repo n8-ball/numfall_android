@@ -433,7 +433,6 @@ vframes = 2
 hframes = 26
 
 [node name="top" type="Sprite" parent="scalar/block"]
-visible = false
 z_index = 1
 z_as_relative = false
 texture = ExtResource( 3 )

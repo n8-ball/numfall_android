@@ -4,6 +4,7 @@ onready var spawner : Node2D = $"spawner"
 onready var selector : Node2D = $"selector"
 onready var saveLoad : Node2D = $"saveLoad"
 onready var menu : CanvasLayer = $"menu"
+onready var grid : Sprite = $"grid"
 onready var achievements : CanvasLayer = $"achievements"
 
 var pieceName = load("res://pieceSets/default/scenes/default.tscn")
@@ -11,8 +12,8 @@ var pieceName = load("res://pieceSets/default/scenes/default.tscn")
 var board = []
 const brdWd = 6
 const brdHt = 10
-const brdX = 120
-const brdY = 250
+var brdX = 120
+var brdY = 250
 const pieceSize = 200
 
 var smallPiece = null
@@ -22,6 +23,7 @@ var swapReady = false
 var saveReady = false
 
 var score = 0
+var highScore = 0
 var startPieces = 4
 
 var musicOn = true
@@ -32,10 +34,15 @@ func _ready():
 	createBoard()
 	saveLoad.loadInitial()
 	menu.forceSettings()
+	brdX = grid.position.x
+	brdY = grid.position.y
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	updateBoard()
+	if Input.is_action_just_pressed("ui_accept"):
+		var dir = Directory.new()
+		dir.remove("user://numfall.save")
 
 func clearBoard():
 	for y in range(brdHt):
@@ -43,6 +50,13 @@ func clearBoard():
 			if !isEmpty(x, y):
 				board[y][x].setState(board[y][x].DELETE_STATE)
 				board[y][x] = null
+
+func isClear():
+	for y in range(brdHt):
+		for x in range(brdWd):
+			if isEmpty(x, y):
+				return false
+	return true
 
 func restartGame():
 	clearBoard()
@@ -122,6 +136,8 @@ func handlePiece(curPiece, chkPiece, x, y, allReady):
 		chkPiece.setState(chkPiece.COMBINE_BOT_STATE)
 		curPiece.setPos(getPos(x, y+1))
 		score += curPiece.getValue()
+		if score > highScore:
+			highScore = score
 		board[y+1][x] = curPiece
 		board[y][x] = null
 	# Fall
@@ -193,7 +209,8 @@ func saveBoard():
 				simpBoard[(y*brdWd) + x] = 0
 	var saveDict = {
 		"score" : score,
-		"board" : simpBoard
+		"board" : simpBoard,
+		"highScore" : highScore
 	}
 	return saveDict
 
@@ -209,6 +226,9 @@ func loadBoard(newBoard):
 
 func loadScore(newScore):
 	score = newScore
+
+func loadHighScore(newHighScore):
+	highScore = newHighScore
 
 func saveSettings():
 	var saveDict = {
@@ -237,3 +257,6 @@ func setSound(newSound):
 
 func changePiece(newPieceName):
 	pieceName = load(newPieceName)
+
+func cancelSave():
+	saveReady = false

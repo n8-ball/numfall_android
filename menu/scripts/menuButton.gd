@@ -7,4 +7,6 @@ func _process(delta):
 
 func _pressed():
 	menu.setOpen(true)
+	menu.board.cancelSave()
+	menu.board.saveLoad.saveGame()
 	menu.board.clearBoard()

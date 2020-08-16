@@ -59,8 +59,6 @@ func spawnPiece():
 					coordChoice = rng.randi_range(0, board.brdWd-1)
 				makePiece(floorNum + j, coordChoice, 0)
 				break
-		
-		print(oddsTable)
 
 func makePiece(value, xPos, yPos):
 	var newPiece = board.getPieceType().instance()

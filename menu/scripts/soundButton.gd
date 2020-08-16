@@ -10,7 +10,7 @@ func _process(delta):
 func _pressed():
 	soundOn = !soundOn
 	self.pressed = !soundOn
-	menu.board.setMusic(soundOn)
+	menu.board.setSound(soundOn)
 	
 func setSound(newSound):
 	soundOn = newSound

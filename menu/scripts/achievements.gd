@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 onready var board : Node2D = $".."
+var achievementNotice = preload("res://menu/scenes/achievementNotice.tscn")
 
 var achieveDict = {
 	"defaultTile" : true,
@@ -21,7 +22,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	checkAchievements()
+	pass
 
 func getAchievements():
 	return achieveDict
@@ -29,6 +30,9 @@ func getAchievements():
 func checkAchievements():
 	checkPixelTile()
 	checkNeonTile()
+
+func displayAchievement(achieveSprite, achieveName):
+	pass
 
 func loadAchieve(newAchieve):
 	if newAchieve != null:
@@ -39,11 +43,24 @@ func saveAchieve():
 	return achieveDict
 
 #Tile set
-#Have a big piece >= 10
+#Have a big piece >= 3
 func checkPixelTile():
-	if board.bigPiece != null && board.bigPiece >= 6:
+	var oldState = achieveDict["pixelTile"]
+	if board.bigPiece != null && board.bigPiece >= 3:
 		achieveDict["pixelTile"] = true
+		if oldState == false:
+			var notice = achievementNotice.instance()
+			notice.setAchievement("res://pieceSets/pixel/sprites/pixel0.png", \
+				"Pixel Tile")
+			board.add_child(notice)
+	
 
 #Have 4 ascending rows from the bottom row
 func checkNeonTile():
+	var oldState = achieveDict["neonTile"]
 	achieveDict["neonTile"] = true
+	if oldState == false:
+			var notice = achievementNotice.instance()
+			notice.setAchievement("res://pieceSets/neon/sprites/neon0.png", \
+				"Neon Tile")
+			board.add_child(notice)

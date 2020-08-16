@@ -16,6 +16,7 @@ var achievementDict = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	background.connect("doneFading", self, "_on_done_fading")
+	root.visible = open
 
 func setOpen(newOpen):
 	achievementDict = achievements.getAchievements()

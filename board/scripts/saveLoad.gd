@@ -12,10 +12,15 @@ func loadInitial():
 		return false
 	saveFile.open("user://numfall.save", File.READ)
 	var boardDict = parse_json(saveFile.get_line())
+	if boardDict.has("score"):
+		board.loadScore(boardDict["score"])
+	if boardDict.has("highScore"):
+		board.loadHighScore(boardDict["highScore"])
 	var settingsData = parse_json(saveFile.get_line())
 	board.loadSettings(settingsData)
 	var achieveDict = parse_json(saveFile.get_line())
 	achievents.loadAchieve(achieveDict)
+	saveFile.close()
 	return true
 
 func loadGame():
@@ -24,8 +29,13 @@ func loadGame():
 		return false
 	saveFile.open("user://numfall.save", File.READ)
 	var boardDict = parse_json(saveFile.get_line())
-	board.loadScore(boardDict["score"])
-	board.loadBoard(boardDict["board"])
+	if boardDict.has("score"):
+		board.loadScore(boardDict["score"])
+	if boardDict.has("highScore"):
+		board.loadHighScore(boardDict["highScore"])
+	if boardDict.has("board"):
+		board.loadBoard(boardDict["board"])
+	saveFile.close()
 	return true
 
 func saveGame():

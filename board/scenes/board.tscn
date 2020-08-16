@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://board/scripts/board.gd" type="Script" id=1]
 [ext_resource path="res://backgrounds/default/scenes/defaultBackground.tscn" type="PackedScene" id=2]
@@ -14,12 +14,17 @@
 [ext_resource path="res://debug/sounds/Original Tetris theme (Tetris Soundtrack).wav" type="AudioStream" id=12]
 [ext_resource path="res://menu/scenes/customize.tscn" type="PackedScene" id=13]
 [ext_resource path="res://menu/scenes/achievements.tscn" type="PackedScene" id=14]
+[ext_resource path="res://board/scripts/highScore.gd" type="Script" id=15]
 
 [sub_resource type="DynamicFont" id=1]
 size = 192
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 140
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 128
 font_data = ExtResource( 6 )
 
@@ -27,7 +32,7 @@ font_data = ExtResource( 6 )
 script = ExtResource( 1 )
 
 [node name="grid" type="Sprite" parent="."]
-position = Vector2( 120, 250 )
+position = Vector2( 120, 350 )
 z_as_relative = false
 texture = ExtResource( 3 )
 centered = false
@@ -46,6 +51,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="highScore" type="RichTextLabel" parent="."]
+margin_left = 220.0
+margin_top = 200.0
+margin_right = 1220.0
+margin_bottom = 380.0
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]0[/center]"
+text = "0"
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="selector" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
@@ -56,14 +75,14 @@ pause_mode = 2
 script = ExtResource( 5 )
 
 [node name="range" type="Node2D" parent="spawner"]
-position = Vector2( 120, 2270 )
+position = Vector2( 120, 2400 )
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 9 )
 
 [node name="text" type="RichTextLabel" parent="spawner/range"]
 margin_right = 500.0
 margin_bottom = 140.0
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
 text = "Range:"
 __meta__ = {
 "_edit_use_anchors_": false
