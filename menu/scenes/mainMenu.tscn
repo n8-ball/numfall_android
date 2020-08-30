@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://menu/sprites/gearNormal.png" type="Texture" id=1]
 [ext_resource path="res://menu/scripts/mainMenu.gd" type="Script" id=2]
@@ -22,6 +22,29 @@
 [ext_resource path="res://menu/sprites/customizeNormal.png" type="Texture" id=20]
 [ext_resource path="res://menu/sprites/numFallLogo.png" type="Texture" id=21]
 [ext_resource path="res://menu/scripts/logo.gd" type="Script" id=22]
+[ext_resource path="res://debug/sprites/gameOver.jpg" type="Texture" id=23]
+[ext_resource path="res://menu/scripts/endButton.gd" type="Script" id=24]
+[ext_resource path="res://debug/sounds/deny.wav" type="AudioStream" id=25]
+[ext_resource path="res://debug/sounds/confirm.wav" type="AudioStream" id=26]
+[ext_resource path="res://menu/scripts/confirm.gd" type="Script" id=27]
+[ext_resource path="res://menu/scripts/spectateButton.gd" type="Script" id=28]
+
+[sub_resource type="Animation" id=1]
+resource_name = "drop"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2560 ), Vector2( 0, 2410 ), Vector2( 0, 2110 ), Vector2( 0, 1660 ), Vector2( 0, 1060 ), Vector2( 0, 310 ), Vector2( 0, -300 ), Vector2( 0, -150 ), Vector2( 0, -50 ), Vector2( 0, 0 ) ]
+}
 
 [node name="menu" type="CanvasLayer"]
 pause_mode = 2
@@ -30,8 +53,66 @@ script = ExtResource( 2 )
 [node name="overlay" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -2560.0
+margin_right = 0.00012207
+margin_bottom = 2560.0
 color = Color( 1, 1, 1, 0.490196 )
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="gameOver" type="Sprite" parent="."]
+position = Vector2( 720, -1960 )
+texture = ExtResource( 23 )
+script = ExtResource( 22 )
+
+[node name="spectateButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -361.5
+margin_top = -3040.0
+margin_right = 361.5
+margin_bottom = -2838.0
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 16 )
+texture_disabled = ExtResource( 18 )
+script = ExtResource( 28 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="endButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -361.5
+margin_top = -2640.0
+margin_right = 361.5
+margin_bottom = -2438.0
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 16 )
+texture_disabled = ExtResource( 18 )
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="endButton"]
+anims/drop = SubResource( 1 )
+
+[node name="menuButton2" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -200.0
+margin_top = -2520.0
+margin_right = -40.0
+margin_bottom = -2353.0
+texture_normal = ExtResource( 1 )
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -145,3 +226,11 @@ script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="confirm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 26 )
+script = ExtResource( 27 )
+
+[node name="deny" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 25 )
+script = ExtResource( 27 )

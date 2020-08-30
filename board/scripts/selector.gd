@@ -31,7 +31,8 @@ func _input(event):
 			else:
 				select = null
 	
-	elif event is InputEventMouseMotion && nodeAvailable(select) && board.swapReady:
+	elif event is InputEventMouseMotion && nodeAvailable(select)\
+	&& board.swapReady && !board.getGameOver():
 		if getCoord(event.position).x < board.brdWd\
 		&& getCoord(event.position).x >= 0:
 			#Right

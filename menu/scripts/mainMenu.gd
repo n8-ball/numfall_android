@@ -6,6 +6,8 @@ onready var soundButton : TextureButton = $soundButton
 
 var open = true
 
+const gameOverOffset = 2560
+
 func _process(delta):
 	get_tree().paused = getOpen()
 
@@ -18,3 +20,7 @@ func getOpen():
 
 func setOpen(newOpen):
 	open = newOpen
+
+func endGameMenu():
+	open = true
+	self.offset.y = gameOverOffset

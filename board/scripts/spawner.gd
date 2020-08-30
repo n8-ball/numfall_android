@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var board : Node2D = $".."
+onready var rangeDisplay : Node2D = $"range"
 
 var rng = RandomNumberGenerator.new()
 
@@ -59,6 +60,9 @@ func spawnPiece():
 					coordChoice = rng.randi_range(0, board.brdWd-1)
 				makePiece(floorNum + j, coordChoice, 0)
 				break
+	else:
+		board.endGame()
+		board.saveLoad.saveGame()
 
 func makePiece(value, xPos, yPos):
 	var newPiece = board.getPieceType().instance()

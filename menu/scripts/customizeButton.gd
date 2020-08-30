@@ -2,6 +2,8 @@ extends TextureButton
 
 onready var menu : CanvasLayer = $".."
 onready var customizeMenu : CanvasLayer = $"../../customize"
+onready var confirm: AudioStreamPlayer2D = $"../confirm"
+onready var deny: AudioStreamPlayer2D = $"../deny"
 
 var customizeOpen = false
 
@@ -13,4 +15,5 @@ func _process(delta):
 		customizeMenu.setOpen(false)
 
 func _pressed():
-	customizeMenu.setOpen(!customizeMenu.getOpen())
+	confirm.playSound()
+	customizeMenu.setOpen(true)

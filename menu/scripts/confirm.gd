@@ -1,6 +1,6 @@
-extends RichTextLabel
+extends AudioStreamPlayer2D
 
-onready var board : Node2D = $".."
+onready var soundButton : TextureButton = $"../soundButton"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,4 +8,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	bbcode_text = "[center]" + str(board.highScore) + "[/center]"
+	pass
+
+func playSound():
+	if soundButton.getSound():
+		self.play(0)

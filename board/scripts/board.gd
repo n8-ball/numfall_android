@@ -29,6 +29,8 @@ var startPieces = 4
 var musicOn = true
 var soundOn = true
 
+var gameOver = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	createBoard()
@@ -43,13 +45,18 @@ func _process(_delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		var dir = Directory.new()
 		dir.remove("user://numfall.save")
+	if Input.is_action_just_pressed("ui_cancel"):
+		for i in range(7):
+			spawner.spawnPiece()
+	print(gameOver)
 
-func clearBoard():
+func clearBoard(): 
 	for y in range(brdHt):
 		for x in range(brdWd):
 			if !isEmpty(x, y):
 				board[y][x].setState(board[y][x].DELETE_STATE)
 				board[y][x] = null
+	spawner.rangeDisplay.clearRange()
 
 func isClear():
 	for y in range(brdHt):
@@ -62,9 +69,18 @@ func restartGame():
 	clearBoard()
 	score = 0
 	spawner.resetRange()
+	setGameOver(false)
+	spawner.rangeDisplay.newRange()
 	for _i in range(startPieces):
 		spawner.spawnPiece()
 	saveLoad.saveGame()
+
+func endGame():
+	setGameOver(true)
+	cancelSave()
+	saveLoad.saveGame()
+	clearBoard()
+	menu.endGameMenu()
 
 func createBoard():
 	for y in range(brdHt):
@@ -223,6 +239,7 @@ func loadBoard(newBoard):
 				board[y][x] = null
 			else:
 				spawner.makePiece(newBoard[(y*brdWd) + x], x, y)
+	
 
 func loadScore(newScore):
 	score = newScore
@@ -233,7 +250,8 @@ func loadHighScore(newHighScore):
 func saveSettings():
 	var saveDict = {
 		"music" : musicOn,
-		"sound" : soundOn
+		"sound" : soundOn,
+		"gameOver" : gameOver
 	}
 	return saveDict
 
@@ -242,6 +260,8 @@ func loadSettings(newSettings):
 		setMusic(newSettings["music"])
 	if newSettings.has("sound"):
 		setSound(newSettings["sound"])
+	if newSettings.has("gameOver"):
+		setGameOver(newSettings["gameOver"])
 
 func getMusic():
 	return musicOn
@@ -254,6 +274,12 @@ func getSound():
 
 func setSound(newSound):
 	soundOn = newSound
+
+func getGameOver():
+	return gameOver
+
+func setGameOver(newGameOver):
+	gameOver = newGameOver
 
 func changePiece(newPieceName):
 	pieceName = load(newPieceName)

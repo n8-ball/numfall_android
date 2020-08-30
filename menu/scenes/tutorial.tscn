@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://debug/sprites/greyOverGrid.png" type="Texture" id=1]
+[ext_resource path="res://tutorials/scenes/tutorialSwapping.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tutorials/scenes/tutorialFalling.tscn" type="PackedScene" id=3]
+
+[node name="tutorial" type="CanvasLayer"]
+
+[node name="root" type="Node2D" parent="."]
+position = Vector2( 120, 250 )
+
+[node name="greyOverGrid" type="Sprite" parent="root"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="tutorialFalling" parent="root" instance=ExtResource( 3 )]
+position = Vector2( 58.8976, 42.6102 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="tutorialSwapping" parent="root" instance=ExtResource( 2 )]
+position = Vector2( 434.687, 42.61 )
+scale = Vector2( 0.7, 0.7 )

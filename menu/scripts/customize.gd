@@ -5,6 +5,8 @@ onready var background : Node2D = $"../background"
 onready var root : Control = $root
 onready var saveLoad : Node2D = $"../saveLoad"
 onready var achievements : CanvasLayer = $"../achievements"
+onready var confirm : AudioStreamPlayer2D = $"../menu/confirm"
+onready var deny : AudioStreamPlayer2D = $"../menu/deny"
 
 var open = false
 var changingBackground = false
@@ -27,9 +29,11 @@ func getOpen():
 	return open
 
 func changeTileSet(newTileSet):
+	confirm.playSound()
 	board.changePiece(newTileSet)
 
 func changeBackground(newBackground):
+	confirm.playSound()
 	background.fadeOut()
 	background = newBackground.instance()
 	background.modulate.v = 0.3
@@ -40,4 +44,3 @@ func _on_done_fading():
 	background.fadeIn()
 	background.modulate.a = 1
 	background.connect("doneFading", self, "_on_done_fading")
-
