@@ -12,6 +12,7 @@ func _ready():
 func _process(delta):
 	if menu.getOpen():
 		self.visible = true
+		self.modulate.a = menu.overlay.color.a * (1/menu.overlay.maxOpacity)
 	else:
 		self.visible = false
 

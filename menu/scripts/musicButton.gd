@@ -8,6 +8,7 @@ var musicOn = true
 
 func _process(delta):
 	self.visible = menu.getOpen()
+	self.modulate.a = menu.overlay.color.a * (1/menu.overlay.maxOpacity)
 
 func _pressed():
 	musicOn = !musicOn

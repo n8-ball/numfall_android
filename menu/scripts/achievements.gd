@@ -31,9 +31,6 @@ func checkAchievements():
 	checkPixelTile()
 	checkNeonTile()
 
-func displayAchievement(achieveSprite, achieveName):
-	pass
-
 func loadAchieve(newAchieve):
 	if newAchieve != null:
 		for key in newAchieve:

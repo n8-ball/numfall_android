@@ -62,7 +62,6 @@ func spawnPiece():
 				break
 	else:
 		board.endGame()
-		board.saveLoad.saveGame()
 
 func makePiece(value, xPos, yPos):
 	var newPiece = board.getPieceType().instance()

@@ -5,7 +5,7 @@ onready var confirm: AudioStreamPlayer2D = $"../confirm"
 onready var deny: AudioStreamPlayer2D = $"../deny"
 
 func _process(delta):
-	self.visible = !menu.getOpen()
+	self.visible = !menu.getOpen() && !menu.board.getTutorialStarted()
 
 func _pressed():
 	confirm.playSound()

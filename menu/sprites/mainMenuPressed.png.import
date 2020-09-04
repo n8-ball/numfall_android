@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/default.png-ced48782cb5e3fbfaa43993d09387920.stex"
+path="res://.import/mainMenuPressed.png-eb1e5fe95a2610a6c2ff1613afb4794e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pieceSets/default/sprites/default.png"
-dest_files=[ "res://.import/default.png-ced48782cb5e3fbfaa43993d09387920.stex" ]
+source_file="res://menu/sprites/mainMenuPressed.png"
+dest_files=[ "res://.import/mainMenuPressed.png-eb1e5fe95a2610a6c2ff1613afb4794e.stex" ]
 
 [params]
 
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

@@ -80,9 +80,9 @@ __meta__ = {
 
 [node name="backButton" type="TextureButton" parent="root"]
 margin_left = 152.218
-margin_top = 266.382
-margin_right = 298.218
-margin_bottom = 412.382
+margin_top = 290.0
+margin_right = 312.218
+margin_bottom = 457.0
 texture_normal = ExtResource( 25 )
 script = ExtResource( 24 )
 __meta__ = {

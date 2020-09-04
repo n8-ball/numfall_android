@@ -13,7 +13,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	self.visible = menu.getOpen()
+	self.modulate.a = menu.overlay.color.a * (1/menu.overlay.maxOpacity)
 
 func _pressed():
 	animation.play("drop")
+	menu.board.clearBoard()
 	confirm.playSound()

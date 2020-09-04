@@ -20,16 +20,24 @@ func getCoord(pos):
 func _input(event):
 	#Select First
 	if event is InputEventMouseButton && event.is_action_pressed("ui_select")\
-	&& !justClicked: #&& board.swapReady:
+	&& !justClicked && !board.getGameOver(): #&& board.swapReady:
 		justClicked = true
 		coordSelect = getCoord(event.position)
 		if coordSelect.x < board.brdWd && coordSelect.x >= 0 \
 		&& coordSelect.y < board.brdHt && coordSelect.y >= 0:
-			select = board.board[coordSelect.y][coordSelect.x]
-			if nodeAvailable(select) && select.getState() == select.IDLE_STATE:
-				select.setSelect(select.SOLO_SELECTED)
+			if board.getTutorialStarted():
+				if coordSelect.x == 3 && coordSelect.y == 9:
+					select = board.board[coordSelect.y][coordSelect.x]
+					if nodeAvailable(select) && select.getState() == select.IDLE_STATE:
+						select.setSelect(select.SOLO_SELECTED)
+					else:
+						select = null
 			else:
-				select = null
+				select = board.board[coordSelect.y][coordSelect.x]
+				if nodeAvailable(select) && select.getState() == select.IDLE_STATE:
+					select.setSelect(select.SOLO_SELECTED)
+				else:
+					select = null
 	
 	elif event is InputEventMouseMotion && nodeAvailable(select)\
 	&& board.swapReady && !board.getGameOver():
@@ -37,16 +45,12 @@ func _input(event):
 		&& getCoord(event.position).x >= 0:
 			#Right
 			if event.position.x > board.getPos(coordSelect.x + 1, 0).x:
-				select.setSelect(select.UNSELECTED)
 				board.swapPieces(coordSelect, coordSelect + Vector2(1, 0))
-				select = null
-				coordSelect = Vector2(-1, -1)
+				clearSelect()
 			#Left
 			elif event.position.x < board.getPos(coordSelect.x - 1, 0).x:
-				select.setSelect(select.UNSELECTED)
 				board.swapPieces(coordSelect, coordSelect + Vector2(-1, 0))
-				select = null
-				coordSelect = Vector2(-1, -1)
+				clearSelect()
 	#Unselect
 	elif event is InputEventMouseButton &&\
 	event.is_action_released("ui_select"):

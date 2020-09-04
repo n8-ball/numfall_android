@@ -558,9 +558,12 @@ script = ExtResource( 4 )
 [node name="scalar" type="Node2D" parent="."]
 
 [node name="block" type="Sprite" parent="scalar"]
+visible = false
+scale = Vector2( 1, 0.5 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -100 )
 hframes = 26
+frame = 19
 
 [node name="blockAnimation" type="AnimationPlayer" parent="scalar/block"]
 pause_mode = 2

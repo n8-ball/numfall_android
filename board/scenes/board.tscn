@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://board/scripts/board.gd" type="Script" id=1]
 [ext_resource path="res://backgrounds/default/scenes/defaultBackground.tscn" type="PackedScene" id=2]
 [ext_resource path="res://board/sprites/grid.png" type="Texture" id=3]
 [ext_resource path="res://board/scripts/selector.gd" type="Script" id=4]
 [ext_resource path="res://board/scripts/spawner.gd" type="Script" id=5]
+[ext_resource path="res://fonts/Poppins-MediumItalic.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://board/scripts/score.gd" type="Script" id=7]
 [ext_resource path="res://board/scenes/saveLoad.tscn" type="PackedScene" id=8]
 [ext_resource path="res://board/scripts/range.gd" type="Script" id=9]
@@ -15,15 +16,16 @@
 [ext_resource path="res://menu/scenes/achievements.tscn" type="PackedScene" id=14]
 [ext_resource path="res://board/scripts/highScore.gd" type="Script" id=15]
 [ext_resource path="res://fonts/Poppins-SemiBold.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://tutorials/scenes/tutorial.tscn" type="PackedScene" id=17]
 
 [sub_resource type="DynamicFont" id=1]
-size = 192
+size = 150
 extra_spacing_bottom = 39
 font_data = ExtResource( 16 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 80
-font_data = ExtResource( 16 )
+font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 128
@@ -33,17 +35,18 @@ font_data = ExtResource( 16 )
 script = ExtResource( 1 )
 
 [node name="grid" type="Sprite" parent="."]
-position = Vector2( 120, 250 )
+position = Vector2( 120, 280 )
 z_as_relative = false
 texture = ExtResource( 3 )
 centered = false
 
 [node name="score" type="RichTextLabel" parent="."]
 margin_left = 220.0
-margin_top = -10.0
+margin_top = 10.0
 margin_right = 1220.0
-margin_bottom = 300.0
+margin_bottom = 261.0
 custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0.929412, 0.929412, 0.929412, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]0[/center]"
 text = "0"
@@ -55,14 +58,23 @@ __meta__ = {
 }
 
 [node name="highScore" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 margin_left = 220.0
-margin_top = 200.0
+margin_top = 170.0
 margin_right = 1220.0
-margin_bottom = 380.0
+margin_bottom = 370.0
+grow_horizontal = 2
+rect_clip_content = false
 custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.929412, 0.929412, 0.929412, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]0[/center]"
 text = "0"
+fit_content_height = true
+scroll_active = false
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -78,7 +90,7 @@ pause_mode = 2
 script = ExtResource( 5 )
 
 [node name="range" type="Node2D" parent="spawner"]
-position = Vector2( 120, 2280 )
+position = Vector2( 120, 2300 )
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 9 )
 
@@ -86,7 +98,7 @@ script = ExtResource( 9 )
 margin_right = 500.0
 margin_bottom = 200.0
 custom_fonts/normal_font = SubResource( 3 )
-text = "Range:"
+text = "range"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -99,6 +111,8 @@ layer = 3
 
 [node name="achievements" parent="." instance=ExtResource( 14 )]
 
+[node name="tutorial" parent="." instance=ExtResource( 17 )]
+
 [node name="music" type="AudioStreamPlayer2D" parent="."]
 pause_mode = 2
 stream = ExtResource( 12 )
@@ -106,4 +120,3 @@ attenuation = 0.267943
 script = ExtResource( 10 )
 
 [node name="background" parent="." instance=ExtResource( 2 )]
-position = Vector2( 0, 4.75684 )

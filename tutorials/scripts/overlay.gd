@@ -1,6 +1,9 @@
-extends RichTextLabel
+extends ColorRect
 
-onready var board : Node2D = $".."
+onready var tutorial : CanvasLayer = $".."
+
+var start = Vector2(150, 400)
+var end = Vector2(500, 200)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,4 +11,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	bbcode_text = "[center]" + "[img]res://board/sprites/crown.png[/img] " + str(board.highScore) + "[/center]"
+	self.visible = tutorial.getOpen()

@@ -6,6 +6,7 @@ onready var saveLoad : Node2D = $"saveLoad"
 onready var menu : CanvasLayer = $"menu"
 onready var grid : Sprite = $"grid"
 onready var achievements : CanvasLayer = $"achievements"
+onready var tutorial : CanvasLayer = $"tutorial"
 
 var pieceName = load("res://pieceSets/default/scenes/default.tscn")
 
@@ -28,8 +29,11 @@ var startPieces = 4
 
 var musicOn = true
 var soundOn = true
+var tutorialOn = true
 
 var gameOver = false
+var tutorialStarted = false
+signal swapMade
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,9 +50,10 @@ func _process(_delta):
 		var dir = Directory.new()
 		dir.remove("user://numfall.save")
 	if Input.is_action_just_pressed("ui_cancel"):
-		for i in range(7):
+		for i in range(6):
 			spawner.spawnPiece()
-	print(gameOver)
+	if Input.is_action_pressed("ui_cancel"):
+		score = score + 1
 
 func clearBoard(): 
 	for y in range(brdHt):
@@ -71,15 +76,22 @@ func restartGame():
 	spawner.resetRange()
 	setGameOver(false)
 	spawner.rangeDisplay.newRange()
-	for _i in range(startPieces):
-		spawner.spawnPiece()
+	tutorialStarted = tutorialOn
+	tutorial.restart()
+	if !tutorialStarted:
+		for _i in range(startPieces):
+			spawner.spawnPiece()
+	else:
+		spawner.makePiece(2, 0, 0)
+		spawner.makePiece(1, 2, 0)
+		spawner.makePiece(1, 3, 0)
+		spawner.makePiece(2, 5, 0)
 	saveLoad.saveGame()
 
 func endGame():
 	setGameOver(true)
 	cancelSave()
 	saveLoad.saveGame()
-	clearBoard()
 	menu.endGameMenu()
 
 func createBoard():
@@ -115,7 +127,10 @@ func updateBoard():
 		saveReady = false
 	if scheduleSpawn && allReady:
 		scheduleSpawn = false
-		spawner.spawnPiece()
+		if !tutorialStarted:
+			spawner.spawnPiece()
+		else:
+			spawner.makePiece(2, 5, 0)
 		saveReady = true
 
 func checkBig(chkNum, chkPiece):
@@ -200,6 +215,7 @@ func swapPieces(firstCoord, secondCoord):
 			secondPiece.setState(secondPiece.SWITCH_LEFT_STATE)
 		secondPiece.setPos(getPos(firstCoord.x, firstCoord.y))
 	scheduleSpawn = true
+	emit_signal("swapMade")
 
 func getPos(x, y):
 # warning-ignore:integer_division
@@ -251,6 +267,7 @@ func saveSettings():
 	var saveDict = {
 		"music" : musicOn,
 		"sound" : soundOn,
+		"tutorial" : tutorialOn,
 		"gameOver" : gameOver
 	}
 	return saveDict
@@ -260,6 +277,8 @@ func loadSettings(newSettings):
 		setMusic(newSettings["music"])
 	if newSettings.has("sound"):
 		setSound(newSettings["sound"])
+	if newSettings.has("tutorial"):
+		setTutorial(newSettings["tutorial"])
 	if newSettings.has("gameOver"):
 		setGameOver(newSettings["gameOver"])
 
@@ -274,6 +293,17 @@ func getSound():
 
 func setSound(newSound):
 	soundOn = newSound
+
+func getTutorial():
+	return tutorialOn
+
+func setTutorial(newTutorial):
+	tutorialOn = newTutorial
+	if tutorialOn == false:
+		tutorialStarted = false
+
+func getTutorialStarted():
+	return tutorialStarted
 
 func getGameOver():
 	return gameOver

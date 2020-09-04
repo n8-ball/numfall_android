@@ -5,6 +5,7 @@ onready var menu : CanvasLayer = $".."
 func _process(delta):
 	if !menu.gameOverStart:
 		self.visible = menu.open
-		self.modulate.a = menu.overlay.color.a * (1/menu.overlay.maxOpacity)
+		self.modulate = Color(1, 1, 1, 1)
 	else:
 		self.visible = true
+		self.modulate = Color(1, 1, 1, menu.gameOverTimer/menu.gameOverDelay)
