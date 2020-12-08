@@ -3,7 +3,7 @@ extends TextureButton
 onready var menu : CanvasLayer = $".."
 onready var confirm : AudioStreamPlayer2D = $"../confirm"
 onready var deny : AudioStreamPlayer2D = $"../deny"
-onready var animation : AnimationPlayer = $"AnimationPlayer"
+onready var animation : AnimationPlayer = $"../menuAnimator"
 
 
 # Called when the node enters the scene tree for the first time.

@@ -31,6 +31,10 @@ var musicOn = true
 var soundOn = true
 var tutorialOn = true
 
+var savePiece = "default"
+var saveMusic = "default"
+var saveBackground = "default"
+
 var gameOver = false
 var tutorialStarted = false
 signal swapMade
@@ -38,7 +42,8 @@ signal swapMade
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	createBoard()
-	saveLoad.loadInitial()
+	if !saveLoad.loadInitial():
+		menu.customize.setCustomize("default", "default", "default")
 	menu.forceSettings()
 	brdX = grid.position.x
 	brdY = grid.position.y
@@ -268,7 +273,10 @@ func saveSettings():
 		"music" : musicOn,
 		"sound" : soundOn,
 		"tutorial" : tutorialOn,
-		"gameOver" : gameOver
+		"gameOver" : gameOver,
+		"savePiece" : savePiece,
+		"saveMusic" : saveMusic,
+		"saveBackground" : saveBackground
 	}
 	return saveDict
 
@@ -281,6 +289,10 @@ func loadSettings(newSettings):
 		setTutorial(newSettings["tutorial"])
 	if newSettings.has("gameOver"):
 		setGameOver(newSettings["gameOver"])
+	if newSettings.has("savePiece") && newSettings.has("saveMusic")\
+		&& newSettings.has("saveBackground"):
+		menu.customize.setCustomize(newSettings["savePiece"],\
+		newSettings["saveMusic"], newSettings["saveBackground"])
 
 func getMusic():
 	return musicOn
@@ -311,8 +323,12 @@ func getGameOver():
 func setGameOver(newGameOver):
 	gameOver = newGameOver
 
-func changePiece(newPieceName):
+func changePiece(newPieceName, newSavePiece):
 	pieceName = load(newPieceName)
+	savePiece = newSavePiece
+
+func setSaveBackground(newSaveBackground):
+	saveBackground = newSaveBackground
 
 func cancelSave():
 	saveReady = false

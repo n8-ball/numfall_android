@@ -1,0 +1,25 @@
+Nate:
+*Game Over Menu **
+*Customize
+*Accept/deny **
+*Tutorial
+	*Pieces ALWAYS fall down
+	*You can swap the position of two pieces, that are next to each other horizontally
+	*You may also swap a piece with an empty horizontal space to move the piece
+	*When a piece is moved or swapped a new piece is spawned at a random position at the top
+	*When two pieces of the same value are stacked, they combine into a piece with a higher value, giving you points
+	*When the board is full, you lose the game
+	*As the game progresses, the range of pieces that can drop will increase
+
+Jesse:
+*Pieces
+*Game over menu - spectate, play again
+*Font thing
+*Customization
+*Tutorial
+*Achievement
+
+Andrew:
+*Default song
+*Accept/Deny
+*Land/Combine/Swap/Achievement

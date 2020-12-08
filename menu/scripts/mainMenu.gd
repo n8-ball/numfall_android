@@ -2,6 +2,7 @@ extends CanvasLayer
 
 onready var board : Node2D = $".."
 onready var overlay : ColorRect = $overlay
+onready var customize : CanvasLayer = $customize
 onready var musicButton : TextureButton = $musicButton
 onready var soundButton : TextureButton = $soundButton
 onready var tutorialButton : TextureButton = $tutorialButton

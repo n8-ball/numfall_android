@@ -4,11 +4,10 @@ onready var board : Node2D = $".."
 var achievementNotice = preload("res://menu/scenes/achievementNotice.tscn")
 
 var achieveDict = {
-	"defaultTile" : true,
 	"pixelTile" : false,
 	"neonTile" : false,
 	
-	"defaultBg" : true,
+	"pixelBg" : false,
 	"autumnBg" : false,
 	"metalBg" : false,
 	

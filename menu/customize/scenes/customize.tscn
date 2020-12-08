@@ -1,0 +1,400 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://menu/customize/scripts/buttonList.gd" type="Script" id=2]
+[ext_resource path="res://pieceSets/default/sprites/default4.png" type="Texture" id=3]
+[ext_resource path="res://menu/customize/scripts/pieceRoot.gd" type="Script" id=4]
+[ext_resource path="res://menu/customize/scripts/pieceButton.gd" type="Script" id=5]
+[ext_resource path="res://menu/customize/scripts/backgroundButton.gd" type="Script" id=6]
+[ext_resource path="res://menu/customize/scripts/backgroundRoot.gd" type="Script" id=7]
+[ext_resource path="res://menu/customize/sprites/unlock.png" type="Texture" id=8]
+[ext_resource path="res://menu/customize/scripts/customizeButtonControl.gd" type="Script" id=9]
+[ext_resource path="res://pieceSets/pixel/sprites/pixel4.png" type="Texture" id=10]
+[ext_resource path="res://menu/customize/scripts/customize.gd" type="Script" id=11]
+[ext_resource path="res://menu/customize/scripts/musicButton.gd" type="Script" id=12]
+[ext_resource path="res://pieceSets/neon/sprites/neon4.png" type="Texture" id=13]
+[ext_resource path="res://menu/scripts/backButton.gd" type="Script" id=24]
+[ext_resource path="res://menu/customize/sprites/backArrow.png" type="Texture" id=25]
+[ext_resource path="res://menu/customize/sprites/customizeTitle.png" type="Texture" id=26]
+[ext_resource path="res://menu/customize/sprites/customizeWhite.png" type="Texture" id=27]
+[ext_resource path="res://menu/customize/sprites/customizeBanner.png" type="Texture" id=28]
+[ext_resource path="res://menu/customize/sprites/pieceUnpressed.png" type="Texture" id=29]
+[ext_resource path="res://menu/customize/sprites/piecePressed.png" type="Texture" id=30]
+[ext_resource path="res://menu/customize/sprites/backgroundUnpressed.png" type="Texture" id=31]
+[ext_resource path="res://menu/customize/sprites/backgroundPressed.png" type="Texture" id=32]
+[ext_resource path="res://menu/customize/sprites/musicPressed.png" type="Texture" id=33]
+[ext_resource path="res://menu/customize/sprites/musicUnpressed.png" type="Texture" id=34]
+[ext_resource path="res://menu/customize/sprites/inUse.png" type="Texture" id=35]
+[ext_resource path="res://menu/customize/sprites/select.png" type="Texture" id=36]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends CenterContainer
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+#onready var confirm: AudioStreamPlayer2D = $\"../confirm\"
+#onready var deny: AudioStreamPlayer2D = $\"../deny\"
+
+#Internal
+onready var icon : Sprite = $\"icon\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://pieceSets/default/scenes/default.tscn\"
+var achievementName = \"default\"
+
+#Icon must also be changed
+
+func _ready():
+	pass # Replace with function body.
+	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		icon.modulate = Color.white
+	else:
+		icon.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+
+func unselectButton():
+	buttonControl.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends CenterContainer
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+#onready var confirm: AudioStreamPlayer2D = $\"../confirm\"
+#onready var deny: AudioStreamPlayer2D = $\"../deny\"
+
+#Internal
+onready var icon : Sprite = $\"icon\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://pieceSets/pixel/scenes/pixel.tscn\"
+var achievementName = \"pixelTile\"
+
+#Icon must also be changed
+
+func _ready():
+	pass # Replace with function body.
+	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		icon.modulate = Color.white
+	else:
+		icon.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+
+func unselectButton():
+	buttonControl.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends CenterContainer
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+#onready var confirm: AudioStreamPlayer2D = $\"../confirm\"
+#onready var deny: AudioStreamPlayer2D = $\"../deny\"
+
+#Internal
+onready var icon : Sprite = $\"icon\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://pieceSets/neon/scenes/neon.tscn\"
+var achievementName = \"neonTile\"
+
+#Icon must also be changed
+
+func _ready():
+	pass # Replace with function body.
+	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		icon.modulate = Color.white
+	else:
+		icon.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+
+func unselectButton():
+	buttonControl.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+"
+
+[node name="customize" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 11 )
+
+[node name="customizeBanner" type="Sprite" parent="."]
+texture = ExtResource( 28 )
+centered = false
+
+[node name="pieceButton" type="TextureButton" parent="."]
+margin_top = 330.0
+margin_right = 474.0
+margin_bottom = 492.0
+toggle_mode = true
+texture_normal = ExtResource( 29 )
+texture_pressed = ExtResource( 30 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pieceRoot" type="Node2D" parent="pieceButton"]
+z_index = 1
+script = ExtResource( 4 )
+
+[node name="pieceList" type="GridContainer" parent="pieceButton/pieceRoot"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 63.0
+margin_top = 270.0
+margin_right = 1133.0
+margin_bottom = 429.0
+custom_constants/vseparation = 630
+custom_constants/hseparation = 481
+columns = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="default" type="CenterContainer" parent="pieceButton/pieceRoot/pieceList"]
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="icon" type="Sprite" parent="pieceButton/pieceRoot/pieceList/default"]
+scale = Vector2( 1.77, 1.77 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="buttonControl" type="Node2D" parent="pieceButton/pieceRoot/pieceList/default"]
+position = Vector2( 0, 390 )
+script = ExtResource( 9 )
+
+[node name="selectButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/default/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource( 36 )
+texture_pressed = ExtResource( 35 )
+texture_disabled = ExtResource( 35 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unlockButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/default/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pixel" type="CenterContainer" parent="pieceButton/pieceRoot/pieceList"]
+margin_left = 481.0
+margin_right = 481.0
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="icon" type="Sprite" parent="pieceButton/pieceRoot/pieceList/pixel"]
+scale = Vector2( 1.77, 1.77 )
+texture = ExtResource( 10 )
+centered = false
+
+[node name="buttonControl" type="Node2D" parent="pieceButton/pieceRoot/pieceList/pixel"]
+position = Vector2( 0, 390 )
+script = ExtResource( 9 )
+
+[node name="selectButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/pixel/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource( 36 )
+texture_pressed = ExtResource( 35 )
+texture_disabled = ExtResource( 35 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unlockButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/pixel/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="customizeItem3" type="CenterContainer" parent="pieceButton/pieceRoot/pieceList"]
+margin_left = 962.0
+margin_right = 962.0
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="icon" type="Sprite" parent="pieceButton/pieceRoot/pieceList/customizeItem3"]
+scale = Vector2( 1.77, 1.77 )
+texture = ExtResource( 13 )
+centered = false
+
+[node name="buttonControl" type="Node2D" parent="pieceButton/pieceRoot/pieceList/customizeItem3"]
+position = Vector2( 0, 390 )
+script = ExtResource( 9 )
+
+[node name="selectButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/customizeItem3/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource( 36 )
+texture_pressed = ExtResource( 35 )
+texture_disabled = ExtResource( 35 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unlockButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/customizeItem3/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="musicButton" type="TextureButton" parent="."]
+margin_left = 480.0
+margin_top = 330.0
+margin_right = 960.0
+margin_bottom = 492.0
+toggle_mode = true
+texture_normal = ExtResource( 34 )
+texture_pressed = ExtResource( 33 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="backgroundButton" type="TextureButton" parent="."]
+margin_left = 960.0
+margin_top = 330.0
+margin_right = 1440.0
+margin_bottom = 492.0
+toggle_mode = true
+texture_normal = ExtResource( 31 )
+texture_pressed = ExtResource( 32 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="backgroundRoot" type="Node2D" parent="backgroundButton"]
+position = Vector2( -960, 0 )
+z_index = 1
+script = ExtResource( 7 )
+
+[node name="backgroundList" type="GridContainer" parent="backgroundButton/backgroundRoot"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 63.0
+margin_top = 270.0
+margin_right = 1133.0
+margin_bottom = 429.0
+custom_constants/vseparation = 630
+custom_constants/hseparation = 481
+columns = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="white" type="Sprite" parent="."]
+position = Vector2( 785, 1526.24 )
+texture = ExtResource( 27 )
+
+[node name="title" type="Sprite" parent="."]
+position = Vector2( 367, 50 )
+texture = ExtResource( 26 )
+centered = false
+
+[node name="backButton" type="TextureButton" parent="."]
+margin_left = 91.6369
+margin_top = 69.0571
+margin_right = 297.637
+margin_bottom = 236.057
+texture_normal = ExtResource( 25 )
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

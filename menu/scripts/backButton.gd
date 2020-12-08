@@ -1,7 +1,8 @@
 extends TextureButton
 
-onready var customizeMenu : CanvasLayer = $"../.."
+onready var customizeMenu : CanvasLayer = $".."
+onready var menuAnimator : AnimationPlayer = $"../../menuAnimator"
 
 func _pressed():
-	customizeMenu.setOpen(false)
+	menuAnimator.play("toMenu")
 	customizeMenu.deny.playSound()

@@ -576,9 +576,8 @@ script = ExtResource( 4 )
 scale = Vector2( 6.25, 6.25 )
 
 [node name="block" type="Sprite" parent="scalar"]
-position = Vector2( 0, -16 )
-scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 1 )
+offset = Vector2( 0, -16 )
 hframes = 26
 
 [node name="blockAnimation" type="AnimationPlayer" parent="scalar/block"]
@@ -596,13 +595,12 @@ anims/switchRight = SubResource( 9 )
 script = ExtResource( 5 )
 
 [node name="tier" type="Sprite" parent="scalar/block"]
-visible = false
 position = Vector2( 0, 16 )
 texture = ExtResource( 3 )
-offset = Vector2( 0, -16 )
+offset = Vector2( 0, -32 )
 vframes = 3
 hframes = 7
-frame = 1
+frame = 6
 
 [node name="tierAnimation" type="AnimationPlayer" parent="scalar/block/tier"]
 autoplay = "0"
