@@ -3,8 +3,8 @@ extends TextureButton
 onready var menu : CanvasLayer = $".."
 onready var newGameConfirm : Sprite = $"../newGameButton/newGameConfirm"
 onready var menuAnimator : AnimationPlayer = $"../menuAnimator"
-onready var confirm: AudioStreamPlayer2D = $"../confirm"
-onready var deny: AudioStreamPlayer2D = $"../deny"
+onready var confirm: AudioStreamPlayer = $"../confirm"
+onready var deny: AudioStreamPlayer = $"../deny"
 
 var customizeOpen = false
 

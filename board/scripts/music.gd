@@ -1,4 +1,4 @@
-extends AudioStreamPlayer2D
+extends AudioStreamPlayer
 
 onready var board : Node2D = $".."
 
@@ -9,10 +9,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if board.getMusic():
-		if !playing:
-			play(0)
+	if !playing:
+		play(0)
 		autoplay = true
-	else:
-		autoplay = false
-		playing = false

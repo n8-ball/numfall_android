@@ -64,9 +64,9 @@ func getValue():
 func setState(newState):
 	state = newState
 	blockAnimation.runAnimation()
-	if newState == COMBINE_TOP_STATE && board != null && board.getSound():
+	if newState == COMBINE_TOP_STATE && board != null:
 		combineSound.play(0)
-	if newState == LAND_STATE && board != null && board.getSound():
+	if newState == LAND_STATE && board != null:
 		landSound.play(0)
 
 func getState():

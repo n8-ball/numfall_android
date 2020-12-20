@@ -1,17 +1,20 @@
 extends CanvasLayer
 
 onready var board : Node2D = $".."
-var achievementNotice = preload("res://menu/scenes/achievementNotice.tscn")
+#var achievementNotice = preload("res://menu/scenes/achievementNotice.tscn")
 
 var achieveDict = {
-	"pixelTile" : false,
-	"neonTile" : false,
+	"pixelTile" : true,
+	"neonTile" : true,
+	"juicyTile" : true,
+	"tuxedoTile" : true,
 	
-	"pixelBg" : false,
-	"autumnBg" : false,
-	"metalBg" : false,
+	"pixelBg" : true,
+	"juicyBg" : true,
+	"darkCrystalBg" : true,
 	
-	"defaultMus" : true
+	"shadesOfSpring" : true,
+	"unity" : true
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -45,10 +48,11 @@ func checkPixelTile():
 	if board.bigPiece != null && board.bigPiece >= 3:
 		achieveDict["pixelTile"] = true
 		if oldState == false:
-			var notice = achievementNotice.instance()
-			notice.setAchievement("res://pieceSets/pixel/sprites/pixel0.png", \
-				"Pixel Tile")
-			board.add_child(notice)
+			pass
+			#var notice = achievementNotice.instance()
+			#notice.setAchievement("res://pieceSets/pixel/sprites/pixel0.png", \
+			#	"Pixel Tile")
+			#board.add_child(notice)
 	
 
 #Have 4 ascending rows from the bottom row
@@ -56,7 +60,8 @@ func checkNeonTile():
 	var oldState = achieveDict["neonTile"]
 	achieveDict["neonTile"] = true
 	if oldState == false:
-			var notice = achievementNotice.instance()
-			notice.setAchievement("res://pieceSets/neon/sprites/neon0.png", \
-				"Neon Tile")
-			board.add_child(notice)
+		pass
+			#var notice = achievementNotice.instance()
+			#notice.setAchievement("res://pieceSets/neon/sprites/neon0.png", \
+			#	"Neon Tile")
+			#board.add_child(notice)

@@ -2,7 +2,6 @@
 
 [ext_resource path="res://board/scripts/board.gd" type="Script" id=1]
 [ext_resource path="res://backgrounds/default/scenes/defaultBackground.tscn" type="PackedScene" id=2]
-[ext_resource path="res://board/sprites/grid.png" type="Texture" id=3]
 [ext_resource path="res://board/scripts/selector.gd" type="Script" id=4]
 [ext_resource path="res://board/scripts/spawner.gd" type="Script" id=5]
 [ext_resource path="res://fonts/Poppins-MediumItalic.ttf" type="DynamicFontData" id=6]
@@ -11,7 +10,8 @@
 [ext_resource path="res://board/scripts/range.gd" type="Script" id=9]
 [ext_resource path="res://board/scripts/music.gd" type="Script" id=10]
 [ext_resource path="res://menu/scenes/mainMenu.tscn" type="PackedScene" id=11]
-[ext_resource path="res://debug/sounds/Original Tetris theme (Tetris Soundtrack).wav" type="AudioStream" id=12]
+[ext_resource path="res://music/mainTheme.ogg" type="AudioStream" id=12]
+[ext_resource path="res://menu/customize/sprites/backArrow.png" type="Texture" id=13]
 [ext_resource path="res://menu/scenes/achievements.tscn" type="PackedScene" id=14]
 [ext_resource path="res://board/scripts/highScore.gd" type="Script" id=15]
 [ext_resource path="res://fonts/Poppins-SemiBold.ttf" type="DynamicFontData" id=16]
@@ -32,12 +32,6 @@ font_data = ExtResource( 16 )
 
 [node name="board" type="Node2D"]
 script = ExtResource( 1 )
-
-[node name="grid" type="Sprite" parent="."]
-position = Vector2( 120, 280 )
-z_as_relative = false
-texture = ExtResource( 3 )
-centered = false
 
 [node name="score" type="RichTextLabel" parent="."]
 margin_left = 220.0
@@ -102,6 +96,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="upgradeArrow" type="Sprite" parent="spawner/range"]
+position = Vector2( 430, 100 )
+rotation = 1.5708
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 13 )
+
 [node name="menu" parent="." instance=ExtResource( 11 )]
 layer = 2
 
@@ -109,10 +109,10 @@ layer = 2
 
 [node name="tutorial" parent="." instance=ExtResource( 17 )]
 
-[node name="music" type="AudioStreamPlayer2D" parent="."]
+[node name="music" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 12 )
-attenuation = 0.267943
+bus = "Music"
 script = ExtResource( 10 )
 
 [node name="background" parent="." instance=ExtResource( 2 )]

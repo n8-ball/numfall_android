@@ -1,4 +1,4 @@
-extends AudioStreamPlayer2D
+extends AudioStreamPlayer
 
 onready var soundButton : TextureButton = $"../soundButton"
 
@@ -11,5 +11,4 @@ func _process(delta):
 	pass
 
 func playSound():
-	if soundButton.getSound():
-		self.play(0)
+	self.play(0)

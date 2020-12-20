@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ShadesOfSpring - Kevin MacLeod.ogg-36326e76c7f48a6d81462eee34f50975.oggstr"
+
+[deps]
+
+source_file="res://debug/sounds/ShadesOfSpring - Kevin MacLeod.ogg"
+dest_files=[ "res://.import/ShadesOfSpring - Kevin MacLeod.ogg-36326e76c7f48a6d81462eee34f50975.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

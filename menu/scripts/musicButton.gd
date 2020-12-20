@@ -1,8 +1,8 @@
 extends TextureButton
 
 onready var menu : CanvasLayer = $".."
-onready var confirm: AudioStreamPlayer2D = $"../confirm"
-onready var deny: AudioStreamPlayer2D = $"../deny"
+onready var confirm: AudioStreamPlayer = $"../confirm"
+onready var deny: AudioStreamPlayer = $"../deny"
 
 var musicOn = true
 
@@ -14,6 +14,7 @@ func _pressed():
 	musicOn = !musicOn
 	self.pressed = !musicOn
 	menu.board.setMusic(musicOn)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), !musicOn)
 	if musicOn:
 		confirm.playSound()
 	else:
@@ -21,4 +22,5 @@ func _pressed():
 
 func setMusic(newMusic):
 	musicOn = newMusic
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), !musicOn)
 	self.pressed = !musicOn

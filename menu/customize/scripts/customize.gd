@@ -4,11 +4,11 @@ onready var board : Node2D = $"../.."
 onready var background : Node2D = $"../../background"
 onready var saveLoad : Node2D = $"../../saveLoad"
 onready var achievements : CanvasLayer = $"../../achievements"
-onready var confirm : AudioStreamPlayer2D = $"../../menu/confirm"
-onready var deny : AudioStreamPlayer2D = $"../../menu/deny"
+onready var confirm : AudioStreamPlayer = $"../confirm"
+onready var deny : AudioStreamPlayer = $"../deny"
 
 onready var pieceRoot : Node2D = $"pieceButton/pieceRoot"
-#onready var musicRoot : Node2D = $"musicButton/musicRoot"
+onready var musicRoot : Node2D = $"musicButton/musicRoot"
 onready var backgroundRoot : Node2D = $"backgroundButton/backgroundRoot"
 
 var changingBackground = false
@@ -23,11 +23,9 @@ func _ready():
 	achievementDict = achievements.getAchievements()
 
 func changeTileSet(newTileSet, newSavePiece):
-	confirm.playSound()
 	board.changePiece(newTileSet, newSavePiece)
 
 func changeBackground(newBackground, newSaveBackground):
-	confirm.playSound()
 	background.fadeOut()
 	background = load(newBackground).instance()
 	background.modulate.v = 0.3
@@ -35,10 +33,17 @@ func changeBackground(newBackground, newSaveBackground):
 	board.add_child(background)
 	board.setSaveBackground(newSaveBackground)
 
+func changeMusic(newMusic, newSaveMusic):
+	board.changeMusic(newMusic, newSaveMusic)
+
 func setCustomize(pieceName, musicName, backgroundName):
 	pieceRoot.setPiece(pieceName)
-	#musicRoot.setMusic(musicName)
+	musicRoot.setMusic(musicName)
 	backgroundRoot.setBackground(backgroundName)
+
+func restartMusic():
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), !board.getMusic())
+	musicRoot.musicList.unselectPreviews(null)
 
 func _on_done_fading():
 	background.fadeIn()

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/TheFatRat - Unity.ogg-61f11f99e1eb6b5cb50eab637ad6a3f0.oggstr"
+
+[deps]
+
+source_file="res://debug/sounds/TheFatRat - Unity.ogg"
+dest_files=[ "res://.import/TheFatRat - Unity.ogg-61f11f99e1eb6b5cb50eab637ad6a3f0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

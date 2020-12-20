@@ -11,6 +11,9 @@ var holdClock = 0
 const maxHeight = 2450
 const startHeight = 2820
 
+func _ready():
+	pass
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if (movingDir == -1 && background.position.y > maxHeight) || movingDir == 1:

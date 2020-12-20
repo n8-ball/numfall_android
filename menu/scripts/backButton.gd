@@ -4,5 +4,6 @@ onready var customizeMenu : CanvasLayer = $".."
 onready var menuAnimator : AnimationPlayer = $"../../menuAnimator"
 
 func _pressed():
-	menuAnimator.play("toMenu")
+	menuAnimator.play("customizeToMenu")
 	customizeMenu.deny.playSound()
+	customizeMenu.restartMusic()

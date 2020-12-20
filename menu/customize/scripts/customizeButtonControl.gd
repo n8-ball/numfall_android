@@ -1,7 +1,7 @@
 extends Node2D
 
 #External
-onready var customizeItem : CenterContainer = $".."
+onready var customizeItem : Container = $".."
 
 #Internal
 onready var selectButton : TextureButton = $"selectButton"
@@ -27,9 +27,6 @@ func _process(delta):
 		unlockButton.visible = true
 	if !selectButton.pressed:
 		selectButton.disabled = false
-
-func changeTileSet(tileSetName):
-	customizeItem.changeTileSet(tileSetName)
 
 func unselect():
 	if customizeItem.unlocked:

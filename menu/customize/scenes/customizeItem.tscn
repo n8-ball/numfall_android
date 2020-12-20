@@ -1,25 +1,50 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://menu/customize/scripts/customizeItem.gd" type="Script" id=1]
 [ext_resource path="res://menu/customize/scripts/customizeButtonControl.gd" type="Script" id=2]
-[ext_resource path="res://pieceSets/default/sprites/default4.png" type="Texture" id=3]
+[ext_resource path="res://pieceSets/default/sprites/defaultPreview.png" type="Texture" id=3]
 [ext_resource path="res://menu/customize/sprites/inUse.png" type="Texture" id=4]
 [ext_resource path="res://menu/customize/sprites/select.png" type="Texture" id=5]
 [ext_resource path="res://menu/customize/sprites/unlock.png" type="Texture" id=6]
+[ext_resource path="res://fonts/Poppins-SemiBold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://debug/sounds/confirm.wav" type="AudioStream" id=8]
+[ext_resource path="res://debug/sounds/deny.wav" type="AudioStream" id=9]
 
-[node name="customizeItem" type="CenterContainer"]
+
+[sub_resource type="DynamicFont" id=1]
+size = 90
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 7 )
+
+[node name="customizeItem" type="Container"]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="itemName" type="RichTextLabel" parent="."]
+modulate = Color( 0.443137, 0.443137, 0.776471, 1 )
+margin_left = -100.0
+margin_right = 454.0
+margin_bottom = 100.0
+rect_clip_content = false
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center] Default [/center]"
+text = " Default "
+scroll_active = false
+
 [node name="icon" type="Sprite" parent="."]
-scale = Vector2( 1.77, 1.77 )
+position = Vector2( 27, 120 )
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 3 )
 centered = false
 
 [node name="buttonControl" type="Node2D" parent="."]
-position = Vector2( 0, 390 )
+position = Vector2( 0, 450 )
 script = ExtResource( 2 )
 
 [node name="selectButton" type="TextureButton" parent="buttonControl"]
@@ -34,9 +59,18 @@ __meta__ = {
 }
 
 [node name="unlockButton" type="TextureButton" parent="buttonControl"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_top = -2.0
+margin_right = 354.0
+margin_bottom = 157.0
 texture_normal = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="confirm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "Effects"
+
+[node name="deny" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+bus = "Effects"

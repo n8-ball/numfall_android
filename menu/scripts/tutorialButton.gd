@@ -2,8 +2,8 @@ extends TextureButton
 
 onready var menu : CanvasLayer = $".."
 onready var tutorialConfirm : Sprite = $tutorialConfirm
-onready var confirm: AudioStreamPlayer2D = $"../confirm"
-onready var deny: AudioStreamPlayer2D = $"../deny"
+onready var confirm: AudioStreamPlayer = $"../confirm"
+onready var deny: AudioStreamPlayer = $"../deny"
 
 var tutorialOn = true
 

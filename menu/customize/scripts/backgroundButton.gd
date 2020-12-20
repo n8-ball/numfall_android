@@ -21,3 +21,4 @@ func setPressed(newPressed):
 func _pressed():
 	musicButton.setPressed(false)
 	pieceButton.setPressed(false)
+	self.setPressed(true)

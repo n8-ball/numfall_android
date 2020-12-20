@@ -4,9 +4,9 @@ onready var spawner : Node2D = $"spawner"
 onready var selector : Node2D = $"selector"
 onready var saveLoad : Node2D = $"saveLoad"
 onready var menu : CanvasLayer = $"menu"
-onready var grid : Sprite = $"grid"
 onready var achievements : CanvasLayer = $"achievements"
 onready var tutorial : CanvasLayer = $"tutorial"
+onready var musicPlayer : AudioStreamPlayer = $"music"
 
 var pieceName = load("res://pieceSets/default/scenes/default.tscn")
 
@@ -14,7 +14,7 @@ var board = []
 const brdWd = 6
 const brdHt = 10
 var brdX = 120
-var brdY = 250
+var brdY = 280
 const pieceSize = 200
 
 var smallPiece = null
@@ -45,8 +45,6 @@ func _ready():
 	if !saveLoad.loadInitial():
 		menu.customize.setCustomize("default", "default", "default")
 	menu.forceSettings()
-	brdX = grid.position.x
-	brdY = grid.position.y
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -55,7 +53,7 @@ func _process(_delta):
 		var dir = Directory.new()
 		dir.remove("user://numfall.save")
 	if Input.is_action_just_pressed("ui_cancel"):
-		for i in range(6):
+		for _i in range(6):
 			spawner.spawnPiece()
 	if Input.is_action_pressed("ui_cancel"):
 		score = score + 1
@@ -326,6 +324,12 @@ func setGameOver(newGameOver):
 func changePiece(newPieceName, newSavePiece):
 	pieceName = load(newPieceName)
 	savePiece = newSavePiece
+
+func changeMusic(newMusic, newSaveMusic):
+	var newSong = load(newMusic)
+	musicPlayer.stream = newSong
+	musicPlayer.play(0)
+	saveMusic = newSaveMusic
 
 func setSaveBackground(newSaveBackground):
 	saveBackground = newSaveBackground

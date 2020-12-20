@@ -1,8 +1,8 @@
 extends TextureButton
 
 onready var newGameConfirm : Sprite = $".."
-onready var confirm : AudioStreamPlayer2D = $"../../../confirm"
-onready var deny : AudioStreamPlayer2D = $"../../../deny"
+onready var confirm : AudioStreamPlayer = $"../../../confirm"
+onready var deny : AudioStreamPlayer = $"../../../deny"
 
 # Declare member variables here. Examples:
 # var a = 2

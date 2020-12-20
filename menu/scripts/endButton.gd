@@ -1,8 +1,8 @@
 extends TextureButton
 
 onready var menu : CanvasLayer = $".."
-onready var confirm : AudioStreamPlayer2D = $"../confirm"
-onready var deny : AudioStreamPlayer2D = $"../deny"
+onready var confirm : AudioStreamPlayer = $"../confirm"
+onready var deny : AudioStreamPlayer = $"../deny"
 onready var animation : AnimationPlayer = $"../menuAnimator"
 
 
@@ -16,6 +16,6 @@ func _process(delta):
 	self.modulate.a = menu.overlay.color.a * (1/menu.overlay.maxOpacity)
 
 func _pressed():
-	animation.play("drop")
+	animation.play("dropToMenu")
 	menu.board.clearBoard()
 	confirm.playSound()

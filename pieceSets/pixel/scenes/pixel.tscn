@@ -612,7 +612,6 @@ anims/4 = SubResource( 14 )
 script = ExtResource( 8 )
 
 [node name="select" type="Sprite" parent="scalar/block"]
-visible = false
 z_index = 1
 texture = ExtResource( 2 )
 offset = Vector2( 0, -16 )
@@ -627,7 +626,9 @@ script = ExtResource( 6 )
 [node name="combine" type="AudioStreamPlayer2D" parent="."]
 scale = Vector2( 6.25, 6.25 )
 stream = ExtResource( 7 )
+bus = "Effects"
 
 [node name="land" type="AudioStreamPlayer2D" parent="."]
 scale = Vector2( 6.25, 6.25 )
 stream = ExtResource( 9 )
+bus = "Effects"
