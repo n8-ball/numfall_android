@@ -9,14 +9,17 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(_delta):
+	if self.pressed:
+		self.disabled = true
 
 func getPressed():
-	return pressed
+	return self.pressed || self.disabled
 
 func setPressed(newPressed):
 	self.pressed = newPressed
+	if !newPressed:
+		self.disabled = false
 
 func _pressed():
 	musicButton.setPressed(false)

@@ -26,7 +26,7 @@ func _ready():
 	itemName.bbcode_text = "[center]" + displayName + "[/center]"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#Unlocked
 	if achievementName == "default":
 		unlocked = true
@@ -44,6 +44,9 @@ func _on_button_select():
 	subMenuList.unselectButtons(self)
 	subMenuRoot.changeResource(newResourceName, achievementName)
 	confirm.play(0)
+
+func _on_button_unlock():
+	pass
 
 func unselectButton():
 	buttonControl.unselect()

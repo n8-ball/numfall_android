@@ -7,7 +7,7 @@ func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	bbcode_text = "[center]" + "[img]res://board/sprites/crown.png[/img] " + str(board.highScore) + "[/center]"
 	if board.score >= board.highScore:
 		self.modulate = Color.gold

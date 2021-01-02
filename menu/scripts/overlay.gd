@@ -9,7 +9,7 @@ const gameOverOpacitySpeed = 0.005
 func _ready():
 	self.color.a = maxOpacity
 
-func _process(delta):
+func _process(_delta):
 	if menu.getOpen():
 		if self.color.a < maxOpacity && !menu.board.getGameOver():
 			self.color.a = self.color.a + opacitySpeed

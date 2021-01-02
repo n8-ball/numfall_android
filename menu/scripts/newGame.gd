@@ -6,7 +6,7 @@ onready var deny : AudioStreamPlayer = $"../deny"
 onready var newGameConfirm : Sprite = $"newGameConfirm"
 onready var continueButton : TextureButton = $"../continueButton"
 
-func _process(delta):
+func _process(_delta):
 	self.visible = menu.getOpen()
 	self.disabled = newGameConfirm.getOpen()
 	self.modulate.a = menu.overlay.color.a * (1/menu.overlay.maxOpacity)

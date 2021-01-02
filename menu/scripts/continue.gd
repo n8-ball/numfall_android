@@ -11,7 +11,7 @@ var enabled = false
 func _ready():
 	self.visible = false
 
-func _process(delta):
+func _process(_delta):
 	if menu.getOpen():
 		if self.visible == false:
 			var saveFile = File.new()

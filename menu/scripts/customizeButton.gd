@@ -8,7 +8,7 @@ onready var deny: AudioStreamPlayer = $"../deny"
 
 var customizeOpen = false
 
-func _process(delta):
+func _process(_delta):
 	if menu.getOpen():
 		self.visible = true
 		self.disabled = newGameConfirm.getOpen()

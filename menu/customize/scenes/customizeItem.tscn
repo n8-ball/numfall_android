@@ -10,9 +10,8 @@
 [ext_resource path="res://debug/sounds/confirm.wav" type="AudioStream" id=8]
 [ext_resource path="res://debug/sounds/deny.wav" type="AudioStream" id=9]
 
-
 [sub_resource type="DynamicFont" id=1]
-size = 90
+size = 70
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 7 )
@@ -59,9 +58,8 @@ __meta__ = {
 }
 
 [node name="unlockButton" type="TextureButton" parent="buttonControl"]
-margin_top = -2.0
 margin_right = 354.0
-margin_bottom = 157.0
+margin_bottom = 159.0
 texture_normal = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false

@@ -53,6 +53,10 @@ func _process(_delta):
 		var dir = Directory.new()
 		dir.remove("user://numfall.save")
 	if Input.is_action_just_pressed("ui_cancel"):
+		for i in range(6):
+			for j in range(10):
+				if !(board[j][i] == null):
+					board[j][i].setValue(board[j][i].getValue() + 1)
 		for _i in range(6):
 			spawner.spawnPiece()
 	if Input.is_action_pressed("ui_cancel"):
@@ -107,8 +111,9 @@ func updateBoard():
 	var tempSmall = null
 	var tempBig = null
 	var allReady = true
+	var topRow = getTopRow()
 	swapReady = true
-	for y in range(brdHt - 1, -1, -1):
+	for y in range(brdHt - 1, topRow - 1, -1):
 		for x in range(brdWd):
 			#Normal
 			var curPiece = board[y][x]
@@ -125,7 +130,7 @@ func updateBoard():
 	smallPiece = tempSmall
 	bigPiece = tempBig
 	if swapReady && saveReady:
-		achievements.checkAchievements()
+		achievements.checkStableAchievements()
 		saveLoad.saveGame()
 		saveReady = false
 	if scheduleSpawn && allReady:
@@ -135,6 +140,14 @@ func updateBoard():
 		else:
 			spawner.makePiece(2, 5, 0)
 		saveReady = true
+
+#Optimization
+func getTopRow():
+	for y in range(brdHt):
+		for x in range(brdWd):
+			if board[y][x] != null:
+				return y
+	return 0
 
 func checkBig(chkNum, chkPiece):
 	if chkNum == null:
@@ -169,7 +182,7 @@ func handlePiece(curPiece, chkPiece, x, y, allReady):
 		curPiece.setState(curPiece.COMBINE_TOP_STATE)
 		chkPiece.setState(chkPiece.COMBINE_BOT_STATE)
 		curPiece.setPos(getPos(x, y+1))
-		score += curPiece.getValue()
+		score += curPiece.getModifiedScore()
 		if score > highScore:
 			highScore = score
 		board[y+1][x] = curPiece

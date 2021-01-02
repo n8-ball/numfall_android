@@ -7,7 +7,7 @@ var curTier = 0
 const maxTier = 5
 const maxPiece = 26
 
-func _process(delta):
+func _process(_delta):
 	updateTier()
 	animateTier()
 

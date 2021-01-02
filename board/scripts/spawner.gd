@@ -15,7 +15,7 @@ var ceilNum = initCeil
 func _ready():
 	rng.randomize()
 
-func _process(delta):
+func _process(_delta):
 	if board != null && board.bigPiece != null && board.smallPiece != null:
 		findRange()
 

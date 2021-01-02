@@ -8,7 +8,7 @@ var open = true
 func _ready():
 	self.visible = false
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func setOpen(newOpen):

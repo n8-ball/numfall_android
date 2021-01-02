@@ -16,11 +16,13 @@ var backgroundFade = 1
 var fadeRate = 1
 
 var achievementDict = null
+var purchaseManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	background.connect("doneFading", self, "_on_done_fading")
 	achievementDict = achievements.getAchievements()
+	purchaseManager = achievements.get_child(0)
 
 func changeTileSet(newTileSet, newSavePiece):
 	board.changePiece(newTileSet, newSavePiece)

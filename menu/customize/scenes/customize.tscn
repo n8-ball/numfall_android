@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://menu/customize/scripts/customizeItem.gd" type="Script" id=1]
 [ext_resource path="res://menu/customize/scripts/buttonList.gd" type="Script" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://debug/sounds/deny.wav" type="AudioStream" id=17]
 [ext_resource path="res://music/mainTheme.ogg" type="AudioStream" id=18]
 [ext_resource path="res://menu/customize/scripts/musicIconButton.gd" type="Script" id=19]
+[ext_resource path="res://music/neonTheme.ogg" type="AudioStream" id=20]
+[ext_resource path="res://music/pixelTheme.ogg" type="AudioStream" id=21]
 [ext_resource path="res://debug/sounds/confirm.wav" type="AudioStream" id=22]
 [ext_resource path="res://menu/customize/sprites/defaultMusicPause.png" type="Texture" id=23]
 [ext_resource path="res://menu/scripts/backButton.gd" type="Script" id=24]
@@ -32,7 +34,7 @@
 [ext_resource path="res://menu/customize/sprites/backgroundPressed.png" type="Texture" id=32]
 [ext_resource path="res://menu/customize/sprites/musicPressed.png" type="Texture" id=33]
 [ext_resource path="res://menu/customize/sprites/musicUnpressed.png" type="Texture" id=34]
-[ext_resource path="res://debug/sounds/TheFatRat - Unity.ogg" type="AudioStream" id=35]
+[ext_resource path="res://music/juicyTheme.ogg" type="AudioStream" id=35]
 [ext_resource path="res://menu/customize/sprites/defaultMusicPlay.png" type="Texture" id=36]
 [ext_resource path="res://backgrounds/pixel/sprites/pixelBackgroundPreview.png" type="Texture" id=37]
 [ext_resource path="res://backgrounds/default/sprites/defaultBackgroundPreview.png" type="Texture" id=38]
@@ -44,7 +46,7 @@
 [ext_resource path="res://pieceSets/tuxedo/sprites/tuxedoPreview.png" type="Texture" id=44]
 
 [sub_resource type="DynamicFont" id=1]
-size = 90
+size = 70
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 9 )
@@ -68,7 +70,7 @@ var unlocked = false
 #Unique
 var newResourceName = \"res://pieceSets/pixel/scenes/pixel.tscn\"
 var achievementName = \"pixelTile\"
-var displayName = \"Pixel\"
+var displayName = \"Retro\"
 
 #Icon must also be changed
 
@@ -78,7 +80,7 @@ func _ready():
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#Unlocked
 	if achievementName == \"default\":
 		unlocked = true
@@ -138,7 +140,7 @@ func _ready():
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#Unlocked
 	if achievementName == \"default\":
 		unlocked = true
@@ -198,7 +200,7 @@ func _ready():
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#Unlocked
 	if achievementName == \"default\":
 		unlocked = true
@@ -258,7 +260,7 @@ func _ready():
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#Unlocked
 	if achievementName == \"default\":
 		unlocked = true
@@ -323,7 +325,7 @@ func _ready():
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#Unlocked
 	if achievementName == \"default\":
 		unlocked = true
@@ -365,7 +367,7 @@ func setItem():
 "
 
 [sub_resource type="DynamicFont" id=8]
-size = 90
+size = 70
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 9 )
@@ -387,9 +389,9 @@ onready var itemName : RichTextLabel = $\"itemName\"
 var unlocked = false
 
 #Unique
-var newResourceName = \"res://debug/sounds/TheFatRat - Unity.ogg\"
-var achievementName = \"unity\"
-var displayName = \"Unity\"
+var newResourceName = \"res://music/pixelTheme.ogg\"
+var achievementName = \"pixelMusic\"
+var displayName = \"Retro\"
 
 #Icon must also be changed
 
@@ -400,7 +402,7 @@ func _ready():
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#Unlocked
 	if achievementName == \"default\":
 		unlocked = true
@@ -451,6 +453,148 @@ onready var confirm: AudioStreamPlayer = $\"confirm\"
 onready var deny: AudioStreamPlayer = $\"deny\"
 
 #Internal
+onready var iconButton : TextureButton = $\"iconButton\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+onready var itemName : RichTextLabel = $\"itemName\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://music/neonTheme.ogg\"
+var achievementName = \"neonMusic\"
+var displayName = \"Neon\"
+
+#Icon must also be changed
+
+func _ready():
+	pass # Replace with function body.
+	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
+	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		iconButton.modulate = Color.white
+		itemName.modulate = Color(0.43, 0.42, 0.67)
+	else:
+		iconButton.modulate = Color.darkgray
+		itemName.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	confirm.play()
+	subMenuRoot.changeResource(newResourceName, achievementName)
+
+func _on_iconButton_pressed():
+	subMenuList.unselectPreviews(self)
+	if iconButton.pressed:
+		subMenuRoot.muteMusic()
+	else:
+		subMenuRoot.restartMusic()
+
+func unselectButton():
+	buttonControl.unselect()
+
+func unselectPreview():
+	iconButton.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+"
+
+[sub_resource type="GDScript" id=11]
+script/source = "extends Container
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+onready var confirm: AudioStreamPlayer = $\"confirm\"
+onready var deny: AudioStreamPlayer = $\"deny\"
+
+#Internal
+onready var iconButton : TextureButton = $\"iconButton\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+onready var itemName : RichTextLabel = $\"itemName\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://music/juicyTheme.ogg\"
+var achievementName = \"juicyMusic\"
+var displayName = \"Juicy\"
+
+#Icon must also be changed
+
+func _ready():
+	pass # Replace with function body.
+	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
+	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		iconButton.modulate = Color.white
+		itemName.modulate = Color(0.43, 0.42, 0.67)
+	else:
+		iconButton.modulate = Color.darkgray
+		itemName.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	confirm.play()
+	subMenuRoot.changeResource(newResourceName, achievementName)
+
+func _on_iconButton_pressed():
+	subMenuList.unselectPreviews(self)
+	if iconButton.pressed:
+		subMenuRoot.muteMusic()
+	else:
+		subMenuRoot.restartMusic()
+
+func unselectButton():
+	buttonControl.unselect()
+
+func unselectPreview():
+	iconButton.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+"
+
+[sub_resource type="GDScript" id=12]
+script/source = "extends Container
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+onready var confirm: AudioStreamPlayer = $\"confirm\"
+onready var deny: AudioStreamPlayer = $\"deny\"
+
+#Internal
 onready var icon : Sprite = $\"icon\"
 onready var buttonControl : Node2D = $\"buttonControl\"
 onready var itemName : RichTextLabel = $\"itemName\"
@@ -470,7 +614,7 @@ func _ready():
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#Unlocked
 	if achievementName == \"default\":
 		unlocked = true
@@ -501,13 +645,13 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="DynamicFont" id=11]
-size = 90
+[sub_resource type="DynamicFont" id=13]
+size = 70
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 9 )
 
-[sub_resource type="GDScript" id=12]
+[sub_resource type="GDScript" id=14]
 script/source = "extends Container
 
 #External
@@ -526,7 +670,7 @@ var unlocked = false
 #Unique
 var newResourceName = \"res://backgrounds/pixel/scenes/pixelBackground.tscn\"
 var achievementName = \"pixelBg\"
-var displayName = \"Pixel\"
+var displayName = \"Retro\"
 
 #Icon must also be changed
 
@@ -536,7 +680,7 @@ func _ready():
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#Unlocked
 	if achievementName == \"default\":
 		unlocked = true
@@ -567,7 +711,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=13]
+[sub_resource type="GDScript" id=15]
 script/source = "extends Container
 
 #External
@@ -596,7 +740,7 @@ func _ready():
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#Unlocked
 	if achievementName == \"default\":
 		unlocked = true
@@ -627,7 +771,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=14]
+[sub_resource type="GDScript" id=16]
 script/source = "extends Container
 
 #External
@@ -645,7 +789,7 @@ var unlocked = false
 
 #Unique
 var newResourceName = \"res://backgrounds/darkCrystal/scenes/darkCrystalBackground.tscn\"
-var achievementName = \"darkCrystalBg\"
+var achievementName = \"tuxedoBg\"
 var displayName = \"Crystal\"
 
 #Icon must also be changed
@@ -656,7 +800,7 @@ func _ready():
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#Unlocked
 	if achievementName == \"default\":
 		unlocked = true
@@ -702,6 +846,7 @@ margin_bottom = 492.0
 toggle_mode = true
 texture_normal = ExtResource( 29 )
 texture_pressed = ExtResource( 30 )
+texture_disabled = ExtResource( 30 )
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1051,6 +1196,7 @@ margin_bottom = 492.0
 toggle_mode = true
 texture_normal = ExtResource( 34 )
 texture_pressed = ExtResource( 33 )
+texture_disabled = ExtResource( 33 )
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1076,13 +1222,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="mainTheme" type="Container" parent="musicButton/musicRoot/musicList"]
+[node name="default" type="Container" parent="musicButton/musicRoot/musicList"]
 script = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="itemName" type="RichTextLabel" parent="musicButton/musicRoot/musicList/mainTheme"]
+[node name="itemName" type="RichTextLabel" parent="musicButton/musicRoot/musicList/default"]
 modulate = Color( 0.443137, 0.443137, 0.776471, 1 )
 margin_left = -100.0
 margin_right = 454.0
@@ -1096,7 +1242,7 @@ bbcode_text = "[center] Default [/center]"
 text = " Default "
 scroll_active = false
 
-[node name="iconButton" type="TextureButton" parent="musicButton/musicRoot/musicList/mainTheme"]
+[node name="iconButton" type="TextureButton" parent="musicButton/musicRoot/musicList/default"]
 margin_left = 27.0
 margin_top = 120.0
 margin_right = 328.0
@@ -1106,15 +1252,15 @@ texture_normal = ExtResource( 36 )
 texture_pressed = ExtResource( 23 )
 script = ExtResource( 19 )
 
-[node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/mainTheme/iconButton"]
+[node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/default/iconButton"]
 stream = ExtResource( 18 )
 bus = "PreviewMusic"
 
-[node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/mainTheme"]
+[node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/default"]
 position = Vector2( 0, 450 )
 script = ExtResource( 10 )
 
-[node name="selectButton" type="TextureButton" parent="musicButton/musicRoot/musicList/mainTheme/buttonControl"]
+[node name="selectButton" type="TextureButton" parent="musicButton/musicRoot/musicList/default/buttonControl"]
 margin_right = 40.0
 margin_bottom = 40.0
 toggle_mode = true
@@ -1125,7 +1271,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="unlockButton" type="TextureButton" parent="musicButton/musicRoot/musicList/mainTheme/buttonControl"]
+[node name="unlockButton" type="TextureButton" parent="musicButton/musicRoot/musicList/default/buttonControl"]
 margin_top = -2.0
 margin_right = 354.0
 margin_bottom = 157.0
@@ -1134,15 +1280,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="confirm" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/mainTheme"]
+[node name="confirm" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/default"]
 stream = ExtResource( 22 )
 bus = "Effects"
 
-[node name="deny" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/mainTheme"]
+[node name="deny" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/default"]
 stream = ExtResource( 17 )
 bus = "Effects"
 
-[node name="unity" type="Container" parent="musicButton/musicRoot/musicList"]
+[node name="pixel" type="Container" parent="musicButton/musicRoot/musicList"]
 margin_left = 441.0
 margin_right = 441.0
 script = SubResource( 9 )
@@ -1150,7 +1296,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="itemName" type="RichTextLabel" parent="musicButton/musicRoot/musicList/unity"]
+[node name="itemName" type="RichTextLabel" parent="musicButton/musicRoot/musicList/pixel"]
 modulate = Color( 0.443137, 0.443137, 0.776471, 1 )
 margin_left = -100.0
 margin_right = 454.0
@@ -1164,7 +1310,7 @@ bbcode_text = "[center] Default [/center]"
 text = " Default "
 scroll_active = false
 
-[node name="iconButton" type="TextureButton" parent="musicButton/musicRoot/musicList/unity"]
+[node name="iconButton" type="TextureButton" parent="musicButton/musicRoot/musicList/pixel"]
 margin_left = 27.0
 margin_top = 120.0
 margin_right = 328.0
@@ -1174,15 +1320,15 @@ texture_normal = ExtResource( 36 )
 texture_pressed = ExtResource( 23 )
 script = ExtResource( 19 )
 
-[node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/unity/iconButton"]
-stream = ExtResource( 35 )
+[node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/pixel/iconButton"]
+stream = ExtResource( 21 )
 bus = "PreviewMusic"
 
-[node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/unity"]
+[node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/pixel"]
 position = Vector2( 0, 450 )
 script = ExtResource( 10 )
 
-[node name="selectButton" type="TextureButton" parent="musicButton/musicRoot/musicList/unity/buttonControl"]
+[node name="selectButton" type="TextureButton" parent="musicButton/musicRoot/musicList/pixel/buttonControl"]
 margin_right = 40.0
 margin_bottom = 40.0
 toggle_mode = true
@@ -1193,7 +1339,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="unlockButton" type="TextureButton" parent="musicButton/musicRoot/musicList/unity/buttonControl"]
+[node name="unlockButton" type="TextureButton" parent="musicButton/musicRoot/musicList/pixel/buttonControl"]
 margin_top = -2.0
 margin_right = 354.0
 margin_bottom = 157.0
@@ -1202,32 +1348,149 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="confirm" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/unity"]
+[node name="confirm" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/pixel"]
 stream = ExtResource( 22 )
 bus = "Effects"
 
-[node name="deny" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/unity"]
+[node name="deny" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/pixel"]
 stream = ExtResource( 17 )
 bus = "Effects"
 
-[node name="Credit" type="RichTextLabel" parent="musicButton/musicRoot"]
-margin_left = 40.0
-margin_top = 1700.0
-margin_right = 1400.0
-margin_bottom = 2200.0
-custom_fonts/normal_font = SubResource( 6 )
-custom_colors/default_color = Color( 0.443137, 0.443137, 0.776471, 1 )
-text = "*All music will be changed for final release
-
-Shades of Spring by Kevin MacLeod
-Link: https://incompetech.filmmusic.io/song/4342-shades-of-spring
-License: http://creativecommons.org/licenses/by/4.0/
-
-Unity by The Fat Rat
-Link: https://www.youtube.com/watch?v=n8X9_MgEdCg"
+[node name="neon" type="Container" parent="musicButton/musicRoot/musicList"]
+margin_left = 882.0
+margin_right = 882.0
+script = SubResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="itemName" type="RichTextLabel" parent="musicButton/musicRoot/musicList/neon"]
+modulate = Color( 0.443137, 0.443137, 0.776471, 1 )
+margin_left = -100.0
+margin_right = 454.0
+margin_bottom = 100.0
+rect_clip_content = false
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/normal_font = SubResource( 8 )
+bbcode_enabled = true
+bbcode_text = "[center] Default [/center]"
+text = " Default "
+scroll_active = false
+
+[node name="iconButton" type="TextureButton" parent="musicButton/musicRoot/musicList/neon"]
+margin_left = 27.0
+margin_top = 120.0
+margin_right = 328.0
+margin_bottom = 421.0
+toggle_mode = true
+texture_normal = ExtResource( 36 )
+texture_pressed = ExtResource( 23 )
+script = ExtResource( 19 )
+
+[node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/neon/iconButton"]
+stream = ExtResource( 20 )
+bus = "PreviewMusic"
+
+[node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/neon"]
+position = Vector2( 0, 450 )
+script = ExtResource( 10 )
+
+[node name="selectButton" type="TextureButton" parent="musicButton/musicRoot/musicList/neon/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 14 )
+texture_disabled = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unlockButton" type="TextureButton" parent="musicButton/musicRoot/musicList/neon/buttonControl"]
+margin_top = -2.0
+margin_right = 354.0
+margin_bottom = 157.0
+texture_normal = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="confirm" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/neon"]
+stream = ExtResource( 22 )
+bus = "Effects"
+
+[node name="deny" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/neon"]
+stream = ExtResource( 17 )
+bus = "Effects"
+
+[node name="juicy" type="Container" parent="musicButton/musicRoot/musicList"]
+margin_top = 670.0
+margin_bottom = 670.0
+script = SubResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="itemName" type="RichTextLabel" parent="musicButton/musicRoot/musicList/juicy"]
+modulate = Color( 0.443137, 0.443137, 0.776471, 1 )
+margin_left = -100.0
+margin_right = 454.0
+margin_bottom = 100.0
+rect_clip_content = false
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/normal_font = SubResource( 8 )
+bbcode_enabled = true
+bbcode_text = "[center] Default [/center]"
+text = " Default "
+scroll_active = false
+
+[node name="iconButton" type="TextureButton" parent="musicButton/musicRoot/musicList/juicy"]
+margin_left = 27.0
+margin_top = 120.0
+margin_right = 328.0
+margin_bottom = 421.0
+toggle_mode = true
+texture_normal = ExtResource( 36 )
+texture_pressed = ExtResource( 23 )
+script = ExtResource( 19 )
+
+[node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/juicy/iconButton"]
+stream = ExtResource( 35 )
+bus = "PreviewMusic"
+
+[node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/juicy"]
+position = Vector2( 0, 450 )
+script = ExtResource( 10 )
+
+[node name="selectButton" type="TextureButton" parent="musicButton/musicRoot/musicList/juicy/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 14 )
+texture_disabled = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unlockButton" type="TextureButton" parent="musicButton/musicRoot/musicList/juicy/buttonControl"]
+margin_top = -2.0
+margin_right = 354.0
+margin_bottom = 157.0
+texture_normal = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="confirm" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/juicy"]
+stream = ExtResource( 22 )
+bus = "Effects"
+
+[node name="deny" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/juicy"]
+stream = ExtResource( 17 )
+bus = "Effects"
 
 [node name="backgroundButton" type="TextureButton" parent="."]
 margin_left = 960.0
@@ -1237,6 +1500,7 @@ margin_bottom = 492.0
 toggle_mode = true
 texture_normal = ExtResource( 31 )
 texture_pressed = ExtResource( 32 )
+texture_disabled = ExtResource( 32 )
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1263,7 +1527,7 @@ __meta__ = {
 }
 
 [node name="default" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
-script = SubResource( 10 )
+script = SubResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1276,7 +1540,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 11 )
+custom_fonts/normal_font = SubResource( 13 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1323,7 +1587,7 @@ bus = "Effects"
 [node name="pixel" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
 margin_left = 441.0
 margin_right = 441.0
-script = SubResource( 12 )
+script = SubResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1336,7 +1600,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 11 )
+custom_fonts/normal_font = SubResource( 13 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1383,7 +1647,7 @@ bus = "Effects"
 [node name="juicy" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
 margin_left = 882.0
 margin_right = 882.0
-script = SubResource( 13 )
+script = SubResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1396,7 +1660,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 11 )
+custom_fonts/normal_font = SubResource( 13 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1440,15 +1704,15 @@ bus = "Effects"
 stream = ExtResource( 17 )
 bus = "Effects"
 
-[node name="darkCrystal" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
+[node name="tuxedo" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
 margin_top = 670.0
 margin_bottom = 670.0
-script = SubResource( 14 )
+script = SubResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="itemName" type="RichTextLabel" parent="backgroundButton/backgroundRoot/backgroundList/darkCrystal"]
+[node name="itemName" type="RichTextLabel" parent="backgroundButton/backgroundRoot/backgroundList/tuxedo"]
 modulate = Color( 0.443137, 0.443137, 0.776471, 1 )
 margin_left = -100.0
 margin_right = 454.0
@@ -1456,23 +1720,23 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 11 )
+custom_fonts/normal_font = SubResource( 13 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
 scroll_active = false
 
-[node name="icon" type="Sprite" parent="backgroundButton/backgroundRoot/backgroundList/darkCrystal"]
+[node name="icon" type="Sprite" parent="backgroundButton/backgroundRoot/backgroundList/tuxedo"]
 position = Vector2( 27, 120 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 43 )
 centered = false
 
-[node name="buttonControl" type="Node2D" parent="backgroundButton/backgroundRoot/backgroundList/darkCrystal"]
+[node name="buttonControl" type="Node2D" parent="backgroundButton/backgroundRoot/backgroundList/tuxedo"]
 position = Vector2( 0, 450 )
 script = ExtResource( 10 )
 
-[node name="selectButton" type="TextureButton" parent="backgroundButton/backgroundRoot/backgroundList/darkCrystal/buttonControl"]
+[node name="selectButton" type="TextureButton" parent="backgroundButton/backgroundRoot/backgroundList/tuxedo/buttonControl"]
 margin_right = 40.0
 margin_bottom = 40.0
 toggle_mode = true
@@ -1483,7 +1747,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="unlockButton" type="TextureButton" parent="backgroundButton/backgroundRoot/backgroundList/darkCrystal/buttonControl"]
+[node name="unlockButton" type="TextureButton" parent="backgroundButton/backgroundRoot/backgroundList/tuxedo/buttonControl"]
 margin_top = -2.0
 margin_right = 354.0
 margin_bottom = 157.0
@@ -1492,16 +1756,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="confirm" type="AudioStreamPlayer" parent="backgroundButton/backgroundRoot/backgroundList/darkCrystal"]
+[node name="confirm" type="AudioStreamPlayer" parent="backgroundButton/backgroundRoot/backgroundList/tuxedo"]
 stream = ExtResource( 22 )
 bus = "Effects"
 
-[node name="deny" type="AudioStreamPlayer" parent="backgroundButton/backgroundRoot/backgroundList/darkCrystal"]
+[node name="deny" type="AudioStreamPlayer" parent="backgroundButton/backgroundRoot/backgroundList/tuxedo"]
 stream = ExtResource( 17 )
 bus = "Effects"
 
 [node name="white" type="Sprite" parent="."]
-position = Vector2( 785, 1526 )
+position = Vector2( 786, 1526 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 27 )
 
 [node name="title" type="Sprite" parent="."]

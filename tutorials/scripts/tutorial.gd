@@ -59,7 +59,7 @@ func state0(delta):
 			tutorialState += 1
 			stateTimer = 0
 
-func state1(delta):
+func state1(_delta):
 	if board.swapReady:
 		get_tree().paused = false
 		mask.position = board.getPos(3, 9)

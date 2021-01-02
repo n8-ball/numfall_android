@@ -7,7 +7,7 @@ onready var deny: AudioStreamPlayer = $"../deny"
 
 var tutorialOn = true
 
-func _process(delta):
+func _process(_delta):
 	self.visible = menu.getOpen()
 	self.modulate.a = menu.overlay.color.a * (1/menu.overlay.maxOpacity)
 
