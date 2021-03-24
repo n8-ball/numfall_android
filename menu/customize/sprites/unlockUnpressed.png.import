@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tuxedoGrid.png-90bf9d033da022aa45df9f0e748cb6c8.stex"
+path="res://.import/unlockUnpressed.png-594bd38eb17be7cbbfcd99eca47aa817.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://backgrounds/darkCrystal/sprites/tuxedoGrid.png"
-dest_files=[ "res://.import/tuxedoGrid.png-90bf9d033da022aa45df9f0e748cb6c8.stex" ]
+source_file="res://menu/customize/sprites/unlockUnpressed.png"
+dest_files=[ "res://.import/unlockUnpressed.png-594bd38eb17be7cbbfcd99eca47aa817.stex" ]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
-flags/mipmaps=false
+flags/mipmaps=true
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true

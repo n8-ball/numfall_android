@@ -1,23 +1,24 @@
 extends CanvasLayer
 
 onready var board : Node2D = $".."
-#var achievementNotice = preload("res://menu/scenes/achievementNotice.tscn")
+onready var purchaseManager : Node2D = $"androidPurchaseManager"
+var achievementNotice = preload("res://menu/scenes/achievementNotice.tscn")
 
 var achieveDict = {
-	"pixelTile" : true,
-	"neonTile" : true,
-	"juicyTile" : true,
-	"tuxedoTile" : true,
+	"pixelTile" : false,
+	"neonTile" : false,
+	"juicyTile" : false,
+	"tuxedoTile" : false,
 	
-	"pixelMusic" : true,
-	"neonMusic" : true,
-	"juicyMusic" : true,
-	"tuxedoMusic" : true,
+	"pixelMusic" : false,
+	"neonMusic" : false,
+	"juicyMusic" : false,
+	"tuxedoMusic" : false,
 	
-	"pixelBg" : true,
-	"neonBg" : true,
-	"juicyBg" : true,
-	"tuxedoBg" : true
+	"pixelBg" : false,
+	"neonBg" : false,
+	"juicyBg" : false,
+	"tuxedoBg" : false
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -62,6 +63,9 @@ func checkPixelTile():
 	if oldState == false:
 		if board.bigPiece != null && board.bigPiece >= 10 && board.score < 1000:
 			achieveDict["pixelTile"] = true
+			var notice = achievementNotice.instance()
+			board.add_child(notice)
+			notice.setAchievement("res://pieceSets/pixel/sprites/pixelPreview.png", "Retro Tile Unlocked!")
 
 #Pixel Music
 #Achieve a score of exactly 1000
@@ -70,6 +74,9 @@ func checkPixelMusic():
 	if oldState == false:
 		if board.score == 1000:
 			achieveDict["pixelMusic"] = true
+			var notice = achievementNotice.instance()
+			board.add_child(notice)
+			notice.setAchievement("res://menu/customize/sprites/pixelMusicPlay.png", "Retro Music Unlocked!")
 
 #Pixel Background
 #Achieve a score of 1000, before getting the 8 piece
@@ -78,6 +85,9 @@ func checkPixelBg():
 	if oldState == false:
 		if board.bigPiece != null && board.bigPiece < 8 && board.score >= 1000:
 			achieveDict["pixelMusic"] = true
+			var notice = achievementNotice.instance()
+			board.add_child(notice)
+			notice.setAchievement("res://backgrounds/default/sprites/defaultBackgroundPreview.png", "Retro Background Unlocked!")
 
 #--Neon--
 
@@ -123,6 +133,9 @@ func checkNeonTile():
 				break
 		if valid == true:
 			achieveDict["neonTile"] = true
+			var notice = achievementNotice.instance()
+			board.add_child(notice)
+			notice.setAchievement("res://pieceSets/neon/sprites/neonPreview.png", "Neon Tile Unlocked!")
 
 #Neon Music
 #Have 3 ascending perfect rows (on the bottom)
@@ -180,6 +193,9 @@ func checkNeonMusic():
 				break
 		if valid == true:
 			achieveDict["neonMusic"] = true
+			var notice = achievementNotice.instance()
+			board.add_child(notice)
+			notice.setAchievement("res://menu/customize/sprites/neonMusicPlay.png", "Neon Music Unlocked!")
 
 #Neon Background
 #Have 2 descending perfect rows
@@ -201,6 +217,9 @@ func checkNeonBg():
 						break
 				elif x == 4:
 					achieveDict["neonBg"] = true
+					var notice = achievementNotice.instance()
+					board.add_child(notice)
+					notice.setAchievement("res://backgrounds/default/sprites/defaultBackgroundPreview.png", "Neon Background Unlocked!")
 
 #--Juicy--
 
@@ -210,6 +229,9 @@ func getJuicyTile():
 	var oldState = achieveDict["juicyTile"]
 	if oldState == false:
 		achieveDict["juicyTile"] = true
+		var notice = achievementNotice.instance()
+		board.add_child(notice)
+		notice.setAchievement("res://pieceSets/default/sprites/defaultPreview.png", "Juicy Tile Unlocked!")
 
 #Juicy Music
 #Get a 4x multiplier
@@ -217,6 +239,9 @@ func getJuicyMusic():
 	var oldState = achieveDict["juicyMusic"]
 	if oldState == false:
 		achieveDict["juicyMusic"] = true
+		var notice = achievementNotice.instance()
+		board.add_child(notice)
+		notice.setAchievement("res://pieceSets/default/sprites/defaultPreview.png", "Juicy Music Unlocked!")
 
 #Juicy Background
 #Get a 3x multiplier
@@ -224,6 +249,9 @@ func getJuicyBg():
 	var oldState = achieveDict["juicyBg"]
 	if oldState == false:
 		achieveDict["juicyBg"] = true
+		var notice = achievementNotice.instance()
+		board.add_child(notice)
+		notice.setAchievement("res://pieceSets/default/sprites/defaultPreview.png", "Juicy Background Unlocked!")
 
 #--Tuxedo--
 
@@ -234,6 +262,9 @@ func checkTuxedoTile():
 	if oldState == false:
 		if board.bigPiece >= 26:
 			achieveDict["tuxedoTile"] = true
+			var notice = achievementNotice.instance()
+			board.add_child(notice)
+			notice.setAchievement("res://pieceSets/tuxedo/sprites/tuxedoPreview.png", "Tuxedo Tile Unlocked!")
 
 #Tuxedo Music
 #Have 2 - 26 pieces on the bottom row
@@ -248,6 +279,10 @@ func checkTuxedoMusic():
 					count += 1
 		if count >= 2:
 			achieveDict["tuxedoMusic"] = true
+			var notice = achievementNotice.instance()
+			board.add_child(notice)
+			notice.setAchievement("res://pieceSets/default/sprites/defaultPreview.png", "Tuxedo Music Unlocked!")
+			
 
 #Tuxedo Background
 #Rollover a tileset
@@ -256,3 +291,6 @@ func checkTuxedoBg():
 	if oldState == false:
 		if board.bigPiece >= 27:
 			achieveDict["tuxedoBg"] = true
+			var notice = achievementNotice.instance()
+			board.add_child(notice)
+			notice.setAchievement("res://pieceSets/default/sprites/defaultPreview.png", "Tuxedo Background Unlocked!")

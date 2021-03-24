@@ -12,8 +12,8 @@ func _ready():
 func _process(_delta):
 	self.visible = backgroundButton.getPressed()
 
-func changeResource(newResourceName, newBackgroundName):
-	customize.changeBackground(newResourceName, newBackgroundName)
+func changeResource(newResourceName, newBackgroundName, newTextColor : Color = Color.white):
+	customize.changeBackground(newResourceName, newBackgroundName, newTextColor)
 
 func setBackground(backgroundName):
 	backgroundList.setItem(backgroundName)

@@ -10,6 +10,7 @@ onready var deny : AudioStreamPlayer = $"../deny"
 onready var pieceRoot : Node2D = $"pieceButton/pieceRoot"
 onready var musicRoot : Node2D = $"musicButton/musicRoot"
 onready var backgroundRoot : Node2D = $"backgroundButton/backgroundRoot"
+onready var unlockMenuRoot : Node2D = $"unlockMenuRoot"
 
 var changingBackground = false
 var backgroundFade = 1
@@ -27,8 +28,10 @@ func _ready():
 func changeTileSet(newTileSet, newSavePiece):
 	board.changePiece(newTileSet, newSavePiece)
 
-func changeBackground(newBackground, newSaveBackground):
+func changeBackground(newBackground, newSaveBackground, newTextColor : Color = Color.white):
 	background.fadeOut()
+	board.find_node("score").modulate = newTextColor
+	board.spawner.rangeDisplay.find_node("text").modulate = newTextColor
 	background = load(newBackground).instance()
 	background.modulate.v = 0.3
 	background.modulate.a = 0

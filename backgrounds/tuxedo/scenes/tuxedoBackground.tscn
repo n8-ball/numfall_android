@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://backgrounds/default/scripts/defaultBackground.gd" type="Script" id=1]
-[ext_resource path="res://backgrounds/darkCrystal/sprites/darkCrystal.png" type="Texture" id=2]
+[ext_resource path="res://backgrounds/tuxedo/sprites/tuxedo.png" type="Texture" id=2]
+
+
 
 [node name="background" type="Node2D"]
 pause_mode = 2

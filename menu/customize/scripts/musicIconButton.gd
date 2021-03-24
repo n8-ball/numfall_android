@@ -22,8 +22,7 @@ func _process(_delta):
 		previewMusic.stop()
 
 func unselect():
-	if customizeMusic.unlocked:
-		self.pressed = false
+	self.pressed = false
 
 func _pressed():
 	if self.pressed && !previewMusic.playing:

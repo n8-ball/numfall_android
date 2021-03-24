@@ -6,6 +6,7 @@ onready var customize : CanvasLayer = $customize
 onready var musicButton : TextureButton = $musicButton
 onready var soundButton : TextureButton = $soundButton
 onready var tutorialButton : TextureButton = $tutorialButton
+onready var menuAnimator : AnimationPlayer = $menuAnimator
 
 var open = true
 
@@ -14,7 +15,6 @@ const gameOverOffset = 2560
 var gameOverStart = false
 var gameOverTimer = 0.01
 const gameOverDelay = 1.5
-
 
 func _process(delta):
 	get_tree().paused = getOpen()

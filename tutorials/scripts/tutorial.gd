@@ -63,6 +63,8 @@ func state1(_delta):
 	if board.swapReady:
 		get_tree().paused = false
 		mask.position = board.getPos(3, 9)
+		var highlightPiece = board.board[9][3]
+		highlightPiece.setSelect(highlightPiece.SOLO_SELECTED)
 		tutorialOpen = true
 		#On open
 		if stateExecuted != 1:

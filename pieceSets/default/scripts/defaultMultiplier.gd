@@ -13,7 +13,6 @@ func _process(_delta):
 	pass
 
 func setMultiplier(stacks):
-	print(stacks)
 	var multiplierDisplay = 1 + (0.5 * (stacks - 1))
 	if multiplierDisplay <= 1:
 		text.visible = false

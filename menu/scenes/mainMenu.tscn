@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://menu/sprites/gearNormal.png" type="Texture" id=1]
 [ext_resource path="res://menu/scripts/mainMenu.gd" type="Script" id=2]
@@ -46,9 +46,39 @@
 [ext_resource path="res://menu/scripts/tutorialConfirmButton.gd" type="Script" id=44]
 [ext_resource path="res://menu/customize/scenes/customize.tscn" type="PackedScene" id=45]
 [ext_resource path="res://menu/scenes/credits.tscn" type="PackedScene" id=46]
+[ext_resource path="res://fonts/Poppins-SemiBold.ttf" type="DynamicFontData" id=47]
+[ext_resource path="res://menu/scripts/creditsButton.gd" type="Script" id=48]
 
 [sub_resource type="Animation" id=1]
-resource_name = "customizeToMenu"
+resource_name = "creditsToMenu"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("credits:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 150 ), Vector2( 0, 450 ), Vector2( 0, 900 ), Vector2( 0, 1500 ), Vector2( 0, 2250 ), Vector2( 0, 2860 ), Vector2( 0, 2710 ), Vector2( 0, 2610 ), Vector2( 0, 2560 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -2560 ), Vector2( 0, -2410 ), Vector2( 0, -2110 ), Vector2( 0, -1660 ), Vector2( 0, -1060 ), Vector2( 0, -310 ), Vector2( 0, 300 ), Vector2( 0, 150 ), Vector2( 0, 50 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
 length = 0.6
 step = 0.05
 tracks/0/type = "value"
@@ -76,8 +106,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 84, 0 ), Vector2( 253, 0 ), Vector2( 506, 0 ), Vector2( 844, 0 ), Vector2( 1266, 0 ), Vector2( 1609, 0 ), Vector2( 1524, 0 ), Vector2( 1468, 0 ), Vector2( 1440, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "dropToCredits"
+[sub_resource type="Animation" id=3]
 length = 0.6
 step = 0.05
 tracks/0/type = "value"
@@ -87,7 +116,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.00277555, 0.0527756, 0.102776, 0.152776, 0.202776, 0.252776, 0.302776, 0.352776, 0.4, 0.45 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -150 ), Vector2( 0, -450 ), Vector2( 0, -900 ), Vector2( 0, -1500 ), Vector2( 0, -2250 ), Vector2( 0, -2860 ), Vector2( 0, -2710 ), Vector2( 0, -2610 ), Vector2( 0, -2560 ) ]
@@ -105,7 +134,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 2560 ), Vector2( 0, 2410 ), Vector2( 0, 2110 ), Vector2( 0, 1660 ), Vector2( 0, 1060 ), Vector2( 0, 310 ), Vector2( 0, -300 ), Vector2( 0, -150 ), Vector2( 0, -50 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.6
 step = 0.05
 tracks/0/type = "value"
@@ -121,8 +150,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 2560 ), Vector2( 0, 2410 ), Vector2( 0, 2110 ), Vector2( 0, 1660 ), Vector2( 0, 1060 ), Vector2( 0, 310 ), Vector2( 0, -300 ), Vector2( 0, -150 ), Vector2( 0, -50 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "starting"
+[sub_resource type="Animation" id=5]
 step = 1.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:offset")
@@ -161,7 +189,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 2560 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.5
 step = 0.05
 tracks/0/type = "value"
@@ -189,7 +217,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1440, 0 ), Vector2( 1356, 0 ), Vector2( 1187, 0 ), Vector2( 934, 0 ), Vector2( 556, 0 ), Vector2( 174, 0 ), Vector2( -169, 0 ), Vector2( -84, 0 ), Vector2( -28, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 0.133333
 step = 0.0333333
 tracks/0/type = "value"
@@ -217,7 +245,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 0.166667
 step = 0.0333333
 tracks/0/type = "value"
@@ -245,7 +273,7 @@ tracks/1/keys = {
 "values": [ true, true ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 0.133333
 step = 0.0333333
 tracks/0/type = "value"
@@ -273,7 +301,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 length = 0.166667
 step = 0.0333333
 tracks/0/type = "value"
@@ -313,8 +341,30 @@ tracks/2/keys = {
 "values": [ Vector2( 106, 106 ), Vector2( -205, -500 ) ]
 }
 
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.6, 0.6, 0.501961, 0 )
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_detail = 1
+shadow_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+shadow_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 86
+outline_size = 2
+outline_color = Color( 0.427451, 0.415686, 0.666667, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 47 )
+
 [node name="menu" type="CanvasLayer"]
 pause_mode = 2
+offset = Vector2( 0, -2560 )
+transform = Transform2D( 1, 0, 0, 1, 0, -2560 )
 script = ExtResource( 2 )
 
 [node name="overlay" type="ColorRect" parent="."]
@@ -322,6 +372,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1440.0
 margin_top = -2560.0
+margin_right = -0.00012207
 margin_bottom = 2560.0
 color = Color( 1, 1, 1, 0.490196 )
 script = ExtResource( 6 )
@@ -331,11 +382,12 @@ __meta__ = {
 
 [node name="menuAnimator" type="AnimationPlayer" parent="."]
 autoplay = "starting"
-anims/customizeToMenu = SubResource( 1 )
-anims/dropToCredits = SubResource( 2 )
-anims/dropToMenu = SubResource( 3 )
-anims/starting = SubResource( 4 )
-anims/toCustomize = SubResource( 5 )
+anims/creditsToMenu = SubResource( 1 )
+anims/customizeToMenu = SubResource( 2 )
+anims/dropToCredits = SubResource( 3 )
+anims/dropToMenu = SubResource( 4 )
+anims/starting = SubResource( 5 )
+anims/toCustomize = SubResource( 6 )
 
 [node name="gameOver" type="Sprite" parent="."]
 position = Vector2( 720, -1600 )
@@ -364,10 +416,10 @@ script = ExtResource( 29 )
 [node name="menuButton" type="TextureButton" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -200.0
-margin_top = 40.0
-margin_right = -40.0
-margin_bottom = 207.0
+margin_left = -240.0
+margin_top = 80.0
+margin_right = -80.0
+margin_bottom = 247.0
 texture_normal = ExtResource( 1 )
 script = ExtResource( 5 )
 __meta__ = {
@@ -462,8 +514,8 @@ __meta__ = {
 }
 
 [node name="confirmAnimation" type="AnimationPlayer" parent="newGameButton/newGameConfirm"]
-anims/close = SubResource( 6 )
-anims/open = SubResource( 7 )
+anims/close = SubResource( 7 )
+anims/open = SubResource( 8 )
 
 [node name="musicButton" type="TextureButton" parent="."]
 anchor_left = 0.5
@@ -509,14 +561,14 @@ __meta__ = {
 }
 
 [node name="tutorialConfirm" type="Sprite" parent="tutorialButton"]
-visible = false
 position = Vector2( 106, 106 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 42 )
 script = ExtResource( 43 )
 
 [node name="confirmAnimation" type="AnimationPlayer" parent="tutorialButton/tutorialConfirm"]
-anims/close = SubResource( 8 )
-anims/open = SubResource( 9 )
+anims/close = SubResource( 9 )
+anims/open = SubResource( 10 )
 
 [node name="tutorialConfirmButton" type="TextureButton" parent="tutorialButton/tutorialConfirm"]
 margin_left = -646.0
@@ -543,6 +595,24 @@ layer = 2
 offset = Vector2( 1440, 0 )
 transform = Transform2D( 1, 0, 0, 1, 1440, 0 )
 
+[node name="creditsButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -164.0
+margin_top = -510.0
+margin_right = 164.0
+margin_bottom = -382.0
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
+text = "Credits"
+flat = true
+script = ExtResource( 48 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="credits" parent="." instance=ExtResource( 46 )]
-offset = Vector2( 0, 2560 )
-transform = Transform2D( 1, 0, 0, 1, 0, 2560 )
+layer = 2

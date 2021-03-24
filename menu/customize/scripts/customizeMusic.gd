@@ -14,20 +14,23 @@ onready var itemName : RichTextLabel = $"itemName"
 var unlocked = false
 
 #Unique
-var newResourceName = "res://debug/sounds/Original Tetris theme (Tetris Soundtrack).wav"
+var newResourceName = "res://music/mainTheme.ogg"
 var achievementName = "default"
 var displayName = "Default"
+var achievementText = "default"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 230
 
 #Icon must also be changed
 
 func _ready():
-	pass # Replace with function body.
 	buttonControl.selectButton.connect("pressed", self, "_on_button_select")
 	iconButton.connect("pressed", self, "_on_iconButton_pressed")
+	buttonControl.unlockButton.connect("pressed", self, "_on_button_unlock")
 	itemName.bbcode_text = "[center]" + displayName + "[/center]"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#Unlocked
 	if achievementName == "default":
 		unlocked = true
@@ -52,6 +55,9 @@ func _on_iconButton_pressed():
 		subMenuRoot.muteMusic()
 	else:
 		subMenuRoot.restartMusic()
+
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
 
 func unselectButton():
 	buttonControl.unselect()

@@ -3,6 +3,7 @@ extends Node2D
 onready var achievements : CanvasLayer = $".."
 
 var payment
+var allItemSkus = ["pixelTile", "pixelBg", "pixelMusic"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,8 +27,23 @@ func _ready():
 		print("Android IAP support is not enabled. Make sure you have enabled 'Custom Build' and the GodotGooglePlayBilling plugin in your Android export settings! IAP will not work.")
 
 func _on_connected():
-	var purchaseDict = payment.queryPurchases()
+	payment.querySkuDetails([allItemSkus], "inapp")
+	
+	var purchaseDict = payment.queryPurchases("inapp")
 	if purchaseDict.status == OK:
 		for purchase in purchaseDict.purchases:
+			if !purchase.is_acknowledged:
+				payment.acknowledgePurchase(purchase.purchase_token)
 			if achievements.achieveDict.has(purchase.sku):
 				achievements.achieveDict[purchase.sku] = true
+
+func purchaseItem(itemSku):
+	print("Purcahse" + itemSku)
+	payment.purchase(itemSku)
+
+func _on_purchase_updated(purchases):
+	for purchase in purchases:
+		if !purchase.is_acknowledged:
+			payment.acknowledgePurchase(purchase.purchase_token)
+		if achievements.achieveDict.has(purchase.sku):
+			achievements.achieveDict[purchase.sku] = true

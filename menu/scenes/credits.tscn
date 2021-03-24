@@ -1,6 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://fonts/Poppins-SemiBold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://menu/sprites/gearNormal.png" type="Texture" id=2]
+[ext_resource path="res://menu/customize/sprites/backArrow.png" type="Texture" id=3]
+[ext_resource path="res://menu/scripts/menuReturn.gd" type="Script" id=4]
+[ext_resource path="res://debug/sounds/deny.wav" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 150
@@ -19,3 +23,19 @@ scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="menuReturn" type="TextureButton" parent="."]
+margin_left = 30.7013
+margin_top = 286.99
+margin_right = 236.701
+margin_bottom = 451.99
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 2 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="deny" type="AudioStreamPlayer" parent="menuReturn"]
+stream = ExtResource( 5 )
+bus = "Effects"

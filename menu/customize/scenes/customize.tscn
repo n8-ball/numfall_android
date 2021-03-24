@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://menu/customize/scripts/customizeItem.gd" type="Script" id=1]
 [ext_resource path="res://menu/customize/scripts/buttonList.gd" type="Script" id=2]
@@ -12,14 +12,14 @@
 [ext_resource path="res://menu/customize/scripts/customizeButtonControl.gd" type="Script" id=10]
 [ext_resource path="res://menu/customize/scripts/customize.gd" type="Script" id=11]
 [ext_resource path="res://menu/customize/scripts/musicButton.gd" type="Script" id=12]
-[ext_resource path="res://menu/customize/sprites/unlock.png" type="Texture" id=13]
+[ext_resource path="res://menu/customize/sprites/unlockUnpressed.png" type="Texture" id=13]
 [ext_resource path="res://menu/customize/sprites/inUse.png" type="Texture" id=14]
 [ext_resource path="res://menu/customize/sprites/select.png" type="Texture" id=15]
 [ext_resource path="res://pieceSets/default/sprites/defaultPreview.png" type="Texture" id=16]
 [ext_resource path="res://debug/sounds/deny.wav" type="AudioStream" id=17]
 [ext_resource path="res://music/mainTheme.ogg" type="AudioStream" id=18]
 [ext_resource path="res://menu/customize/scripts/musicIconButton.gd" type="Script" id=19]
-[ext_resource path="res://music/neonTheme.ogg" type="AudioStream" id=20]
+[ext_resource path="res://menu/customize/scripts/customizeMusic.gd" type="Script" id=20]
 [ext_resource path="res://music/pixelTheme.ogg" type="AudioStream" id=21]
 [ext_resource path="res://debug/sounds/confirm.wav" type="AudioStream" id=22]
 [ext_resource path="res://menu/customize/sprites/defaultMusicPause.png" type="Texture" id=23]
@@ -36,14 +36,22 @@
 [ext_resource path="res://menu/customize/sprites/musicUnpressed.png" type="Texture" id=34]
 [ext_resource path="res://music/juicyTheme.ogg" type="AudioStream" id=35]
 [ext_resource path="res://menu/customize/sprites/defaultMusicPlay.png" type="Texture" id=36]
-[ext_resource path="res://backgrounds/pixel/sprites/pixelBackgroundPreview.png" type="Texture" id=37]
 [ext_resource path="res://backgrounds/default/sprites/defaultBackgroundPreview.png" type="Texture" id=38]
-[ext_resource path="res://backgrounds/juicy/sprites/juicyPreview.png" type="Texture" id=39]
 [ext_resource path="res://pieceSets/pixel/sprites/pixelPreview.png" type="Texture" id=40]
 [ext_resource path="res://pieceSets/neon/sprites/neonPreview.png" type="Texture" id=41]
 [ext_resource path="res://pieceSets/juicy/sprites/juicyPreview.png" type="Texture" id=42]
-[ext_resource path="res://backgrounds/darkCrystal/sprites/darkCrystalPreview.png" type="Texture" id=43]
+[ext_resource path="res://backgrounds/tuxedo/sprites/tuxedoPreview.png" type="Texture" id=43]
 [ext_resource path="res://pieceSets/tuxedo/sprites/tuxedoPreview.png" type="Texture" id=44]
+[ext_resource path="res://fonts/Poppins-ExtraBoldItalic.ttf" type="DynamicFontData" id=45]
+[ext_resource path="res://menu/customize/sprites/unlockMenu.png" type="Texture" id=46]
+[ext_resource path="res://menu/customize/scripts/unlockMenuRoot.gd" type="Script" id=47]
+[ext_resource path="res://menu/customize/sprites/purchaseUnpressed.png" type="Texture" id=48]
+[ext_resource path="res://menu/customize/sprites/purchasePressed.png" type="Texture" id=49]
+[ext_resource path="res://menu/customize/sprites/unlockPressed.png" type="Texture" id=50]
+[ext_resource path="res://menu/customize/sprites/pixelMusicPlay.png" type="Texture" id=51]
+[ext_resource path="res://menu/customize/sprites/pixelMusicPause.png" type="Texture" id=52]
+[ext_resource path="res://menu/customize/sprites/neonMusicPlay.png" type="Texture" id=53]
+[ext_resource path="res://menu/customize/sprites/neonMusicPause.png" type="Texture" id=54]
 
 [sub_resource type="DynamicFont" id=1]
 size = 70
@@ -71,12 +79,16 @@ var unlocked = false
 var newResourceName = \"res://pieceSets/pixel/scenes/pixel.tscn\"
 var achievementName = \"pixelTile\"
 var displayName = \"Retro\"
+var achievementText = \"Reach the 10 piece, before 1000 score\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 180
+var textColor = Color.white #Only for backgrounds, setItem needs mod for this
 
 #Icon must also be changed
 
 func _ready():
-	pass # Replace with function body.
 	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -99,6 +111,9 @@ func _on_button_select():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 	confirm.play(0)
 
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
 func unselectButton():
 	buttonControl.unselect()
 
@@ -111,7 +126,13 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="DynamicFont" id=3]
+size = 70
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 9 )
+
+[sub_resource type="GDScript" id=4]
 script/source = "extends Container
 
 #External
@@ -124,19 +145,23 @@ onready var deny: AudioStreamPlayer = $\"deny\"
 onready var icon : Sprite = $\"icon\"
 onready var buttonControl : Node2D = $\"buttonControl\"
 onready var itemName : RichTextLabel = $\"itemName\"
-
+\"../juicy\"
 var unlocked = false
 
 #Unique
 var newResourceName = \"res://pieceSets/neon/scenes/neon.tscn\"
 var achievementName = \"neonTile\"
 var displayName = \"Neon\"
+var achievementText = \"Have 3 homogenous, perfectly stacked rows\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 100
+var textColor = Color.white #Only for backgrounds, setItem needs mod for this
 
 #Icon must also be changed
 
 func _ready():
-	pass # Replace with function body.
 	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -159,6 +184,9 @@ func _on_button_select():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 	confirm.play(0)
 
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
 func unselectButton():
 	buttonControl.unselect()
 
@@ -171,7 +199,13 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="DynamicFont" id=5]
+size = 70
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 9 )
+
+[sub_resource type="GDScript" id=6]
 script/source = "extends Container
 
 #External
@@ -191,12 +225,16 @@ var unlocked = false
 var newResourceName = \"res://pieceSets/juicy/scenes/juicy.tscn\"
 var achievementName = \"juicyTile\"
 var displayName = \"Juicy\"
+var achievementText = \"Get a Numfall\\n(5x Multiplier)\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 180
+var textColor = Color.white #Only for backgrounds, setItem needs mod for this
 
 #Icon must also be changed
 
 func _ready():
-	pass # Replace with function body.
 	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -219,6 +257,9 @@ func _on_button_select():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 	confirm.play(0)
 
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
 func unselectButton():
 	buttonControl.unselect()
 
@@ -231,7 +272,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=7]
 script/source = "extends Container
 
 #External
@@ -251,12 +292,16 @@ var unlocked = false
 var newResourceName = \"res://pieceSets/tuxedo/scenes/tuxedo.tscn\"
 var achievementName = \"tuxedoTile\"
 var displayName = \"Tuxedo\"
+var achievementText = \"Get a 26 piece\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 230
+var textColor = Color.white #Only for backgrounds, setItem needs mod for this
 
 #Icon must also be changed
 
 func _ready():
-	pass # Replace with function body.
 	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -279,83 +324,11 @@ func _on_button_select():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 	confirm.play(0)
 
-func unselectButton():
-	buttonControl.unselect()
-
-func getName():
-	return achievementName
-
-func setItem():
-	buttonControl.select()
-	subMenuList.unselectButtons(self)
-	subMenuRoot.changeResource(newResourceName, achievementName)
-"
-
-[sub_resource type="DynamicFont" id=6]
-size = 31
-font_data = ExtResource( 9 )
-
-[sub_resource type="GDScript" id=7]
-script/source = "extends Container
-
-#External
-onready var subMenuList : GridContainer = $\"..\"
-onready var subMenuRoot : Node2D = $\"../..\"
-onready var confirm: AudioStreamPlayer = $\"confirm\"
-onready var deny: AudioStreamPlayer = $\"deny\"
-
-#Internal
-onready var iconButton : TextureButton = $\"iconButton\"
-onready var buttonControl : Node2D = $\"buttonControl\"
-onready var itemName : RichTextLabel = $\"itemName\"
-
-var unlocked = false
-
-#Unique
-var newResourceName = \"res://music/mainTheme.ogg\"
-var achievementName = \"default\"
-var displayName = \"Default\"
-
-#Icon must also be changed
-
-func _ready():
-	pass # Replace with function body.
-	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
-	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
-	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	#Unlocked
-	if achievementName == \"default\":
-		unlocked = true
-	elif subMenuRoot.customize.achievementDict != null:
-		unlocked = subMenuRoot.customize.achievementDict[achievementName]
-	#Icon
-	if unlocked:
-		iconButton.modulate = Color.white
-		itemName.modulate = Color(0.43, 0.42, 0.67)
-	else:
-		iconButton.modulate = Color.darkgray
-		itemName.modulate = Color.darkgray
-
-func _on_button_select():
-	subMenuList.unselectButtons(self)
-	confirm.play()
-	subMenuRoot.changeResource(newResourceName, achievementName)
-
-func _on_iconButton_pressed():
-	subMenuList.unselectPreviews(self)
-	if iconButton.pressed:
-		subMenuRoot.muteMusic()
-	else:
-		subMenuRoot.restartMusic()
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
 
 func unselectButton():
 	buttonControl.unselect()
-
-func unselectPreview():
-	iconButton.unselect()
 
 func getName():
 	return achievementName
@@ -372,7 +345,17 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 9 )
 
-[sub_resource type="GDScript" id=9]
+[sub_resource type="DynamicFont" id=9]
+size = 31
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 70
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 9 )
+
+[sub_resource type="GDScript" id=11]
 script/source = "extends Container
 
 #External
@@ -392,13 +375,16 @@ var unlocked = false
 var newResourceName = \"res://music/pixelTheme.ogg\"
 var achievementName = \"pixelMusic\"
 var displayName = \"Retro\"
+var achievementText = \"Get a score of exactly 1000\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 180
 
 #Icon must also be changed
 
 func _ready():
-	pass # Replace with function body.
 	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
 	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -428,147 +414,8 @@ func _on_iconButton_pressed():
 	else:
 		subMenuRoot.restartMusic()
 
-func unselectButton():
-	buttonControl.unselect()
-
-func unselectPreview():
-	iconButton.unselect()
-
-func getName():
-	return achievementName
-
-func setItem():
-	buttonControl.select()
-	subMenuList.unselectButtons(self)
-	subMenuRoot.changeResource(newResourceName, achievementName)
-"
-
-[sub_resource type="GDScript" id=10]
-script/source = "extends Container
-
-#External
-onready var subMenuList : GridContainer = $\"..\"
-onready var subMenuRoot : Node2D = $\"../..\"
-onready var confirm: AudioStreamPlayer = $\"confirm\"
-onready var deny: AudioStreamPlayer = $\"deny\"
-
-#Internal
-onready var iconButton : TextureButton = $\"iconButton\"
-onready var buttonControl : Node2D = $\"buttonControl\"
-onready var itemName : RichTextLabel = $\"itemName\"
-
-var unlocked = false
-
-#Unique
-var newResourceName = \"res://music/neonTheme.ogg\"
-var achievementName = \"neonMusic\"
-var displayName = \"Neon\"
-
-#Icon must also be changed
-
-func _ready():
-	pass # Replace with function body.
-	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
-	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
-	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	#Unlocked
-	if achievementName == \"default\":
-		unlocked = true
-	elif subMenuRoot.customize.achievementDict != null:
-		unlocked = subMenuRoot.customize.achievementDict[achievementName]
-	#Icon
-	if unlocked:
-		iconButton.modulate = Color.white
-		itemName.modulate = Color(0.43, 0.42, 0.67)
-	else:
-		iconButton.modulate = Color.darkgray
-		itemName.modulate = Color.darkgray
-
-func _on_button_select():
-	subMenuList.unselectButtons(self)
-	confirm.play()
-	subMenuRoot.changeResource(newResourceName, achievementName)
-
-func _on_iconButton_pressed():
-	subMenuList.unselectPreviews(self)
-	if iconButton.pressed:
-		subMenuRoot.muteMusic()
-	else:
-		subMenuRoot.restartMusic()
-
-func unselectButton():
-	buttonControl.unselect()
-
-func unselectPreview():
-	iconButton.unselect()
-
-func getName():
-	return achievementName
-
-func setItem():
-	buttonControl.select()
-	subMenuList.unselectButtons(self)
-	subMenuRoot.changeResource(newResourceName, achievementName)
-"
-
-[sub_resource type="GDScript" id=11]
-script/source = "extends Container
-
-#External
-onready var subMenuList : GridContainer = $\"..\"
-onready var subMenuRoot : Node2D = $\"../..\"
-onready var confirm: AudioStreamPlayer = $\"confirm\"
-onready var deny: AudioStreamPlayer = $\"deny\"
-
-#Internal
-onready var iconButton : TextureButton = $\"iconButton\"
-onready var buttonControl : Node2D = $\"buttonControl\"
-onready var itemName : RichTextLabel = $\"itemName\"
-
-var unlocked = false
-
-#Unique
-var newResourceName = \"res://music/juicyTheme.ogg\"
-var achievementName = \"juicyMusic\"
-var displayName = \"Juicy\"
-
-#Icon must also be changed
-
-func _ready():
-	pass # Replace with function body.
-	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
-	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
-	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	#Unlocked
-	if achievementName == \"default\":
-		unlocked = true
-	elif subMenuRoot.customize.achievementDict != null:
-		unlocked = subMenuRoot.customize.achievementDict[achievementName]
-	#Icon
-	if unlocked:
-		iconButton.modulate = Color.white
-		itemName.modulate = Color(0.43, 0.42, 0.67)
-	else:
-		iconButton.modulate = Color.darkgray
-		itemName.modulate = Color.darkgray
-
-func _on_button_select():
-	subMenuList.unselectButtons(self)
-	confirm.play()
-	subMenuRoot.changeResource(newResourceName, achievementName)
-
-func _on_iconButton_pressed():
-	subMenuList.unselectPreviews(self)
-	if iconButton.pressed:
-		subMenuRoot.muteMusic()
-	else:
-		subMenuRoot.restartMusic()
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
 
 func unselectButton():
 	buttonControl.unselect()
@@ -595,22 +442,26 @@ onready var confirm: AudioStreamPlayer = $\"confirm\"
 onready var deny: AudioStreamPlayer = $\"deny\"
 
 #Internal
-onready var icon : Sprite = $\"icon\"
+onready var iconButton : TextureButton = $\"iconButton\"
 onready var buttonControl : Node2D = $\"buttonControl\"
 onready var itemName : RichTextLabel = $\"itemName\"
 
 var unlocked = false
 
 #Unique
-var newResourceName = \"res://backgrounds/default/scenes/defaultBackground.tscn\"
-var achievementName = \"default\"
-var displayName = \"Default\"
+var newResourceName = \"res://music/mainTheme.ogg\"
+var achievementName = \"neonMusic\"
+var displayName = \"Neon\"
+var achievementText = \"Have 3 homogenous, stacked rows\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 230
 
 #Icon must also be changed
 
 func _ready():
-	pass # Replace with function body.
 	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -622,19 +473,32 @@ func _process(_delta):
 		unlocked = subMenuRoot.customize.achievementDict[achievementName]
 	#Icon
 	if unlocked:
-		icon.modulate = Color.white
+		iconButton.modulate = Color.white
 		itemName.modulate = Color(0.43, 0.42, 0.67)
 	else:
-		icon.modulate = Color.darkgray
+		iconButton.modulate = Color.darkgray
 		itemName.modulate = Color.darkgray
 
 func _on_button_select():
 	subMenuList.unselectButtons(self)
+	confirm.play()
 	subMenuRoot.changeResource(newResourceName, achievementName)
-	confirm.play(0)
+
+func _on_iconButton_pressed():
+	subMenuList.unselectPreviews(self)
+	if iconButton.pressed:
+		subMenuRoot.muteMusic()
+	else:
+		subMenuRoot.restartMusic()
+
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
 
 func unselectButton():
 	buttonControl.unselect()
+
+func unselectPreview():
+	iconButton.unselect()
 
 func getName():
 	return achievementName
@@ -645,11 +509,82 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="DynamicFont" id=13]
-size = 70
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 9 )
+[sub_resource type="GDScript" id=13]
+script/source = "extends Container
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+onready var confirm: AudioStreamPlayer = $\"confirm\"
+onready var deny: AudioStreamPlayer = $\"deny\"
+
+#Internal
+onready var iconButton : TextureButton = $\"iconButton\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+onready var itemName : RichTextLabel = $\"itemName\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://music/juicyTheme.ogg\"
+var achievementName = \"juicyMusic\"
+var displayName = \"Juicy\"
+var achievementText = \"Get a 4x multiplier\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 230
+
+#Icon must also be changed
+
+func _ready():
+	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		iconButton.modulate = Color.white
+		itemName.modulate = Color(0.43, 0.42, 0.67)
+	else:
+		iconButton.modulate = Color.darkgray
+		itemName.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	confirm.play()
+	subMenuRoot.changeResource(newResourceName, achievementName)
+
+func _on_iconButton_pressed():
+	subMenuList.unselectPreviews(self)
+	if iconButton.pressed:
+		subMenuRoot.muteMusic()
+	else:
+		subMenuRoot.restartMusic()
+
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
+func unselectButton():
+	buttonControl.unselect()
+
+func unselectPreview():
+	iconButton.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+"
 
 [sub_resource type="GDScript" id=14]
 script/source = "extends Container
@@ -661,22 +596,26 @@ onready var confirm: AudioStreamPlayer = $\"confirm\"
 onready var deny: AudioStreamPlayer = $\"deny\"
 
 #Internal
-onready var icon : Sprite = $\"icon\"
+onready var iconButton : TextureButton = $\"iconButton\"
 onready var buttonControl : Node2D = $\"buttonControl\"
 onready var itemName : RichTextLabel = $\"itemName\"
 
 var unlocked = false
 
 #Unique
-var newResourceName = \"res://backgrounds/pixel/scenes/pixelBackground.tscn\"
-var achievementName = \"pixelBg\"
-var displayName = \"Retro\"
+var newResourceName = \"res://music/mainTheme.ogg\"
+var achievementName = \"tuxedoMusic\"
+var displayName = \"Tuxedo\"
+var achievementText = \"Have 2, 26 pieces on the bottom row\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 180
 
 #Icon must also be changed
 
 func _ready():
-	pass # Replace with function body.
 	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -688,19 +627,32 @@ func _process(_delta):
 		unlocked = subMenuRoot.customize.achievementDict[achievementName]
 	#Icon
 	if unlocked:
-		icon.modulate = Color.white
+		iconButton.modulate = Color.white
 		itemName.modulate = Color(0.43, 0.42, 0.67)
 	else:
-		icon.modulate = Color.darkgray
+		iconButton.modulate = Color.darkgray
 		itemName.modulate = Color.darkgray
 
 func _on_button_select():
 	subMenuList.unselectButtons(self)
+	confirm.play()
 	subMenuRoot.changeResource(newResourceName, achievementName)
-	confirm.play(0)
+
+func _on_iconButton_pressed():
+	subMenuList.unselectPreviews(self)
+	if iconButton.pressed:
+		subMenuRoot.muteMusic()
+	else:
+		subMenuRoot.restartMusic()
+
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
 
 func unselectButton():
 	buttonControl.unselect()
+
+func unselectPreview():
+	iconButton.unselect()
 
 func getName():
 	return achievementName
@@ -728,15 +680,19 @@ onready var itemName : RichTextLabel = $\"itemName\"
 var unlocked = false
 
 #Unique
-var newResourceName = \"res://backgrounds/juicy/scenes/juicyBackground.tscn\"
-var achievementName = \"juicyBg\"
-var displayName = \"Juicy\"
+var newResourceName = \"res://backgrounds/default/scenes/defaultBackground.tscn\"
+var achievementName = \"default\"
+var displayName = \"Default\"
+var achievementText = \"default\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 230
+var textColor = Color.white #Only for backgrounds, setItem needs mod for this
 
 #Icon must also be changed
 
 func _ready():
-	pass # Replace with function body.
 	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -759,6 +715,9 @@ func _on_button_select():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 	confirm.play(0)
 
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
 func unselectButton():
 	buttonControl.unselect()
 
@@ -771,7 +730,13 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=16]
+[sub_resource type="DynamicFont" id=16]
+size = 70
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 9 )
+
+[sub_resource type="GDScript" id=17]
 script/source = "extends Container
 
 #External
@@ -788,15 +753,19 @@ onready var itemName : RichTextLabel = $\"itemName\"
 var unlocked = false
 
 #Unique
-var newResourceName = \"res://backgrounds/darkCrystal/scenes/darkCrystalBackground.tscn\"
-var achievementName = \"tuxedoBg\"
-var displayName = \"Crystal\"
+var newResourceName = \"res://backgrounds/pixel/scenes/pixelBackground.tscn\"
+var achievementName = \"pixelBg\"
+var displayName = \"Retro\"
+var achievementText = \"Reach 1000 score, before the 8 piece\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 180
+var textColor = Color.white #Only for backgrounds, setItem needs mod for this
 
 #Icon must also be changed
 
 func _ready():
-	pass # Replace with function body.
 	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -819,6 +788,9 @@ func _on_button_select():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 	confirm.play(0)
 
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
 func unselectButton():
 	buttonControl.unselect()
 
@@ -830,6 +802,271 @@ func setItem():
 	subMenuList.unselectButtons(self)
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
+
+[sub_resource type="GDScript" id=18]
+script/source = "extends Container
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+onready var confirm: AudioStreamPlayer = $\"confirm\"
+onready var deny: AudioStreamPlayer = $\"deny\"
+
+#Internal
+onready var icon : Sprite = $\"icon\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+onready var itemName : RichTextLabel = $\"itemName\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://backgrounds/default/scenes/defaultBackground.tscn\"
+var achievementName = \"neonBg\"
+var displayName = \"Neon\"
+var achievementText = \"Have 2 reverse-stacked, homogenous rows\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 100
+var textColor = Color.white #Only for backgrounds, setItem needs mod for this
+
+#Icon must also be changed
+
+func _ready():
+	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		icon.modulate = Color.white
+		itemName.modulate = Color(0.43, 0.42, 0.67)
+	else:
+		icon.modulate = Color.darkgray
+		itemName.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+	confirm.play(0)
+
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
+func unselectButton():
+	buttonControl.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+"
+
+[sub_resource type="GDScript" id=19]
+script/source = "extends Container
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+onready var confirm: AudioStreamPlayer = $\"confirm\"
+onready var deny: AudioStreamPlayer = $\"deny\"
+
+#Internal
+onready var icon : Sprite = $\"icon\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+onready var itemName : RichTextLabel = $\"itemName\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://backgrounds/juicy/scenes/juicyBackground.tscn\"
+var achievementName = \"juicyBg\"
+var displayName = \"Juicy\"
+var achievementText = \"Get a 3x multiplier\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 230
+var textColor = Color.white #Only for backgrounds, setItem needs mod for this
+
+#Icon must also be changed
+
+func _ready():
+	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		icon.modulate = Color.white
+		itemName.modulate = Color(0.43, 0.42, 0.67)
+	else:
+		icon.modulate = Color.darkgray
+		itemName.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+	confirm.play(0)
+
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
+func unselectButton():
+	buttonControl.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+"
+
+[sub_resource type="GDScript" id=20]
+script/source = "extends Container
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+onready var confirm: AudioStreamPlayer = $\"confirm\"
+onready var deny: AudioStreamPlayer = $\"deny\"
+
+#Internal
+onready var icon : Sprite = $\"icon\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+onready var itemName : RichTextLabel = $\"itemName\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://backgrounds/tuxedo/scenes/tuxedoBackground.tscn\"
+var achievementName = \"tuxedoBg\"
+var displayName = \"Tuxedo\"
+var achievementText = \"Rollover a tileset (Get a 27 piece)\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 180
+var textColor = Color(0.67, 0.53, 0.38) #Only for backgrounds, setItem needs mod for this
+
+#Icon must also be changed
+
+func _ready():
+	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		icon.modulate = Color.white
+		itemName.modulate = Color(0.43, 0.42, 0.67)
+	else:
+		icon.modulate = Color.darkgray
+		itemName.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName, textColor)
+	confirm.play(0)
+
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
+func unselectButton():
+	buttonControl.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName, textColor)
+"
+
+[sub_resource type="DynamicFont" id=21]
+size = 80
+outline_size = 8
+outline_color = Color( 0.427451, 0.415686, 0.666667, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 45 )
+
+[sub_resource type="Animation" id=22]
+length = 0.166667
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.166667 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=23]
+length = 0.166667
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [node name="customize" type="CanvasLayer"]
 pause_mode = 2
@@ -913,10 +1150,10 @@ __meta__ = {
 }
 
 [node name="unlockButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/default/buttonControl"]
-margin_top = -2.0
 margin_right = 354.0
-margin_bottom = 157.0
+margin_bottom = 159.0
 texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -945,7 +1182,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -973,10 +1210,10 @@ __meta__ = {
 }
 
 [node name="unlockButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/pixel/buttonControl"]
-margin_top = -2.0
 margin_right = 354.0
-margin_bottom = 157.0
+margin_bottom = 159.0
 texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -992,7 +1229,7 @@ bus = "Effects"
 [node name="neon" type="Container" parent="pieceButton/pieceRoot/pieceList"]
 margin_left = 882.0
 margin_right = 882.0
-script = SubResource( 3 )
+script = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1005,7 +1242,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 5 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1033,10 +1270,10 @@ __meta__ = {
 }
 
 [node name="unlockButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/neon/buttonControl"]
-margin_top = -2.0
 margin_right = 354.0
-margin_bottom = 157.0
+margin_bottom = 159.0
 texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1052,7 +1289,7 @@ bus = "Effects"
 [node name="juicy" type="Container" parent="pieceButton/pieceRoot/pieceList"]
 margin_top = 670.0
 margin_bottom = 670.0
-script = SubResource( 4 )
+script = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1093,10 +1330,10 @@ __meta__ = {
 }
 
 [node name="unlockButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/juicy/buttonControl"]
-margin_top = -2.0
 margin_right = 354.0
-margin_bottom = 157.0
+margin_bottom = 159.0
 texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1114,7 +1351,7 @@ margin_left = 441.0
 margin_top = 670.0
 margin_right = 441.0
 margin_bottom = 670.0
-script = SubResource( 5 )
+script = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1127,7 +1364,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 8 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1155,10 +1392,10 @@ __meta__ = {
 }
 
 [node name="unlockButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/tuxedo/buttonControl"]
-margin_top = -2.0
 margin_right = 354.0
-margin_bottom = 157.0
+margin_bottom = 159.0
 texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1176,7 +1413,7 @@ margin_left = 40.0
 margin_top = 1700.0
 margin_right = 1400.0
 margin_bottom = 2200.0
-custom_fonts/normal_font = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 9 )
 custom_colors/default_color = Color( 0.427451, 0.415686, 0.666667, 1 )
 text = "Credits:
 Concept - N8-Ball and Agreafel
@@ -1223,7 +1460,7 @@ __meta__ = {
 }
 
 [node name="default" type="Container" parent="musicButton/musicRoot/musicList"]
-script = SubResource( 7 )
+script = ExtResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1236,7 +1473,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 8 )
+custom_fonts/normal_font = SubResource( 10 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1254,6 +1491,7 @@ script = ExtResource( 19 )
 
 [node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/default/iconButton"]
 stream = ExtResource( 18 )
+attenuation = 0.0281641
 bus = "PreviewMusic"
 
 [node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/default"]
@@ -1291,7 +1529,7 @@ bus = "Effects"
 [node name="pixel" type="Container" parent="musicButton/musicRoot/musicList"]
 margin_left = 441.0
 margin_right = 441.0
-script = SubResource( 9 )
+script = SubResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1304,7 +1542,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 8 )
+custom_fonts/normal_font = SubResource( 10 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1316,12 +1554,13 @@ margin_top = 120.0
 margin_right = 328.0
 margin_bottom = 421.0
 toggle_mode = true
-texture_normal = ExtResource( 36 )
-texture_pressed = ExtResource( 23 )
+texture_normal = ExtResource( 51 )
+texture_pressed = ExtResource( 52 )
 script = ExtResource( 19 )
 
 [node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/pixel/iconButton"]
 stream = ExtResource( 21 )
+attenuation = 0.0281641
 bus = "PreviewMusic"
 
 [node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/pixel"]
@@ -1359,7 +1598,7 @@ bus = "Effects"
 [node name="neon" type="Container" parent="musicButton/musicRoot/musicList"]
 margin_left = 882.0
 margin_right = 882.0
-script = SubResource( 10 )
+script = SubResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1372,7 +1611,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 8 )
+custom_fonts/normal_font = SubResource( 10 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1384,12 +1623,13 @@ margin_top = 120.0
 margin_right = 328.0
 margin_bottom = 421.0
 toggle_mode = true
-texture_normal = ExtResource( 36 )
-texture_pressed = ExtResource( 23 )
+texture_normal = ExtResource( 53 )
+texture_pressed = ExtResource( 54 )
 script = ExtResource( 19 )
 
 [node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/neon/iconButton"]
-stream = ExtResource( 20 )
+stream = ExtResource( 18 )
+attenuation = 0.0281641
 bus = "PreviewMusic"
 
 [node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/neon"]
@@ -1427,7 +1667,7 @@ bus = "Effects"
 [node name="juicy" type="Container" parent="musicButton/musicRoot/musicList"]
 margin_top = 670.0
 margin_bottom = 670.0
-script = SubResource( 11 )
+script = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1440,7 +1680,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 8 )
+custom_fonts/normal_font = SubResource( 10 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1458,6 +1698,7 @@ script = ExtResource( 19 )
 
 [node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/juicy/iconButton"]
 stream = ExtResource( 35 )
+attenuation = 0.0281641
 bus = "PreviewMusic"
 
 [node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/juicy"]
@@ -1489,6 +1730,77 @@ stream = ExtResource( 22 )
 bus = "Effects"
 
 [node name="deny" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/juicy"]
+stream = ExtResource( 17 )
+bus = "Effects"
+
+[node name="tuxedo" type="Container" parent="musicButton/musicRoot/musicList"]
+margin_left = 441.0
+margin_top = 670.0
+margin_right = 441.0
+margin_bottom = 670.0
+script = SubResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="itemName" type="RichTextLabel" parent="musicButton/musicRoot/musicList/tuxedo"]
+modulate = Color( 0.443137, 0.443137, 0.776471, 1 )
+margin_left = -100.0
+margin_right = 454.0
+margin_bottom = 100.0
+rect_clip_content = false
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/normal_font = SubResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[center] Default [/center]"
+text = " Default "
+scroll_active = false
+
+[node name="iconButton" type="TextureButton" parent="musicButton/musicRoot/musicList/tuxedo"]
+margin_left = 27.0
+margin_top = 120.0
+margin_right = 328.0
+margin_bottom = 421.0
+toggle_mode = true
+texture_normal = ExtResource( 36 )
+texture_pressed = ExtResource( 23 )
+script = ExtResource( 19 )
+
+[node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/tuxedo/iconButton"]
+stream = ExtResource( 35 )
+attenuation = 0.0281641
+bus = "PreviewMusic"
+
+[node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/tuxedo"]
+position = Vector2( 0, 450 )
+script = ExtResource( 10 )
+
+[node name="selectButton" type="TextureButton" parent="musicButton/musicRoot/musicList/tuxedo/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 14 )
+texture_disabled = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unlockButton" type="TextureButton" parent="musicButton/musicRoot/musicList/tuxedo/buttonControl"]
+margin_top = -2.0
+margin_right = 354.0
+margin_bottom = 157.0
+texture_normal = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="confirm" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/tuxedo"]
+stream = ExtResource( 22 )
+bus = "Effects"
+
+[node name="deny" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/tuxedo"]
 stream = ExtResource( 17 )
 bus = "Effects"
 
@@ -1527,7 +1839,7 @@ __meta__ = {
 }
 
 [node name="default" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
-script = SubResource( 12 )
+script = SubResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1540,7 +1852,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 13 )
+custom_fonts/normal_font = SubResource( 16 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1568,10 +1880,10 @@ __meta__ = {
 }
 
 [node name="unlockButton" type="TextureButton" parent="backgroundButton/backgroundRoot/backgroundList/default/buttonControl"]
-margin_top = -2.0
 margin_right = 354.0
-margin_bottom = 157.0
+margin_bottom = 159.0
 texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1587,7 +1899,7 @@ bus = "Effects"
 [node name="pixel" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
 margin_left = 441.0
 margin_right = 441.0
-script = SubResource( 14 )
+script = SubResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1600,7 +1912,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 13 )
+custom_fonts/normal_font = SubResource( 16 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1609,7 +1921,7 @@ scroll_active = false
 [node name="icon" type="Sprite" parent="backgroundButton/backgroundRoot/backgroundList/pixel"]
 position = Vector2( 27, 120 )
 scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 37 )
+texture = ExtResource( 38 )
 centered = false
 
 [node name="buttonControl" type="Node2D" parent="backgroundButton/backgroundRoot/backgroundList/pixel"]
@@ -1628,10 +1940,10 @@ __meta__ = {
 }
 
 [node name="unlockButton" type="TextureButton" parent="backgroundButton/backgroundRoot/backgroundList/pixel/buttonControl"]
-margin_top = -2.0
 margin_right = 354.0
-margin_bottom = 157.0
+margin_bottom = 159.0
 texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1644,10 +1956,70 @@ bus = "Effects"
 stream = ExtResource( 17 )
 bus = "Effects"
 
-[node name="juicy" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
+[node name="neon" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
 margin_left = 882.0
 margin_right = 882.0
-script = SubResource( 15 )
+script = SubResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="itemName" type="RichTextLabel" parent="backgroundButton/backgroundRoot/backgroundList/neon"]
+modulate = Color( 0.443137, 0.443137, 0.776471, 1 )
+margin_left = -100.0
+margin_right = 454.0
+margin_bottom = 100.0
+rect_clip_content = false
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/normal_font = SubResource( 16 )
+bbcode_enabled = true
+bbcode_text = "[center] Default [/center]"
+text = " Default "
+scroll_active = false
+
+[node name="icon" type="Sprite" parent="backgroundButton/backgroundRoot/backgroundList/neon"]
+position = Vector2( 27, 120 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 38 )
+centered = false
+
+[node name="buttonControl" type="Node2D" parent="backgroundButton/backgroundRoot/backgroundList/neon"]
+position = Vector2( 0, 450 )
+script = ExtResource( 10 )
+
+[node name="selectButton" type="TextureButton" parent="backgroundButton/backgroundRoot/backgroundList/neon/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 14 )
+texture_disabled = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unlockButton" type="TextureButton" parent="backgroundButton/backgroundRoot/backgroundList/neon/buttonControl"]
+margin_right = 354.0
+margin_bottom = 159.0
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="confirm" type="AudioStreamPlayer" parent="backgroundButton/backgroundRoot/backgroundList/neon"]
+stream = ExtResource( 22 )
+bus = "Effects"
+
+[node name="deny" type="AudioStreamPlayer" parent="backgroundButton/backgroundRoot/backgroundList/neon"]
+stream = ExtResource( 17 )
+bus = "Effects"
+
+[node name="juicy" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
+margin_top = 670.0
+margin_bottom = 670.0
+script = SubResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1660,7 +2032,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 13 )
+custom_fonts/normal_font = SubResource( 16 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1669,7 +2041,7 @@ scroll_active = false
 [node name="icon" type="Sprite" parent="backgroundButton/backgroundRoot/backgroundList/juicy"]
 position = Vector2( 27, 120 )
 scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 39 )
+texture = ExtResource( 38 )
 centered = false
 
 [node name="buttonControl" type="Node2D" parent="backgroundButton/backgroundRoot/backgroundList/juicy"]
@@ -1688,10 +2060,10 @@ __meta__ = {
 }
 
 [node name="unlockButton" type="TextureButton" parent="backgroundButton/backgroundRoot/backgroundList/juicy/buttonControl"]
-margin_top = -2.0
 margin_right = 354.0
-margin_bottom = 157.0
+margin_bottom = 159.0
 texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1705,9 +2077,11 @@ stream = ExtResource( 17 )
 bus = "Effects"
 
 [node name="tuxedo" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
+margin_left = 441.0
 margin_top = 670.0
+margin_right = 441.0
 margin_bottom = 670.0
-script = SubResource( 16 )
+script = SubResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1720,7 +2094,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 13 )
+custom_fonts/normal_font = SubResource( 16 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1748,10 +2122,10 @@ __meta__ = {
 }
 
 [node name="unlockButton" type="TextureButton" parent="backgroundButton/backgroundRoot/backgroundList/tuxedo/buttonControl"]
-margin_top = -2.0
 margin_right = 354.0
-margin_bottom = 157.0
+margin_bottom = 159.0
 texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1784,3 +2158,58 @@ script = ExtResource( 24 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="unlockMenuRoot" type="Node2D" parent="."]
+visible = false
+position = Vector2( 720, 1019 )
+z_index = 1
+z_as_relative = false
+script = ExtResource( 47 )
+
+[node name="unlockMenu" type="TextureButton" parent="unlockMenuRoot"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -646.5
+margin_top = -469.0
+margin_right = 646.5
+margin_bottom = 469.0
+texture_normal = ExtResource( 46 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unlockText" type="RichTextLabel" parent="unlockMenuRoot/unlockMenu"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -450.0
+margin_top = 230.0
+margin_right = 450.0
+margin_bottom = 450.0
+custom_fonts/normal_font = SubResource( 21 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="purchaseButton" type="TextureButton" parent="unlockMenuRoot/unlockMenu"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -500.5
+margin_top = -368.0
+margin_right = 500.5
+margin_bottom = -157.0
+texture_normal = ExtResource( 48 )
+texture_pressed = ExtResource( 49 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unlockAnimator" type="AnimationPlayer" parent="unlockMenuRoot"]
+anims/close = SubResource( 22 )
+anims/open = SubResource( 23 )

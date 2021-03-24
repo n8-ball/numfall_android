@@ -8,7 +8,7 @@
 [ext_resource path="res://pieceSets/default/scripts/defaultSelect.gd" type="Script" id=6]
 [ext_resource path="res://pieceSets/default/sounds/combine.wav" type="AudioStream" id=7]
 [ext_resource path="res://pieceSets/default/scripts/defaultTier.gd" type="Script" id=8]
-[ext_resource path="res://pieceSets/default/sounds/land.wav" type="AudioStream" id=9]
+[ext_resource path="res://pieceSets/default/sounds/land.ogg" type="AudioStream" id=9]
 [ext_resource path="res://pieceSets/default/scripts/defaultCombine.gd" type="Script" id=10]
 
 [sub_resource type="Animation" id=1]
@@ -559,6 +559,8 @@ script = ExtResource( 4 )
 [node name="scalar" type="Node2D" parent="."]
 
 [node name="block" type="Sprite" parent="scalar"]
+visible = false
+scale = Vector2( 1, 0.5 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -100 )
 hframes = 26
@@ -579,6 +581,7 @@ script = ExtResource( 5 )
 
 [node name="tier" type="Sprite" parent="scalar/block"]
 visible = false
+position = Vector2( 0, 100 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -100 )
 vframes = 3
