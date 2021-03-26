@@ -57,8 +57,8 @@ func _process(_delta):
 			for j in range(10):
 				if !(board[j][i] == null):
 					board[j][i].setValue(board[j][i].getValue() + 1)
-		for _i in range(6):
-			spawner.spawnPiece()
+		#for _i in range(6):
+			#spawner.spawnPiece()
 	if Input.is_action_pressed("ui_cancel"):
 		score = score + 1
 

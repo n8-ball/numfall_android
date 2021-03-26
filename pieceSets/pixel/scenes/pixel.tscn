@@ -596,10 +596,9 @@ anims/switchRight = SubResource( 9 )
 script = ExtResource( 5 )
 
 [node name="tier" type="Sprite" parent="scalar/block"]
-visible = false
 position = Vector2( 0, 16 )
 texture = ExtResource( 3 )
-offset = Vector2( 0, -32 )
+offset = Vector2( 0, -16 )
 vframes = 3
 hframes = 7
 frame = 6

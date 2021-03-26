@@ -5,20 +5,20 @@ onready var purchaseManager : Node2D = $"androidPurchaseManager"
 var achievementNotice = preload("res://menu/scenes/achievementNotice.tscn")
 
 var achieveDict = {
-	"pixelTile" : false,
-	"neonTile" : false,
-	"juicyTile" : false,
-	"tuxedoTile" : false,
+	"pixelTile" : true,
+	"neonTile" : true,
+	"juicyTile" : true,
+	"tuxedoTile" : true,
 	
-	"pixelMusic" : false,
-	"neonMusic" : false,
-	"juicyMusic" : false,
-	"tuxedoMusic" : false,
+	"pixelMusic" : true,
+	"neonMusic" : true,
+	"juicyMusic" : true,
+	"tuxedoMusic" : true,
 	
-	"pixelBg" : false,
-	"neonBg" : false,
-	"juicyBg" : false,
-	"tuxedoBg" : false
+	"pixelBg" : true,
+	"neonBg" : true,
+	"juicyBg" : true,
+	"tuxedoBg" : true
 }
 
 # Called when the node enters the scene tree for the first time.

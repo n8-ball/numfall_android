@@ -10,7 +10,7 @@
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    inkscape:export-ydpi="300"
    inkscape:export-xdpi="300"
-   inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\default\sprites\default.png"
+   inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\juicy\sprites\juicy.png"
    sodipodi:docname="juicy.svg"
    id="svg816"
    xml:space="preserve"
@@ -21,7 +21,7 @@
    version="1.1"><metadata
    id="metadata822"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
    id="defs820">
 	
 
@@ -460,9 +460,9 @@
    inkscape:window-maximized="1"
    inkscape:window-y="-8"
    inkscape:window-x="-8"
-   inkscape:cy="45.897424"
-   inkscape:cx="261.09238"
-   inkscape:zoom="3.5661301"
+   inkscape:cy="14.356065"
+   inkscape:cx="31.14431"
+   inkscape:zoom="5.0432696"
    showgrid="false"
    id="namedview818"
    inkscape:window-height="877"
@@ -618,10 +618,6 @@
    d="m 1607.5,63 c -3.58,0 -6.5,-2.92 -6.5,-6.5 v -49 c 0,-3.58 2.92,-6.5 6.5,-6.5 h 49 c 3.58,0 6.5,2.92 6.5,6.5 v 49 c 0,3.58 -2.92,6.5 -6.5,6.5 z"
    class="st26"
    style="stroke:#ff0000;stroke-opacity:0;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" /><circle
-   id="circle161"
-   r="4"
-   cy="32"
-   cx="32" /><circle
    id="circle163"
    r="4"
    cy="32"
@@ -1922,4 +1918,8 @@
    r="24"
    cy="32"
    cx="1632" />
-</svg>
+<circle
+   id="circle161"
+   r="4"
+   cy="32"
+   cx="32" /></svg>
