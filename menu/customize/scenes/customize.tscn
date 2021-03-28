@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://menu/customize/scripts/customizeItem.gd" type="Script" id=1]
 [ext_resource path="res://menu/customize/scripts/buttonList.gd" type="Script" id=2]
@@ -45,8 +45,6 @@
 [ext_resource path="res://fonts/Poppins-ExtraBoldItalic.ttf" type="DynamicFontData" id=45]
 [ext_resource path="res://menu/customize/sprites/unlockMenu.png" type="Texture" id=46]
 [ext_resource path="res://menu/customize/scripts/unlockMenuRoot.gd" type="Script" id=47]
-[ext_resource path="res://menu/customize/sprites/purchaseUnpressed.png" type="Texture" id=48]
-[ext_resource path="res://menu/customize/sprites/purchasePressed.png" type="Texture" id=49]
 [ext_resource path="res://menu/customize/sprites/unlockPressed.png" type="Texture" id=50]
 [ext_resource path="res://menu/customize/sprites/pixelMusicPlay.png" type="Texture" id=51]
 [ext_resource path="res://menu/customize/sprites/pixelMusicPause.png" type="Texture" id=52]
@@ -2160,7 +2158,6 @@ __meta__ = {
 }
 
 [node name="unlockMenuRoot" type="Node2D" parent="."]
-visible = false
 position = Vector2( 720, 1019 )
 z_index = 1
 z_as_relative = false
@@ -2171,10 +2168,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -646.5
+margin_left = -646.0
 margin_top = -469.0
-margin_right = 646.5
-margin_bottom = 469.0
+margin_right = 647.0
+margin_bottom = 161.0
 texture_normal = ExtResource( 46 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2191,21 +2188,6 @@ custom_fonts/normal_font = SubResource( 21 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
 scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="purchaseButton" type="TextureButton" parent="unlockMenuRoot/unlockMenu"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -500.5
-margin_top = -368.0
-margin_right = 500.5
-margin_bottom = -157.0
-texture_normal = ExtResource( 48 )
-texture_pressed = ExtResource( 49 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
