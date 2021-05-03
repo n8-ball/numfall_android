@@ -1,8 +1,8 @@
 extends CanvasLayer
 
-onready var background : Sprite = $background
-onready var achieveSprite : Sprite = $background/achieveSprite
-onready var achieveName : RichTextLabel = $background/achieveName
+onready var background : Sprite = $root/background
+onready var achieveSprite : Sprite = $root/achieveSprite
+onready var achieveName : RichTextLabel = $root/achieveName
 onready var animator : AnimationPlayer = $animator
 
 func _ready():

@@ -6,7 +6,6 @@ var multiplier = load("res://pieceSets/default/scenes/defaultMultiplierParticle.
 
 onready var combineSound : AudioStreamPlayer2D = $combine
 onready var landSound : AudioStreamPlayer2D = $land
-onready var swapSound : AudioStreamPlayer = $swap
 
 #State
 const IDLE_STATE = 0
@@ -94,10 +93,6 @@ func setState(newState):
 		
 	if newState == LAND_STATE && board != null:
 		landSound.play(0)
-	
-	if (newState == SWITCH_LEFT_STATE || newState == SWITCH_RIGHT_STATE)\
-		&& board != null:
-		swapSound.play(0)
 
 func getState():
 	return state

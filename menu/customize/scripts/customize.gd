@@ -23,7 +23,6 @@ var purchaseManager
 func _ready():
 	background.connect("doneFading", self, "_on_done_fading")
 	achievementDict = achievements.getAchievements()
-	purchaseManager = achievements.get_child(0)
 
 func changeTileSet(newTileSet, newSavePiece):
 	board.changePiece(newTileSet, newSavePiece)

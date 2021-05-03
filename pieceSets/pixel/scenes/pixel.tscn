@@ -580,6 +580,7 @@ scale = Vector2( 6.25, 6.25 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -16 )
 hframes = 26
+frame = 3
 
 [node name="blockAnimation" type="AnimationPlayer" parent="scalar/block"]
 pause_mode = 2

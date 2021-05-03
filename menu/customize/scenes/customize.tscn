@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://menu/customize/scripts/customizeItem.gd" type="Script" id=1]
 [ext_resource path="res://menu/customize/scripts/buttonList.gd" type="Script" id=2]
@@ -343,17 +343,84 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="GDScript" id=9]
+script/source = "extends Container
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+onready var confirm: AudioStreamPlayer = $\"confirm\"
+onready var deny: AudioStreamPlayer = $\"deny\"
+
+#Internal
+onready var icon : Sprite = $\"icon\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+onready var itemName : RichTextLabel = $\"itemName\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://pieceSets/lcd/scenes/lcd.tscn\"
+var achievementName = \"lcdTile\"
+var displayName = \"LCD\"
+var achievementText = \"Get a 26 piece\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 230
+var textColor = Color.white #Only for backgrounds, setItem needs mod for this
+
+#Icon must also be changed
+
+func _ready():
+	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		icon.modulate = Color.white
+		itemName.modulate = Color(0.43, 0.42, 0.67)
+	else:
+		icon.modulate = Color.darkgray
+		itemName.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+	confirm.play(0)
+
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
+func unselectButton():
+	buttonControl.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+"
+
+[sub_resource type="DynamicFont" id=10]
 size = 31
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=11]
 size = 70
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 9 )
 
-[sub_resource type="GDScript" id=11]
+[sub_resource type="GDScript" id=12]
 script/source = "extends Container
 
 #External
@@ -430,7 +497,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=12]
+[sub_resource type="GDScript" id=13]
 script/source = "extends Container
 
 #External
@@ -507,7 +574,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=13]
+[sub_resource type="GDScript" id=14]
 script/source = "extends Container
 
 #External
@@ -584,7 +651,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=14]
+[sub_resource type="GDScript" id=15]
 script/source = "extends Container
 
 #External
@@ -661,7 +728,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=15]
+[sub_resource type="GDScript" id=16]
 script/source = "extends Container
 
 #External
@@ -728,13 +795,13 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFont" id=17]
 size = 70
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 9 )
 
-[sub_resource type="GDScript" id=17]
+[sub_resource type="GDScript" id=18]
 script/source = "extends Container
 
 #External
@@ -801,7 +868,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=18]
+[sub_resource type="GDScript" id=19]
 script/source = "extends Container
 
 #External
@@ -868,7 +935,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=19]
+[sub_resource type="GDScript" id=20]
 script/source = "extends Container
 
 #External
@@ -891,7 +958,7 @@ var displayName = \"Juicy\"
 var achievementText = \"Get a 3x multiplier\"
 #230 for 1 line, 180 for 2, 100 for 3
 var headSpace = 230
-var textColor = Color.white #Only for backgrounds, setItem needs mod for this
+var textColor = Color.black #Only for backgrounds, setItem needs mod for this
 
 #Icon must also be changed
 
@@ -932,10 +999,10 @@ func getName():
 func setItem():
 	buttonControl.select()
 	subMenuList.unselectButtons(self)
-	subMenuRoot.changeResource(newResourceName, achievementName)
+	subMenuRoot.changeResource(newResourceName, achievementName, textColor)
 "
 
-[sub_resource type="GDScript" id=20]
+[sub_resource type="GDScript" id=21]
 script/source = "extends Container
 
 #External
@@ -1002,7 +1069,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName, textColor)
 "
 
-[sub_resource type="DynamicFont" id=21]
+[sub_resource type="DynamicFont" id=22]
 size = 80
 outline_size = 8
 outline_color = Color( 0.427451, 0.415686, 0.666667, 1 )
@@ -1010,7 +1077,7 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 45 )
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=23]
 length = 0.166667
 step = 0.0333333
 tracks/0/type = "value"
@@ -1038,7 +1105,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=24]
 length = 0.166667
 step = 0.0333333
 tracks/0/type = "value"
@@ -1406,12 +1473,74 @@ bus = "Effects"
 stream = ExtResource( 17 )
 bus = "Effects"
 
+[node name="tuxedo2" type="Container" parent="pieceButton/pieceRoot/pieceList"]
+margin_left = 882.0
+margin_top = 670.0
+margin_right = 882.0
+margin_bottom = 670.0
+script = SubResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="itemName" type="RichTextLabel" parent="pieceButton/pieceRoot/pieceList/tuxedo2"]
+modulate = Color( 0.443137, 0.443137, 0.776471, 1 )
+margin_left = -100.0
+margin_right = 454.0
+margin_bottom = 100.0
+rect_clip_content = false
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/normal_font = SubResource( 8 )
+bbcode_enabled = true
+bbcode_text = "[center] Default [/center]"
+text = " Default "
+scroll_active = false
+
+[node name="icon" type="Sprite" parent="pieceButton/pieceRoot/pieceList/tuxedo2"]
+position = Vector2( 27, 120 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 44 )
+centered = false
+
+[node name="buttonControl" type="Node2D" parent="pieceButton/pieceRoot/pieceList/tuxedo2"]
+position = Vector2( 0, 450 )
+script = ExtResource( 10 )
+
+[node name="selectButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/tuxedo2/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 14 )
+texture_disabled = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unlockButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/tuxedo2/buttonControl"]
+margin_right = 354.0
+margin_bottom = 159.0
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="confirm" type="AudioStreamPlayer" parent="pieceButton/pieceRoot/pieceList/tuxedo2"]
+stream = ExtResource( 22 )
+bus = "Effects"
+
+[node name="deny" type="AudioStreamPlayer" parent="pieceButton/pieceRoot/pieceList/tuxedo2"]
+stream = ExtResource( 17 )
+bus = "Effects"
+
 [node name="Credits" type="RichTextLabel" parent="pieceButton/pieceRoot"]
 margin_left = 40.0
 margin_top = 1700.0
 margin_right = 1400.0
 margin_bottom = 2200.0
-custom_fonts/normal_font = SubResource( 9 )
+custom_fonts/normal_font = SubResource( 10 )
 custom_colors/default_color = Color( 0.427451, 0.415686, 0.666667, 1 )
 text = "Credits:
 Concept - N8-Ball and Agreafel
@@ -1471,7 +1600,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 10 )
+custom_fonts/normal_font = SubResource( 11 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1527,7 +1656,7 @@ bus = "Effects"
 [node name="pixel" type="Container" parent="musicButton/musicRoot/musicList"]
 margin_left = 441.0
 margin_right = 441.0
-script = SubResource( 11 )
+script = SubResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1540,7 +1669,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 10 )
+custom_fonts/normal_font = SubResource( 11 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1596,7 +1725,7 @@ bus = "Effects"
 [node name="neon" type="Container" parent="musicButton/musicRoot/musicList"]
 margin_left = 882.0
 margin_right = 882.0
-script = SubResource( 12 )
+script = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1609,7 +1738,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 10 )
+custom_fonts/normal_font = SubResource( 11 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1665,7 +1794,7 @@ bus = "Effects"
 [node name="juicy" type="Container" parent="musicButton/musicRoot/musicList"]
 margin_top = 670.0
 margin_bottom = 670.0
-script = SubResource( 13 )
+script = SubResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1678,7 +1807,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 10 )
+custom_fonts/normal_font = SubResource( 11 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1736,7 +1865,7 @@ margin_left = 441.0
 margin_top = 670.0
 margin_right = 441.0
 margin_bottom = 670.0
-script = SubResource( 14 )
+script = SubResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1749,7 +1878,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 10 )
+custom_fonts/normal_font = SubResource( 11 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1837,7 +1966,7 @@ __meta__ = {
 }
 
 [node name="default" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
-script = SubResource( 15 )
+script = SubResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1850,7 +1979,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 16 )
+custom_fonts/normal_font = SubResource( 17 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1897,7 +2026,7 @@ bus = "Effects"
 [node name="pixel" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
 margin_left = 441.0
 margin_right = 441.0
-script = SubResource( 17 )
+script = SubResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1910,7 +2039,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 16 )
+custom_fonts/normal_font = SubResource( 17 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1957,7 +2086,7 @@ bus = "Effects"
 [node name="neon" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
 margin_left = 882.0
 margin_right = 882.0
-script = SubResource( 18 )
+script = SubResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1970,7 +2099,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 16 )
+custom_fonts/normal_font = SubResource( 17 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -2017,7 +2146,7 @@ bus = "Effects"
 [node name="juicy" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
 margin_top = 670.0
 margin_bottom = 670.0
-script = SubResource( 19 )
+script = SubResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2030,7 +2159,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 16 )
+custom_fonts/normal_font = SubResource( 17 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -2079,7 +2208,7 @@ margin_left = 441.0
 margin_top = 670.0
 margin_right = 441.0
 margin_bottom = 670.0
-script = SubResource( 20 )
+script = SubResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2092,7 +2221,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 16 )
+custom_fonts/normal_font = SubResource( 17 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -2158,6 +2287,7 @@ __meta__ = {
 }
 
 [node name="unlockMenuRoot" type="Node2D" parent="."]
+visible = false
 position = Vector2( 720, 1019 )
 z_index = 1
 z_as_relative = false
@@ -2184,7 +2314,7 @@ margin_left = -450.0
 margin_top = 230.0
 margin_right = 450.0
 margin_bottom = 450.0
-custom_fonts/normal_font = SubResource( 21 )
+custom_fonts/normal_font = SubResource( 22 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
 scroll_active = false
@@ -2193,5 +2323,5 @@ __meta__ = {
 }
 
 [node name="unlockAnimator" type="AnimationPlayer" parent="unlockMenuRoot"]
-anims/close = SubResource( 22 )
-anims/open = SubResource( 23 )
+anims/close = SubResource( 23 )
+anims/open = SubResource( 24 )
