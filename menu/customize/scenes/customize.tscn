@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=90 format=2]
 
 [ext_resource path="res://menu/customize/scripts/customizeItem.gd" type="Script" id=1]
 [ext_resource path="res://menu/customize/scripts/buttonList.gd" type="Script" id=2]
@@ -36,7 +36,9 @@
 [ext_resource path="res://menu/customize/sprites/musicUnpressed.png" type="Texture" id=34]
 [ext_resource path="res://music/juicyTheme.ogg" type="AudioStream" id=35]
 [ext_resource path="res://menu/customize/sprites/defaultMusicPlay.png" type="Texture" id=36]
+[ext_resource path="res://pieceSets/lcd/sprites/lcdPreview.png" type="Texture" id=37]
 [ext_resource path="res://backgrounds/default/sprites/defaultBackgroundPreview.png" type="Texture" id=38]
+[ext_resource path="res://menu/customize/sprites/juicyMusicPlay.png" type="Texture" id=39]
 [ext_resource path="res://pieceSets/pixel/sprites/pixelPreview.png" type="Texture" id=40]
 [ext_resource path="res://pieceSets/neon/sprites/neonPreview.png" type="Texture" id=41]
 [ext_resource path="res://pieceSets/juicy/sprites/juicyPreview.png" type="Texture" id=42]
@@ -45,11 +47,23 @@
 [ext_resource path="res://fonts/Poppins-ExtraBoldItalic.ttf" type="DynamicFontData" id=45]
 [ext_resource path="res://menu/customize/sprites/unlockMenu.png" type="Texture" id=46]
 [ext_resource path="res://menu/customize/scripts/unlockMenuRoot.gd" type="Script" id=47]
+[ext_resource path="res://menu/customize/sprites/juicyMusicPause.png" type="Texture" id=48]
+[ext_resource path="res://menu/customize/sprites/lcdMusicPlay.png" type="Texture" id=49]
 [ext_resource path="res://menu/customize/sprites/unlockPressed.png" type="Texture" id=50]
 [ext_resource path="res://menu/customize/sprites/pixelMusicPlay.png" type="Texture" id=51]
 [ext_resource path="res://menu/customize/sprites/pixelMusicPause.png" type="Texture" id=52]
 [ext_resource path="res://menu/customize/sprites/neonMusicPlay.png" type="Texture" id=53]
 [ext_resource path="res://menu/customize/sprites/neonMusicPause.png" type="Texture" id=54]
+[ext_resource path="res://menu/customize/sprites/lcdMusicPause.png" type="Texture" id=55]
+[ext_resource path="res://backgrounds/neon/sprites/neonBackgroundPreview.png" type="Texture" id=56]
+[ext_resource path="res://backgrounds/pixel/sprites/pixelBackgroundPreview.png" type="Texture" id=57]
+[ext_resource path="res://backgrounds/juicy/sprites/juicyPreview.png" type="Texture" id=58]
+[ext_resource path="res://backgrounds/lcd/sprites/lcdBackgroundPreview.png" type="Texture" id=59]
+[ext_resource path="res://menu/customize/sprites/tuxedoMusicPlay.png" type="Texture" id=60]
+[ext_resource path="res://menu/customize/sprites/tuxedoMusicPause.png" type="Texture" id=61]
+[ext_resource path="res://music/LCDTheme.ogg" type="AudioStream" id=62]
+[ext_resource path="res://music/tuxedoTheme.ogg" type="AudioStream" id=63]
+[ext_resource path="res://music/neonTheme.ogg" type="AudioStream" id=64]
 
 [sub_resource type="DynamicFont" id=1]
 size = 70
@@ -152,7 +166,7 @@ var achievementName = \"neonTile\"
 var displayName = \"Neon\"
 var achievementText = \"Have 3 homogenous, perfectly stacked rows\"
 #230 for 1 line, 180 for 2, 100 for 3
-var headSpace = 100
+var headSpace = 140
 var textColor = Color.white #Only for backgrounds, setItem needs mod for this
 
 #Icon must also be changed
@@ -411,16 +425,12 @@ func setItem():
 "
 
 [sub_resource type="DynamicFont" id=10]
-size = 31
-font_data = ExtResource( 9 )
-
-[sub_resource type="DynamicFont" id=11]
 size = 70
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 9 )
 
-[sub_resource type="GDScript" id=12]
+[sub_resource type="GDScript" id=11]
 script/source = "extends Container
 
 #External
@@ -497,7 +507,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=13]
+[sub_resource type="GDScript" id=12]
 script/source = "extends Container
 
 #External
@@ -514,7 +524,7 @@ onready var itemName : RichTextLabel = $\"itemName\"
 var unlocked = false
 
 #Unique
-var newResourceName = \"res://music/mainTheme.ogg\"
+var newResourceName = \"res://music/neonTheme.ogg\"
 var achievementName = \"neonMusic\"
 var displayName = \"Neon\"
 var achievementText = \"Have 3 homogenous, stacked rows\"
@@ -574,7 +584,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=14]
+[sub_resource type="GDScript" id=13]
 script/source = "extends Container
 
 #External
@@ -651,6 +661,83 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
+[sub_resource type="GDScript" id=14]
+script/source = "extends Container
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+onready var confirm: AudioStreamPlayer = $\"confirm\"
+onready var deny: AudioStreamPlayer = $\"deny\"
+
+#Internal
+onready var iconButton : TextureButton = $\"iconButton\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+onready var itemName : RichTextLabel = $\"itemName\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://music/tuxedoTheme.ogg\"
+var achievementName = \"tuxedoMusic\"
+var displayName = \"Tuxedo\"
+var achievementText = \"Have 2, 26 pieces on the bottom row\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 180
+
+#Icon must also be changed
+
+func _ready():
+	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		iconButton.modulate = Color.white
+		itemName.modulate = Color(0.43, 0.42, 0.67)
+	else:
+		iconButton.modulate = Color.darkgray
+		itemName.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	confirm.play()
+	subMenuRoot.changeResource(newResourceName, achievementName)
+
+func _on_iconButton_pressed():
+	subMenuList.unselectPreviews(self)
+	if iconButton.pressed:
+		subMenuRoot.muteMusic()
+	else:
+		subMenuRoot.restartMusic()
+
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
+func unselectButton():
+	buttonControl.unselect()
+
+func unselectPreview():
+	iconButton.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+"
+
 [sub_resource type="GDScript" id=15]
 script/source = "extends Container
 
@@ -668,9 +755,9 @@ onready var itemName : RichTextLabel = $\"itemName\"
 var unlocked = false
 
 #Unique
-var newResourceName = \"res://music/mainTheme.ogg\"
-var achievementName = \"tuxedoMusic\"
-var displayName = \"Tuxedo\"
+var newResourceName = \"res://music/LCDTheme.ogg\"
+var achievementName = \"lcdMusic\"
+var displayName = \"LCD\"
 var achievementText = \"Have 2, 26 pieces on the bottom row\"
 #230 for 1 line, 180 for 2, 100 for 3
 var headSpace = 180
@@ -885,7 +972,7 @@ onready var itemName : RichTextLabel = $\"itemName\"
 var unlocked = false
 
 #Unique
-var newResourceName = \"res://backgrounds/default/scenes/defaultBackground.tscn\"
+var newResourceName = \"res://backgrounds/neon/scenes/neonBackground.tscn\"
 var achievementName = \"neonBg\"
 var displayName = \"Neon\"
 var achievementText = \"Have 2 reverse-stacked, homogenous rows\"
@@ -958,7 +1045,7 @@ var displayName = \"Juicy\"
 var achievementText = \"Get a 3x multiplier\"
 #230 for 1 line, 180 for 2, 100 for 3
 var headSpace = 230
-var textColor = Color.black #Only for backgrounds, setItem needs mod for this
+var textColor = Color.white #Only for backgrounds, setItem needs mod for this
 
 #Icon must also be changed
 
@@ -1069,7 +1156,74 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName, textColor)
 "
 
-[sub_resource type="DynamicFont" id=22]
+[sub_resource type="GDScript" id=22]
+script/source = "extends Container
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+onready var confirm: AudioStreamPlayer = $\"confirm\"
+onready var deny: AudioStreamPlayer = $\"deny\"
+
+#Internal
+onready var icon : Sprite = $\"icon\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+onready var itemName : RichTextLabel = $\"itemName\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://backgrounds/lcd/scenes/lcdBackground.tscn\"
+var achievementName = \"lcdBg\"
+var displayName = \"LCD\"
+var achievementText = \"Rollover a tileset (Get a 27 piece)\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 180
+var textColor = Color(0.05, 0.05, 0.05) #Only for backgrounds, setItem needs mod for this
+
+#Icon must also be changed
+
+func _ready():
+	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		icon.modulate = Color.white
+		itemName.modulate = Color(0.43, 0.42, 0.67)
+	else:
+		icon.modulate = Color.darkgray
+		itemName.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName, textColor)
+	confirm.play(0)
+
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
+func unselectButton():
+	buttonControl.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName, textColor)
+"
+
+[sub_resource type="DynamicFont" id=23]
 size = 80
 outline_size = 8
 outline_color = Color( 0.427451, 0.415686, 0.666667, 1 )
@@ -1077,7 +1231,7 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 45 )
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=24]
 length = 0.166667
 step = 0.0333333
 tracks/0/type = "value"
@@ -1105,7 +1259,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=25]
 length = 0.166667
 step = 0.0333333
 tracks/0/type = "value"
@@ -1195,7 +1349,6 @@ scroll_active = false
 
 [node name="icon" type="Sprite" parent="pieceButton/pieceRoot/pieceList/default"]
 position = Vector2( 27, 120 )
-scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 16 )
 centered = false
 
@@ -1375,7 +1528,6 @@ scroll_active = false
 
 [node name="icon" type="Sprite" parent="pieceButton/pieceRoot/pieceList/juicy"]
 position = Vector2( 27, 120 )
-scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 42 )
 centered = false
 
@@ -1473,7 +1625,7 @@ bus = "Effects"
 stream = ExtResource( 17 )
 bus = "Effects"
 
-[node name="tuxedo2" type="Container" parent="pieceButton/pieceRoot/pieceList"]
+[node name="lcd" type="Container" parent="pieceButton/pieceRoot/pieceList"]
 margin_left = 882.0
 margin_top = 670.0
 margin_right = 882.0
@@ -1483,7 +1635,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="itemName" type="RichTextLabel" parent="pieceButton/pieceRoot/pieceList/tuxedo2"]
+[node name="itemName" type="RichTextLabel" parent="pieceButton/pieceRoot/pieceList/lcd"]
 modulate = Color( 0.443137, 0.443137, 0.776471, 1 )
 margin_left = -100.0
 margin_right = 454.0
@@ -1497,17 +1649,17 @@ bbcode_text = "[center] Default [/center]"
 text = " Default "
 scroll_active = false
 
-[node name="icon" type="Sprite" parent="pieceButton/pieceRoot/pieceList/tuxedo2"]
+[node name="icon" type="Sprite" parent="pieceButton/pieceRoot/pieceList/lcd"]
 position = Vector2( 27, 120 )
 scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 44 )
+texture = ExtResource( 37 )
 centered = false
 
-[node name="buttonControl" type="Node2D" parent="pieceButton/pieceRoot/pieceList/tuxedo2"]
+[node name="buttonControl" type="Node2D" parent="pieceButton/pieceRoot/pieceList/lcd"]
 position = Vector2( 0, 450 )
 script = ExtResource( 10 )
 
-[node name="selectButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/tuxedo2/buttonControl"]
+[node name="selectButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/lcd/buttonControl"]
 margin_right = 40.0
 margin_bottom = 40.0
 toggle_mode = true
@@ -1518,7 +1670,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="unlockButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/tuxedo2/buttonControl"]
+[node name="unlockButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/lcd/buttonControl"]
 margin_right = 354.0
 margin_bottom = 159.0
 texture_normal = ExtResource( 13 )
@@ -1527,30 +1679,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="confirm" type="AudioStreamPlayer" parent="pieceButton/pieceRoot/pieceList/tuxedo2"]
+[node name="confirm" type="AudioStreamPlayer" parent="pieceButton/pieceRoot/pieceList/lcd"]
 stream = ExtResource( 22 )
 bus = "Effects"
 
-[node name="deny" type="AudioStreamPlayer" parent="pieceButton/pieceRoot/pieceList/tuxedo2"]
+[node name="deny" type="AudioStreamPlayer" parent="pieceButton/pieceRoot/pieceList/lcd"]
 stream = ExtResource( 17 )
 bus = "Effects"
-
-[node name="Credits" type="RichTextLabel" parent="pieceButton/pieceRoot"]
-margin_left = 40.0
-margin_top = 1700.0
-margin_right = 1400.0
-margin_bottom = 2200.0
-custom_fonts/normal_font = SubResource( 10 )
-custom_colors/default_color = Color( 0.427451, 0.415686, 0.666667, 1 )
-text = "Credits:
-Concept - N8-Ball and Agreafel
-
-Coding - N8-Ball
-
-Visuals - Jesse Romero and N8-Ball"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="musicButton" type="TextureButton" parent="."]
 margin_left = 480.0
@@ -1600,7 +1735,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 11 )
+custom_fonts/normal_font = SubResource( 10 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1656,7 +1791,7 @@ bus = "Effects"
 [node name="pixel" type="Container" parent="musicButton/musicRoot/musicList"]
 margin_left = 441.0
 margin_right = 441.0
-script = SubResource( 12 )
+script = SubResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1669,7 +1804,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 11 )
+custom_fonts/normal_font = SubResource( 10 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1725,7 +1860,7 @@ bus = "Effects"
 [node name="neon" type="Container" parent="musicButton/musicRoot/musicList"]
 margin_left = 882.0
 margin_right = 882.0
-script = SubResource( 13 )
+script = SubResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1738,7 +1873,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 11 )
+custom_fonts/normal_font = SubResource( 10 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1755,7 +1890,7 @@ texture_pressed = ExtResource( 54 )
 script = ExtResource( 19 )
 
 [node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/neon/iconButton"]
-stream = ExtResource( 18 )
+stream = ExtResource( 64 )
 attenuation = 0.0281641
 bus = "PreviewMusic"
 
@@ -1794,7 +1929,7 @@ bus = "Effects"
 [node name="juicy" type="Container" parent="musicButton/musicRoot/musicList"]
 margin_top = 670.0
 margin_bottom = 670.0
-script = SubResource( 14 )
+script = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1807,7 +1942,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 11 )
+custom_fonts/normal_font = SubResource( 10 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1819,8 +1954,8 @@ margin_top = 120.0
 margin_right = 328.0
 margin_bottom = 421.0
 toggle_mode = true
-texture_normal = ExtResource( 36 )
-texture_pressed = ExtResource( 23 )
+texture_normal = ExtResource( 39 )
+texture_pressed = ExtResource( 48 )
 script = ExtResource( 19 )
 
 [node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/juicy/iconButton"]
@@ -1865,7 +2000,7 @@ margin_left = 441.0
 margin_top = 670.0
 margin_right = 441.0
 margin_bottom = 670.0
-script = SubResource( 15 )
+script = SubResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1878,7 +2013,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 11 )
+custom_fonts/normal_font = SubResource( 10 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -1890,12 +2025,12 @@ margin_top = 120.0
 margin_right = 328.0
 margin_bottom = 421.0
 toggle_mode = true
-texture_normal = ExtResource( 36 )
-texture_pressed = ExtResource( 23 )
+texture_normal = ExtResource( 60 )
+texture_pressed = ExtResource( 61 )
 script = ExtResource( 19 )
 
 [node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/tuxedo/iconButton"]
-stream = ExtResource( 35 )
+stream = ExtResource( 63 )
 attenuation = 0.0281641
 bus = "PreviewMusic"
 
@@ -1928,6 +2063,77 @@ stream = ExtResource( 22 )
 bus = "Effects"
 
 [node name="deny" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/tuxedo"]
+stream = ExtResource( 17 )
+bus = "Effects"
+
+[node name="lcd" type="Container" parent="musicButton/musicRoot/musicList"]
+margin_left = 882.0
+margin_top = 670.0
+margin_right = 882.0
+margin_bottom = 670.0
+script = SubResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="itemName" type="RichTextLabel" parent="musicButton/musicRoot/musicList/lcd"]
+modulate = Color( 0.443137, 0.443137, 0.776471, 1 )
+margin_left = -100.0
+margin_right = 454.0
+margin_bottom = 100.0
+rect_clip_content = false
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/normal_font = SubResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[center] Default [/center]"
+text = " Default "
+scroll_active = false
+
+[node name="iconButton" type="TextureButton" parent="musicButton/musicRoot/musicList/lcd"]
+margin_left = 27.0
+margin_top = 120.0
+margin_right = 328.0
+margin_bottom = 421.0
+toggle_mode = true
+texture_normal = ExtResource( 49 )
+texture_pressed = ExtResource( 55 )
+script = ExtResource( 19 )
+
+[node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/lcd/iconButton"]
+stream = ExtResource( 62 )
+attenuation = 0.0281641
+bus = "PreviewMusic"
+
+[node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/lcd"]
+position = Vector2( 0, 450 )
+script = ExtResource( 10 )
+
+[node name="selectButton" type="TextureButton" parent="musicButton/musicRoot/musicList/lcd/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 14 )
+texture_disabled = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unlockButton" type="TextureButton" parent="musicButton/musicRoot/musicList/lcd/buttonControl"]
+margin_top = -2.0
+margin_right = 354.0
+margin_bottom = 157.0
+texture_normal = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="confirm" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/lcd"]
+stream = ExtResource( 22 )
+bus = "Effects"
+
+[node name="deny" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/lcd"]
 stream = ExtResource( 17 )
 bus = "Effects"
 
@@ -1987,7 +2193,6 @@ scroll_active = false
 
 [node name="icon" type="Sprite" parent="backgroundButton/backgroundRoot/backgroundList/default"]
 position = Vector2( 27, 120 )
-scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 38 )
 centered = false
 
@@ -2047,8 +2252,7 @@ scroll_active = false
 
 [node name="icon" type="Sprite" parent="backgroundButton/backgroundRoot/backgroundList/pixel"]
 position = Vector2( 27, 120 )
-scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 38 )
+texture = ExtResource( 57 )
 centered = false
 
 [node name="buttonControl" type="Node2D" parent="backgroundButton/backgroundRoot/backgroundList/pixel"]
@@ -2107,8 +2311,7 @@ scroll_active = false
 
 [node name="icon" type="Sprite" parent="backgroundButton/backgroundRoot/backgroundList/neon"]
 position = Vector2( 27, 120 )
-scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 38 )
+texture = ExtResource( 56 )
 centered = false
 
 [node name="buttonControl" type="Node2D" parent="backgroundButton/backgroundRoot/backgroundList/neon"]
@@ -2167,8 +2370,7 @@ scroll_active = false
 
 [node name="icon" type="Sprite" parent="backgroundButton/backgroundRoot/backgroundList/juicy"]
 position = Vector2( 27, 120 )
-scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 38 )
+texture = ExtResource( 58 )
 centered = false
 
 [node name="buttonControl" type="Node2D" parent="backgroundButton/backgroundRoot/backgroundList/juicy"]
@@ -2229,7 +2431,6 @@ scroll_active = false
 
 [node name="icon" type="Sprite" parent="backgroundButton/backgroundRoot/backgroundList/tuxedo"]
 position = Vector2( 27, 120 )
-scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 43 )
 centered = false
 
@@ -2262,6 +2463,67 @@ stream = ExtResource( 22 )
 bus = "Effects"
 
 [node name="deny" type="AudioStreamPlayer" parent="backgroundButton/backgroundRoot/backgroundList/tuxedo"]
+stream = ExtResource( 17 )
+bus = "Effects"
+
+[node name="lcd" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
+margin_left = 882.0
+margin_top = 670.0
+margin_right = 882.0
+margin_bottom = 670.0
+script = SubResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="itemName" type="RichTextLabel" parent="backgroundButton/backgroundRoot/backgroundList/lcd"]
+modulate = Color( 0.443137, 0.443137, 0.776471, 1 )
+margin_left = -100.0
+margin_right = 454.0
+margin_bottom = 100.0
+rect_clip_content = false
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/normal_font = SubResource( 17 )
+bbcode_enabled = true
+bbcode_text = "[center] Default [/center]"
+text = " Default "
+scroll_active = false
+
+[node name="icon" type="Sprite" parent="backgroundButton/backgroundRoot/backgroundList/lcd"]
+position = Vector2( 27, 120 )
+texture = ExtResource( 59 )
+centered = false
+
+[node name="buttonControl" type="Node2D" parent="backgroundButton/backgroundRoot/backgroundList/lcd"]
+position = Vector2( 0, 450 )
+script = ExtResource( 10 )
+
+[node name="selectButton" type="TextureButton" parent="backgroundButton/backgroundRoot/backgroundList/lcd/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 14 )
+texture_disabled = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unlockButton" type="TextureButton" parent="backgroundButton/backgroundRoot/backgroundList/lcd/buttonControl"]
+margin_right = 354.0
+margin_bottom = 159.0
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="confirm" type="AudioStreamPlayer" parent="backgroundButton/backgroundRoot/backgroundList/lcd"]
+stream = ExtResource( 22 )
+bus = "Effects"
+
+[node name="deny" type="AudioStreamPlayer" parent="backgroundButton/backgroundRoot/backgroundList/lcd"]
 stream = ExtResource( 17 )
 bus = "Effects"
 
@@ -2314,7 +2576,7 @@ margin_left = -450.0
 margin_top = 230.0
 margin_right = 450.0
 margin_bottom = 450.0
-custom_fonts/normal_font = SubResource( 22 )
+custom_fonts/normal_font = SubResource( 23 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
 scroll_active = false
@@ -2323,5 +2585,5 @@ __meta__ = {
 }
 
 [node name="unlockAnimator" type="AnimationPlayer" parent="unlockMenuRoot"]
-anims/close = SubResource( 23 )
-anims/open = SubResource( 24 )
+anims/close = SubResource( 24 )
+anims/open = SubResource( 25 )

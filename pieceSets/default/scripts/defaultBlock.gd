@@ -4,6 +4,7 @@ onready var piece : Node2D = $"../../.."
 onready var block : Sprite = $".."
 
 const maxPiece = 26
+var lastState = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,3 +48,4 @@ func runAnimation():
 	if piece.state == piece.DELETE_STATE:
 		play_backwards("spawn")
 	
+	lastState = piece.state

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/LCDTheme0.ogg-e2bb4db802e2629e024b496bc9509292.oggstr"
+
+[deps]
+
+source_file="res://music/LCDTheme0.ogg"
+dest_files=[ "res://.import/LCDTheme0.ogg-e2bb4db802e2629e024b496bc9509292.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

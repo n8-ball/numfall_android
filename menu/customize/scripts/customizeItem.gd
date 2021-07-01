@@ -18,9 +18,9 @@ var newResourceName = "res://pieceSets/default/scenes/default.tscn"
 var achievementName = "default"
 var displayName = "Default"
 var achievementText = "default"
-#230 for 1 line, 180 for 2, 100 for 3
+#230 for 1 line, 180 for 2, 140 for 3
 var headSpace = 230
-var textColor = Color.white #Only for backgrounds, setItem needs mod for this
+var textColor = Color.white #Only for backgrounds, setItem() needs mod for this
 
 #Icon must also be changed
 

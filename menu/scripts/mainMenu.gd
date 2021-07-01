@@ -16,6 +16,8 @@ var gameOverStart = false
 var gameOverTimer = 0.01
 const gameOverDelay = 1.5
 
+signal menuSwitch(newOpen)
+
 func _process(delta):
 	get_tree().paused = getOpen()
 	if gameOverStart:
@@ -34,6 +36,8 @@ func getOpen():
 	return open
 
 func setOpen(newOpen):
+	if open != newOpen:
+		emit_signal("menuSwitch", newOpen)
 	open = newOpen
 
 func endGameMenu():

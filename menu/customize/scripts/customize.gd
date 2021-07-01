@@ -30,6 +30,7 @@ func changeTileSet(newTileSet, newSavePiece):
 func changeBackground(newBackground, newSaveBackground, newTextColor : Color = Color.white):
 	background.fadeOut()
 	board.find_node("score").modulate = newTextColor
+	board.find_node("highScore").selfColor = newTextColor
 	board.spawner.rangeDisplay.find_node("text").modulate = newTextColor
 	background = load(newBackground).instance()
 	background.modulate.v = 0.3

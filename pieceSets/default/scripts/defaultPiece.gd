@@ -4,8 +4,8 @@ onready var blockAnimation : AnimationPlayer = $scalar/block/blockAnimation
 onready var selectAnimation : AnimationPlayer = $scalar/block/select/selectAnimation
 var multiplier = load("res://pieceSets/default/scenes/defaultMultiplierParticle.tscn")
 
-onready var combineSound : AudioStreamPlayer2D = $combine
-onready var landSound : AudioStreamPlayer2D = $land
+onready var combineSound : AudioStreamPlayer = $combine
+onready var landSound : AudioStreamPlayer = $land
 onready var swapSound : AudioStreamPlayer = $swap
 
 #State
@@ -73,27 +73,28 @@ func getValue():
 
 #State
 func setState(newState):
-	state = newState
-	blockAnimation.runAnimation()
-	if newState == COMBINE_TOP_STATE && board != null:
-		stacks += 1
-		#Juicy Achievements
-		if stacks == 5:
-			board.achievements.getJuicyBg()
-		if stacks == 7:
-			board.achievements.getJuicyMusic()
-		if stacks == 9:
-			board.achievements.getJuicyTile()
-		stackTimer = 0
-		combineSound.playScaled(0, stacks)
-		
-		var newMultiplier = multiplier.instance()
-		board.add_child(newMultiplier)
-		newMultiplier.position = self.global_position
-		newMultiplier.setMultiplier(stacks)
-		
-	if newState == LAND_STATE && board != null:
-		landSound.play(0)
+	if state != IDLE_STATE or newState != IDLE_STATE:
+		state = newState
+		blockAnimation.runAnimation()
+		if newState == COMBINE_TOP_STATE && board != null:
+			stacks += 1
+			#Juicy Achievements
+			if stacks == 5:
+				board.achievements.getJuicyBg()
+			if stacks == 7:
+				board.achievements.getJuicyMusic()
+			if stacks == 9:
+				board.achievements.getJuicyTile()
+			stackTimer = 0
+			combineSound.playScaled(0, stacks)
+			
+			var newMultiplier = multiplier.instance()
+			board.add_child(newMultiplier)
+			newMultiplier.position = self.global_position
+			newMultiplier.setMultiplier(stacks)
+			
+		if newState == LAND_STATE && board != null:
+			landSound.play(0)
 	
 	if (newState == SWITCH_LEFT_STATE || newState == SWITCH_RIGHT_STATE)\
 		&& board != null:

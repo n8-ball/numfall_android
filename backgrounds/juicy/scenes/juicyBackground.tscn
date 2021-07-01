@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://backgrounds/lcd/lcdBackground.png" type="Texture" id=1]
+[ext_resource path="res://backgrounds/juicy/sprites/juicy.png" type="Texture" id=1]
 [ext_resource path="res://backgrounds/default/scripts/defaultBackground.gd" type="Script" id=3]
 
 [node name="background" type="Node2D"]

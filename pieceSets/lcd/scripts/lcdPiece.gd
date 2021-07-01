@@ -4,8 +4,7 @@ onready var blockAnimation : AnimationPlayer = $scalar/block/blockAnimation
 onready var selectAnimation : AnimationPlayer = $scalar/block/select/selectAnimation
 var multiplier = load("res://pieceSets/default/scenes/defaultMultiplierParticle.tscn")
 
-onready var combineSound : AudioStreamPlayer2D = $combine
-onready var landSound : AudioStreamPlayer2D = $land
+onready var landSound : AudioStreamPlayer = $land
 
 #State
 const IDLE_STATE = 0
@@ -36,6 +35,15 @@ var stackTimer = 0
 
 var board
 
+var colorList = [
+	Color(.102, .055, .176),
+	Color(.063, .118, .200),
+	Color(.027, .157, .094),
+	Color(.271, .227, .008),
+	Color(.275, .133, .024),
+	Color(.267, .067, .039)
+]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	blockAnimation.connect("animation_finished", self, "_animationEnd")
@@ -49,6 +57,7 @@ func _process(_delta):
 		if stackTimer >= stackDelay:
 			stackTimer = 0
 			stacks = 0
+	blockAnimation.updateColor()
 
 func isReady():
 	return state == IDLE_STATE || state == FALL_STATE
@@ -84,7 +93,6 @@ func setState(newState):
 		if stacks == 9:
 			board.achievements.getJuicyTile()
 		stackTimer = 0
-		combineSound.playScaled(0, stacks)
 		
 		var newMultiplier = multiplier.instance()
 		board.add_child(newMultiplier)

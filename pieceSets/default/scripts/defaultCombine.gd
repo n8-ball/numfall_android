@@ -1,4 +1,4 @@
-extends AudioStreamPlayer2D
+extends AudioStreamPlayer
 
 const defaultPitch = 1
 const pitchDelay = 1

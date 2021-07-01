@@ -14,11 +14,13 @@ var achieveDict = {
 	"neonMusic" : true,
 	"juicyMusic" : true,
 	"tuxedoMusic" : true,
+	"lcdMusic" : true,
 	
 	"pixelBg" : true,
 	"neonBg" : true,
 	"juicyBg" : true,
-	"tuxedoBg" : true
+	"tuxedoBg" : true,
+	"lcdBg" : true
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -282,7 +284,6 @@ func checkTuxedoMusic():
 			var notice = achievementNotice.instance()
 			board.add_child(notice)
 			notice.setAchievement("res://pieceSets/default/sprites/defaultPreview.png", "Tuxedo Music Unlocked!")
-			
 
 #Tuxedo Background
 #Rollover a tileset
@@ -294,3 +295,5 @@ func checkTuxedoBg():
 			var notice = achievementNotice.instance()
 			board.add_child(notice)
 			notice.setAchievement("res://pieceSets/default/sprites/defaultPreview.png", "Tuxedo Background Unlocked!")
+
+#--LCD--

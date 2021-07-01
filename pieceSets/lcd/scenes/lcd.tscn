@@ -6,11 +6,11 @@
 [ext_resource path="res://pieceSets/lcd/scripts/lcdPiece.gd" type="Script" id=4]
 [ext_resource path="res://pieceSets/lcd/sprites/lcdNumbers.png" type="Texture" id=5]
 [ext_resource path="res://pieceSets/default/scripts/defaultSelect.gd" type="Script" id=6]
-[ext_resource path="res://pieceSets/default/sounds/combine.wav" type="AudioStream" id=7]
-[ext_resource path="res://pieceSets/default/sounds/land.ogg" type="AudioStream" id=9]
-[ext_resource path="res://pieceSets/default/scripts/defaultCombine.gd" type="Script" id=10]
+[ext_resource path="res://sound/land.wav" type="AudioStream" id=7]
+[ext_resource path="res://sound/tick.wav" type="AudioStream" id=9]
+[ext_resource path="res://pieceSets/lcd/scripts/tick.gd" type="Script" id=11]
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=1]
 resource_name = "combineBot"
 length = 0.0999999
 step = 0.0333333
@@ -165,6 +165,26 @@ tracks/5/keys = {
 "values": [ {
 "args": [  ],
 "method": "forceCorrectValue"
+} ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("../../tick")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.0333333, 0.0666667, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
 } ]
 }
 
@@ -328,6 +348,32 @@ tracks/5/keys = {
 "method": "forceCorrectValue"
 } ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath("../../tick")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
+} ]
+}
 
 [sub_resource type="Animation" id=6]
 length = 0.0999999
@@ -454,8 +500,37 @@ tracks/3/keys = {
 "update": 1,
 "values": [ Vector2( -200, 0 ), Vector2( 0, 0 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath("../../tick")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
+} ]
+}
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=9]
 resource_name = "switchRight"
 length = 0.2
 step = 0.0333333
@@ -508,6 +583,35 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ Vector2( 200, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("../../tick")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
+}, {
+"args": [  ],
+"method": "playIfTick"
+} ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -578,7 +682,7 @@ offset = Vector2( 0, -100 )
 [node name="blockAnimation" type="AnimationPlayer" parent="scalar/block"]
 pause_mode = 2
 autoplay = "spawn"
-anims/combineBot = SubResource( 13 )
+anims/combineBot = SubResource( 1 )
 anims/combineTop = SubResource( 2 )
 anims/falling = SubResource( 3 )
 anims/idle = SubResource( 4 )
@@ -586,11 +690,10 @@ anims/increment = SubResource( 5 )
 anims/land = SubResource( 6 )
 anims/spawn = SubResource( 7 )
 anims/switchLeft = SubResource( 8 )
-anims/switchRight = SubResource( 12 )
+anims/switchRight = SubResource( 9 )
 script = ExtResource( 3 )
 
 [node name="select" type="Sprite" parent="scalar/block"]
-visible = false
 z_index = 1
 texture = ExtResource( 2 )
 offset = Vector2( 0, -100 )
@@ -611,11 +714,11 @@ texture = ExtResource( 5 )
 offset = Vector2( 40, -100 )
 hframes = 10
 
-[node name="combine" type="AudioStreamPlayer2D" parent="."]
+[node name="land" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 bus = "Effects"
-script = ExtResource( 10 )
 
-[node name="land" type="AudioStreamPlayer2D" parent="."]
+[node name="tick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 bus = "Effects"
+script = ExtResource( 11 )

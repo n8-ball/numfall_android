@@ -35,6 +35,13 @@ func forceZeroValue():
 	tens.frame = 0
 	ones.frame = 0
 
+func updateColor():
+	var shownValue = (tens.frame * 10) + ones.frame
+	var displayColor = piece.colorList[shownValue % 6]
+	block.self_modulate = displayColor
+	tens.self_modulate = displayColor
+	ones.self_modulate = displayColor
+
 func runAnimation():
 	if piece.state == piece.IDLE_STATE:
 		forceCorrectValue()
