@@ -157,14 +157,14 @@ onready var deny: AudioStreamPlayer = $\"deny\"
 onready var icon : Sprite = $\"icon\"
 onready var buttonControl : Node2D = $\"buttonControl\"
 onready var itemName : RichTextLabel = $\"itemName\"
-\"../juicy\"
+
 var unlocked = false
 
 #Unique
 var newResourceName = \"res://pieceSets/neon/scenes/neon.tscn\"
 var achievementName = \"neonTile\"
 var displayName = \"Neon\"
-var achievementText = \"Have 3 homogenous, perfectly stacked rows\"
+var achievementText = \"Have 3 perfect, perfectly ascending stacked rows\"
 #230 for 1 line, 180 for 2, 100 for 3
 var headSpace = 140
 var textColor = Color.white #Only for backgrounds, setItem needs mod for this
@@ -377,7 +377,7 @@ var unlocked = false
 var newResourceName = \"res://pieceSets/lcd/scenes/lcd.tscn\"
 var achievementName = \"lcdTile\"
 var displayName = \"LCD\"
-var achievementText = \"Get a 26 piece\"
+var achievementText = \"Reach a score of 18463\"
 #230 for 1 line, 180 for 2, 100 for 3
 var headSpace = 230
 var textColor = Color.white #Only for backgrounds, setItem needs mod for this
@@ -483,8 +483,8 @@ func _on_button_select():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 
 func _on_iconButton_pressed():
-	subMenuList.unselectPreviews(self)
 	if iconButton.pressed:
+		subMenuList.unselectPreviews(self)
 		subMenuRoot.muteMusic()
 	else:
 		subMenuRoot.restartMusic()
@@ -527,7 +527,7 @@ var unlocked = false
 var newResourceName = \"res://music/neonTheme.ogg\"
 var achievementName = \"neonMusic\"
 var displayName = \"Neon\"
-var achievementText = \"Have 3 homogenous, stacked rows\"
+var achievementText = \"Have 3 perfect, stacked rows\"
 #230 for 1 line, 180 for 2, 100 for 3
 var headSpace = 230
 
@@ -560,8 +560,8 @@ func _on_button_select():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 
 func _on_iconButton_pressed():
-	subMenuList.unselectPreviews(self)
 	if iconButton.pressed:
+		subMenuList.unselectPreviews(self)
 		subMenuRoot.muteMusic()
 	else:
 		subMenuRoot.restartMusic()
@@ -637,8 +637,8 @@ func _on_button_select():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 
 func _on_iconButton_pressed():
-	subMenuList.unselectPreviews(self)
 	if iconButton.pressed:
+		subMenuList.unselectPreviews(self)
 		subMenuRoot.muteMusic()
 	else:
 		subMenuRoot.restartMusic()
@@ -714,8 +714,8 @@ func _on_button_select():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 
 func _on_iconButton_pressed():
-	subMenuList.unselectPreviews(self)
 	if iconButton.pressed:
+		subMenuList.unselectPreviews(self)
 		subMenuRoot.muteMusic()
 	else:
 		subMenuRoot.restartMusic()
@@ -758,9 +758,9 @@ var unlocked = false
 var newResourceName = \"res://music/LCDTheme.ogg\"
 var achievementName = \"lcdMusic\"
 var displayName = \"LCD\"
-var achievementText = \"Have 2, 26 pieces on the bottom row\"
+var achievementText = \"Reach a score of 15000\"
 #230 for 1 line, 180 for 2, 100 for 3
-var headSpace = 180
+var headSpace = 230
 
 #Icon must also be changed
 
@@ -791,8 +791,8 @@ func _on_button_select():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 
 func _on_iconButton_pressed():
-	subMenuList.unselectPreviews(self)
 	if iconButton.pressed:
+		subMenuList.unselectPreviews(self)
 		subMenuRoot.muteMusic()
 	else:
 		subMenuRoot.restartMusic()
@@ -975,7 +975,7 @@ var unlocked = false
 var newResourceName = \"res://backgrounds/neon/scenes/neonBackground.tscn\"
 var achievementName = \"neonBg\"
 var displayName = \"Neon\"
-var achievementText = \"Have 2 reverse-stacked, homogenous rows\"
+var achievementText = \"Have 2 reverse-stacked, perfect rows\"
 #230 for 1 line, 180 for 2, 100 for 3
 var headSpace = 100
 var textColor = Color.white #Only for backgrounds, setItem needs mod for this
@@ -1176,9 +1176,9 @@ var unlocked = false
 var newResourceName = \"res://backgrounds/lcd/scenes/lcdBackground.tscn\"
 var achievementName = \"lcdBg\"
 var displayName = \"LCD\"
-var achievementText = \"Rollover a tileset (Get a 27 piece)\"
+var achievementText = \"Reach a score of 10000\"
 #230 for 1 line, 180 for 2, 100 for 3
-var headSpace = 180
+var headSpace = 230
 var textColor = Color(0.05, 0.05, 0.05) #Only for backgrounds, setItem needs mod for this
 
 #Icon must also be changed
@@ -1408,7 +1408,6 @@ scroll_active = false
 
 [node name="icon" type="Sprite" parent="pieceButton/pieceRoot/pieceList/pixel"]
 position = Vector2( 27, 120 )
-scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 40 )
 centered = false
 
@@ -1468,7 +1467,6 @@ scroll_active = false
 
 [node name="icon" type="Sprite" parent="pieceButton/pieceRoot/pieceList/neon"]
 position = Vector2( 27, 120 )
-scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 41 )
 centered = false
 
@@ -1589,7 +1587,6 @@ scroll_active = false
 
 [node name="icon" type="Sprite" parent="pieceButton/pieceRoot/pieceList/tuxedo"]
 position = Vector2( 27, 120 )
-scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 44 )
 centered = false
 
@@ -1651,7 +1648,6 @@ scroll_active = false
 
 [node name="icon" type="Sprite" parent="pieceButton/pieceRoot/pieceList/lcd"]
 position = Vector2( 27, 120 )
-scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 37 )
 centered = false
 
@@ -1751,9 +1747,8 @@ texture_normal = ExtResource( 36 )
 texture_pressed = ExtResource( 23 )
 script = ExtResource( 19 )
 
-[node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/default/iconButton"]
+[node name="previewMusic" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/default/iconButton"]
 stream = ExtResource( 18 )
-attenuation = 0.0281641
 bus = "PreviewMusic"
 
 [node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/default"]
@@ -1820,9 +1815,8 @@ texture_normal = ExtResource( 51 )
 texture_pressed = ExtResource( 52 )
 script = ExtResource( 19 )
 
-[node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/pixel/iconButton"]
+[node name="previewMusic" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/pixel/iconButton"]
 stream = ExtResource( 21 )
-attenuation = 0.0281641
 bus = "PreviewMusic"
 
 [node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/pixel"]
@@ -1889,9 +1883,8 @@ texture_normal = ExtResource( 53 )
 texture_pressed = ExtResource( 54 )
 script = ExtResource( 19 )
 
-[node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/neon/iconButton"]
+[node name="previewMusic" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/neon/iconButton"]
 stream = ExtResource( 64 )
-attenuation = 0.0281641
 bus = "PreviewMusic"
 
 [node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/neon"]
@@ -1958,9 +1951,8 @@ texture_normal = ExtResource( 39 )
 texture_pressed = ExtResource( 48 )
 script = ExtResource( 19 )
 
-[node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/juicy/iconButton"]
+[node name="previewMusic" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/juicy/iconButton"]
 stream = ExtResource( 35 )
-attenuation = 0.0281641
 bus = "PreviewMusic"
 
 [node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/juicy"]
@@ -2029,9 +2021,8 @@ texture_normal = ExtResource( 60 )
 texture_pressed = ExtResource( 61 )
 script = ExtResource( 19 )
 
-[node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/tuxedo/iconButton"]
+[node name="previewMusic" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/tuxedo/iconButton"]
 stream = ExtResource( 63 )
-attenuation = 0.0281641
 bus = "PreviewMusic"
 
 [node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/tuxedo"]
@@ -2100,9 +2091,8 @@ texture_normal = ExtResource( 49 )
 texture_pressed = ExtResource( 55 )
 script = ExtResource( 19 )
 
-[node name="previewMusic" type="AudioStreamPlayer2D" parent="musicButton/musicRoot/musicList/lcd/iconButton"]
+[node name="previewMusic" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/lcd/iconButton"]
 stream = ExtResource( 62 )
-attenuation = 0.0281641
 bus = "PreviewMusic"
 
 [node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/lcd"]

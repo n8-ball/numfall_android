@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="110mm"
    height="20.85mm"
    viewBox="0 0 110 20.85"
    version="1.1"
    id="svg938"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
    sodipodi:docname="numbers.svg"
    inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdNumbers.png"
    inkscape:export-xdpi="173.18182"
-   inkscape:export-ydpi="173.18182">
+   inkscape:export-ydpi="173.18182"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs932">
     <inkscape:path-effect
@@ -1693,9 +1693,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6568542"
-     inkscape:cx="524.77166"
-     inkscape:cy="52.298469"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="341.17902"
+     inkscape:cy="106.41957"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -1704,7 +1704,8 @@
      inkscape:window-height="877"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     inkscape:pagecheckerboard="0" />
   <metadata
      id="metadata935">
     <rdf:RDF>
@@ -1713,7 +1714,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -2080,8 +2080,9 @@
        sodipodi:nodetypes="ccccc"
        inkscape:path-effect="#path-effect3733"
        inkscape:original-d="m 120.24997,0 h 29.50007 l -2.00003,2.0000046 h -25.5 z"
-       inkscape:export-xdpi="169.3333"
-       inkscape:export-ydpi="169.3333" />
+       inkscape:export-xdpi="253.99995"
+       inkscape:export-ydpi="253.99995"
+       inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdPreview.png" />
     <path
        id="rect1406-2"
        style="fill:#44110a;stroke:none;stroke-width:6.81653;stroke-opacity:0.926147;filter:url(#filter2473);fill-opacity:1"
@@ -2089,8 +2090,9 @@
        sodipodi:nodetypes="ccccc"
        inkscape:path-effect="#path-effect3735"
        inkscape:original-d="M 150,0.25000852 V 29.750009 l -2.00003,-1.999994 V 2.2500021 Z"
-       inkscape:export-xdpi="169.3333"
-       inkscape:export-ydpi="169.3333" />
+       inkscape:export-xdpi="253.99995"
+       inkscape:export-ydpi="253.99995"
+       inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdPreview.png" />
     <path
        id="rect1406-2-5"
        style="fill:#44110a;stroke:none;stroke-width:6.81653;stroke-opacity:0.926147;filter:url(#filter2473);fill-opacity:1"
@@ -2098,8 +2100,9 @@
        sodipodi:nodetypes="ccccc"
        inkscape:path-effect="#path-effect3739"
        inkscape:original-d="M 120,29.750009 V 0.25000852 l 2.00003,1.99999358 V 27.750005 Z"
-       inkscape:export-xdpi="169.3333"
-       inkscape:export-ydpi="169.3333" />
+       inkscape:export-xdpi="253.99995"
+       inkscape:export-ydpi="253.99995"
+       inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdPreview.png" />
     <path
        id="rect1406-6"
        style="fill:#44110a;stroke:none;stroke-width:6.81653;stroke-opacity:0.926147;filter:url(#filter2473);fill-opacity:1"
@@ -2107,8 +2110,9 @@
        sodipodi:nodetypes="ccccc"
        inkscape:path-effect="#path-effect3737"
        inkscape:original-d="m 149.75004,30.000005 h -29.50007 l 2.00004,-1.999994 h 25.5 z"
-       inkscape:export-xdpi="169.3333"
-       inkscape:export-ydpi="169.3333" />
+       inkscape:export-xdpi="253.99995"
+       inkscape:export-ydpi="253.99995"
+       inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdPreview.png" />
     <path
        id="rect1521-4"
        style="fill:#44110a;fill-opacity:1;stroke-width:0.414572;stroke-opacity:0.926147"
@@ -2116,8 +2120,9 @@
        sodipodi:nodetypes="ccccc"
        inkscape:path-effect="#path-effect1135"
        inkscape:original-d="m 123.49477,4 h 10.51103 l -2.1022,2.0762441 h -6.30662 z"
-       inkscape:export-xdpi="169.3333"
-       inkscape:export-ydpi="169.3333" />
+       inkscape:export-xdpi="253.99995"
+       inkscape:export-ydpi="253.99995"
+       inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdPreview.png" />
     <path
        id="rect1521-8-1"
        style="fill:#44110a;fill-opacity:1;stroke-width:0.414572;stroke-opacity:0.926147"
@@ -2125,8 +2130,9 @@
        sodipodi:nodetypes="ccccc"
        inkscape:path-effect="#path-effect1133"
        inkscape:original-d="M 134.20042,4.1947724 V 14.705663 l -2.07627,-2.102179 V 6.2969499 Z"
-       inkscape:export-xdpi="169.3333"
-       inkscape:export-ydpi="169.3333" />
+       inkscape:export-xdpi="253.99995"
+       inkscape:export-ydpi="253.99995"
+       inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdPreview.png" />
     <path
        id="rect1521-8-4-9"
        style="fill:#44110a;fill-opacity:1;stroke-width:0.414572;stroke-opacity:0.926147"
@@ -2134,8 +2140,9 @@
        sodipodi:nodetypes="ccccc"
        inkscape:path-effect="#path-effect1131"
        inkscape:original-d="M 123.3,14.705663 V 4.1947724 l 2.07627,2.1021796 v 6.306534 z"
-       inkscape:export-xdpi="169.3333"
-       inkscape:export-ydpi="169.3333" />
+       inkscape:export-xdpi="253.99995"
+       inkscape:export-ydpi="253.99995"
+       inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdPreview.png" />
     <path
        id="rect1521-81-0"
        style="fill:#44110a;fill-opacity:1;stroke-width:0.414572;stroke-opacity:0.926147"
@@ -2143,8 +2150,9 @@
        sodipodi:nodetypes="ccccc"
        inkscape:path-effect="#path-effect1129"
        inkscape:original-d="m 134.00565,25.645 h -10.51103 l 2.1022,-2.076245 h 6.30662 z"
-       inkscape:export-xdpi="169.3333"
-       inkscape:export-ydpi="169.3333" />
+       inkscape:export-xdpi="253.99995"
+       inkscape:export-ydpi="253.99995"
+       inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdPreview.png" />
     <path
        id="rect1521-8-6-7"
        style="fill:#44110a;fill-opacity:1;stroke-width:0.414572;stroke-opacity:0.926147"
@@ -2152,8 +2160,9 @@
        sodipodi:nodetypes="ccccc"
        inkscape:path-effect="#path-effect1127"
        inkscape:original-d="M 123.3,25.450227 V 14.939336 l 2.07627,2.10218 v 6.306534 z"
-       inkscape:export-xdpi="169.3333"
-       inkscape:export-ydpi="169.3333" />
+       inkscape:export-xdpi="253.99995"
+       inkscape:export-ydpi="253.99995"
+       inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdPreview.png" />
     <path
        id="rect1521-8-4-8-7"
        style="fill:#44110a;fill-opacity:1;stroke-width:0.414572;stroke-opacity:0.926147"
@@ -2161,8 +2170,9 @@
        sodipodi:nodetypes="ccccc"
        inkscape:path-effect="#path-effect1125"
        inkscape:original-d="m 134.20042,14.939336 v 10.510891 l -2.07627,-2.102179 v -6.306533 z"
-       inkscape:export-xdpi="169.3333"
-       inkscape:export-ydpi="169.3333" />
+       inkscape:export-xdpi="253.99995"
+       inkscape:export-ydpi="253.99995"
+       inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdPreview.png" />
     <path
        id="rect1521-0-4-8-1-6"
        style="fill:#44110a;fill-opacity:1;stroke-width:0.414559;stroke-opacity:0.926147"
@@ -2170,8 +2180,9 @@
        sodipodi:nodetypes="ccccc"
        inkscape:path-effect="#path-effect1182"
        inkscape:original-d="m 135.99477,4 h 10.51062 l -2.10212,2.0761905 h -6.30638 z"
-       inkscape:export-xdpi="169.3333"
-       inkscape:export-ydpi="169.3333" />
+       inkscape:export-xdpi="253.99995"
+       inkscape:export-ydpi="253.99995"
+       inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdPreview.png" />
     <path
        id="rect1521-8-4-5-3-1-3-2"
        style="fill:#44110a;fill-opacity:1;stroke-width:0.414559;stroke-opacity:0.926147"
@@ -2179,8 +2190,9 @@
        sodipodi:nodetypes="ccccc"
        inkscape:path-effect="#path-effect1180"
        inkscape:original-d="M 135.8,14.705387 V 4.1947674 l 2.07619,2.1021252 v 6.3063714 z"
-       inkscape:export-xdpi="169.3333"
-       inkscape:export-ydpi="169.3333" />
+       inkscape:export-xdpi="253.99995"
+       inkscape:export-ydpi="253.99995"
+       inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdPreview.png" />
     <path
        id="rect1564-7-7-1-6-5"
        style="fill:#44110a;fill-opacity:1;stroke-width:0.413813;stroke-opacity:0.926147"
@@ -2188,8 +2200,9 @@
        sodipodi:nodetypes="ccccccc"
        inkscape:path-effect="#path-effect1178"
        inkscape:original-d="m 137.06102,13.81 h 8.37821 l 1.04728,1.038095 -1.04728,1.038095 h -8.37821 l -1.04729,-1.038095 z"
-       inkscape:export-xdpi="169.3333"
-       inkscape:export-ydpi="169.3333" />
+       inkscape:export-xdpi="253.99995"
+       inkscape:export-ydpi="253.99995"
+       inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdPreview.png" />
     <path
        id="rect1521-81-7-5-4-75-9"
        style="fill:#44110a;fill-opacity:1;stroke-width:0.414559;stroke-opacity:0.926147"
@@ -2197,8 +2210,9 @@
        sodipodi:nodetypes="ccccc"
        inkscape:path-effect="#path-effect1176"
        inkscape:original-d="m 146.50523,25.64444 h -10.51062 l 2.10213,-2.07619 h 6.30637 z"
-       inkscape:export-xdpi="169.3333"
-       inkscape:export-ydpi="169.3333" />
+       inkscape:export-xdpi="253.99995"
+       inkscape:export-ydpi="253.99995"
+       inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdPreview.png" />
     <path
        id="rect1521-8-4-8-4-1-1-1-7"
        style="fill:#44110a;fill-opacity:1;stroke-width:0.414559;stroke-opacity:0.926147"
@@ -2206,7 +2220,8 @@
        sodipodi:nodetypes="ccccc"
        inkscape:path-effect="#path-effect1174"
        inkscape:original-d="m 146.7,14.939053 v 10.51062 l -2.07619,-2.102125 v -6.306371 z"
-       inkscape:export-xdpi="169.3333"
-       inkscape:export-ydpi="169.3333" />
+       inkscape:export-xdpi="253.99995"
+       inkscape:export-ydpi="253.99995"
+       inkscape:export-filename="C:\Users\Optipl8\Documents\Numfall\pieceSets\lcd\sprites\lcdPreview.png" />
   </g>
 </svg>

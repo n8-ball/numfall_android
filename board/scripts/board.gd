@@ -49,18 +49,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	updateBoard()
-	if Input.is_action_just_pressed("ui_accept"):
-		var dir = Directory.new()
-		dir.remove("user://numfall.save")
-	if Input.is_action_just_pressed("ui_cancel"):
-		for i in range(6):
-			for j in range(10):
-				if !(board[j][i] == null):
-					board[j][i].setValue(board[j][i].getValue() + 1)
-		#for _i in range(6):
-		#	spawner.spawnPiece()
-	if Input.is_action_pressed("ui_cancel"):
-		score = score + 1
 
 func clearBoard(): 
 	for y in range(brdHt):

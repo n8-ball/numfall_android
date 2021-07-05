@@ -24,4 +24,5 @@ func setPressed(newPressed):
 func _pressed():
 	pieceButton.setPressed(false)
 	backgroundButton.setPressed(false)
+	self.get_parent().confirm.play(0)
 	self.setPressed(true)

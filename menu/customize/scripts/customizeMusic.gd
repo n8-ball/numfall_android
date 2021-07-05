@@ -50,8 +50,8 @@ func _on_button_select():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 
 func _on_iconButton_pressed():
-	subMenuList.unselectPreviews(self)
 	if iconButton.pressed:
+		subMenuList.unselectPreviews(self)
 		subMenuRoot.muteMusic()
 	else:
 		subMenuRoot.restartMusic()

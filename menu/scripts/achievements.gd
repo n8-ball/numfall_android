@@ -4,23 +4,23 @@ onready var board : Node2D = $".."
 var achievementNotice = preload("res://menu/scenes/achievementNotice.tscn")
 
 var achieveDict = {
-	"pixelTile" : true,
-	"neonTile" : true,
-	"juicyTile" : true,
-	"tuxedoTile" : true,
-	"lcdTile" : true,
+	"pixelTile" : false,
+	"neonTile" : false,
+	"juicyTile" : false,
+	"tuxedoTile" : false,
+	"lcdTile" : false,
 	
-	"pixelMusic" : true,
-	"neonMusic" : true,
-	"juicyMusic" : true,
-	"tuxedoMusic" : true,
-	"lcdMusic" : true,
+	"pixelMusic" : false,
+	"neonMusic" : false,
+	"juicyMusic" : false,
+	"tuxedoMusic" : false,
+	"lcdMusic" : false,
 	
-	"pixelBg" : true,
-	"neonBg" : true,
-	"juicyBg" : true,
-	"tuxedoBg" : true,
-	"lcdBg" : true
+	"pixelBg" : false,
+	"neonBg" : false,
+	"juicyBg" : false,
+	"tuxedoBg" : false,
+	"lcdBg" : false
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -47,6 +47,9 @@ func checkStableAchievements():
 	checkTuxedoTile()
 	checkTuxedoMusic()
 	checkTuxedoBg()
+	checkLCDTile()
+	checkLCDMusic()
+	checkLCDBg()
 
 func loadAchieve(newAchieve):
 	if newAchieve != null:
@@ -67,7 +70,7 @@ func checkPixelTile():
 			achieveDict["pixelTile"] = true
 			var notice = achievementNotice.instance()
 			board.add_child(notice)
-			notice.setAchievement("res://pieceSets/pixel/sprites/pixelPreview.png", "Retro Tile Unlocked!")
+			notice.setAchievement("res://pieceSets/pixel/sprites/pixelPreview.png", "Retro Tile\n Unlocked!")
 
 #Pixel Music
 #Achieve a score of exactly 1000
@@ -78,7 +81,7 @@ func checkPixelMusic():
 			achieveDict["pixelMusic"] = true
 			var notice = achievementNotice.instance()
 			board.add_child(notice)
-			notice.setAchievement("res://menu/customize/sprites/pixelMusicPlay.png", "Retro Music Unlocked!")
+			notice.setAchievement("res://menu/customize/sprites/pixelMusicPlay.png", "Retro Music\n Unlocked!")
 
 #Pixel Background
 #Achieve a score of 1000, before getting the 8 piece
@@ -86,10 +89,10 @@ func checkPixelBg():
 	var oldState = achieveDict["pixelBg"]
 	if oldState == false:
 		if board.bigPiece != null && board.bigPiece < 8 && board.score >= 1000:
-			achieveDict["pixelMusic"] = true
+			achieveDict["pixelBg"] = true
 			var notice = achievementNotice.instance()
 			board.add_child(notice)
-			notice.setAchievement("res://backgrounds/default/sprites/defaultBackgroundPreview.png", "Retro Background Unlocked!")
+			notice.setAchievement("res://backgrounds/pixel/sprites/pixelBackgroundPreview.png", "Retro Background\n Unlocked!")
 
 #--Neon--
 
@@ -137,7 +140,7 @@ func checkNeonTile():
 			achieveDict["neonTile"] = true
 			var notice = achievementNotice.instance()
 			board.add_child(notice)
-			notice.setAchievement("res://pieceSets/neon/sprites/neonPreview.png", "Neon Tile Unlocked!")
+			notice.setAchievement("res://pieceSets/neon/sprites/neonPreview.png", "Neon Tile\n Unlocked!")
 
 #Neon Music
 #Have 3 ascending perfect rows (on the bottom)
@@ -164,8 +167,11 @@ func checkNeonMusic():
 			startingVal2 = checkPiece2.getValue()
 		else:
 			valid = false
-		if startingVal0 >= startingVal1 || startingVal1 >= startingVal2 || startingVal0 >= startingVal2:
+		if startingVal0 <= startingVal1 || startingVal1 <= startingVal2 || startingVal0 <= startingVal2:
 			valid = false
+			print(startingVal0)
+			print(startingVal1)
+			print(startingVal2)
 		for x in range(6):
 			checkPiece0 = board.board[9][x]
 			if checkPiece0 != null:
@@ -197,7 +203,7 @@ func checkNeonMusic():
 			achieveDict["neonMusic"] = true
 			var notice = achievementNotice.instance()
 			board.add_child(notice)
-			notice.setAchievement("res://menu/customize/sprites/neonMusicPlay.png", "Neon Music Unlocked!")
+			notice.setAchievement("res://menu/customize/sprites/neonMusicPlay.png", "Neon Music\n Unlocked!")
 
 #Neon Background
 #Have 2 descending perfect rows
@@ -221,7 +227,7 @@ func checkNeonBg():
 					achieveDict["neonBg"] = true
 					var notice = achievementNotice.instance()
 					board.add_child(notice)
-					notice.setAchievement("res://backgrounds/default/sprites/defaultBackgroundPreview.png", "Neon Background Unlocked!")
+					notice.setAchievement("res://backgrounds/neon/sprites/neonBackgroundPreview.png", "Neon Background\n Unlocked!")
 
 #--Juicy--
 
@@ -233,7 +239,7 @@ func getJuicyTile():
 		achieveDict["juicyTile"] = true
 		var notice = achievementNotice.instance()
 		board.add_child(notice)
-		notice.setAchievement("res://pieceSets/default/sprites/defaultPreview.png", "Juicy Tile Unlocked!")
+		notice.setAchievement("res://pieceSets/juicy/sprites/juicyPreview.png", "Juicy Tile\n Unlocked!")
 
 #Juicy Music
 #Get a 4x multiplier
@@ -243,7 +249,7 @@ func getJuicyMusic():
 		achieveDict["juicyMusic"] = true
 		var notice = achievementNotice.instance()
 		board.add_child(notice)
-		notice.setAchievement("res://pieceSets/default/sprites/defaultPreview.png", "Juicy Music Unlocked!")
+		notice.setAchievement("res://menu/customize/sprites/juicyMusicPlay.png", "Juicy Music\n Unlocked!")
 
 #Juicy Background
 #Get a 3x multiplier
@@ -253,7 +259,7 @@ func getJuicyBg():
 		achieveDict["juicyBg"] = true
 		var notice = achievementNotice.instance()
 		board.add_child(notice)
-		notice.setAchievement("res://pieceSets/default/sprites/defaultPreview.png", "Juicy Background Unlocked!")
+		notice.setAchievement("res://backgrounds/juicy/sprites/juicyPreview.png", "Juicy Background\n Unlocked!")
 
 #--Tuxedo--
 
@@ -283,7 +289,7 @@ func checkTuxedoMusic():
 			achieveDict["tuxedoMusic"] = true
 			var notice = achievementNotice.instance()
 			board.add_child(notice)
-			notice.setAchievement("res://pieceSets/default/sprites/defaultPreview.png", "Tuxedo Music Unlocked!")
+			notice.setAchievement("res://menu/customize/sprites/tuxedoMusicPlay.png", "Tuxedo Music\n Unlocked!")
 
 #Tuxedo Background
 #Rollover a tileset
@@ -294,6 +300,39 @@ func checkTuxedoBg():
 			achieveDict["tuxedoBg"] = true
 			var notice = achievementNotice.instance()
 			board.add_child(notice)
-			notice.setAchievement("res://pieceSets/default/sprites/defaultPreview.png", "Tuxedo Background Unlocked!")
+			notice.setAchievement("res://backgrounds/tuxedo/sprites/tuxedoPreview.png", "Tuxedo Background\n Unlocked!")
 
 #--LCD--
+
+#LCD Tile
+#Get a score of 18463 or higher
+func checkLCDTile():
+	var oldState = achieveDict["lcdTile"]
+	if oldState == false:
+		if board.score >= 18463:
+			achieveDict["lcdTile"] = true
+			var notice = achievementNotice.instance()
+			board.add_child(notice)
+			notice.setAchievement("res://pieceSets/lcd/sprites/lcdPreview.png", "LCD Tile\n Unlocked!")
+
+#LCD Music
+#Get a score of 15000 or higher
+func checkLCDMusic():
+	var oldState = achieveDict["lcdMusic"]
+	if oldState == false:
+		if board.score >= 15000:
+			achieveDict["lcdMusic"] = true
+			var notice = achievementNotice.instance()
+			board.add_child(notice)
+			notice.setAchievement("res://menu/customize/sprites/lcdMusicPlay.png", "LCD Music\n Unlocked!")
+
+#LCD Background
+#Get a score of 10000 or higher
+func checkLCDBg():
+	var oldState = achieveDict["lcdBg"]
+	if oldState == false:
+		if board.score >= 10000:
+			achieveDict["lcdBg"] = true
+			var notice = achievementNotice.instance()
+			board.add_child(notice)
+			notice.setAchievement("res://backgrounds/lcd/sprites/lcdBackgroundPreview.png", "LCD Background\n Unlocked!")
