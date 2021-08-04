@@ -1,7 +1,16 @@
 extends Node2D
 
-onready var signs : Node2D = $background/signs
+onready var signs : Sprite = $background/signs
 onready var animationPlayer : AnimationPlayer = $background/AnimationPlayer
+
+var neonSigns = [
+	"res://backgrounds/neon/sprites/atomic.png", #Atomic
+	"res://backgrounds/neon/sprites/cactus.png", #Cactus
+	"res://backgrounds/neon/sprites/heart.png", #Heart
+	"res://backgrounds/neon/sprites/pineapple.png", #Pineapple
+	"res://backgrounds/neon/sprites/planet.png", #Planet
+	"res://backgrounds/neon/sprites/sun.png", #Sun
+]
 
 var fadingOut = false
 var fadingIn = false
@@ -30,9 +39,9 @@ func _process(delta):
 		fadeIn(delta)
 	if queueOpen:
 		if signs.modulate.a == 0:
-			for child in signs.get_children():
-				child.visible = false
-			signs.get_child(randi() % signs.get_child_count()).visible = true
+			signs.texture = null
+			var newTexture = load(neonSigns[randi() % len(neonSigns)])
+			signs.texture = newTexture
 			animationPlayer.play("fadeIn")
 			queueOpen = false
 	if queueClose:
