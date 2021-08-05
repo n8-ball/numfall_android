@@ -1,0 +1,618 @@
+[gd_scene load_steps=62 format=2]
+
+[ext_resource path="res://menu/sprites/gearNormal.png" type="Texture" id=1]
+[ext_resource path="res://menu/scripts/mainMenu.gd" type="Script" id=2]
+[ext_resource path="res://menu/scripts/newGame.gd" type="Script" id=3]
+[ext_resource path="res://menu/scripts/continue.gd" type="Script" id=4]
+[ext_resource path="res://menu/scripts/menuButton.gd" type="Script" id=5]
+[ext_resource path="res://menu/scripts/overlay.gd" type="Script" id=6]
+[ext_resource path="res://menu/scripts/customizeButton.gd" type="Script" id=7]
+[ext_resource path="res://menu/scripts/musicButton.gd" type="Script" id=8]
+[ext_resource path="res://menu/scripts/soundButton.gd" type="Script" id=9]
+[ext_resource path="res://menu/sprites/newGamePressed.png" type="Texture" id=10]
+[ext_resource path="res://menu/sprites/soundOn.png" type="Texture" id=11]
+[ext_resource path="res://menu/sprites/continueNormal.png" type="Texture" id=12]
+[ext_resource path="res://menu/sprites/musicOff.png" type="Texture" id=13]
+[ext_resource path="res://menu/sprites/musicOn.png" type="Texture" id=14]
+[ext_resource path="res://menu/sprites/soundOff.png" type="Texture" id=15]
+[ext_resource path="res://menu/sprites/continuePressed.png" type="Texture" id=16]
+[ext_resource path="res://menu/sprites/newGameNormal.png" type="Texture" id=17]
+[ext_resource path="res://menu/sprites/continueGrey.png" type="Texture" id=18]
+[ext_resource path="res://menu/sprites/customizePressed.png" type="Texture" id=19]
+[ext_resource path="res://menu/sprites/customizeNormal.png" type="Texture" id=20]
+[ext_resource path="res://menu/sprites/numFallLogo.png" type="Texture" id=21]
+[ext_resource path="res://menu/scripts/gameOverLogo.gd" type="Script" id=22]
+[ext_resource path="res://menu/sprites/gameOver.png" type="Texture" id=23]
+[ext_resource path="res://menu/scripts/endButton.gd" type="Script" id=24]
+[ext_resource path="res://debug/sounds/deny.wav" type="AudioStream" id=25]
+[ext_resource path="res://debug/sounds/confirm.wav" type="AudioStream" id=26]
+[ext_resource path="res://menu/scripts/confirm.gd" type="Script" id=27]
+[ext_resource path="res://menu/sprites/mainMenuNormal.png" type="Texture" id=28]
+[ext_resource path="res://menu/scripts/logo.gd" type="Script" id=29]
+[ext_resource path="res://menu/sprites/mainMenuPressed.png" type="Texture" id=30]
+[ext_resource path="res://menu/scripts/tutorialButton.gd" type="Script" id=31]
+[ext_resource path="res://menu/sprites/helpOff.png" type="Texture" id=32]
+[ext_resource path="res://menu/sprites/helpOn.png" type="Texture" id=33]
+[ext_resource path="res://menu/sprites/newGameConfirm.png" type="Texture" id=34]
+[ext_resource path="res://menu/sprites/yesButtonNormal.png" type="Texture" id=35]
+[ext_resource path="res://menu/sprites/noButtonNormal.png" type="Texture" id=36]
+[ext_resource path="res://menu/sprites/yesButtonPressed.png" type="Texture" id=37]
+[ext_resource path="res://menu/sprites/noButtonPressed.png" type="Texture" id=38]
+[ext_resource path="res://menu/scripts/newGameConfirm.gd" type="Script" id=39]
+[ext_resource path="res://menu/scripts/noNewGameButton.gd" type="Script" id=40]
+[ext_resource path="res://menu/scripts/yesNewGameButton.gd" type="Script" id=41]
+[ext_resource path="res://menu/sprites/tutorialConfirm.png" type="Texture" id=42]
+[ext_resource path="res://menu/scripts/tutorialConfirm.gd" type="Script" id=43]
+[ext_resource path="res://menu/scripts/tutorialConfirmButton.gd" type="Script" id=44]
+[ext_resource path="res://menu/customize/scenes/customize.tscn" type="PackedScene" id=45]
+[ext_resource path="res://menu/scenes/credits.tscn" type="PackedScene" id=46]
+[ext_resource path="res://fonts/Poppins-SemiBold.ttf" type="DynamicFontData" id=47]
+[ext_resource path="res://menu/scripts/creditsButton.gd" type="Script" id=48]
+
+[sub_resource type="Animation" id=1]
+resource_name = "creditsToMenu"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("credits:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 150 ), Vector2( 0, 450 ), Vector2( 0, 900 ), Vector2( 0, 1500 ), Vector2( 0, 2250 ), Vector2( 0, 2860 ), Vector2( 0, 2710 ), Vector2( 0, 2610 ), Vector2( 0, 2560 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -2560 ), Vector2( 0, -2410 ), Vector2( 0, -2110 ), Vector2( 0, -1660 ), Vector2( 0, -1060 ), Vector2( 0, -310 ), Vector2( 0, 300 ), Vector2( 0, 150 ), Vector2( 0, 50 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1440, 0 ), Vector2( -1356, 0 ), Vector2( -1187, 0 ), Vector2( -934, 0 ), Vector2( -596, 0 ), Vector2( -174, 0 ), Vector2( 169, 0 ), Vector2( 84, 0 ), Vector2( 28, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("customize:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 84, 0 ), Vector2( 253, 0 ), Vector2( 506, 0 ), Vector2( 844, 0 ), Vector2( 1266, 0 ), Vector2( 1609, 0 ), Vector2( 1524, 0 ), Vector2( 1468, 0 ), Vector2( 1440, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -150 ), Vector2( 0, -450 ), Vector2( 0, -900 ), Vector2( 0, -1500 ), Vector2( 0, -2250 ), Vector2( 0, -2860 ), Vector2( 0, -2710 ), Vector2( 0, -2610 ), Vector2( 0, -2560 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("credits:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2560 ), Vector2( 0, 2410 ), Vector2( 0, 2110 ), Vector2( 0, 1660 ), Vector2( 0, 1060 ), Vector2( 0, 310 ), Vector2( 0, -300 ), Vector2( 0, -150 ), Vector2( 0, -50 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2560 ), Vector2( 0, 2410 ), Vector2( 0, 2110 ), Vector2( 0, 1660 ), Vector2( 0, 1060 ), Vector2( 0, 310 ), Vector2( 0, -300 ), Vector2( 0, -150 ), Vector2( 0, -50 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("customize:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1440, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("credits:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2560 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -84, 0 ), Vector2( -253, 0 ), Vector2( -506, 0 ), Vector2( -844, 0 ), Vector2( -1266, 0 ), Vector2( -1609, 0 ), Vector2( -1524, 0 ), Vector2( -1468, 0 ), Vector2( -1440, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("customize:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1440, 0 ), Vector2( 1356, 0 ), Vector2( 1187, 0 ), Vector2( 934, 0 ), Vector2( 556, 0 ), Vector2( 174, 0 ), Vector2( -169, 0 ), Vector2( -84, 0 ), Vector2( -28, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.133333
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.133333 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.133333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.166667
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.133333
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.133333 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.133333 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.166667
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0666667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 106, 106 ), Vector2( -205, -500 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.6, 0.6, 0.501961, 0 )
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_detail = 1
+shadow_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+draw_center = false
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+shadow_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 86
+outline_size = 2
+outline_color = Color( 0.427451, 0.415686, 0.666667, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 47 )
+
+[node name="menu" type="CanvasLayer"]
+pause_mode = 2
+offset = Vector2( 0, -2560 )
+transform = Transform2D( 1, 0, 0, 1, 0, -2560 )
+script = ExtResource( 2 )
+
+[node name="overlay" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1440.0
+margin_top = -2560.0
+margin_right = -0.00012207
+margin_bottom = 2560.0
+color = Color( 1, 1, 1, 0.490196 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="menuAnimator" type="AnimationPlayer" parent="."]
+autoplay = "starting"
+anims/creditsToMenu = SubResource( 1 )
+anims/customizeToMenu = SubResource( 2 )
+anims/dropToCredits = SubResource( 3 )
+anims/dropToMenu = SubResource( 4 )
+anims/starting = SubResource( 5 )
+anims/toCustomize = SubResource( 6 )
+
+[node name="gameOver" type="Sprite" parent="."]
+position = Vector2( 720, -1600 )
+texture = ExtResource( 23 )
+script = ExtResource( 22 )
+
+[node name="endButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -285.0
+margin_top = -1500.0
+margin_right = 285.0
+margin_bottom = -1340.0
+texture_normal = ExtResource( 28 )
+texture_pressed = ExtResource( 30 )
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="logo" type="Sprite" parent="."]
+position = Vector2( 720, 650 )
+texture = ExtResource( 21 )
+script = ExtResource( 29 )
+
+[node name="menuButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -240.0
+margin_top = 80.0
+margin_right = -80.0
+margin_bottom = 247.0
+texture_normal = ExtResource( 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="continueButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -361.5
+margin_top = -390.0
+margin_right = 361.5
+margin_bottom = -188.0
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 16 )
+texture_disabled = ExtResource( 18 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="customizeButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -361.5
+margin_top = 150.0
+margin_right = 361.5
+margin_bottom = 352.0
+texture_normal = ExtResource( 20 )
+texture_pressed = ExtResource( 19 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="newGameButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -361.0
+margin_top = -120.0
+margin_right = 362.0
+margin_bottom = 81.0
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 10 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="newGameConfirm" type="Sprite" parent="newGameButton"]
+visible = false
+position = Vector2( 361.5, 100 )
+texture = ExtResource( 34 )
+script = ExtResource( 39 )
+
+[node name="yesButton" type="TextureButton" parent="newGameButton/newGameConfirm"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1112.0
+margin_top = -296.0
+margin_right = -696.0
+margin_bottom = -95.0
+texture_normal = ExtResource( 35 )
+texture_pressed = ExtResource( 37 )
+script = ExtResource( 41 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="noButton" type="TextureButton" parent="newGameButton/newGameConfirm"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -596.0
+margin_top = -296.0
+margin_right = -180.0
+margin_bottom = -95.0
+texture_normal = ExtResource( 36 )
+texture_pressed = ExtResource( 38 )
+script = ExtResource( 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="confirmAnimation" type="AnimationPlayer" parent="newGameButton/newGameConfirm"]
+anims/close = SubResource( 7 )
+anims/open = SubResource( 8 )
+
+[node name="musicButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -106.5
+margin_top = 490.0
+margin_right = 106.5
+margin_bottom = 703.0
+toggle_mode = true
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 13 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="soundButton" type="TextureButton" parent="."]
+margin_left = 302.0
+margin_top = 1770.0
+margin_right = 515.0
+margin_bottom = 1983.0
+toggle_mode = true
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 15 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tutorialButton" type="TextureButton" parent="."]
+margin_left = 925.0
+margin_top = 1770.0
+margin_right = 1138.0
+margin_bottom = 1983.0
+toggle_mode = true
+texture_normal = ExtResource( 33 )
+texture_pressed = ExtResource( 32 )
+script = ExtResource( 31 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tutorialConfirm" type="Sprite" parent="tutorialButton"]
+position = Vector2( 106, 106 )
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 42 )
+script = ExtResource( 43 )
+
+[node name="confirmAnimation" type="AnimationPlayer" parent="tutorialButton/tutorialConfirm"]
+anims/close = SubResource( 9 )
+anims/open = SubResource( 10 )
+
+[node name="tutorialConfirmButton" type="TextureButton" parent="tutorialButton/tutorialConfirm"]
+margin_left = -646.0
+margin_top = -385.0
+margin_right = 646.0
+margin_bottom = 386.0
+script = ExtResource( 44 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="confirm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 26 )
+bus = "Effects"
+script = ExtResource( 27 )
+
+[node name="deny" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 25 )
+bus = "Effects"
+script = ExtResource( 27 )
+
+[node name="customize" parent="." instance=ExtResource( 45 )]
+layer = 2
+offset = Vector2( 1440, 0 )
+transform = Transform2D( 1, 0, 0, 1, 1440, 0 )
+
+[node name="creditsButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -164.0
+margin_top = -510.0
+margin_right = 164.0
+margin_bottom = -382.0
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
+text = "Credits"
+flat = true
+script = ExtResource( 48 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="credits" parent="." instance=ExtResource( 46 )]
+layer = 2

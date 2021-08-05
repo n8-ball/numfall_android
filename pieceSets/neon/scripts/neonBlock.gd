@@ -1,7 +1,8 @@
 extends AnimationPlayer
 
 onready var piece : Node2D = $"../../.."
-onready var block : Sprite = $".."
+onready var block : Node2D = $".."
+onready var glow : Sprite = $"../glow"
 onready var top : Sprite = $"../top"
 
 const maxPiece = 52
@@ -15,8 +16,8 @@ func _process(_delta):
 	updateValue()
 
 func updateValue():
-	block.frame = int(piece.value - 1) % maxPiece
-	top.frame = block.frame
+	glow.frame = (int(piece.value - 1) + int(int(piece.value - 1)/26)) % 9
+	top.frame = int(piece.value - 1) % maxPiece
 
 func runAnimation():
 	if piece.state == piece.IDLE_STATE:

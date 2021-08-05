@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/combine.wav-86e7a61b010baf4b7ab2f38fdde4bb13.sample"
+
+[deps]
+
+source_file="res://sound/combine.wav"
+dest_files=[ "res://.import/combine.wav-86e7a61b010baf4b7ab2f38fdde4bb13.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

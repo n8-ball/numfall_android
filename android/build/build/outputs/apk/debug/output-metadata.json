@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.n8.numfall",
+  "variantName": "debug",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "properties": [],
+      "versionCode": 3,
+      "versionName": "0.2.0",
+      "enabled": true,
+      "outputFile": "android_debug.apk"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 extends AnimationPlayer
 
 onready var piece : Node2D = $"../../.."
-onready var block : Sprite = $".."
+onready var block : Node2D = $"../block"
 
 const maxPiece = 26
 var lastState = 0
