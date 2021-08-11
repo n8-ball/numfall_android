@@ -30,7 +30,11 @@ func _input(event):
 	if event is InputEventMouseButton &&\
 	event.is_action_released("ui_select"):
 		var coordSelect = getCoord(event.position)
-		var validMove = true
+		var validMove = false
+		for i in range(6):
+			var chkPiece = board.board[8][i]
+			if is_instance_valid(chkPiece):
+				validMove = true
 		if coordSelect.x < board.brdWd && coordSelect.x >= 0 \
 		&& coordSelect.y < board.brdHt && coordSelect.y >= 0 \
 		&& is_instance_valid(board.board[coordSelect.y][coordSelect.x])\
@@ -42,7 +46,7 @@ func _input(event):
 					chkPiece.setState(chkPiece.DELETE_STATE)
 		elif not scheduleDelete:
 			deny.play()
-		button.displayUsage()
+			button.displayUsage()
 		sprite.visible = false
 		scheduleDelete = true
 	

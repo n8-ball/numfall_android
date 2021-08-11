@@ -7,6 +7,12 @@ onready var sprite : Sprite = $"sprite"
 var board
 var button
 
+var firstPiece = null
+var secondPiece = null
+
+var firstPiecePos = null
+var secondPiecePos = null
+
 var scheduleDelete = false
 
 # Called when the node enters the scene tree for the first time.
@@ -27,26 +33,56 @@ func getCoord(pos):
 	return newCoord
 
 func _input(event):
+	#First Piece
 	if event is InputEventMouseButton &&\
 	event.is_action_released("ui_select"):
-		var validMove = false
-		for i in range(6):
-			var chkPiece = board.board[8][i]
-			if is_instance_valid(chkPiece):
-				validMove = true
+		print("first")
 		var coordSelect = getCoord(event.position)
 		if coordSelect.x < board.brdWd && coordSelect.x >= 0 \
 		&& coordSelect.y < board.brdHt && coordSelect.y >= 0 \
 		&& is_instance_valid(board.board[coordSelect.y][coordSelect.x])\
-		&& not scheduleDelete && validMove:
+		&& not scheduleDelete:
+			print("firstConfirm")
 			confirm.play()
-			for i in range(6):
-				var chkPiece = board.board[coordSelect.y][i]
-				if is_instance_valid(chkPiece):
-					chkPiece.setState(chkPiece.DELETE_STATE)
+			firstPiecePos = coordSelect
+			firstPiece = board.board[coordSelect.y][coordSelect.x]
+			firstPiece.setSelect(firstPiece.SOLO_SELECTED)
 		elif not scheduleDelete:
+			print("firstDelete")
 			deny.play()
-		button.displayUsage()
+			button.displayUsage()
+			scheduleDelete = true
+		sprite.visible = false
+	
+	#Second Piece
+	if event is InputEventMouseButton &&\
+	event.is_action_pressed("ui_select"):
+		print("second")
+		var coordSelect = getCoord(event.position)
+		if coordSelect.x < board.brdWd && coordSelect.x >= 0 \
+		&& coordSelect.y < board.brdHt && coordSelect.y >= 0 \
+		&& not scheduleDelete && is_instance_valid(firstPiece)\
+		&& not ((firstPiecePos.x - coordSelect.x == 1 || firstPiecePos.x - coordSelect.x == -1 || firstPiecePos.x - coordSelect.x == 0)\
+		&& firstPiecePos.y == coordSelect.y):
+			print("secondConfirm")
+			confirm.play()
+			if is_instance_valid(board.board[coordSelect.y][coordSelect.x]):
+				secondPiece = board.board[coordSelect.y][coordSelect.x]
+			secondPiecePos = coordSelect
+			firstPiece.setState(firstPiece.INCREMENT_STATE)
+			firstPiece.setPos(board.getPos(secondPiecePos.x, secondPiecePos.y))
+			board.board[secondPiecePos.y][secondPiecePos.x] = firstPiece
+			if is_instance_valid(secondPiece):
+				secondPiece.setState(secondPiece.INCREMENT_STATE)
+				secondPiece.setPos(board.getPos(firstPiecePos.x, firstPiecePos.y))
+			board.board[firstPiecePos.y][firstPiecePos.x] = secondPiece
+			firstPiece.setSelect(firstPiece.UNSELECTED)
+		elif is_instance_valid(firstPiece) && not scheduleDelete:
+			print("secondDeny")
+			deny.play()
+			button.displayUsage()
+			if is_instance_valid(firstPiece):
+				firstPiece.setSelect(firstPiece.UNSELECTED)
 		sprite.visible = false
 		scheduleDelete = true
 	
@@ -54,4 +90,5 @@ func _input(event):
 		self.position = event.position
 
 func _delete():
-	self.queue_free()
+	if scheduleDelete:
+		self.queue_free()

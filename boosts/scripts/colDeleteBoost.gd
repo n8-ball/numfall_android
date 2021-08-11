@@ -48,7 +48,7 @@ func _input(event):
 					chkPiece.setState(chkPiece.DELETE_STATE)
 		elif not scheduleDelete:
 			deny.play()
-		button.displayUsage()
+			button.displayUsage()
 		sprite.visible = false
 		scheduleDelete = true
 	
