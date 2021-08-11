@@ -110,7 +110,7 @@ func updateBoard():
 				chkPiece = null
 			else:
 				chkPiece = board[y+1][x]
-			if curPiece != null:
+			if is_instance_valid(curPiece):
 				tempSmall = checkSmall(tempSmall, curPiece)
 				tempBig = checkBig(tempBig, curPiece)
 				handlePiece(curPiece, chkPiece, x, y, allReady)
@@ -133,17 +133,17 @@ func updateBoard():
 func getTopRow():
 	for y in range(brdHt):
 		for x in range(brdWd):
-			if board[y][x] != null:
+			if is_instance_valid(board[y][x]):
 				return y
 	return 0
 
 func checkBig(chkNum, chkPiece):
 	if chkNum == null:
-		if chkPiece != null:
+		if is_instance_valid(chkPiece):
 			return chkPiece.getValue()
 		else:
 			return null
-	elif chkPiece != null:
+	elif is_instance_valid(chkPiece):
 		if chkPiece.getValue() > chkNum:
 			return chkPiece.getValue()
 		else:
@@ -152,11 +152,11 @@ func checkBig(chkNum, chkPiece):
 
 func checkSmall(chkNum, chkPiece):
 	if chkNum == null:
-		if chkPiece != null:
+		if is_instance_valid(chkPiece):
 			return chkPiece.getValue()
 		else:
 			return null
-	elif chkPiece != null:
+	elif is_instance_valid(chkPiece):
 		if chkPiece.getValue() < chkNum:
 			return chkPiece.getValue()
 		else:
@@ -206,13 +206,13 @@ func swapPieces(firstCoord, secondCoord):
 	board[firstCoord.y][firstCoord.x] = secondPiece
 	board[secondCoord.y][secondCoord.x] = firstPiece
 	
-	if firstPiece != null:
+	if is_instance_valid(firstPiece):
 		if firstCoord.x > secondCoord.x:
 			firstPiece.setState(firstPiece.SWITCH_RIGHT_STATE)
 		else:
 			firstPiece.setState(firstPiece.SWITCH_LEFT_STATE)
 		firstPiece.setPos(getPos(secondCoord.x, secondCoord.y))
-	if secondPiece != null:
+	if is_instance_valid(secondPiece):
 		if secondCoord.x > firstCoord.x:
 			secondPiece.setState(secondPiece.SWITCH_RIGHT_STATE)
 		else:
@@ -229,7 +229,7 @@ func getPos(x, y):
 	return newPos
 
 func isEmpty(x, y):
-	return board[y][x] == null
+	return is_instance_valid(board[y][x]) == false
 
 func getPieceType():
 	return pieceName

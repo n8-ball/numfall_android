@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://board/scripts/board.gd" type="Script" id=1]
 [ext_resource path="res://backgrounds/default/scenes/defaultBackground.tscn" type="PackedScene" id=2]
+[ext_resource path="res://boosts/scenes/boostButtons.tscn" type="PackedScene" id=3]
 [ext_resource path="res://board/scripts/selector.gd" type="Script" id=4]
 [ext_resource path="res://board/scripts/spawner.gd" type="Script" id=5]
 [ext_resource path="res://fonts/Poppins-MediumItalic.ttf" type="DynamicFontData" id=6]
@@ -107,6 +108,12 @@ rotation = 1.5708
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 13 )
 
+[node name="boostButtons" parent="." instance=ExtResource( 3 )]
+margin_left = 1100.0
+margin_top = 2300.0
+margin_right = 1100.0
+margin_bottom = 2300.0
+
 [node name="menu" parent="." instance=ExtResource( 11 )]
 layer = 2
 
@@ -121,3 +128,4 @@ bus = "Music"
 script = ExtResource( 10 )
 
 [node name="background" parent="." instance=ExtResource( 2 )]
+position = Vector2( 3.1748, 3.1748 )

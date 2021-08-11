@@ -36,12 +36,12 @@ var stackTimer = 0
 var board
 
 var colorList = [
-	Color(.102, .055, .176),
-	Color(.063, .118, .200),
-	Color(.027, .157, .094),
-	Color(.271, .227, .008),
-	Color(.275, .133, .024),
-	Color(.267, .067, .039)
+	Color("170733"), #Purple
+	Color("1C2F4C"), #Blue
+	Color("134C30"), #Green
+	Color("7F7336"), #Yellow
+	Color("7F4F2B"), #Orange
+	Color("7F2B1F") #Red
 ]
 
 # Called when the node enters the scene tree for the first time.
@@ -63,7 +63,7 @@ func isReady():
 	return state == IDLE_STATE || state == FALL_STATE
 
 func comparePiece(cmpPiece):
-	if cmpPiece == null:
+	if is_instance_valid(cmpPiece) == false:
 		return -1
 	if cmpPiece.getValue() == value:
 		return 0

@@ -37,7 +37,7 @@ func forceZeroValue():
 
 func updateColor():
 	var shownValue = (tens.frame * 10) + ones.frame
-	var displayColor = piece.colorList[shownValue % 6]
+	var displayColor = piece.colorList[(shownValue - 1) % 6]
 	block.self_modulate = displayColor
 	tens.self_modulate = displayColor
 	ones.self_modulate = displayColor

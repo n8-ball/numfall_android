@@ -363,8 +363,6 @@ font_data = ExtResource( 47 )
 
 [node name="menu" type="CanvasLayer"]
 pause_mode = 2
-offset = Vector2( 0, -2560 )
-transform = Transform2D( 1, 0, 0, 1, 0, -2560 )
 script = ExtResource( 2 )
 
 [node name="overlay" type="ColorRect" parent="."]
@@ -374,6 +372,7 @@ margin_left = -1440.0
 margin_top = -2560.0
 margin_right = -0.00012207
 margin_bottom = 2560.0
+mouse_filter = 2
 color = Color( 1, 1, 1, 0.490196 )
 script = ExtResource( 6 )
 __meta__ = {
@@ -616,3 +615,5 @@ __meta__ = {
 
 [node name="credits" parent="." instance=ExtResource( 46 )]
 layer = 2
+offset = Vector2( 0, 2560 )
+transform = Transform2D( 1, 0, 0, 1, 0, 2560 )

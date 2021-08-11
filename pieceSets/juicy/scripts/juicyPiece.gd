@@ -55,7 +55,7 @@ func isReady():
 	return state == IDLE_STATE || state == FALL_STATE
 
 func comparePiece(cmpPiece):
-	if cmpPiece == null:
+	if is_instance_valid(cmpPiece) == false:
 		return -1
 	if cmpPiece.getValue() == value:
 		return 0
