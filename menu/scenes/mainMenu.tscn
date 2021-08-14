@@ -477,6 +477,7 @@ __meta__ = {
 [node name="newGameConfirm" type="Sprite" parent="newGameButton"]
 visible = false
 position = Vector2( 361.5, 100 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 34 )
 script = ExtResource( 39 )
 
@@ -560,8 +561,8 @@ __meta__ = {
 }
 
 [node name="tutorialConfirm" type="Sprite" parent="tutorialButton"]
-position = Vector2( 106, 106 )
-scale = Vector2( 1e-05, 1e-05 )
+position = Vector2( -205, -500 )
+scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 42 )
 script = ExtResource( 43 )
 

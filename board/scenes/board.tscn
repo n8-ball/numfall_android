@@ -109,10 +109,10 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 13 )
 
 [node name="boostButtons" parent="." instance=ExtResource( 3 )]
-margin_left = 1100.0
+margin_left = 800.0
 margin_top = 2300.0
-margin_right = 1100.0
-margin_bottom = 2300.0
+margin_right = 1280.0
+margin_bottom = 2450.0
 
 [node name="menu" parent="." instance=ExtResource( 11 )]
 layer = 2

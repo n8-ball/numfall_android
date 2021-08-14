@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg2345"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="boosts.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview2347"
+     pagecolor="#4d4d4d"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="false"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.46324355"
+     inkscape:cx="-102.53786"
+     inkscape:cy="-139.23561"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="false" />
+  <defs
+     id="defs2342">
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(1.1) rotate(180) translate(1,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path62616" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path62595" />
+    </marker>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath34128">
+      <path
+         id="path34130"
+         style="fill:#3a3863;stroke-width:1.13386"
+         d="m -2,-10 a 3.9999999,3.9999999 0 0 1 -2.0000002,3.4641016 3.9999999,3.9999999 0 0 1 -3.9999999,0 A 3.9999999,3.9999999 0 0 1 -10,-10 h 4.0000001 z"
+         clip-path="none" />
+    </clipPath>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="M 1.020409,0 H 8.979591 C 9.544901,0 10,0.45510903 10,1.0204088 V 8.9795981 C 10,9.5448979 9.544901,10.000007 8.979591,10.000007 H 1.020409 C 0.455099,10.000007 0,9.5448979 0,8.9795981 V 1.0204088 C 0,0.45510903 0.455099,0 1.020409,0 Z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\horizontalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0-2"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="m 11.020409,0 h 7.959182 C 19.544901,0 20,0.45510898 20,1.0204088 v 7.9591893 c 0,0.5652998 -0.455099,1.0204089 -1.020409,1.0204089 H 11.020409 C 10.455099,10.000007 10,9.5448979 10,8.9795981 V 1.0204088 C 10,0.45510898 10.455099,0 11.020409,0 Z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\horizontalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0-9"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="m 21.020409,0 h 7.959182 C 29.544901,0 30,0.45510903 30,1.0204088 v 7.9591893 c 0,0.5652998 -0.455099,1.0204089 -1.020409,1.0204089 H 21.020409 C 20.455099,10.000007 20,9.5448979 20,8.9795981 V 1.0204088 C 20,0.45510903 20.455099,0 21.020409,0 Z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\horizontalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0-22"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="m 31.020409,0 h 7.959182 C 39.544901,0 40,0.45510903 40,1.0204088 v 7.9591894 c 0,0.5652997 -0.455099,1.0204088 -1.020409,1.0204088 H 31.020409 C 30.455099,10.000007 30,9.5448979 30,8.9795982 V 1.0204088 C 30,0.45510903 30.455099,0 31.020409,0 Z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\horizontalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0-8"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="m 41.020409,0 h 7.959182 C 49.544901,0 50,0.455109 50,1.0204088 v 7.9591894 c 0,0.5653 -0.455099,1.0204088 -1.020409,1.0204088 H 41.020409 C 40.455099,10.000007 40,9.5448982 40,8.9795982 V 1.0204088 C 40,0.455109 40.455099,0 41.020409,0 Z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\horizontalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0-3"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="m 51.020409,0 h 7.959182 C 59.544901,0 60,0.45510903 60,1.0204088 v 7.9591893 c 0,0.5652998 -0.455099,1.0204089 -1.020409,1.0204089 H 51.020409 C 50.455099,10.000007 50,9.5448979 50,8.9795981 V 1.0204088 C 50,0.45510903 50.455099,0 51.020409,0 Z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\horizontalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <ellipse
+       style="fill:#ffffff;fill-opacity:0.950935;stroke:#6d6aaa;stroke-width:0.50014;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4250-3"
+       cx="71.282486"
+       cy="42.002144"
+       rx="4.7499299"
+       ry="4.7499294"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\clearRowNormal.png"
+       inkscape:export-xdpi="254.00005"
+       inkscape:export-ydpi="254.00005" />
+    <g
+       id="g34246"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\clearRowNormal.png"
+       inkscape:export-xdpi="381.00006"
+       inkscape:export-ydpi="381.00006">
+      <ellipse
+         style="fill:#ffffff;fill-opacity:0.950935;stroke:#6d6aaa;stroke-width:0.50014;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path4250"
+         cx="71.729652"
+         cy="10.489428"
+         rx="4.7499299"
+         ry="4.7499294"
+         inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\clearRowNormal.png"
+         inkscape:export-xdpi="254.00005"
+         inkscape:export-ydpi="254.00005" />
+      <path
+         id="path28424"
+         style="fill:#ffd700;fill-opacity:1;stroke:#6d6aaa;stroke-width:0.283344;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+         inkscape:transform-center-x="-0.44626794"
+         d="m 70.390923,8.9435678 -1.338961,0.7725655 -1.338959,0.7730267 1.338959,0.773027 1.338961,0.773027 v -1.09958 h 2.677457 v 1.09958 l 1.338962,-0.773027 1.33896,-0.773027 -1.33896,-0.7730267 -1.338962,-0.7725655 v 1.0995792 h -2.677457 z"
+         inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\clearRowNormal.png"
+         inkscape:export-xdpi="254.00005"
+         inkscape:export-ydpi="254.00005" />
+    </g>
+    <g
+       id="g63226"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\clearColNormal.png"
+       inkscape:export-xdpi="381.00006"
+       inkscape:export-ydpi="381.00006">
+      <ellipse
+         style="fill:#ffffff;fill-opacity:0.950935;stroke:#6d6aaa;stroke-width:0.50014;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path4250-2"
+         cx="-26.85714"
+         cy="72.897949"
+         rx="4.7499299"
+         ry="4.7499294"
+         inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\clearRowNormal.png"
+         inkscape:export-xdpi="254.00005"
+         inkscape:export-ydpi="254.00005"
+         transform="rotate(-90)" />
+      <path
+         id="path28424-1"
+         style="fill:#ffd700;fill-opacity:1;stroke:#6d6aaa;stroke-width:0.283344;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+         inkscape:transform-center-x="-0.44626794"
+         d="m 71.352089,28.195869 0.772565,1.338961 0.773027,1.338959 0.773027,-1.338959 0.773027,-1.338961 h -1.09958 v -2.677457 h 1.09958 l -0.773027,-1.338962 -0.773027,-1.33896 -0.773027,1.33896 -0.772565,1.338962 h 1.099579 v 2.677457 z"
+         inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\clearRowNormal.png"
+         inkscape:export-xdpi="254.00005"
+         inkscape:export-ydpi="254.00005" />
+    </g>
+    <ellipse
+       style="fill:#3a3863;fill-opacity:1;stroke:#6d6aaa;stroke-width:0.50014;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4250-5-3"
+       cx="86.326523"
+       cy="43.112778"
+       rx="4.7499299"
+       ry="4.7499294"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\clearRowDisabled.png"
+       inkscape:export-xdpi="254.00005"
+       inkscape:export-ydpi="254.00005" />
+    <g
+       id="g34242"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\clearRowDisabled.png"
+       inkscape:export-xdpi="381.00006"
+       inkscape:export-ydpi="381.00006">
+      <ellipse
+         style="fill:#3a3863;fill-opacity:1;stroke:#6d6aaa;stroke-width:0.50014;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path4250-5"
+         cx="85.720718"
+         cy="9.5918341"
+         rx="4.7499299"
+         ry="4.7499294"
+         inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\clearRowDisabled.png"
+         inkscape:export-xdpi="254.00005"
+         inkscape:export-ydpi="254.00005" />
+      <path
+         id="path28424-0"
+         style="fill:#ffd700;fill-opacity:1;stroke:#6d6aaa;stroke-width:0.283344;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+         inkscape:transform-center-x="-0.44626794"
+         d="m 84.381989,8.0459752 -1.338961,0.772565 -1.338959,0.773027 1.338959,0.7730268 1.338961,0.773027 v -1.09958 h 2.677457 v 1.09958 l 1.338962,-0.773027 1.33896,-0.7730268 -1.33896,-0.773027 -1.338962,-0.772565 v 1.099579 h -2.677457 z"
+         inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\clearRowDisabled.png"
+         inkscape:export-xdpi="254.00005"
+         inkscape:export-ydpi="254.00005" />
+    </g>
+    <g
+       id="g31884"
+       transform="rotate(-90,87.68957,25.090222)"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\clearColDisabled.png"
+       inkscape:export-xdpi="381.00006"
+       inkscape:export-ydpi="381.00006">
+      <ellipse
+         style="fill:#3a3863;fill-opacity:1;stroke:#6d6aaa;stroke-width:0.50014;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path4250-5-0"
+         cx="85.821686"
+         cy="24.433939"
+         rx="4.7499299"
+         ry="4.7499294"
+         inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\clearRowDisabled.png"
+         inkscape:export-xdpi="254.00005"
+         inkscape:export-ydpi="254.00005" />
+      <path
+         id="path28424-0-2"
+         style="fill:#ffd700;fill-opacity:1;stroke:#6d6aaa;stroke-width:0.283344;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+         inkscape:transform-center-x="-0.44626794"
+         d="m 84.482957,22.88808 -1.338961,0.772565 -1.338959,0.773027 1.338959,0.773027 1.338961,0.773027 v -1.09958 h 2.677457 v 1.09958 l 1.338962,-0.773027 1.33896,-0.773027 -1.33896,-0.773027 -1.338962,-0.772565 v 1.099579 h -2.677457 z"
+         inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\clearRowDisabled.png"
+         inkscape:export-xdpi="254.00005"
+         inkscape:export-ydpi="254.00005" />
+    </g>
+  </g>
+</svg>

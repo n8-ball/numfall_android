@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://debug/sprites/buttonNormal.png" type="Texture" id=1]
+[ext_resource path="res://boosts/sprites/clearColNormal.png" type="Texture" id=1]
 [ext_resource path="res://boosts/scripts/colDeleteBoost.gd" type="Script" id=2]
 [ext_resource path="res://debug/sounds/confirm.wav" type="AudioStream" id=3]
 [ext_resource path="res://debug/sounds/deny.wav" type="AudioStream" id=4]
