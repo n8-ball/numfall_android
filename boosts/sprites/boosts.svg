@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="false"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.46324355"
-     inkscape:cx="-102.53786"
-     inkscape:cy="-139.23561"
+     inkscape:zoom="1.3102506"
+     inkscape:cx="28.620479"
+     inkscape:cy="194.23765"
      inkscape:window-width="1366"
      inkscape:window-height="705"
      inkscape:window-x="-8"
@@ -81,7 +81,7 @@
        id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0"
        style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
        d="M 1.020409,0 H 8.979591 C 9.544901,0 10,0.45510903 10,1.0204088 V 8.9795981 C 10,9.5448979 9.544901,10.000007 8.979591,10.000007 H 1.020409 C 0.455099,10.000007 0,9.5448979 0,8.9795981 V 1.0204088 C 0,0.45510903 0.455099,0 1.020409,0 Z"
-       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\horizontalHighlight.png"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\verticalHighlight.png"
        inkscape:export-xdpi="508"
        inkscape:export-ydpi="508" />
     <path
@@ -103,6 +103,69 @@
        style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
        d="m 31.020409,0 h 7.959182 C 39.544901,0 40,0.45510903 40,1.0204088 v 7.9591894 c 0,0.5652997 -0.455099,1.0204088 -1.020409,1.0204088 H 31.020409 C 30.455099,10.000007 30,9.5448979 30,8.9795982 V 1.0204088 C 30,0.45510903 30.455099,0 31.020409,0 Z"
        inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\horizontalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0-22-5"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="M 1.020409,10 H 8.979591 C 9.544901,10 10,10.455109 10,11.020409 v 7.959189 c 0,0.5653 -0.455099,1.020409 -1.020409,1.020409 H 1.020409 C 0.455099,20.000007 0,19.544898 0,18.979598 V 11.020409 C 0,10.455109 0.455099,10 1.020409,10 Z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\verticalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0-22-5-8"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="M 1.020409,20 H 8.9795912 C 9.5449012,20 10,20.455109 10,21.020409 v 7.959189 c 0,0.5653 -0.4550988,1.020409 -1.0204088,1.020409 H 1.020409 C 0.455099,30.000007 0,29.544898 0,28.979598 V 21.020409 C 0,20.455109 0.455099,20 1.020409,20 Z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\verticalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0-22-5-1"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="M 1.020409,30 H 8.979591 C 9.544901,30 10,30.455109 10,31.020409 v 7.959189 c 0,0.5653 -0.455099,1.020409 -1.020409,1.020409 H 1.020409 C 0.455099,40.000007 0,39.544898 0,38.979598 V 31.020409 C 0,30.455109 0.455099,30 1.020409,30 Z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\verticalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0-22-5-83"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="M 1.020409,40 H 8.9795914 C 9.5449014,40 10,40.455109 10,41.020409 v 7.959189 c 0,0.5653 -0.4550986,1.020409 -1.0204086,1.020409 H 1.020409 C 0.455099,50.000007 0,49.544898 0,48.979598 V 41.020409 C 0,40.455109 0.455099,40 1.020409,40 Z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\verticalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0-0"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="M 1.020409,50 H 8.979591 C 9.544901,50 10,50.455109 10,51.020409 v 7.959189 c 0,0.5653 -0.455099,1.020409 -1.020409,1.020409 H 1.020409 C 0.455099,60.000007 0,59.544898 0,58.979598 V 51.020409 C 0,50.455109 0.455099,50 1.020409,50 Z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\verticalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0-22-5-9"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="M 1.020409,60 H 8.979591 C 9.544901,60 10,60.455109 10,61.020409 v 7.959189 c 0,0.5653 -0.455099,1.020409 -1.020409,1.020409 H 1.020409 C 0.455099,70.000007 0,69.544898 0,68.979598 V 61.020409 C 0,60.455109 0.455099,60 1.020409,60 Z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\verticalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0-22-5-8-8"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="M 1.020409,70 H 8.979591 C 9.544901,70 10,70.455109 10,71.020409 v 7.959189 c 0,0.5653 -0.455099,1.020409 -1.020409,1.020409 H 1.020409 C 0.455099,80.000007 0,79.544898 0,78.979598 V 71.020409 C 0,70.455109 0.455099,70 1.020409,70 Z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\verticalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0-22-5-1-9"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="M 1.020409,80 H 8.979591 C 9.544901,80 10,80.455109 10,81.020409 v 7.959189 c 0,0.5653 -0.455099,1.020409 -1.020409,1.020409 H 1.020409 C 0.455099,90.000007 0,89.544898 0,88.979598 V 81.020409 C 0,80.455109 0.455099,80 1.020409,80 Z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\verticalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0-22-5-83-4"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="M 1.020409,90 H 8.979591 C 9.544901,90 10,90.455109 10,91.020409 v 7.959187 c 0,0.5653 -0.455099,1.020414 -1.020409,1.020414 H 1.020409 C 0.455099,100.00001 0,99.544896 0,98.979596 V 91.020409 C 0,90.455109 0.455099,90 1.020409,90 Z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\verticalHighlight.png"
        inkscape:export-xdpi="508"
        inkscape:export-ydpi="508" />
     <path
