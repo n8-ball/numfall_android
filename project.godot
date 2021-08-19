@@ -16,6 +16,10 @@ _global_script_class_icons={
 
 config/name="Numfall (Android)"
 run/main_scene="res://board/scenes/board.tscn"
+boot_splash/image="res://menu/sprites/blackPixel.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 config/quit_on_go_back=false
 

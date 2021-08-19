@@ -561,6 +561,7 @@ __meta__ = {
 }
 
 [node name="tutorialConfirm" type="Sprite" parent="tutorialButton"]
+visible = false
 position = Vector2( -205, -500 )
 scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 42 )

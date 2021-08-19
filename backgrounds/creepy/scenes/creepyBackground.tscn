@@ -1,0 +1,207 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://backgrounds/creepy/sprites/creepyGrid.png" type="Texture" id=1]
+[ext_resource path="res://backgrounds/creepy/sprites/creepyForest.png" type="Texture" id=2]
+[ext_resource path="res://backgrounds/default/scripts/defaultBackground.gd" type="Script" id=3]
+[ext_resource path="res://backgrounds/creepy/sprites/creepyNoise.png" type="Texture" id=4]
+[ext_resource path="res://backgrounds/creepy/sprites/whitePixel.png" type="Texture" id=5]
+
+[sub_resource type="VisualShaderNodeTexture" id=1]
+output_port_for_preview = 0
+texture = ExtResource( 2 )
+
+[sub_resource type="VisualShaderNodeScalarOp" id=2]
+default_input_values = [ 0, 50.0, 1, 0.0 ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarOp" id=14]
+default_input_values = [ 0, 0.02, 1, 0.0 ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=15]
+output_port_for_preview = 0
+function = 12
+
+[sub_resource type="VisualShaderNodeScalarOp" id=16]
+default_input_values = [ 0, 0.18, 1, 0.0 ]
+
+[sub_resource type="VisualShaderNodeScalarOp" id=17]
+output_port_for_preview = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarOp" id=19]
+default_input_values = [ 0, 0.0, 1, 0.5 ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarOp" id=20]
+output_port_for_preview = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarOp" id=21]
+output_port_for_preview = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeTexture" id=5]
+output_port_for_preview = 1
+texture = ExtResource( 4 )
+
+[sub_resource type="VisualShaderNodeVectorOp" id=6]
+output_port_for_preview = 0
+operator = 3
+
+[sub_resource type="VisualShaderNodeInput" id=7]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=8]
+function = 0
+
+[sub_resource type="VisualShaderNodeScalarOp" id=9]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=10]
+function = 19
+
+[sub_resource type="VisualShaderNodeScalarOp" id=11]
+default_input_values = [ 0, 1.2, 1, 0.0 ]
+
+[sub_resource type="VisualShader" id=12]
+code = "shader_type canvas_item;
+uniform sampler2D tex_frg_3;
+uniform sampler2D tex_frg_10;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Texture:3
+	vec4 tex_frg_3_read = texture(tex_frg_3, UV.xy);
+	vec3 n_out3p0 = tex_frg_3_read.rgb;
+	float n_out3p1 = tex_frg_3_read.a;
+
+// Texture:10
+	vec4 tex_frg_10_read = texture(tex_frg_10, UV.xy);
+	vec3 n_out10p0 = tex_frg_10_read.rgb;
+	float n_out10p1 = tex_frg_10_read.a;
+
+// Input:5
+	float n_out5p0 = TIME;
+
+// ScalarOp:19
+	float n_in19p1 = 0.50000;
+	float n_out19p0 = n_out5p0 * n_in19p1;
+
+// ScalarFunc:6
+	float n_out6p0 = sin(n_out19p0);
+
+// ScalarFunc:15
+	float n_out15p0 = abs(n_out6p0);
+
+// ScalarOp:16
+	float n_in16p0 = 0.18000;
+	float n_out16p0 = n_in16p0 + n_out15p0;
+
+// ScalarOp:14
+	float n_in14p0 = 0.02000;
+	float n_out14p0 = n_in14p0 * n_out16p0;
+
+// ScalarOp:7
+	float n_out7p0 = dot(n_out10p0, vec3(0.333333, 0.333333, 0.333333)) * n_out14p0;
+
+// ScalarOp:11
+	float n_in11p0 = 50.00000;
+	float n_out11p0 = n_in11p0 * n_out7p0;
+
+// ScalarFunc:8
+	float n_out8p0 = -(n_out11p0);
+
+// ScalarOp:9
+	float n_in9p0 = 1.20000;
+	float n_out9p0 = n_in9p0 + n_out8p0;
+
+// VectorOp:4
+	vec3 n_out4p0 = n_out3p0 / vec3(n_out9p0);
+
+// ScalarOp:17
+	float n_out17p0 = dot(n_out4p0, vec3(0.333333, 0.333333, 0.333333)) * n_out3p1;
+
+// ScalarOp:20
+	float n_out20p0 = n_out17p0 * n_out17p0;
+
+// ScalarOp:21
+	float n_out21p0 = n_out20p0 * n_out20p0;
+
+// Output:0
+	COLOR.rgb = n_out4p0;
+	COLOR.a = n_out21p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( 338.974, 387.333 )
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2( 1120, 60 )
+nodes/fragment/3/node = SubResource( 5 )
+nodes/fragment/3/position = Vector2( 100, 40 )
+nodes/fragment/4/node = SubResource( 6 )
+nodes/fragment/4/position = Vector2( 640, 100 )
+nodes/fragment/5/node = SubResource( 7 )
+nodes/fragment/5/position = Vector2( -560, 560 )
+nodes/fragment/6/node = SubResource( 8 )
+nodes/fragment/6/position = Vector2( -280, 500 )
+nodes/fragment/7/node = SubResource( 9 )
+nodes/fragment/7/position = Vector2( 40, 320 )
+nodes/fragment/8/node = SubResource( 10 )
+nodes/fragment/8/position = Vector2( 320, 400 )
+nodes/fragment/9/node = SubResource( 11 )
+nodes/fragment/9/position = Vector2( 400, 260 )
+nodes/fragment/10/node = SubResource( 1 )
+nodes/fragment/10/position = Vector2( -220, 220 )
+nodes/fragment/11/node = SubResource( 2 )
+nodes/fragment/11/position = Vector2( 180, 340 )
+nodes/fragment/14/node = SubResource( 14 )
+nodes/fragment/14/position = Vector2( 200, 500 )
+nodes/fragment/15/node = SubResource( 15 )
+nodes/fragment/15/position = Vector2( -120, 500 )
+nodes/fragment/16/node = SubResource( 16 )
+nodes/fragment/16/position = Vector2( 40, 500 )
+nodes/fragment/17/node = SubResource( 17 )
+nodes/fragment/17/position = Vector2( 780, 240 )
+nodes/fragment/19/node = SubResource( 19 )
+nodes/fragment/19/position = Vector2( -420, 520 )
+nodes/fragment/20/node = SubResource( 20 )
+nodes/fragment/20/position = Vector2( 920, 200 )
+nodes/fragment/21/node = SubResource( 21 )
+nodes/fragment/21/position = Vector2( 940, 140 )
+nodes/fragment/connections = PoolIntArray( 8, 0, 9, 1, 9, 0, 4, 1, 7, 0, 11, 1, 11, 0, 8, 0, 10, 0, 7, 0, 6, 0, 15, 0, 15, 0, 16, 1, 4, 0, 17, 0, 3, 1, 17, 1, 4, 0, 0, 0, 5, 0, 19, 0, 16, 0, 14, 1, 19, 0, 6, 0, 14, 0, 7, 1, 3, 0, 4, 0, 17, 0, 20, 0, 17, 0, 20, 1, 20, 0, 21, 0, 20, 0, 21, 1, 21, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = SubResource( 12 )
+
+[node name="background" type="Node2D"]
+pause_mode = 2
+z_index = -3
+z_as_relative = false
+script = ExtResource( 3 )
+
+[node name="forest" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="grain" type="Sprite" parent="."]
+material = SubResource( 13 )
+scale = Vector2( 1440, 2560 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="grid" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
