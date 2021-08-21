@@ -560,6 +560,7 @@ script = ExtResource( 4 )
 [node name="scalar" type="Node2D" parent="."]
 
 [node name="block" type="Sprite" parent="scalar"]
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -100 )
 hframes = 26

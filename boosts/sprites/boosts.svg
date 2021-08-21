@@ -27,7 +27,7 @@
      inkscape:cx="28.620479"
      inkscape:cy="194.23765"
      inkscape:window-width="1366"
-     inkscape:window-height="705"
+     inkscape:window-height="745"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -180,6 +180,13 @@
        style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
        d="m 51.020409,0 h 7.959182 C 59.544901,0 60,0.45510903 60,1.0204088 v 7.9591893 c 0,0.5652998 -0.455099,1.0204089 -1.020409,1.0204089 H 51.020409 C 50.455099,10.000007 50,9.5448979 50,8.9795981 V 1.0204088 C 50,0.45510903 50.455099,0 51.020409,0 Z"
        inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\horizontalHighlight.png"
+       inkscape:export-xdpi="508"
+       inkscape:export-ydpi="508" />
+    <path
+       id="rect1709-59-8-4-2-8-27-4-0-4-3-3-1-6-0-3-7"
+       style="display:inline;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.196232;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.5"
+       d="m 26.108483,21.857136 h 7.959182 c 0.56531,0 1.020409,0.455109 1.020409,1.020409 v 7.959189 c 0,0.5653 -0.455099,1.020409 -1.020409,1.020409 h -7.959182 c -0.56531,0 -1.020409,-0.455109 -1.020409,-1.020409 v -7.959189 c 0,-0.5653 0.455099,-1.020409 1.020409,-1.020409 z"
+       inkscape:export-filename="C:\Users\N8\Documents\numfall_android\boosts\sprites\singleHighlight.png"
        inkscape:export-xdpi="508"
        inkscape:export-ydpi="508" />
     <ellipse

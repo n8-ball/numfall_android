@@ -1,24 +1,41 @@
 extends Node2D
 
+onready var singleHighlight : Sprite = $"singleHighlight"
+onready var sprite0 : Sprite = $"sprite0"
+onready var sprite1 : Sprite = $"sprite1"
+onready var animator : AnimationPlayer = $"animator"
 onready var confirm : AudioStreamPlayer = $"confirm"
 onready var deny : AudioStreamPlayer = $"deny"
-onready var sprite : Sprite = $"sprite"
+
 
 var board
 var button
 
+var state = 0
+var firstCoord = null
 var firstPiece = null
-var secondPiece = null
 
-var firstPiecePos = null
-var secondPiecePos = null
+func swapPieces(coordSelect):
+	if is_instance_valid(firstPiece):
+		firstPiece.setSelect(firstPiece.UNSELECTED)
+	
+	var secondPiece = board.board[coordSelect.y][coordSelect.x]
+	if is_instance_valid(secondPiece):
+		secondPiece.setState(secondPiece.INCREMENT_STATE)
+		secondPiece.position = board.getPos(firstCoord.x, firstCoord.y)
+	firstPiece.setState(firstPiece.INCREMENT_STATE)
+	firstPiece.position = board.getPos(coordSelect.x, coordSelect.y)
+	
+	board.board[coordSelect.y][coordSelect.x] = firstPiece
+	board.board[firstCoord.y][firstCoord.x] = secondPiece
 
-var scheduleDelete = false
+func setReturnAnimation():
+	var returnAnimation = animator.get_animation("returnToButton")
+	returnAnimation.track_set_key_value(0, 0, self.position)
+	returnAnimation.track_set_key_value(0, 1, button.posNode.global_position)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	confirm.connect("finished", self, "_delete")
-	deny.connect("finished", self, "_delete")
+func alertButton():
+	button.displayUsage()
 
 func setBoard(newBoard):
 	board = newBoard
@@ -33,62 +50,48 @@ func getCoord(pos):
 	return newCoord
 
 func _input(event):
-	#First Piece
 	if event is InputEventMouseButton &&\
 	event.is_action_released("ui_select"):
-		print("first")
 		var coordSelect = getCoord(event.position)
-		if coordSelect.x < board.brdWd && coordSelect.x >= 0 \
+		
+		if state == 0 && coordSelect.x < board.brdWd && coordSelect.x >= 0 \
 		&& coordSelect.y < board.brdHt && coordSelect.y >= 0 \
-		&& is_instance_valid(board.board[coordSelect.y][coordSelect.x])\
-		&& not scheduleDelete:
-			print("firstConfirm")
-			confirm.play()
-			firstPiecePos = coordSelect
+		&& is_instance_valid(board.board[coordSelect.y][coordSelect.x]):
+			firstCoord = coordSelect
 			firstPiece = board.board[coordSelect.y][coordSelect.x]
 			firstPiece.setSelect(firstPiece.SOLO_SELECTED)
-		elif not scheduleDelete:
-			print("firstDelete")
-			deny.play()
-			button.displayUsage()
-			scheduleDelete = true
-		sprite.visible = false
-	
-	#Second Piece
-	if event is InputEventMouseButton &&\
-	event.is_action_pressed("ui_select"):
-		print("second")
-		var coordSelect = getCoord(event.position)
-		if coordSelect.x < board.brdWd && coordSelect.x >= 0 \
-		&& coordSelect.y < board.brdHt && coordSelect.y >= 0 \
-		&& not scheduleDelete && is_instance_valid(firstPiece)\
-		&& not ((firstPiecePos.x - coordSelect.x == 1 || firstPiecePos.x - coordSelect.x == -1 || firstPiecePos.x - coordSelect.x == 0)\
-		&& firstPiecePos.y == coordSelect.y):
-			print("secondConfirm")
-			confirm.play()
-			if is_instance_valid(board.board[coordSelect.y][coordSelect.x]):
-				secondPiece = board.board[coordSelect.y][coordSelect.x]
-			secondPiecePos = coordSelect
-			firstPiece.setState(firstPiece.INCREMENT_STATE)
-			firstPiece.setPos(board.getPos(secondPiecePos.x, secondPiecePos.y))
-			board.board[secondPiecePos.y][secondPiecePos.x] = firstPiece
-			if is_instance_valid(secondPiece):
-				secondPiece.setState(secondPiece.INCREMENT_STATE)
-				secondPiece.setPos(board.getPos(firstPiecePos.x, firstPiecePos.y))
-			board.board[firstPiecePos.y][firstPiecePos.x] = secondPiece
-			firstPiece.setSelect(firstPiece.UNSELECTED)
-		elif is_instance_valid(firstPiece) && not scheduleDelete:
-			print("secondDeny")
-			deny.play()
-			button.displayUsage()
+			state = 1
+			sprite0.visible = false
+			sprite1.visible = true
+		elif state == 1 && coordSelect.x < board.brdWd && coordSelect.x >= 0 \
+		&& coordSelect.y < board.brdHt && coordSelect.y >= 0:
+			swapPieces(coordSelect)
+			state = 2
+			self.queue_free()
+		elif state != 2:
+			state == 2
 			if is_instance_valid(firstPiece):
 				firstPiece.setSelect(firstPiece.UNSELECTED)
-		sprite.visible = false
-		scheduleDelete = true
+			setReturnAnimation()
+			animator.play("returnToButton")
+			singleHighlight.visible = false
 	
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and state != 2:
+		var coordSelect = getCoord(event.position)
 		self.position = event.position
-
-func _delete():
-	if scheduleDelete:
-		self.queue_free()
+		
+		if state == 0 && coordSelect.x < board.brdWd && coordSelect.x >= 0 \
+		&& coordSelect.y < board.brdHt && coordSelect.y >= 0 \
+		&& is_instance_valid(board.board[coordSelect.y][coordSelect.x]):
+			singleHighlight.visible = true
+			singleHighlight.global_position =\
+			Vector2(board.brdX + (coordSelect.x * board.pieceSize), board.brdY + (coordSelect.y * board.pieceSize))
+		
+		elif state == 1 && coordSelect.x < board.brdWd && coordSelect.x >= 0 \
+		&& coordSelect.y < board.brdHt && coordSelect.y >= 0:
+			singleHighlight.visible = true
+			singleHighlight.global_position =\
+			Vector2(board.brdX + (coordSelect.x * board.pieceSize), board.brdY + (coordSelect.y * board.pieceSize))
+		
+		else:
+			singleHighlight.visible = false

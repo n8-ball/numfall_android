@@ -1,5 +1,8 @@
 extends TextureButton
 
+onready var posNode : Node2D = $"posNode"
+onready var animator : AnimationPlayer = $"animator"
+
 var boostScene = load("res://boosts/scenes/freeSwapBoost.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -12,12 +15,12 @@ func _ready():
 #	pass
 
 func displayUsage():
-	pass
+	animator.play("displayUsage")
 
 func _pressed():
 	var board = self.get_parent().board
-	var rowBoost = boostScene.instance()
+	var freeSwapBoost = boostScene.instance()
 	
-	rowBoost.setBoard(board)
-	rowBoost.setButton(self)
-	board.add_child(rowBoost)
+	freeSwapBoost.setBoard(board)
+	freeSwapBoost.setButton(self)
+	board.add_child(freeSwapBoost)
