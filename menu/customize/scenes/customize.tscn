@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=2]
+[gd_scene load_steps=95 format=2]
 
 [ext_resource path="res://menu/customize/scripts/customizeItem.gd" type="Script" id=1]
 [ext_resource path="res://menu/customize/scripts/buttonList.gd" type="Script" id=2]
@@ -64,6 +64,8 @@
 [ext_resource path="res://music/LCDTheme.ogg" type="AudioStream" id=62]
 [ext_resource path="res://music/tuxedoTheme.ogg" type="AudioStream" id=63]
 [ext_resource path="res://music/neonTheme.ogg" type="AudioStream" id=64]
+[ext_resource path="res://music/creepyTheme.mp3" type="AudioStream" id=65]
+[ext_resource path="res://pieceSets/creepy/sprites/creepyPreview.png" type="Texture" id=66]
 
 [sub_resource type="DynamicFont" id=1]
 size = 70
@@ -377,7 +379,74 @@ var unlocked = false
 var newResourceName = \"res://pieceSets/lcd/scenes/lcd.tscn\"
 var achievementName = \"lcdTile\"
 var displayName = \"LCD\"
-var achievementText = \"Reach a score of 18463\"
+var achievementText = \"Get a score of 18463 or higher\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 230
+var textColor = Color.white #Only for backgrounds, setItem needs mod for this
+
+#Icon must also be changed
+
+func _ready():
+	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		icon.modulate = Color.white
+		itemName.modulate = Color(0.43, 0.42, 0.67)
+	else:
+		icon.modulate = Color.darkgray
+		itemName.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+	confirm.play(0)
+
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
+func unselectButton():
+	buttonControl.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+"
+
+[sub_resource type="GDScript" id=26]
+script/source = "extends Container
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+onready var confirm: AudioStreamPlayer = $\"confirm\"
+onready var deny: AudioStreamPlayer = $\"deny\"
+
+#Internal
+onready var icon : Sprite = $\"icon\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+onready var itemName : RichTextLabel = $\"itemName\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://pieceSets/creepy/scenes/creepy.tscn\"
+var achievementName = \"creepyTile\"
+var displayName = \"Creepy\"
+var achievementText = \"creepy achieve\"
 #230 for 1 line, 180 for 2, 100 for 3
 var headSpace = 230
 var textColor = Color.white #Only for backgrounds, setItem needs mod for this
@@ -755,10 +824,87 @@ onready var itemName : RichTextLabel = $\"itemName\"
 var unlocked = false
 
 #Unique
-var newResourceName = \"res://music/LCDTheme.ogg\"
+var newResourceName = \"res://music/lcdTheme.ogg\"
 var achievementName = \"lcdMusic\"
 var displayName = \"LCD\"
-var achievementText = \"Reach a score of 15000\"
+var achievementText = \"Get a score of 15000 or higher\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 230
+
+#Icon must also be changed
+
+func _ready():
+	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		iconButton.modulate = Color.white
+		itemName.modulate = Color(0.43, 0.42, 0.67)
+	else:
+		iconButton.modulate = Color.darkgray
+		itemName.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	confirm.play()
+	subMenuRoot.changeResource(newResourceName, achievementName)
+
+func _on_iconButton_pressed():
+	if iconButton.pressed:
+		subMenuList.unselectPreviews(self)
+		subMenuRoot.muteMusic()
+	else:
+		subMenuRoot.restartMusic()
+
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
+func unselectButton():
+	buttonControl.unselect()
+
+func unselectPreview():
+	iconButton.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+"
+
+[sub_resource type="GDScript" id=27]
+script/source = "extends Container
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+onready var confirm: AudioStreamPlayer = $\"confirm\"
+onready var deny: AudioStreamPlayer = $\"deny\"
+
+#Internal
+onready var iconButton : TextureButton = $\"iconButton\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+onready var itemName : RichTextLabel = $\"itemName\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://music/creepyTheme.ogg\"
+var achievementName = \"creepyMusic\"
+var displayName = \"Creepy\"
+var achievementText = \"creepy achieve\"
 #230 for 1 line, 180 for 2, 100 for 3
 var headSpace = 230
 
@@ -1176,10 +1322,77 @@ var unlocked = false
 var newResourceName = \"res://backgrounds/lcd/scenes/lcdBackground.tscn\"
 var achievementName = \"lcdBg\"
 var displayName = \"LCD\"
-var achievementText = \"Reach a score of 10000\"
+var achievementText = \"Get a score of 10000 or higher\"
 #230 for 1 line, 180 for 2, 100 for 3
 var headSpace = 230
-var textColor = Color(0.05, 0.05, 0.05) #Only for backgrounds, setItem needs mod for this
+var textColor = Color(\"B91A0D\") #Only for backgrounds, setItem needs mod for this
+
+#Icon must also be changed
+
+func _ready():
+	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
+	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		icon.modulate = Color.white
+		itemName.modulate = Color(0.43, 0.42, 0.67)
+	else:
+		icon.modulate = Color.darkgray
+		itemName.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName, textColor)
+	confirm.play(0)
+
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
+func unselectButton():
+	buttonControl.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName, textColor)
+"
+
+[sub_resource type="GDScript" id=28]
+script/source = "extends Container
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+onready var confirm: AudioStreamPlayer = $\"confirm\"
+onready var deny: AudioStreamPlayer = $\"deny\"
+
+#Internal
+onready var icon : Sprite = $\"icon\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+onready var itemName : RichTextLabel = $\"itemName\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://backgrounds/creepy/scenes/creepyBackground.tscn\"
+var achievementName = \"creepyBg\"
+var displayName = \"Creepy\"
+var achievementText = \"creepy achieve\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 230
+var textColor = Color(\"B91A0D\") #Only for backgrounds, setItem needs mod for this
 
 #Icon must also be changed
 
@@ -1683,6 +1896,65 @@ bus = "Effects"
 stream = ExtResource( 17 )
 bus = "Effects"
 
+[node name="creepy" type="Container" parent="pieceButton/pieceRoot/pieceList"]
+margin_top = 1340.0
+margin_bottom = 1340.0
+script = SubResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="itemName" type="RichTextLabel" parent="pieceButton/pieceRoot/pieceList/creepy"]
+modulate = Color( 0.443137, 0.443137, 0.776471, 1 )
+margin_left = -100.0
+margin_right = 454.0
+margin_bottom = 100.0
+rect_clip_content = false
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/normal_font = SubResource( 8 )
+bbcode_enabled = true
+bbcode_text = "[center] Default [/center]"
+text = " Default "
+scroll_active = false
+
+[node name="icon" type="Sprite" parent="pieceButton/pieceRoot/pieceList/creepy"]
+position = Vector2( 27, 120 )
+texture = ExtResource( 66 )
+centered = false
+
+[node name="buttonControl" type="Node2D" parent="pieceButton/pieceRoot/pieceList/creepy"]
+position = Vector2( 0, 450 )
+script = ExtResource( 10 )
+
+[node name="selectButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/creepy/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 14 )
+texture_disabled = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unlockButton" type="TextureButton" parent="pieceButton/pieceRoot/pieceList/creepy/buttonControl"]
+margin_right = 354.0
+margin_bottom = 159.0
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="confirm" type="AudioStreamPlayer" parent="pieceButton/pieceRoot/pieceList/creepy"]
+stream = ExtResource( 22 )
+bus = "Effects"
+
+[node name="deny" type="AudioStreamPlayer" parent="pieceButton/pieceRoot/pieceList/creepy"]
+stream = ExtResource( 17 )
+bus = "Effects"
+
 [node name="musicButton" type="TextureButton" parent="."]
 margin_left = 480.0
 margin_top = 330.0
@@ -2127,6 +2399,74 @@ bus = "Effects"
 stream = ExtResource( 17 )
 bus = "Effects"
 
+[node name="creepy" type="Container" parent="musicButton/musicRoot/musicList"]
+margin_top = 1340.0
+margin_bottom = 1340.0
+script = SubResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="itemName" type="RichTextLabel" parent="musicButton/musicRoot/musicList/creepy"]
+modulate = Color( 0.443137, 0.443137, 0.776471, 1 )
+margin_left = -100.0
+margin_right = 454.0
+margin_bottom = 100.0
+rect_clip_content = false
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/normal_font = SubResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[center] Default [/center]"
+text = " Default "
+scroll_active = false
+
+[node name="iconButton" type="TextureButton" parent="musicButton/musicRoot/musicList/creepy"]
+margin_left = 27.0
+margin_top = 120.0
+margin_right = 328.0
+margin_bottom = 421.0
+toggle_mode = true
+texture_normal = ExtResource( 49 )
+texture_pressed = ExtResource( 55 )
+script = ExtResource( 19 )
+
+[node name="previewMusic" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/creepy/iconButton"]
+stream = ExtResource( 65 )
+bus = "PreviewMusic"
+
+[node name="buttonControl" type="Node2D" parent="musicButton/musicRoot/musicList/creepy"]
+position = Vector2( 0, 450 )
+script = ExtResource( 10 )
+
+[node name="selectButton" type="TextureButton" parent="musicButton/musicRoot/musicList/creepy/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 14 )
+texture_disabled = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unlockButton" type="TextureButton" parent="musicButton/musicRoot/musicList/creepy/buttonControl"]
+margin_top = -2.0
+margin_right = 354.0
+margin_bottom = 157.0
+texture_normal = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="confirm" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/creepy"]
+stream = ExtResource( 22 )
+bus = "Effects"
+
+[node name="deny" type="AudioStreamPlayer" parent="musicButton/musicRoot/musicList/creepy"]
+stream = ExtResource( 17 )
+bus = "Effects"
+
 [node name="backgroundButton" type="TextureButton" parent="."]
 margin_left = 960.0
 margin_top = 330.0
@@ -2514,6 +2854,65 @@ stream = ExtResource( 22 )
 bus = "Effects"
 
 [node name="deny" type="AudioStreamPlayer" parent="backgroundButton/backgroundRoot/backgroundList/lcd"]
+stream = ExtResource( 17 )
+bus = "Effects"
+
+[node name="creepy" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
+margin_top = 1340.0
+margin_bottom = 1340.0
+script = SubResource( 28 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="itemName" type="RichTextLabel" parent="backgroundButton/backgroundRoot/backgroundList/creepy"]
+modulate = Color( 0.443137, 0.443137, 0.776471, 1 )
+margin_left = -100.0
+margin_right = 454.0
+margin_bottom = 100.0
+rect_clip_content = false
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/normal_font = SubResource( 17 )
+bbcode_enabled = true
+bbcode_text = "[center] Default [/center]"
+text = " Default "
+scroll_active = false
+
+[node name="icon" type="Sprite" parent="backgroundButton/backgroundRoot/backgroundList/creepy"]
+position = Vector2( 27, 120 )
+texture = ExtResource( 59 )
+centered = false
+
+[node name="buttonControl" type="Node2D" parent="backgroundButton/backgroundRoot/backgroundList/creepy"]
+position = Vector2( 0, 450 )
+script = ExtResource( 10 )
+
+[node name="selectButton" type="TextureButton" parent="backgroundButton/backgroundRoot/backgroundList/creepy/buttonControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 14 )
+texture_disabled = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="unlockButton" type="TextureButton" parent="backgroundButton/backgroundRoot/backgroundList/creepy/buttonControl"]
+margin_right = 354.0
+margin_bottom = 159.0
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="confirm" type="AudioStreamPlayer" parent="backgroundButton/backgroundRoot/backgroundList/creepy"]
+stream = ExtResource( 22 )
+bus = "Effects"
+
+[node name="deny" type="AudioStreamPlayer" parent="backgroundButton/backgroundRoot/backgroundList/creepy"]
 stream = ExtResource( 17 )
 bus = "Effects"
 

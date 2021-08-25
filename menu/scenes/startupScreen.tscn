@@ -172,7 +172,6 @@ __meta__ = {
 }
 
 [node name="background" type="Polygon2D" parent="."]
-visible = false
 position = Vector2( 60.4756, -40.3174 )
 scale = Vector2( 1, 0.989061 )
 color = Color( 0, 0, 0, 1 )
@@ -180,10 +179,8 @@ polygon = PoolVector2Array( -1000, -1000, 2440, -1000, 2440, 3560, -1000, 3560 )
 
 [node name="numFallLogo" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 720, -100 )
-scale = Vector2( 0.9, 1.1 )
+position = Vector2( 720, 650 )
 texture = ExtResource( 2 )
-offset = Vector2( 0, -98 )
 
 [node name="animator" type="AnimationPlayer" parent="."]
 autoplay = "fadeIn"

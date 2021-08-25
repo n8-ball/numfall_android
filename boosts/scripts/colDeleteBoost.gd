@@ -24,7 +24,7 @@ func deletePiece():
 			break;
 		coordMod += 1
 	if coordMod >= board.brdHt:
-		self.queue_free()
+		removeSelf()
 
 func setReturnAnimation():
 	var returnAnimation = animator.get_animation("returnToButton")
@@ -36,9 +36,14 @@ func alertButton():
 
 func setBoard(newBoard):
 	board = newBoard
+	board.boostActive = true
 
 func setButton(newButton):
 	button = newButton
+
+func removeSelf():
+	board.boostActive = false
+	self.queue_free()
 
 func getCoord(pos):
 	var brdX = int(floor((pos.x - board.brdX)/board.pieceSize))

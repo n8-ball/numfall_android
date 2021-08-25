@@ -39,9 +39,14 @@ func alertButton():
 
 func setBoard(newBoard):
 	board = newBoard
+	board.boostActive = true
 
 func setButton(newButton):
 	button = newButton
+
+func removeSelf():
+	board.boostActive = false
+	self.queue_free()
 
 func getCoord(pos):
 	var brdX = int(floor((pos.x - board.brdX)/board.pieceSize))
@@ -64,12 +69,13 @@ func _input(event):
 			sprite0.visible = false
 			sprite1.visible = true
 		elif state == 1 && coordSelect.x < board.brdWd && coordSelect.x >= 0 \
-		&& coordSelect.y < board.brdHt && coordSelect.y >= 0:
+		&& coordSelect.y < board.brdHt && coordSelect.y >= 0\
+		&& (coordSelect.y != firstCoord.y || coordSelect.x != firstCoord.x):
 			swapPieces(coordSelect)
 			state = 2
-			self.queue_free()
+			removeSelf()
 		elif state != 2:
-			state == 2
+			state = 2
 			if is_instance_valid(firstPiece):
 				firstPiece.setSelect(firstPiece.UNSELECTED)
 			setReturnAnimation()
@@ -95,3 +101,5 @@ func _input(event):
 		
 		else:
 			singleHighlight.visible = false
+	
+	

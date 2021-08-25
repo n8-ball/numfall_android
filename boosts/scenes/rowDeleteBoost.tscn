@@ -94,7 +94,7 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "queue_free"
+"method": "removeSelf"
 }, {
 "args": [  ],
 "method": "alertButton"

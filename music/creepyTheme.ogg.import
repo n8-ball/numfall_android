@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/creepyTheme.ogg-f20e501042d7d8bb409354bad20cad63.oggstr"
+
+[deps]
+
+source_file="res://music/creepyTheme.ogg"
+dest_files=[ "res://.import/creepyTheme.ogg-f20e501042d7d8bb409354bad20cad63.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

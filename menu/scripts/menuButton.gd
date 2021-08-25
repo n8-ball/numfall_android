@@ -8,8 +8,11 @@ func _process(_delta):
 	self.visible = !menu.getOpen() && !menu.board.getTutorialStarted()
 
 func _pressed():
-	confirm.playSound()
-	menu.setOpen(true)
-	menu.board.cancelSave()
-	menu.board.saveLoad.saveGame()
-	menu.board.clearBoard()
+	if !menu.board.boostActive && menu.board.swapReady:
+		confirm.playSound()
+		menu.setOpen(true)
+		menu.board.cancelSave()
+		menu.board.saveLoad.saveGame()
+		menu.board.clearBoard()
+	else:
+		deny.playSound()

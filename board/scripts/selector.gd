@@ -20,7 +20,7 @@ func getCoord(pos):
 func _input(event):
 	#Select First
 	if event is InputEventMouseButton && event.is_action_pressed("ui_select")\
-	&& !justClicked && !board.getGameOver(): #&& board.swapReady:
+	&& !justClicked && !board.getGameOver() && !board.boostActive:
 		justClicked = true
 		coordSelect = getCoord(event.position)
 		if coordSelect.x < board.brdWd && coordSelect.x >= 0 \

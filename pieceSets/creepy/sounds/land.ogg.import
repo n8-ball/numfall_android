@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/land.ogg-2cef67f1b0c44d6a6b5f9136d324e683.oggstr"
+
+[deps]
+
+source_file="res://pieceSets/creepy/sounds/land.ogg"
+dest_files=[ "res://.import/land.ogg-2cef67f1b0c44d6a6b5f9136d324e683.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

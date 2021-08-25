@@ -39,6 +39,8 @@ var gameOver = false
 var tutorialStarted = false
 signal swapMade
 
+var boostActive = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	createBoard()
@@ -194,6 +196,8 @@ func checkReady(chkReady, chkPiece):
 	if chkPiece.getState() != chkPiece.IDLE_STATE\
 	&& chkPiece.getState() != chkPiece.LAND_STATE:
 		swapReady = false
+	if boostActive:
+		swapReady =  false
 	if chkReady == false:
 		return false
 	else:
