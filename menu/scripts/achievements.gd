@@ -10,6 +10,7 @@ var achieveDict = {
 	"tuxedoTile" : true,
 	"lcdTile" : true,
 	"creepyTile": true,
+	"blossomTile": true,
 	
 	"pixelMusic" : true,
 	"neonMusic" : true,
@@ -17,6 +18,7 @@ var achieveDict = {
 	"tuxedoMusic" : true,
 	"lcdMusic" : true,
 	"creepyMusic" : true,
+	"blossomMusic" : true,
 	
 	"pixelBg" : true,
 	"neonBg" : true,
@@ -24,6 +26,7 @@ var achieveDict = {
 	"tuxedoBg" : true,
 	"lcdBg" : true,
 	"creepyBg" : true,
+	"blossomBg": true,
 }
 
 # Called when the node enters the scene tree for the first time.
