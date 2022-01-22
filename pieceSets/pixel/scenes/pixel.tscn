@@ -212,7 +212,7 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
+"update": 0,
 "values": [ true ]
 }
 
@@ -293,7 +293,7 @@ tracks/3/enabled = true
 tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
+"update": 0,
 "values": [ true ]
 }
 tracks/4/type = "value"
@@ -578,8 +578,6 @@ script = ExtResource( 4 )
 scale = Vector2( 6.25, 6.25 )
 
 [node name="block" type="Sprite" parent="scalar"]
-visible = false
-scale = Vector2( 1, 0.5 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -16 )
 hframes = 26
@@ -600,11 +598,10 @@ anims/switchRight = SubResource( 9 )
 script = ExtResource( 5 )
 
 [node name="tier" type="Sprite" parent="scalar/block"]
-position = Vector2( 0, 16 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -16 )
-vframes = 3
 hframes = 7
+vframes = 3
 frame = 6
 
 [node name="tierAnimation" type="AnimationPlayer" parent="scalar/block/tier"]

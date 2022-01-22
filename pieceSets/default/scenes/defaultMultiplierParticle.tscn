@@ -11,7 +11,6 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "flash"
-length = 0.9
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("text:custom_colors/default_color")
@@ -20,10 +19,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 0.427451, 0.415686, 0.666667, 1 ), Color( 1, 0.862745, 0.447059, 1 ), Color( 0.427451, 0.415686, 0.666667, 1 ), Color( 1, 0.862745, 0.447059, 1 ), Color( 0.427451, 0.415686, 0.666667, 1 ), Color( 1, 0.862745, 0.447059, 1 ), Color( 0.427451, 0.415686, 0.666667, 1 ), Color( 1, 0.862745, 0.447059, 1 ), Color( 0.427451, 0.415686, 0.666667, 1 ), Color( 1, 0.862745, 0.447059, 1 ) ]
+"values": [ Color( 1, 0.862745, 0.447059, 1 ), Color( 0.427451, 0.415686, 0.666667, 1 ), Color( 1, 0.862745, 0.447059, 1 ), Color( 0.427451, 0.415686, 0.666667, 1 ), Color( 1, 0.862745, 0.447059, 1 ), Color( 0.427451, 0.415686, 0.666667, 1 ), Color( 1, 0.862745, 0.447059, 1 ), Color( 0.427451, 0.415686, 0.666667, 1 ), Color( 1, 0.862745, 0.447059, 1 ), Color( 0.427451, 0.415686, 0.666667, 1 ), Color( 1, 0.862745, 0.447059, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("text:rect_position")
@@ -32,7 +31,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.9 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( -90, -100 ), Vector2( -90, -175 ) ]
@@ -44,7 +43,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.9 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -56,7 +55,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.7 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1.5, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -68,7 +67,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.75 ),
+"times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -83,9 +82,9 @@ script = ExtResource( 2 )
 
 [node name="text" type="RichTextLabel" parent="."]
 margin_left = -90.0
-margin_top = -75.0
+margin_top = -100.0
 margin_right = 90.0
-margin_bottom = 15.0
+margin_bottom = -10.0
 custom_fonts/normal_font = SubResource( 1 )
 custom_colors/default_color = Color( 0.427451, 0.415686, 0.666667, 1 )
 bbcode_enabled = true

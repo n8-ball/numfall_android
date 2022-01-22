@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://boosts/sprites/freeSwapNormal.png" type="Texture" id=1]
 [ext_resource path="res://boosts/sprites/freeSwapPressed.png" type="Texture" id=2]
@@ -14,13 +14,30 @@
 [ext_resource path="res://boosts/sprites/clearRowPressed.png" type="Texture" id=12]
 [ext_resource path="res://boosts/sprites/boostPlusNormal.png" type="Texture" id=13]
 [ext_resource path="res://boosts/sprites/boostPlusPressed.png" type="Texture" id=14]
+[ext_resource path="res://fonts/Poppins-SemiBold.ttf" type="DynamicFontData" id=15]
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends TextureButton
+
+onready var boostButtons : GridContainer = $\"../..\"
+
+func _pressed():
+	boostButtons.board.menu.find_node(\"menuButton\")._pressed()
+	boostButtons.board.menu.menuAnimator.queue(\"toBoosts\")
+"
+
+[sub_resource type="DynamicFont" id=4]
+size = 125
+outline_color = Color( 0.427451, 0.415686, 0.666667, 1 )
+use_filter = true
+font_data = ExtResource( 15 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "displayUsage"
 length = 4.0
 step = 0.0666667
 tracks/0/type = "value"
-tracks/0/path = NodePath("usageMessage:visible")
+tracks/0/path = NodePath("posNode/usageMessage:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -32,28 +49,28 @@ tracks/0/keys = {
 "values": [ true, false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("usageMessage:position")
+tracks/1/path = NodePath("posNode/usageMessage:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.067, 3.953, 4 ),
+"times": PoolRealArray( 0, 0.067, 3.93333, 4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 75, 0 ), Vector2( 75, -60 ), Vector2( 75, -60 ), Vector2( 75, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, -150 ), Vector2( 0, -150 ), Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("usageMessage:scale")
+tracks/2/path = NodePath("posNode/usageMessage:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.133333, 0.2, 3.8, 3.86667, 4 ),
+"times": PoolRealArray( 0, 0.134, 0.2, 3.8, 3.86667, 4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0.21, 0.17 ), Vector2( 0.2, 0.15 ), Vector2( 0.2, 0.15 ), Vector2( 0.21, 0.17 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0.45, 0.35 ), Vector2( 0.4, 0.3 ), Vector2( 0.4, 0.3 ), Vector2( 0.45, 0.35 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -61,7 +78,7 @@ resource_name = "displayUsage"
 length = 4.0
 step = 0.0666667
 tracks/0/type = "value"
-tracks/0/path = NodePath("usageMessage:visible")
+tracks/0/path = NodePath("posNode/usageMessage:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -73,19 +90,19 @@ tracks/0/keys = {
 "values": [ true, false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("usageMessage:position")
+tracks/1/path = NodePath("posNode/usageMessage:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.067, 3.953, 4 ),
+"times": PoolRealArray( 0, 0.0666667, 3.93333, 4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 75, 0 ), Vector2( 75, -60 ), Vector2( 75, -60 ), Vector2( 75, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, -150 ), Vector2( 0, -150 ), Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("usageMessage:scale")
+tracks/2/path = NodePath("posNode/usageMessage:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -94,15 +111,15 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.133333, 0.2, 3.8, 3.86667, 4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0.21, 0.17 ), Vector2( 0.2, 0.15 ), Vector2( 0.2, 0.15 ), Vector2( 0.21, 0.17 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 0.45, 0.35 ), Vector2( 0.4, 0.3 ), Vector2( 0.4, 0.3 ), Vector2( 0.45, 0.35 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=5]
 resource_name = "displayUsage"
 length = 4.0
 step = 0.0666667
 tracks/0/type = "value"
-tracks/0/path = NodePath("usageMessage:visible")
+tracks/0/path = NodePath("../freeSwapButton/posNode/usageMessage:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -114,19 +131,19 @@ tracks/0/keys = {
 "values": [ true, false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("usageMessage:position")
+tracks/1/path = NodePath("../freeSwapButton/posNode/usageMessage:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.067, 3.953, 4 ),
+"times": PoolRealArray( 0, 0.0666667, 3.93333, 4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 75, 0 ), Vector2( 75, -60 ), Vector2( 75, -60 ), Vector2( 75, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, -150 ), Vector2( 0, -150 ), Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("usageMessage:scale")
+tracks/2/path = NodePath("../freeSwapButton/posNode/usageMessage:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -135,7 +152,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.133333, 0.2, 3.8, 3.86667, 4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0.21, 0.17 ), Vector2( 0.2, 0.15 ), Vector2( 0.2, 0.15 ), Vector2( 0.21, 0.17 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 0.45, 0.35 ), Vector2( 0.4, 0.3 ), Vector2( 0.4, 0.3 ), Vector2( 0.45, 0.35 ), Vector2( 1e-05, 1e-05 ) ]
 }
 
 [node name="boostButtons" type="GridContainer"]
@@ -154,13 +171,15 @@ z_index = -1
 texture = ExtResource( 11 )
 centered = false
 
-[node name="boostMenu" type="TextureButton" parent="boostContainer"]
+[node name="toBoostMenu" type="TextureButton" parent="boostContainer"]
+pause_mode = 2
 margin_left = 470.0
 margin_top = 38.0
 margin_right = 541.0
 margin_bottom = 110.0
 texture_normal = ExtResource( 13 )
 texture_pressed = ExtResource( 14 )
+script = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -179,12 +198,28 @@ __meta__ = {
 [node name="posNode" type="Node2D" parent="rowDeleteButton"]
 position = Vector2( 55, 58 )
 
-[node name="usageMessage" type="Sprite" parent="rowDeleteButton"]
+[node name="usageMessage" type="Sprite" parent="rowDeleteButton/posNode"]
 visible = false
-position = Vector2( 75, -60 )
-scale = Vector2( 1e-05, 1e-05 )
+position = Vector2( 0, -150 )
+scale = Vector2( 0.4, 0.3 )
 z_index = 1
 texture = ExtResource( 7 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="rowDeleteButton/posNode/usageMessage"]
+margin_left = -247.0
+margin_top = -200.0
+margin_right = 244.0
+margin_bottom = 208.0
+custom_colors/default_color = Color( 0.427451, 0.415686, 0.666667, 1 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center]Row
+Clear[/center]"
+text = "Row
+Clear"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="animator" type="AnimationPlayer" parent="rowDeleteButton"]
 anims/displayUsage = SubResource( 1 )
@@ -204,11 +239,28 @@ __meta__ = {
 [node name="posNode" type="Node2D" parent="colDeleteButton"]
 position = Vector2( 55, 58 )
 
-[node name="usageMessage" type="Sprite" parent="colDeleteButton"]
-position = Vector2( 75, 0 )
-scale = Vector2( 1e-05, 1e-05 )
+[node name="usageMessage" type="Sprite" parent="colDeleteButton/posNode"]
+visible = false
+position = Vector2( 0, -150 )
+scale = Vector2( 0.4, 0.3 )
 z_index = 1
 texture = ExtResource( 7 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="colDeleteButton/posNode/usageMessage"]
+margin_left = -265.0
+margin_top = -200.0
+margin_right = 267.0
+margin_bottom = 208.0
+custom_colors/default_color = Color( 0.427451, 0.415686, 0.666667, 1 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center]Column
+Clear[/center]"
+text = "Column
+Clear"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="animator" type="AnimationPlayer" parent="colDeleteButton"]
 anims/displayUsage = SubResource( 2 )
@@ -228,12 +280,28 @@ __meta__ = {
 [node name="posNode" type="Node2D" parent="freeSwapButton"]
 position = Vector2( 55, 58 )
 
-[node name="usageMessage" type="Sprite" parent="freeSwapButton"]
+[node name="usageMessage" type="Sprite" parent="freeSwapButton/posNode"]
 visible = false
-position = Vector2( 75, 0 )
 scale = Vector2( 1e-05, 1e-05 )
 z_index = 1
 texture = ExtResource( 7 )
 
+[node name="RichTextLabel" type="RichTextLabel" parent="freeSwapButton/posNode/usageMessage"]
+margin_left = -265.0
+margin_top = -200.0
+margin_right = 267.0
+margin_bottom = 208.0
+custom_colors/default_color = Color( 0.427451, 0.415686, 0.666667, 1 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center]Free
+Swap[/center]"
+text = "Free
+Swap"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="animator" type="AnimationPlayer" parent="freeSwapButton"]
-anims/displayUsage = SubResource( 3 )
+root_node = NodePath("../../colDeleteButton")
+anims/displayUsage = SubResource( 5 )

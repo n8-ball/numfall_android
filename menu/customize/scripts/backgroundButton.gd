@@ -1,5 +1,6 @@
 extends TextureButton
 
+onready var customizeMenu : CanvasLayer = $".."
 onready var musicButton : TextureButton = $"../musicButton"
 onready var pieceButton : TextureButton = $"../pieceButton"
 
@@ -22,7 +23,8 @@ func setPressed(newPressed):
 		self.disabled = false
 
 func _pressed():
-	musicButton.setPressed(false)
-	pieceButton.setPressed(false)
-	self.get_parent().confirm.play(0)
-	self.setPressed(true)
+	if not customizeMenu.unlockMenuRoot.visible:
+		musicButton.setPressed(false)
+		pieceButton.setPressed(false)
+		self.get_parent().confirm.play(0)
+		self.setPressed(true)

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/blossomTheme.ogg-fdbf02081a84f7071606b00bbd661007.oggstr"
+
+[deps]
+
+source_file="res://music/blossomTheme.ogg"
+dest_files=[ "res://.import/blossomTheme.ogg-fdbf02081a84f7071606b00bbd661007.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

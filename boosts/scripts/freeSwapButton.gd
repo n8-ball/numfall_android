@@ -23,4 +23,5 @@ func _pressed():
 	
 	freeSwapBoost.setBoard(board)
 	freeSwapBoost.setButton(self)
+	freeSwapBoost.position = posNode.global_position
 	board.add_child(freeSwapBoost)

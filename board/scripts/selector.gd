@@ -25,19 +25,11 @@ func _input(event):
 		coordSelect = getCoord(event.position)
 		if coordSelect.x < board.brdWd && coordSelect.x >= 0 \
 		&& coordSelect.y < board.brdHt && coordSelect.y >= 0:
-			if board.getTutorialStarted():
-				if coordSelect.x == 3 && coordSelect.y == 9:
-					select = board.board[coordSelect.y][coordSelect.x]
-					if nodeAvailable(select) && select.getState() == select.IDLE_STATE:
-						select.setSelect(select.SOLO_SELECTED)
-					else:
-						select = null
+			select = board.board[coordSelect.y][coordSelect.x]
+			if nodeAvailable(select) && select.getState() == select.IDLE_STATE:
+				select.setSelect(select.SOLO_SELECTED)
 			else:
-				select = board.board[coordSelect.y][coordSelect.x]
-				if nodeAvailable(select) && select.getState() == select.IDLE_STATE:
-					select.setSelect(select.SOLO_SELECTED)
-				else:
-					select = null
+				select = null
 	
 	elif event is InputEventMouseMotion && nodeAvailable(select)\
 	&& board.swapReady && !board.getGameOver():

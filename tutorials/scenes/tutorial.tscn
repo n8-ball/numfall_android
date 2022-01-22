@@ -1,338 +1,935 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://fonts/Poppins-MediumItalic.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://tutorials/scripts/tutorial.gd" type="Script" id=2]
-[ext_resource path="res://tutorials/sprites/tutorial1.png" type="Texture" id=3]
+[ext_resource path="res://tutorials/sprites/tutorialStraightArrow.png" type="Texture" id=3]
 [ext_resource path="res://tutorials/sprites/whitePixel.png" type="Texture" id=4]
-[ext_resource path="res://tutorials/sprites/tutorial3.png" type="Texture" id=5]
-[ext_resource path="res://tutorials/sprites/tutorial2.png" type="Texture" id=6]
+[ext_resource path="res://tutorials/sprites/tutorialCurvedArrow.png" type="Texture" id=5]
+[ext_resource path="res://tutorials/sprites/maskRow.png" type="Texture" id=6]
 [ext_resource path="res://tutorials/sprites/maskSquare.png" type="Texture" id=7]
 [ext_resource path="res://fonts/Poppins-SemiBold.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://tutorials/sprites/tutorialTextBox.png" type="Texture" id=9]
+[ext_resource path="res://tutorials/scripts/pulse.gd" type="Script" id=10]
+[ext_resource path="res://backgrounds/default/sprites/defaultBackground.png" type="Texture" id=11]
+[ext_resource path="res://tutorials/sprites/maskRange.png" type="Texture" id=12]
+[ext_resource path="res://tutorials/sprites/maskBoost.png" type="Texture" id=13]
 
 [sub_resource type="Animation" id=1]
-resource_name = "close"
-length = 0.166667
+resource_name = "boosts"
+length = 0.2
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:visible")
+tracks/0/path = NodePath("maskBoost:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.166667 ),
+"times": PoolRealArray( 0.0333333, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.490196 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:modulate")
+tracks/1/path = NodePath("maskBoost:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.166667 ),
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("boosts:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0.490196 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Vector2( 720, 1730 ), Vector2( 720, 1730 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("boosts:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.0333333, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("boosts:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
 }
 
 [sub_resource type="Animation" id=2]
-resource_name = "open"
-length = 0.166667
+resource_name = "combo"
+length = 0.2
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:visible")
+tracks/0/path = NodePath("maskSquare:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"times": PoolRealArray( 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.490196 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:modulate")
+tracks/1/path = NodePath("maskSquare:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.166667 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("combo:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.0333333, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.686275 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("combo:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
 }
 
-[sub_resource type="CanvasItemMaterial" id=11]
+[sub_resource type="Animation" id=3]
+resource_name = "drops"
+length = 0.2
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("maskRow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 220, 480 ), Vector2( 220, 480 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("maskRow:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.490196 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("maskRow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("drops:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 720, 975 ), Vector2( 720, 975 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("drops:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.0333333, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("drops:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
 
-[sub_resource type="CanvasItemMaterial" id=12]
-blend_mode = 2
+[sub_resource type="Animation" id=4]
+resource_name = "introduction"
+length = 0.2
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("introduction:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 720, 720 ), Vector2( 720, 720 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("introduction:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.0333333, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("introduction:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("maskFull:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.490196 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("maskFull:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="Animation" id=5]
+resource_name = "range"
+length = 0.2
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("maskRange:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.490196 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("maskRange:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("range:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.198 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 720, 1750 ), Vector2( 720, 1750 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("range:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.0333333, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("range:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "rangeArrow"
+length = 0.2
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("maskRange:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.490196 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("maskRange:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("rangeArrow:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.198 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 620, 1800 ), Vector2( 620, 1800 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("rangeArrow:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.0333333, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("rangeArrow:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "scoring"
+length = 0.2
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("scoring:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.0333333, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("scoring:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("maskSquare:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.490196 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("maskSquare:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "swiping"
+length = 0.2
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("swiping:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 720, 1550 ), Vector2( 720, 1550 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("swiping:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.0333333, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("swiping:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("maskRow:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 220, 2280 ), Vector2( 220, 2280 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("maskRow:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.490196 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("maskRow:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+
+[sub_resource type="DynamicFont" id=9]
 size = 46
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=14]
-size = 64
 outline_size = 4
 outline_color = Color( 0.427451, 0.415686, 0.666667, 1 )
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 8 )
+font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=15]
-size = 46
+[sub_resource type="DynamicFont" id=10]
+size = 50
+outline_size = 8
+outline_color = Color( 0.427451, 0.415686, 0.666667, 1 )
 use_mipmaps = true
 use_filter = true
+extra_spacing_bottom = -16
+extra_spacing_char = -3
+extra_spacing_space = 3
 font_data = ExtResource( 8 )
 
-[sub_resource type="Animation" id=5]
-length = 0.166667
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.166667 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.166667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 0, 0 ) ]
-}
+[sub_resource type="RichTextEffect" id=11]
+script = ExtResource( 10 )
 
-[sub_resource type="Animation" id=6]
-length = 0.166667
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.133333, 0.166667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
-}
+[sub_resource type="RichTextEffect" id=12]
+script = ExtResource( 10 )
 
-[sub_resource type="Animation" id=7]
-length = 0.166667
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.166667 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.166667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 0, 0 ) ]
-}
+[sub_resource type="DynamicFont" id=13]
+size = 64
+outline_size = 1
+outline_color = Color( 0.427451, 0.415686, 0.666667, 1 )
+use_mipmaps = true
+use_filter = true
+extra_spacing_bottom = 5
+extra_spacing_char = -2
+font_data = ExtResource( 8 )
 
-[sub_resource type="Animation" id=8]
-length = 0.166667
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.133333, 0.166667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
-}
+[sub_resource type="RichTextEffect" id=14]
+script = ExtResource( 10 )
 
-[sub_resource type="Animation" id=9]
-length = 0.166667
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.166667 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.166667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 0, 0 ) ]
-}
+[sub_resource type="RichTextEffect" id=15]
+script = ExtResource( 10 )
 
-[sub_resource type="Animation" id=10]
-length = 0.166667
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.133333, 0.166667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
-}
+[sub_resource type="RichTextEffect" id=16]
+script = ExtResource( 10 )
+
+[sub_resource type="RichTextEffect" id=17]
+script = ExtResource( 10 )
+
+[sub_resource type="RichTextEffect" id=18]
+script = ExtResource( 10 )
+
+[sub_resource type="RichTextEffect" id=19]
+script = ExtResource( 10 )
 
 [node name="tutorial" type="CanvasLayer"]
 pause_mode = 2
 script = ExtResource( 2 )
 
-[node name="animator" type="AnimationPlayer" parent="."]
-anims/close = SubResource( 1 )
-anims/open = SubResource( 2 )
+[node name="defaultBackground" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 11 )
+centered = false
 
-[node name="tutorialFade" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.490196 )
-material = SubResource( 11 )
-position = Vector2( 720, 1280 )
+[node name="animator" type="AnimationPlayer" parent="."]
+anims/boosts = SubResource( 1 )
+anims/combo = SubResource( 2 )
+anims/drops = SubResource( 3 )
+anims/introduction = SubResource( 4 )
+anims/range = SubResource( 5 )
+anims/rangeArrow = SubResource( 6 )
+anims/scoring = SubResource( 7 )
+anims/swiping = SubResource( 8 )
+
+[node name="maskFull" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 1.31481e-07 )
 scale = Vector2( 1440, 2560 )
 texture = ExtResource( 4 )
+centered = false
 
 [node name="maskSquare" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.341176 )
-material = SubResource( 12 )
+visible = false
+modulate = Color( 1, 1, 1, 0.00252918 )
+position = Vector2( 221.688, 2466.39 )
+scale = Vector2( 10, 10 )
 texture = ExtResource( 7 )
-offset = Vector2( 0, -100 )
+offset = Vector2( 0, -10 )
 
-[node name="tutorial0" type="Sprite" parent="."]
-position = Vector2( 2779.52, 476.174 )
+[node name="maskRow" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 1.31481e-07 )
+light_mask = 2
+position = Vector2( 220, 480 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 6 )
+offset = Vector2( 50, -10 )
+
+[node name="maskRange" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.000275628 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 12 )
+centered = false
+
+[node name="maskBoost" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 1.31481e-07 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 13 )
+centered = false
+
+[node name="introduction" type="Sprite" parent="."]
+visible = false
+position = Vector2( 720, 720 )
+scale = Vector2( 5.36443e-07, 5.36443e-07 )
 texture = ExtResource( 9 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="tutorial0"]
+[node name="RichTextLabel" type="RichTextLabel" parent="introduction"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -918.5
-margin_top = -638.0
-margin_right = -157.5
-margin_bottom = -33.0
-custom_fonts/italics_font = SubResource( 13 )
-custom_fonts/bold_font = SubResource( 14 )
-custom_fonts/normal_font = SubResource( 15 )
-custom_colors/default_color = Color( 0.427451, 0.415686, 0.666667, 1 )
+margin_left = -842.5
+margin_top = -491.5
+margin_right = -162.5
+margin_bottom = -41.5
+custom_fonts/italics_font = SubResource( 9 )
+custom_fonts/normal_font = SubResource( 10 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
-bbcode_text = "[center][b][color=#ffffff]Welcome to Numfall[/color][/b]
+bbcode_text = "[center] Numfall is a puzzle game about stacking pieces of equal value on top of each other to score points and create larger value pieces
 
-Numfall is a puzzle game about stacking pieces of equal value on top of each other to score points and create larger value pieces
-[i]Tap to Continue[/i]"
-text = "Welcome to Numfall
+[i][color=#ffffff][pulse color=#ffdc72 freq=6.0]Tap Anywhere to Continue[/pulse][/color][/i][/center]"
+text = " Numfall is a puzzle game about stacking pieces of equal value on top of each other to score points and create larger value pieces
 
-Numfall is a puzzle game about stacking pieces of equal value on top of each other to score points and create larger value pieces
-Tap to Continue"
+Tap Anywhere to Continue"
 scroll_active = false
+custom_effects = [ SubResource( 11 ) ]
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="tutorial1" type="Sprite" parent="."]
-position = Vector2( 1115.75, 1775.63 )
-texture = ExtResource( 3 )
+[node name="swiping" type="Sprite" parent="."]
+visible = false
+position = Vector2( 720, 1550 )
+scale = Vector2( 0.18326, 0.18326 )
+texture = ExtResource( 9 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="tutorial1"]
-anims/close = SubResource( 5 )
-anims/open = SubResource( 6 )
-
-[node name="tutorial2" type="Sprite" parent="."]
-position = Vector2( 745.041, 909.436 )
-texture = ExtResource( 6 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="tutorial2"]
-anims/close = SubResource( 7 )
-anims/open = SubResource( 8 )
-
-[node name="tutorial3" type="Sprite" parent="."]
-position = Vector2( 3.09772, 1320.96 )
+[node name="tutorialCurvedArrow" type="Sprite" parent="swiping"]
+position = Vector2( 0, 400 )
 texture = ExtResource( 5 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="tutorial3"]
-anims/close = SubResource( 9 )
-anims/open = SubResource( 10 )
+[node name="RichTextLabel" type="RichTextLabel" parent="swiping"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -842.5
+margin_top = -180.0
+margin_right = -162.5
+margin_bottom = 270.0
+custom_fonts/italics_font = SubResource( 9 )
+custom_fonts/normal_font = SubResource( 10 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]You can swipe any piece to either the left or right, swapping it with the piece next to it or moving it into an empty square on the grid
+
+[i][color=#ffffff][pulse color=#ffdc72 freq=6.0]Swipe Any Piece to Continue[/pulse][/color][/i]"
+text = "You can swipe any piece to either the left or right, swapping it with the piece next to it or moving it into an empty square on the grid
+
+Swipe Any Piece to Continue"
+scroll_active = false
+custom_effects = [ SubResource( 12 ) ]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="drops" type="Sprite" parent="."]
+visible = false
+position = Vector2( 720, 975 )
+scale = Vector2( 5.36443e-07, 5.36443e-07 )
+texture = ExtResource( 9 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="drops"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -842.5
+margin_top = -180.0
+margin_right = -162.5
+margin_bottom = 270.0
+custom_fonts/italics_font = SubResource( 9 )
+custom_fonts/bold_font = SubResource( 13 )
+custom_fonts/normal_font = SubResource( 10 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Each time you swap pieces, a new piece will drop into a random column.
+If there is no space for a new piece to drop, the game ends
+
+[i][color=#ffffff][pulse color=#ffdc72 freq=6.0]Tap Anywhere to Continue[/pulse][/color][/i]"
+text = "Each time you swap pieces, a new piece will drop into a random column.
+If there is no space for a new piece to drop, the game ends
+
+Tap Anywhere to Continue"
+scroll_active = false
+custom_effects = [ SubResource( 14 ) ]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tutorialCurvedArrow" type="Sprite" parent="drops"]
+position = Vector2( 0, -350 )
+scale = Vector2( 1, -1 )
+texture = ExtResource( 5 )
+
+[node name="range" type="Sprite" parent="."]
+visible = false
+position = Vector2( 720, 1750 )
+scale = Vector2( 0.00168855, 0.00168855 )
+texture = ExtResource( 9 )
+
+[node name="tutorialStraightArrow" type="Sprite" parent="range"]
+position = Vector2( -240, 400 )
+rotation = -3.14159
+texture = ExtResource( 3 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="range"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -842.5
+margin_top = -180.0
+margin_right = -162.5
+margin_bottom = 270.0
+custom_fonts/italics_font = SubResource( 9 )
+custom_fonts/bold_font = SubResource( 13 )
+custom_fonts/normal_font = SubResource( 10 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]The value of the pieces dropped will fall within the range shown here.
+Make higher value pieces to raise the range
+
+[i][color=#ffffff][pulse color=#ffdc72 freq=6.0]Tap Anywhere to Continue[/pulse][/color][/i]"
+text = "The value of the pieces dropped will fall within the range shown here.
+Make higher value pieces to raise the range
+
+Tap Anywhere to Continue"
+scroll_active = false
+custom_effects = [ SubResource( 15 ) ]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rangeArrow" type="Sprite" parent="."]
+visible = false
+position = Vector2( 620, 1800 )
+scale = Vector2( 0.00112456, 0.00112456 )
+texture = ExtResource( 9 )
+
+[node name="tutorialStraightArrow" type="Sprite" parent="rangeArrow"]
+position = Vector2( -240, 400 )
+rotation = -3.14159
+texture = ExtResource( 3 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="rangeArrow"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -842.5
+margin_top = -491.5
+margin_right = -162.5
+margin_bottom = -41.5
+custom_fonts/italics_font = SubResource( 9 )
+custom_fonts/normal_font = SubResource( 10 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "
+[center]When this arrow appears, the lowest value piece will stop spawning if you get rid of all of them on the board
+
+[i][color=#ffffff][pulse color=#ffdc72 freq=6.0]Tap Anywhere to Continue[/pulse][/color][/i]"
+text = "
+When this arrow appears, the lowest value piece will stop spawning if you get rid of all of them on the board
+
+Tap Anywhere to Continue"
+scroll_active = false
+custom_effects = [ SubResource( 16 ) ]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scoring" type="Sprite" parent="."]
+visible = false
+position = Vector2( 720, 1423.34 )
+scale = Vector2( 5.36443e-07, 5.36443e-07 )
+texture = ExtResource( 9 )
+
+[node name="tutorialStraightArrow" type="Sprite" parent="scoring"]
+position = Vector2( -300, 400 )
+rotation = -3.14159
+texture = ExtResource( 3 )
+
+[node name="tutorialCurvedArrow" type="Sprite" parent="scoring"]
+position = Vector2( 400, 400 )
+texture = ExtResource( 5 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="scoring"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -842.5
+margin_top = -180.0
+margin_right = -162.5
+margin_bottom = 270.0
+custom_fonts/italics_font = SubResource( 9 )
+custom_fonts/bold_font = SubResource( 13 )
+custom_fonts/normal_font = SubResource( 10 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Swiping a piece so that it is above another piece of the same value will combine the two, giving you points and leaving a higher value piece
+
+[i][color=#ffffff][pulse color=#ffdc72 freq=6.0]Swipe Any Piece to Continue[/pulse][/color][/i]"
+text = "Swiping a piece so that it is above another piece of the same value will combine the two, giving you points and leaving a higher value piece
+
+Swipe Any Piece to Continue"
+scroll_active = false
+custom_effects = [ SubResource( 17 ) ]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="combo" type="Sprite" parent="."]
+visible = false
+position = Vector2( 720, 1400 )
+scale = Vector2( 0.0103191, 0.0103191 )
+texture = ExtResource( 9 )
+
+[node name="tutorialStraightArrow" type="Sprite" parent="combo"]
+position = Vector2( -240, 400 )
+rotation = -3.14159
+texture = ExtResource( 3 )
+
+[node name="tutorialCurvedArrow" type="Sprite" parent="combo"]
+position = Vector2( 240, 400 )
+texture = ExtResource( 5 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="combo"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -842.5
+margin_top = -180.0
+margin_right = -162.5
+margin_bottom = 270.0
+custom_fonts/italics_font = SubResource( 9 )
+custom_fonts/bold_font = SubResource( 13 )
+custom_fonts/normal_font = SubResource( 10 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "
+[center]Combining more than two pieces in a stack at a time gives you a combo multiplier
+
+[i][color=#ffffff][pulse color=#ffdc72 freq=6.0]Tap Anywhere to Continue[/pulse][/color][/i]"
+text = "
+Combining more than two pieces in a stack at a time gives you a combo multiplier
+
+Tap Anywhere to Continue"
+scroll_active = false
+custom_effects = [ SubResource( 18 ) ]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="boosts" type="Sprite" parent="."]
+visible = false
+position = Vector2( 720, 1730 )
+scale = Vector2( 5.36443e-07, 5.36443e-07 )
+texture = ExtResource( 9 )
+
+[node name="tutorialCurvedArrow" type="Sprite" parent="boosts"]
+position = Vector2( 240, 432 )
+texture = ExtResource( 5 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="boosts"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -842.5
+margin_top = -180.0
+margin_right = -162.5
+margin_bottom = 270.0
+custom_fonts/italics_font = SubResource( 9 )
+custom_fonts/bold_font = SubResource( 13 )
+custom_fonts/normal_font = SubResource( 10 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]You can use a consumable boost to give you an advantage in the game. Quickly tap a boost to get a description of what it does
+
+[i][color=#ffffff][pulse color=#ffdc72 freq=6.0]Tap Anywhere to Continue[/pulse][/color][/i]"
+text = "You can use a consumable boost to give you an advantage in the game. Quickly tap a boost to get a description of what it does
+
+Tap Anywhere to Continue"
+scroll_active = false
+custom_effects = [ SubResource( 19 ) ]
+__meta__ = {
+"_edit_use_anchors_": false
+}

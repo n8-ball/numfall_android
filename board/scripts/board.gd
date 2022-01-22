@@ -7,6 +7,8 @@ onready var menu : CanvasLayer = $"menu"
 onready var achievements : CanvasLayer = $"achievements"
 onready var tutorial : CanvasLayer = $"tutorial"
 onready var musicPlayer : AudioStreamPlayer = $"music"
+onready var startBoostMenu : Node2D = $"startBoostMenu"
+onready var continueBoostMenu : Node2D = $"continueBoostMenu"
 
 var pieceName = load("res://pieceSets/default/scenes/default.tscn")
 
@@ -38,6 +40,7 @@ var saveBackground = "default"
 var gameOver = false
 var tutorialStarted = false
 signal swapMade
+signal combo
 
 var boostActive = false
 
@@ -51,6 +54,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	updateBoard()
+	if Input.is_action_just_pressed("ui_accept"):
+		for _i in range(6):
+			spawner.spawnPiece()
 
 func clearBoard(): 
 	for y in range(brdHt):
@@ -75,21 +81,18 @@ func restartGame():
 	spawner.rangeDisplay.newRange()
 	tutorialStarted = tutorialOn
 	tutorial.restart()
-	if !tutorialStarted:
-		for _i in range(startPieces):
-			spawner.spawnPiece()
-	else:
-		spawner.makePiece(2, 0, 0)
-		spawner.makePiece(1, 2, 0)
-		spawner.makePiece(1, 3, 0)
-		spawner.makePiece(2, 5, 0)
+	for _i in range(startPieces):
+		spawner.spawnPiece()
 	saveLoad.saveGame()
+	if !tutorialOn:
+		print("here")
+		startBoostMenu.open()
 
 func endGame():
 	setGameOver(true)
 	cancelSave()
 	saveLoad.saveGame()
-	menu.endGameMenu()
+	continueBoostMenu.open()
 
 func createBoard():
 	for y in range(brdHt):
@@ -112,7 +115,7 @@ func updateBoard():
 				chkPiece = null
 			else:
 				chkPiece = board[y+1][x]
-			if is_instance_valid(curPiece):
+			if is_instance_valid(curPiece) and not gameOver:
 				tempSmall = checkSmall(tempSmall, curPiece)
 				tempBig = checkBig(tempBig, curPiece)
 				handlePiece(curPiece, chkPiece, x, y, allReady)
@@ -125,10 +128,7 @@ func updateBoard():
 		saveReady = false
 	if scheduleSpawn && allReady:
 		scheduleSpawn = false
-		if !tutorialStarted:
-			spawner.spawnPiece()
-		else:
-			spawner.makePiece(2, 5, 0)
+		spawner.spawnPiece()
 		saveReady = true
 
 #Optimization
@@ -173,6 +173,8 @@ func handlePiece(curPiece, chkPiece, x, y, allReady):
 		chkPiece.setState(chkPiece.COMBINE_BOT_STATE)
 		curPiece.setPos(getPos(x, y+1))
 		score += curPiece.getModifiedScore()
+		if curPiece.getModifiedScore() > curPiece.value:
+			emit_signal("combo", Vector2(x, y))
 		if score > highScore:
 			highScore = score
 		board[y+1][x] = curPiece
@@ -206,6 +208,9 @@ func checkReady(chkReady, chkPiece):
 func swapPieces(firstCoord, secondCoord):
 	var firstPiece = board[firstCoord.y][firstCoord.x]
 	var secondPiece = board[secondCoord.y][secondCoord.x]
+	
+	if startBoostMenu.is_open():
+		startBoostMenu.close()
 	
 	board[firstCoord.y][firstCoord.x] = secondPiece
 	board[secondCoord.y][secondCoord.x] = firstPiece

@@ -1,0 +1,138 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://menu/sprites/yesButtonPressed.png" type="Texture" id=1]
+[ext_resource path="res://menu/sprites/noButtonPressed.png" type="Texture" id=2]
+[ext_resource path="res://menu/sprites/noButtonNormal.png" type="Texture" id=3]
+[ext_resource path="res://menu/sprites/yesButtonNormal.png" type="Texture" id=4]
+[ext_resource path="res://boosts/sprites/startBoostPopUp.png" type="Texture" id=5]
+[ext_resource path="res://fonts/Poppins-SemiBold.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Node2D
+
+onready var animator : AnimationPlayer = $\"animator\"
+onready var board : Node2D = $\"..\"
+var is_open = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+func open():
+	animator.play(\"open\")
+	is_open = true
+
+func close():
+	animator.play_backwards(\"open\")
+	is_open = false
+
+func is_open():
+	return is_open
+
+func yes():
+	if !animator.is_playing():
+		close()
+		continueBoost()
+
+func no():
+	if !animator.is_playing():
+		close()
+		board.menu.endGameMenu()
+
+func continueBoost():
+	if is_instance_valid(board):
+		board.find_node(\"continueBoost\").continueBoost()
+"
+
+[sub_resource type="Animation" id=1]
+resource_name = "open"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0.2, 0.2 ), Vector2( 0.7, 0.7 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends TextureButton
+
+onready var parent : Node2D = $\"../..\"
+
+func _pressed():
+	if is_instance_valid(parent):
+		parent.no()
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends TextureButton
+
+onready var parent : Node2D = $\"../..\"
+
+func _pressed():
+	if is_instance_valid(parent):
+		parent.yes()
+"
+
+[sub_resource type="DynamicFont" id=4]
+size = 90
+outline_size = 8
+outline_color = Color( 0.427451, 0.415686, 0.666667, 1 )
+font_data = ExtResource( 7 )
+
+[node name="continueBoostMethod" type="Node2D"]
+rotation = -0.00254742
+z_index = 7
+script = SubResource( 5 )
+
+[node name="animator" type="AnimationPlayer" parent="."]
+anims/open = SubResource( 1 )
+
+[node name="startBoostPopUp" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+
+[node name="noButton" type="TextureButton" parent="startBoostPopUp"]
+margin_left = 25.0
+margin_top = 110.0
+margin_right = 441.0
+margin_bottom = 311.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 2 )
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="yesButton" type="TextureButton" parent="startBoostPopUp"]
+margin_left = -440.0
+margin_top = 110.0
+margin_right = -23.9999
+margin_bottom = 311.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 1 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text" type="RichTextLabel" parent="startBoostPopUp"]
+margin_left = -450.0
+margin_top = -320.0
+margin_right = 450.0
+margin_bottom = 80.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center] Use a Continue Boost to keep your game going? [/center]"
+text = " Use a Continue Boost to keep your game going? "
+__meta__ = {
+"_edit_use_anchors_": false
+}

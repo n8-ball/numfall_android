@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/creepyMusicPlay.png-d96e6c8c99176832af60adb6ce3db448.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://menu/customize/sprites/creepyMusicPlay.png"
+dest_files=[ "res://.import/creepyMusicPlay.png-d96e6c8c99176832af60adb6ce3db448.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
