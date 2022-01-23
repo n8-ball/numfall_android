@@ -42,10 +42,10 @@ func newRange():
 	floorPiece.setValue(spawner.floorNum)
 	add_child(floorPiece)
 	floorPiece.setState(floorPiece.SPAWN_STATE)
-	floorPiece.setPos(Vector2(board.pieceSize * 2.85, board.pieceSize))
+	floorPiece.setPos(Vector2(100, 330))
 	
 	ceilPiece = newPieceName.instance()
 	ceilPiece.setValue(spawner.ceilNum)
 	add_child(ceilPiece)
 	ceilPiece.setState(ceilPiece.SPAWN_STATE)
-	ceilPiece.setPos(Vector2(board.pieceSize * 4.1, board.pieceSize))
+	ceilPiece.setPos(Vector2(350, 330))

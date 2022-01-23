@@ -44,6 +44,12 @@ signal combo
 
 var boostActive = false
 
+var continueBoosts = 1
+var startBoosts = 1
+var rowBoosts = 1
+var colBoosts = 2
+var swapBoosts = 3
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	createBoard()
@@ -55,6 +61,7 @@ func _ready():
 func _process(_delta):
 	updateBoard()
 	if Input.is_action_just_pressed("ui_accept"):
+		score = score * 10
 		for _i in range(6):
 			spawner.spawnPiece()
 
@@ -85,7 +92,6 @@ func restartGame():
 		spawner.spawnPiece()
 	saveLoad.saveGame()
 	if !tutorialOn:
-		print("here")
 		startBoostMenu.open()
 
 func endGame():
@@ -301,6 +307,34 @@ func loadSettings(newSettings):
 		&& newSettings.has("saveBackground"):
 		menu.customize.setCustomize(newSettings["savePiece"],\
 		newSettings["saveMusic"], newSettings["saveBackground"])
+
+func saveBoosts():
+	var boostDict = {
+		"continue" : continueBoosts,
+		"start" : startBoosts,
+		"row" : rowBoosts,
+		"col" : colBoosts,
+		"swap" : swapBoosts
+	}
+	return boostDict
+
+func loadBoosts(newBoosts):
+	if newBoosts.has("continue"):
+		#continueBoosts = newBoosts["continue"]
+		continueBoosts = 2
+	if newBoosts.has("start"):
+		#startBoosts = newBoosts["start"]
+		startBoosts = 3
+	if newBoosts.has("row"):
+		#rowBoosts = newBoosts["row"]
+		rowBoosts = 2
+	if newBoosts.has("col"):
+		#colBoosts = newBoosts["col"]
+		colBoosts = 12
+	if newBoosts.has("swap"):
+		#swapBoosts = newBoosts["swap"]
+		swapBoosts = 2
+	
 
 func getMusic():
 	return musicOn

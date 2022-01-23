@@ -174,7 +174,7 @@ var unlocked = false
 var newResourceName = \"res://pieceSets/neon/scenes/neon.tscn\"
 var achievementName = \"neonTile\"
 var displayName = \"Neon\"
-var achievementText = \"Have 3 perfect, perfectly ascending stacked rows\"
+var achievementText = \"Have 3 homogenous, perfectly ascending stacked rows\"
 #230 for 1 line, 180 for 2, 100 for 3
 var headSpace = 140
 var textColor = Color.white #Only for backgrounds, setItem needs mod for this
@@ -671,7 +671,7 @@ var unlocked = false
 var newResourceName = \"res://music/neonTheme.ogg\"
 var achievementName = \"neonMusic\"
 var displayName = \"Neon\"
-var achievementText = \"Have 3 perfect, stacked rows\"
+var achievementText = \"Have 3 homogenous, stacked rows\"
 #230 for 1 line, 180 for 2, 100 for 3
 var headSpace = 230
 
@@ -1273,7 +1273,7 @@ var unlocked = false
 var newResourceName = \"res://backgrounds/neon/scenes/neonBackground.tscn\"
 var achievementName = \"neonBg\"
 var displayName = \"Neon\"
-var achievementText = \"Have 2 reverse-stacked, perfect rows\"
+var achievementText = \"Have 2 reverse-stacked, homogenous rows\"
 #230 for 1 line, 180 for 2, 100 for 3
 var headSpace = 100
 var textColor = Color.white #Only for backgrounds, setItem needs mod for this

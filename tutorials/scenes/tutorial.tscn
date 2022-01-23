@@ -631,8 +631,7 @@ texture = ExtResource( 6 )
 offset = Vector2( 50, -10 )
 
 [node name="maskRange" type="Sprite" parent="."]
-visible = false
-modulate = Color( 1, 1, 1, 0.000275628 )
+modulate = Color( 1, 1, 1, 0.490196 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 12 )
 centered = false
@@ -647,7 +646,7 @@ centered = false
 [node name="introduction" type="Sprite" parent="."]
 visible = false
 position = Vector2( 720, 720 )
-scale = Vector2( 5.36443e-07, 5.36443e-07 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 9 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="introduction"]
@@ -659,9 +658,9 @@ margin_left = -842.5
 margin_top = -491.5
 margin_right = -162.5
 margin_bottom = -41.5
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/italics_font = SubResource( 9 )
 custom_fonts/normal_font = SubResource( 10 )
-custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
 bbcode_text = "[center] Numfall is a puzzle game about stacking pieces of equal value on top of each other to score points and create larger value pieces
 
@@ -692,9 +691,9 @@ margin_left = -842.5
 margin_top = -180.0
 margin_right = -162.5
 margin_bottom = 270.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/italics_font = SubResource( 9 )
 custom_fonts/normal_font = SubResource( 10 )
-custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]You can swipe any piece to either the left or right, swapping it with the piece next to it or moving it into an empty square on the grid
 
@@ -711,7 +710,7 @@ __meta__ = {
 [node name="drops" type="Sprite" parent="."]
 visible = false
 position = Vector2( 720, 975 )
-scale = Vector2( 5.36443e-07, 5.36443e-07 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 9 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="drops"]
@@ -721,10 +720,10 @@ margin_left = -842.5
 margin_top = -180.0
 margin_right = -162.5
 margin_bottom = 270.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/italics_font = SubResource( 9 )
 custom_fonts/bold_font = SubResource( 13 )
 custom_fonts/normal_font = SubResource( 10 )
-custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]Each time you swap pieces, a new piece will drop into a random column.
 If there is no space for a new piece to drop, the game ends
@@ -746,9 +745,7 @@ scale = Vector2( 1, -1 )
 texture = ExtResource( 5 )
 
 [node name="range" type="Sprite" parent="."]
-visible = false
 position = Vector2( 720, 1750 )
-scale = Vector2( 0.00168855, 0.00168855 )
 texture = ExtResource( 9 )
 
 [node name="tutorialStraightArrow" type="Sprite" parent="range"]
@@ -763,10 +760,10 @@ margin_left = -842.5
 margin_top = -180.0
 margin_right = -162.5
 margin_bottom = 270.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/italics_font = SubResource( 9 )
 custom_fonts/bold_font = SubResource( 13 )
 custom_fonts/normal_font = SubResource( 10 )
-custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]The value of the pieces dropped will fall within the range shown here.
 Make higher value pieces to raise the range
@@ -802,9 +799,9 @@ margin_left = -842.5
 margin_top = -491.5
 margin_right = -162.5
 margin_bottom = -41.5
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/italics_font = SubResource( 9 )
 custom_fonts/normal_font = SubResource( 10 )
-custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
 bbcode_text = "
 [center]When this arrow appears, the lowest value piece will stop spawning if you get rid of all of them on the board
@@ -823,7 +820,7 @@ __meta__ = {
 [node name="scoring" type="Sprite" parent="."]
 visible = false
 position = Vector2( 720, 1423.34 )
-scale = Vector2( 5.36443e-07, 5.36443e-07 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 9 )
 
 [node name="tutorialStraightArrow" type="Sprite" parent="scoring"]
@@ -842,10 +839,10 @@ margin_left = -842.5
 margin_top = -180.0
 margin_right = -162.5
 margin_bottom = 270.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/italics_font = SubResource( 9 )
 custom_fonts/bold_font = SubResource( 13 )
 custom_fonts/normal_font = SubResource( 10 )
-custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]Swiping a piece so that it is above another piece of the same value will combine the two, giving you points and leaving a higher value piece
 
@@ -881,10 +878,10 @@ margin_left = -842.5
 margin_top = -180.0
 margin_right = -162.5
 margin_bottom = 270.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/italics_font = SubResource( 9 )
 custom_fonts/bold_font = SubResource( 13 )
 custom_fonts/normal_font = SubResource( 10 )
-custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
 bbcode_text = "
 [center]Combining more than two pieces in a stack at a time gives you a combo multiplier
@@ -903,7 +900,7 @@ __meta__ = {
 [node name="boosts" type="Sprite" parent="."]
 visible = false
 position = Vector2( 720, 1730 )
-scale = Vector2( 5.36443e-07, 5.36443e-07 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 9 )
 
 [node name="tutorialCurvedArrow" type="Sprite" parent="boosts"]
@@ -917,10 +914,10 @@ margin_left = -842.5
 margin_top = -180.0
 margin_right = -162.5
 margin_bottom = 270.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/italics_font = SubResource( 9 )
 custom_fonts/bold_font = SubResource( 13 )
 custom_fonts/normal_font = SubResource( 10 )
-custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]You can use a consumable boost to give you an advantage in the game. Quickly tap a boost to get a description of what it does
 

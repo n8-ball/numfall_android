@@ -69,6 +69,7 @@ func _input(event):
 			removeCoord = coordSelect
 			animator.play("deleteRow")
 			sprite.visible = false
+			board.colBoosts -= 1
 		
 		elif not activated:
 			setReturnAnimation()

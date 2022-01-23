@@ -1,7 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://boosts/sprites/continueBoost.gd" type="Script" id=1]
 [ext_resource path="res://boosts/sprites/continueBoost.png" type="Texture" id=2]
+[ext_resource path="res://boosts/sprites/boostCount.png" type="Texture" id=3]
+[ext_resource path="res://fonts/Poppins-ExtraBoldItalic.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "delete"
@@ -76,7 +84,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 230, 200 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 230, 200 ) ]
+"values": [ Vector2( 230, 200 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 230, 160 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("sprite:scale")
@@ -109,12 +117,36 @@ tracks/0/keys = {
 }
 
 [node name="continueBoost" type="Node2D"]
+pause_mode = 2
 position = Vector2( 230, 200 )
 z_index = 7
 script = ExtResource( 1 )
 
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+
+[node name="countCir" type="Sprite" parent="sprite"]
+position = Vector2( 80, -80 )
+scale = Vector2( 1.4, 1.4 )
+texture = ExtResource( 3 )
+
+[node name="count" type="RichTextLabel" parent="sprite/countCir"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -69.5
+margin_top = -51.0
+margin_right = 10.5
+margin_bottom = -8.0
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center] 0 [/center]"
+text = " 0 "
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="animator" type="AnimationPlayer" parent="."]
 anims/delete = SubResource( 1 )

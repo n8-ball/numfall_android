@@ -49,7 +49,7 @@ func introduction():
 		get_tree().paused = true
 		if tutorialOpen == false:
 			tutorialOpen = true
-			animator.play("introduction")
+			animator.queue("introduction")
 		#On close
 		if Input.is_action_just_pressed("ui_select") and animator.current_animation == "":
 			get_tree().paused = false
@@ -61,14 +61,14 @@ func swiping():
 	if board.swapReady && animator.current_animation == "":
 		if tutorialOpen == false:
 			tutorialOpen = true
-			animator.play("swiping")
+			animator.queue("swiping")
 
 func drops():
 	if board.swapReady:
 		get_tree().paused = true
 		if tutorialOpen == false:
 			tutorialOpen = true
-			animator.play("drops")
+			animator.queue("drops")
 		#On close
 		if Input.is_action_just_pressed("ui_select") and animator.current_animation == "":
 			get_tree().paused = false
@@ -81,7 +81,7 @@ func rangeTut():
 		get_tree().paused = true
 		if tutorialOpen == false:
 			tutorialOpen = true
-			animator.play("range")
+			animator.queue("range")
 		#On close
 		if Input.is_action_just_pressed("ui_select"):
 			get_tree().paused = false
@@ -94,7 +94,7 @@ func boosts():
 		get_tree().paused = true
 		if tutorialOpen == false:
 			tutorialOpen = true
-			animator.play("boosts")
+			animator.queue("boosts")
 		#On close
 		if Input.is_action_just_pressed("ui_select"):
 			get_tree().paused = false
@@ -109,7 +109,7 @@ func scoring():
 			tutorialState = 6
 			tutorialOpen = true
 			setScoringAnimation(scorablePiece)
-			animator.play("scoring")
+			animator.queue("scoring")
 
 func combo():
 	if animator.current_animation == "":
@@ -125,7 +125,7 @@ func rangeArrow():
 		get_tree().paused = true
 		if tutorialOpen == false:
 			tutorialOpen = true
-			animator.play("rangeArrow")
+			animator.queue("rangeArrow")
 		#On close
 		if Input.is_action_just_pressed("ui_select") and animator.current_animation == "":
 			get_tree().paused = false
@@ -240,4 +240,4 @@ func _onCombo(position):
 				tutorialState = 8
 				tutorialOpen = true
 				setComboAnimation(position)
-				animator.play("combo")
+				animator.queue("combo")

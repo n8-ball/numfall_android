@@ -396,13 +396,14 @@ position = Vector2( 0, -75 )
 scale = Vector2( 0.25, 0.25 )
 
 [node name="glow" type="Sprite" parent="scalar/block"]
+z_index = -2
 texture = ExtResource( 1 )
 offset = Vector2( 0, -100 )
 hframes = 9
 
 [node name="top" type="Sprite" parent="scalar/block"]
 position = Vector2( 0, -100 )
-z_index = 1
+z_index = -1
 z_as_relative = false
 texture = ExtResource( 3 )
 hframes = 26

@@ -77,6 +77,7 @@ func _input(event):
 		&& not activated && validMove:
 			removeCoord = coordSelect
 			animator.play("deleteRow")
+			board.rowBoosts -= 1
 			sprite.visible = false
 		
 		elif not activated:

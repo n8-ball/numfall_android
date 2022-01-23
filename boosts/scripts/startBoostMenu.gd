@@ -2,6 +2,7 @@ extends Node2D
 
 onready var animator : AnimationPlayer = $"animator"
 onready var board : Node2D = $".."
+onready var startBoost : Node2D = $"../startBoost"
 var is_open = false
 
 # Called when the node enters the scene tree for the first time.
@@ -21,9 +22,11 @@ func is_open():
 	return is_open
 
 func yes():
-	if !animator.is_playing():
+	if !animator.is_playing() && board.startBoosts > 0:
 		close()
 		startBoost()
+		startBoost.animator.play("pulse")
+		board.startBoosts -= 1
 
 func no():
 	if !animator.is_playing():

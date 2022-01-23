@@ -73,6 +73,7 @@ func _input(event):
 		&& (coordSelect.y != firstCoord.y || coordSelect.x != firstCoord.x):
 			swapPieces(coordSelect)
 			state = 2
+			board.swapBoosts -= 1
 			removeSelf()
 		elif state != 2:
 			state = 2

@@ -2,12 +2,16 @@ extends Node2D
 
 onready var board : Node2D = $".."
 onready var animator : AnimationPlayer = $"animator"
+onready var count : RichTextLabel = $"sprite/countCir/count"
 
 
 var deleteList = []
 
 func _ready():
 	animator.connect("animation_finished", self, "_on_finished")
+
+func _process(delta):
+	count.bbcode_text = "[center]" + str(board.continueBoosts) + "[/center]"
 
 func continueBoost():
 	var deleteCount = 0
