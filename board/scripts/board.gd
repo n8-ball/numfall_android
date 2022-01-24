@@ -61,7 +61,6 @@ func _ready():
 func _process(_delta):
 	updateBoard()
 	if Input.is_action_just_pressed("ui_accept"):
-		score = score * 10
 		for _i in range(6):
 			spawner.spawnPiece()
 
@@ -320,21 +319,15 @@ func saveBoosts():
 
 func loadBoosts(newBoosts):
 	if newBoosts.has("continue"):
-		#continueBoosts = newBoosts["continue"]
-		continueBoosts = 2
+		continueBoosts = newBoosts["continue"]
 	if newBoosts.has("start"):
-		#startBoosts = newBoosts["start"]
-		startBoosts = 3
+		startBoosts = newBoosts["start"]
 	if newBoosts.has("row"):
-		#rowBoosts = newBoosts["row"]
-		rowBoosts = 2
+		rowBoosts = newBoosts["row"]
 	if newBoosts.has("col"):
-		#colBoosts = newBoosts["col"]
-		colBoosts = 12
+		colBoosts = newBoosts["col"]
 	if newBoosts.has("swap"):
-		#swapBoosts = newBoosts["swap"]
-		swapBoosts = 2
-	
+		swapBoosts = newBoosts["swap"]
 
 func getMusic():
 	return musicOn

@@ -117,10 +117,14 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 13 )
 
 [node name="boostButtons" parent="." instance=ExtResource( 3 )]
-margin_left = 530.0
-margin_top = 2320.0
-margin_right = 1056.0
-margin_bottom = 2470.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 580.0
+margin_top = 2330.0
+margin_right = 1106.0
+margin_bottom = 2446.0
 
 [node name="menu" parent="." instance=ExtResource( 11 )]
 layer = 2
@@ -154,5 +158,5 @@ scale = Vector2( 1e-05, 1e-05 )
 
 [node name="inAppPurchaseTimer" type="Timer" parent="."]
 pause_mode = 2
-autostart = true
+one_shot = true
 script = ExtResource( 22 )

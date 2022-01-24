@@ -48,4 +48,4 @@ func newRange():
 	ceilPiece.setValue(spawner.ceilNum)
 	add_child(ceilPiece)
 	ceilPiece.setState(ceilPiece.SPAWN_STATE)
-	ceilPiece.setPos(Vector2(350, 330))
+	ceilPiece.setPos(Vector2(325, 330))

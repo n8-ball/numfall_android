@@ -11,8 +11,8 @@
 [ext_resource path="res://tutorials/sprites/tutorialTextBox.png" type="Texture" id=9]
 [ext_resource path="res://tutorials/scripts/pulse.gd" type="Script" id=10]
 [ext_resource path="res://backgrounds/default/sprites/defaultBackground.png" type="Texture" id=11]
-[ext_resource path="res://tutorials/sprites/maskRange.png" type="Texture" id=12]
-[ext_resource path="res://tutorials/sprites/maskBoost.png" type="Texture" id=13]
+[ext_resource path="res://tutorials/sprites/rangeMask.png" type="Texture" id=12]
+[ext_resource path="res://tutorials/sprites/boostMask.png" type="Texture" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "boosts"
@@ -52,7 +52,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 720, 1730 ), Vector2( 720, 1730 ) ]
+"values": [ Vector2( 650, 1750 ), Vector2( 650, 1750 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("boosts:scale")
@@ -312,7 +312,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.198 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 720, 1750 ), Vector2( 720, 1750 ) ]
+"values": [ Vector2( 600, 1750 ), Vector2( 600, 1750 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("range:scale")
@@ -377,7 +377,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.198 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 620, 1800 ), Vector2( 620, 1800 ) ]
+"values": [ Vector2( 630, 1780 ), Vector2( 630, 1780 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("rangeArrow:scale")
@@ -615,7 +615,7 @@ centered = false
 
 [node name="maskSquare" type="Sprite" parent="."]
 visible = false
-modulate = Color( 1, 1, 1, 0.00252918 )
+modulate = Color( 1, 1, 1, 1.31481e-07 )
 position = Vector2( 221.688, 2466.39 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 7 )
@@ -625,20 +625,21 @@ offset = Vector2( 0, -10 )
 visible = false
 modulate = Color( 1, 1, 1, 1.31481e-07 )
 light_mask = 2
-position = Vector2( 220, 480 )
+position = Vector2( 220, 2280 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 6 )
 offset = Vector2( 50, -10 )
 
 [node name="maskRange" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.490196 )
+visible = false
+modulate = Color( 1, 1, 1, 1.31481e-07 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 12 )
 centered = false
 
 [node name="maskBoost" type="Sprite" parent="."]
 visible = false
-modulate = Color( 1, 1, 1, 1.31481e-07 )
+modulate = Color( 1, 1, 1, 0.0490197 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 13 )
 centered = false
@@ -677,7 +678,7 @@ __meta__ = {
 [node name="swiping" type="Sprite" parent="."]
 visible = false
 position = Vector2( 720, 1550 )
-scale = Vector2( 0.18326, 0.18326 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 9 )
 
 [node name="tutorialCurvedArrow" type="Sprite" parent="swiping"]
@@ -686,11 +687,13 @@ texture = ExtResource( 5 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="swiping"]
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-margin_left = -842.5
-margin_top = -180.0
-margin_right = -162.5
-margin_bottom = 270.0
+anchor_bottom = 0.5
+margin_left = -867.5
+margin_top = -491.5
+margin_right = -137.5
+margin_bottom = -18.5
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/italics_font = SubResource( 9 )
 custom_fonts/normal_font = SubResource( 10 )
@@ -710,7 +713,7 @@ __meta__ = {
 [node name="drops" type="Sprite" parent="."]
 visible = false
 position = Vector2( 720, 975 )
-scale = Vector2( 1e-05, 1e-05 )
+scale = Vector2( 0.190647, 0.190647 )
 texture = ExtResource( 9 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="drops"]
@@ -745,7 +748,9 @@ scale = Vector2( 1, -1 )
 texture = ExtResource( 5 )
 
 [node name="range" type="Sprite" parent="."]
-position = Vector2( 720, 1750 )
+visible = false
+position = Vector2( 600, 1750 )
+scale = Vector2( 0.198711, 0.198711 )
 texture = ExtResource( 9 )
 
 [node name="tutorialStraightArrow" type="Sprite" parent="range"]
@@ -781,8 +786,8 @@ __meta__ = {
 
 [node name="rangeArrow" type="Sprite" parent="."]
 visible = false
-position = Vector2( 620, 1800 )
-scale = Vector2( 0.00112456, 0.00112456 )
+position = Vector2( 630, 1780 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 9 )
 
 [node name="tutorialStraightArrow" type="Sprite" parent="rangeArrow"]
@@ -796,9 +801,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -842.5
-margin_top = -491.5
+margin_top = -519.5
 margin_right = -162.5
-margin_bottom = -41.5
+margin_bottom = -74.5
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/italics_font = SubResource( 9 )
 custom_fonts/normal_font = SubResource( 10 )
@@ -834,11 +839,13 @@ texture = ExtResource( 5 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="scoring"]
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-margin_left = -842.5
-margin_top = -180.0
-margin_right = -162.5
-margin_bottom = 270.0
+anchor_bottom = 0.5
+margin_left = -871.0
+margin_top = -491.5
+margin_right = -134.0
+margin_bottom = -33.5
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/italics_font = SubResource( 9 )
 custom_fonts/bold_font = SubResource( 13 )
@@ -859,7 +866,7 @@ __meta__ = {
 [node name="combo" type="Sprite" parent="."]
 visible = false
 position = Vector2( 720, 1400 )
-scale = Vector2( 0.0103191, 0.0103191 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 9 )
 
 [node name="tutorialStraightArrow" type="Sprite" parent="combo"]
@@ -899,21 +906,23 @@ __meta__ = {
 
 [node name="boosts" type="Sprite" parent="."]
 visible = false
-position = Vector2( 720, 1730 )
-scale = Vector2( 1e-05, 1e-05 )
+position = Vector2( 650, 1750 )
+scale = Vector2( 0.200001, 0.200001 )
 texture = ExtResource( 9 )
 
 [node name="tutorialCurvedArrow" type="Sprite" parent="boosts"]
-position = Vector2( 240, 432 )
+position = Vector2( 240, 420 )
 texture = ExtResource( 5 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="boosts"]
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-margin_left = -842.5
-margin_top = -180.0
-margin_right = -162.5
-margin_bottom = 270.0
+anchor_bottom = 0.5
+margin_left = -862.0
+margin_top = -491.5
+margin_right = -143.0
+margin_bottom = -41.5
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/italics_font = SubResource( 9 )
 custom_fonts/bold_font = SubResource( 13 )

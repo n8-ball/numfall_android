@@ -3,6 +3,7 @@ extends TextureButton
 onready var posNode : Node2D = $"posNode"
 onready var animator : AnimationPlayer = $"animator"
 onready var count : RichTextLabel = $"countCir/count"
+onready var boostButtons : Control = $".."
 
 var boostScene = load("res://boosts/scenes/freeSwapBoost.tscn")
 
@@ -24,13 +25,16 @@ func displayUsage():
 
 func _pressed():
 	var board = self.get_parent().board
-	if boostCount > 0:
+	if boostCount > 0 && self.get_parent().activated:
 		var freeSwapBoost = boostScene.instance()
 		
 		freeSwapBoost.setBoard(board)
 		freeSwapBoost.setButton(self)
 		freeSwapBoost.position = posNode.global_position
 		board.add_child(freeSwapBoost)
+	else:
+		animator.play("displayUsage")
+		boostButtons.emit_signal("newMessage", "free")
 
 func _newMessage(new):
 	if !new == "free" and animator.is_playing():

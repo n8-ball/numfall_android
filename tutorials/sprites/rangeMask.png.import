@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/startBoostPopUp.png-7cff64e8767d905ab3cf4af6f2d4eb31.stex"
+path="res://.import/rangeMask.png-684cf1d7e247e7600be0e14b773025c3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://boosts/sprites/startBoostPopUp.png"
-dest_files=[ "res://.import/startBoostPopUp.png-7cff64e8767d905ab3cf4af6f2d4eb31.stex" ]
+source_file="res://tutorials/sprites/rangeMask.png"
+dest_files=[ "res://.import/rangeMask.png-684cf1d7e247e7600be0e14b773025c3.stex" ]
 
 [params]
 

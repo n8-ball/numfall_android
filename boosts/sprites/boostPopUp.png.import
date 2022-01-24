@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/maskBoost.png-850fe31e97097ea332d2b6352b4ae13e.stex"
+path="res://.import/boostPopUp.png-9bac404d291784e65510d25beb9b2ac9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tutorials/sprites/maskBoost.png"
-dest_files=[ "res://.import/maskBoost.png-850fe31e97097ea332d2b6352b4ae13e.stex" ]
+source_file="res://boosts/sprites/boostPopUp.png"
+dest_files=[ "res://.import/boostPopUp.png-9bac404d291784e65510d25beb9b2ac9.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

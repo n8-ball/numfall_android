@@ -6,7 +6,6 @@
 [ext_resource path="res://boosts/scripts/boostButtons.gd" type="Script" id=4]
 [ext_resource path="res://boosts/scripts/colDeleteButton.gd" type="Script" id=5]
 [ext_resource path="res://boosts/scripts/freeSwapButton.gd" type="Script" id=6]
-[ext_resource path="res://debug/sprites/achieveBack.png" type="Texture" id=7]
 [ext_resource path="res://boosts/sprites/clearRowNormal.png" type="Texture" id=8]
 [ext_resource path="res://boosts/sprites/clearColNormal.png" type="Texture" id=9]
 [ext_resource path="res://boosts/sprites/clearColPressed.png" type="Texture" id=10]
@@ -17,6 +16,7 @@
 [ext_resource path="res://fonts/Poppins-SemiBold.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://boosts/sprites/boostCount.png" type="Texture" id=16]
 [ext_resource path="res://fonts/Poppins-ExtraBoldItalic.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://boosts/sprites/boostPopUp.png" type="Texture" id=18]
 
 [sub_resource type="GDScript" id=6]
 script/source = "extends TextureButton
@@ -30,7 +30,8 @@ func _pressed():
 "
 
 [sub_resource type="DynamicFont" id=4]
-size = 125
+size = 200
+outline_size = 18
 outline_color = Color( 0.427451, 0.415686, 0.666667, 1 )
 use_filter = true
 font_data = ExtResource( 15 )
@@ -78,7 +79,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=1]
 resource_name = "displayUsage"
-length = 4.0
+length = 1.66667
 step = 0.0666667
 tracks/0/type = "value"
 tracks/0/path = NodePath("posNode/usageMessage:visible")
@@ -87,7 +88,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4 ),
+"times": PoolRealArray( 0, 1.66667 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -99,10 +100,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.067, 3.93333, 4 ),
+"times": PoolRealArray( 0, 0.067, 1.6, 1.66667 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -150 ), Vector2( 0, -150 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, -170 ), Vector2( 0, -170 ), Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("posNode/usageMessage:scale")
@@ -111,10 +112,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.134, 0.2, 3.8, 3.86667, 4 ),
+"times": PoolRealArray( 0, 0.134, 0.2, 1.46667, 1.53333, 1.66667 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0.45, 0.35 ), Vector2( 0.4, 0.3 ), Vector2( 0.4, 0.3 ), Vector2( 0.45, 0.35 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0.35, 0.35 ), Vector2( 0.3, 0.3 ), Vector2( 0.3, 0.3 ), Vector2( 0.35, 0.35 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="DynamicFont" id=10]
@@ -166,7 +167,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "displayUsage"
-length = 4.0
+length = 1.66667
 step = 0.0666667
 tracks/0/type = "value"
 tracks/0/path = NodePath("posNode/usageMessage:visible")
@@ -175,7 +176,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4 ),
+"times": PoolRealArray( 0, 1.66667 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -187,10 +188,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0666667, 3.93333, 4 ),
+"times": PoolRealArray( 0, 0.0666667, 1.6, 1.66667 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -150 ), Vector2( 0, -150 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, -170 ), Vector2( 0, -170 ), Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("posNode/usageMessage:scale")
@@ -199,10 +200,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.133333, 0.2, 3.8, 3.86667, 4 ),
+"times": PoolRealArray( 0, 0.133333, 0.2, 1.46667, 1.53333, 1.66667 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 0.45, 0.35 ), Vector2( 0.4, 0.3 ), Vector2( 0.4, 0.3 ), Vector2( 0.45, 0.35 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 0.35, 0.35 ), Vector2( 0.3, 0.3 ), Vector2( 0.3, 0.3 ), Vector2( 0.35, 0.35 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -248,7 +249,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "displayUsage"
-length = 4.0
+length = 1.66667
 step = 0.0666667
 tracks/0/type = "value"
 tracks/0/path = NodePath("../freeSwapButton/posNode/usageMessage:visible")
@@ -257,7 +258,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4 ),
+"times": PoolRealArray( 0, 1.66667 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -269,10 +270,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0666667, 3.93333, 4 ),
+"times": PoolRealArray( 0, 0.0666667, 1.6, 1.66667 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -150 ), Vector2( 0, -150 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, -170 ), Vector2( 0, -170 ), Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("../freeSwapButton/posNode/usageMessage:scale")
@@ -281,16 +282,16 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.133333, 0.2, 3.8, 3.86667, 4 ),
+"times": PoolRealArray( 0, 0.133333, 0.2, 1.46667, 1.53333, 1.66667 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 0.45, 0.35 ), Vector2( 0.4, 0.3 ), Vector2( 0.4, 0.3 ), Vector2( 0.45, 0.35 ), Vector2( 1e-05, 1e-05 ) ]
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 0.35, 0.35 ), Vector2( 0.3, 0.3 ), Vector2( 0.3, 0.3 ), Vector2( 0.35, 0.35 ), Vector2( 1e-05, 1e-05 ) ]
 }
 
 [node name="boostButtons" type="GridContainer"]
 margin_right = 526.0
 margin_bottom = 116.0
-rect_scale = Vector2( 1.5, 1.5 )
+rect_scale = Vector2( 1.4, 1.4 )
 custom_constants/hseparation = 37
 columns = 4
 script = ExtResource( 4 )
@@ -335,20 +336,26 @@ position = Vector2( 55, 58 )
 visible = false
 scale = Vector2( 1e-05, 1e-05 )
 z_index = 1
-texture = ExtResource( 7 )
+texture = ExtResource( 18 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="rowDeleteButton/posNode/usageMessage"]
-margin_left = -247.0
-margin_top = -200.0
-margin_right = 244.0
-margin_bottom = 208.0
-custom_colors/default_color = Color( 0.427451, 0.415686, 0.666667, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1198.0
+margin_top = -580.5
+margin_right = -94.0
+margin_bottom = -49.5
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_constants/line_separation = -50
 custom_fonts/normal_font = SubResource( 4 )
 bbcode_enabled = true
 bbcode_text = "[center]Row
 Clear[/center]"
 text = "Row
 Clear"
+fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -400,20 +407,25 @@ position = Vector2( 55, 58 )
 visible = false
 scale = Vector2( 1e-05, 1e-05 )
 z_index = 1
-texture = ExtResource( 7 )
+texture = ExtResource( 18 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="colDeleteButton/posNode/usageMessage"]
-margin_left = -265.0
-margin_top = -200.0
-margin_right = 267.0
-margin_bottom = 208.0
-custom_colors/default_color = Color( 0.427451, 0.415686, 0.666667, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1347.0
+margin_top = -596.0
+margin_right = 55.0
+margin_bottom = -34.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/normal_font = SubResource( 4 )
 bbcode_enabled = true
 bbcode_text = "[center]Column
 Clear[/center]"
 text = "Column
 Clear"
+fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -464,20 +476,25 @@ position = Vector2( 55, 58 )
 [node name="usageMessage" type="Sprite" parent="freeSwapButton/posNode"]
 scale = Vector2( 1e-05, 1e-05 )
 z_index = 1
-texture = ExtResource( 7 )
+texture = ExtResource( 18 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="freeSwapButton/posNode/usageMessage"]
-margin_left = -265.0
-margin_top = -200.0
-margin_right = 267.0
-margin_bottom = 208.0
-custom_colors/default_color = Color( 0.427451, 0.415686, 0.666667, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -960.0
+margin_top = -607.5
+margin_right = -332.0
+margin_bottom = -22.5
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/normal_font = SubResource( 4 )
 bbcode_enabled = true
 bbcode_text = "[center]Free
 Swap[/center]"
 text = "Free
 Swap"
+fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

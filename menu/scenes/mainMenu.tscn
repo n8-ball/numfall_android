@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://menu/sprites/gearNormal.png" type="Texture" id=1]
 [ext_resource path="res://menu/scripts/mainMenu.gd" type="Script" id=2]
@@ -49,6 +49,8 @@
 [ext_resource path="res://fonts/Poppins-SemiBold.ttf" type="DynamicFontData" id=47]
 [ext_resource path="res://menu/scripts/creditsButton.gd" type="Script" id=48]
 [ext_resource path="res://boosts/scenes/boostMenu.tscn" type="PackedScene" id=49]
+[ext_resource path="res://fonts/Poppins-ExtraBoldItalic.ttf" type="DynamicFontData" id=50]
+[ext_resource path="res://tutorials/scripts/pulse.gd" type="Script" id=51]
 
 [sub_resource type="Animation" id=15]
 resource_name = "boostsToMenu"
@@ -288,6 +290,15 @@ tracks/1/keys = {
 "values": [ Vector2( 1440, 0 ), Vector2( 1356, 0 ), Vector2( 1187, 0 ), Vector2( 934, 0 ), Vector2( 556, 0 ), Vector2( 174, 0 ), Vector2( -169, 0 ), Vector2( -84, 0 ), Vector2( -28, 0 ), Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="DynamicFont" id=16]
+size = 80
+outline_size = 7
+outline_color = Color( 0.427451, 0.415686, 0.666667, 1 )
+font_data = ExtResource( 50 )
+
+[sub_resource type="RichTextEffect" id=17]
+script = ExtResource( 51 )
+
 [sub_resource type="Animation" id=7]
 length = 0.133333
 step = 0.0333333
@@ -466,6 +477,27 @@ anims/toCustomize = SubResource( 6 )
 position = Vector2( 720, -1600 )
 texture = ExtResource( 23 )
 script = ExtResource( 22 )
+
+[node name="highScoreIndicator" type="RichTextLabel" parent="gameOver"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -846.5
+margin_top = -274.0
+margin_right = -116.5
+margin_bottom = -161.0
+custom_colors/default_color = Color( 0.427451, 0.415686, 0.666667, 1 )
+custom_fonts/normal_font = SubResource( 16 )
+bbcode_enabled = true
+bbcode_text = "[center][color=#ffffff][pulse color=#ffdc72 freq=6.0]New High-Score![/pulse][/color][/center]"
+text = "New High-Score!"
+fit_content_height = true
+scroll_active = false
+custom_effects = [ SubResource( 17 ) ]
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="endButton" type="TextureButton" parent="."]
 anchor_left = 0.5

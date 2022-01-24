@@ -4,11 +4,13 @@ onready var animator : AnimationPlayer = $"animator"
 onready var board : Node2D = $".."
 onready var startBoost : Node2D = $"../startBoost"
 var is_open = false
+var appStore
+onready var purchaseAnimator : AnimationPlayer = $"startBoostPopUp/yesButton/animator"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	if Engine.has_singleton("InAppStore"):
+		appStore = Engine.get_singleton("InAppStore")
 
 func open():
 	animator.play("open")
@@ -27,6 +29,18 @@ func yes():
 		startBoost()
 		startBoost.animator.play("pulse")
 		board.startBoosts -= 1
+	elif is_instance_valid(self.get_parent()):
+		if is_instance_valid(appStore):
+			var result = appStore.purchase( { "product_id" : "start.boost" } )
+			if result == OK:
+				print("StartBoost: OK")
+				purchaseAnimator.play("busy") # show the "waiting for response" animation
+			else:
+				print("StartBoost: " + str(result))
+				purchaseAnimator.play("error")
+		
+		else:
+			print("InAppStore Singleton does not exist")
 
 func no():
 	if !animator.is_playing():

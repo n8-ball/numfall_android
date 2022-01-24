@@ -3,6 +3,7 @@ extends TextureButton
 onready var posNode : Node2D = $"posNode"
 onready var animator : AnimationPlayer = $"animator"
 onready var count : RichTextLabel = $"countCir/count"
+onready var boostButtons : Control = $".."
 
 var boostScene = load("res://boosts/scenes/rowDeleteBoost.tscn")
 
@@ -23,13 +24,16 @@ func displayUsage():
 
 func _pressed():
 	var board = self.get_parent().board
-	if boostCount > 0:
+	if boostCount > 0 && self.get_parent().activated:
 		var rowBoost = boostScene.instance()
 		
 		rowBoost.setBoard(board)
 		rowBoost.setButton(self)
 		rowBoost.position = posNode.global_position
 		board.add_child(rowBoost)
+	else:
+		animator.play("displayUsage")
+		boostButtons.emit_signal("newMessage", "row")
 
 func _newMessage(new):
 	if !new == "row" and animator.is_playing():
