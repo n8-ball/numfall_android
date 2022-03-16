@@ -6,7 +6,8 @@ var appStore
 func _ready():
 	if Engine.has_singleton("InAppStore"):
 		appStore = Engine.get_singleton("InAppStore")
-	self.connect("timeout", self, "_checkPurchases")
+	if self.connect("timeout", self, "_checkPurchases") != 0:
+		print("Signal connection error")
 
 func _checkPurchases():
 	if is_instance_valid(appStore):

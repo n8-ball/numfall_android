@@ -11,10 +11,11 @@ var boostCount
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.get_parent().connect("newMessage", self, "_newMessage")
+	if self.get_parent().connect("newMessage", self, "_newMessage") != 0:
+		print("Signal connection error")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	boostCount = self.get_parent().board.rowBoosts
 	count.bbcode_text = "[center]" + str(boostCount) + "[/center]"
 

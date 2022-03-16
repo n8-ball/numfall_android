@@ -24,9 +24,12 @@ var headSpace = 230
 #Icon must also be changed
 
 func _ready():
-	buttonControl.selectButton.connect("pressed", self, "_on_button_select")
-	iconButton.connect("pressed", self, "_on_iconButton_pressed")
-	buttonControl.unlockButton.connect("pressed", self, "_on_button_unlock")
+	if buttonControl.selectButton.connect("pressed", self, "_on_button_select") != 0:
+		print("Signal connection error")
+	if iconButton.connect("pressed", self, "_on_iconButton_pressed") != 0:
+		print("Signal connection error")
+	if buttonControl.unlockButton.connect("pressed", self, "_on_button_unlock") != 0:
+		print("Signal connection error")
 	itemName.bbcode_text = "[center]" + displayName + "[/center]"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

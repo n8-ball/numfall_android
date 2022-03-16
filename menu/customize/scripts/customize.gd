@@ -21,7 +21,8 @@ var purchaseManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	background.connect("doneFading", self, "_on_done_fading")
+	if background.connect("doneFading", self, "_on_done_fading") != 0:
+		print("Signal connection error")
 	achievementDict = achievements.getAchievements()
 
 func changeTileSet(newTileSet, newSavePiece):
@@ -53,4 +54,5 @@ func restartMusic():
 func _on_done_fading():
 	background.fadeIn()
 	background.modulate.a = 1
-	background.connect("doneFading", self, "_on_done_fading")
+	if background.connect("doneFading", self, "_on_done_fading") != 0:
+		print("Signal connection error")

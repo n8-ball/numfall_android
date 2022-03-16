@@ -8,4 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	bbcode_text = "[center]"+str(board.score)+"[/center]"
+	bbcode_text = str(board.score)

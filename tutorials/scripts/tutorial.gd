@@ -14,12 +14,14 @@ var tutorialOpen = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	board.connect("swapMade", self, "_swapMade")
-	board.connect("combo", self, "_onCombo")
+	if board.connect("swapMade", self, "_swapMade") != 0:
+		print("Signal connection error")
+	if board.connect("combo", self, "_onCombo") != 0:
+		print("Signal connection error")
 	restart()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if board.getTutorialStarted():
 		if tutorialState == 0:
 			introduction()

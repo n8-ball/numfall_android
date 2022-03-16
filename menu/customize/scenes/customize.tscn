@@ -601,9 +601,12 @@ var headSpace = 180
 #Icon must also be changed
 
 func _ready():
-	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
-	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
-	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	if buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\") != 0:
+		print(\"Signal connection error\")
+	if iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\") != 0:
+		print(\"Signal connection error\")
+	if buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\") != 0:
+		print(\"Signal connection error\")
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -678,9 +681,12 @@ var headSpace = 230
 #Icon must also be changed
 
 func _ready():
-	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
-	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
-	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	if buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\") != 0:
+		print(\"Signal connection error\")
+	if iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\") != 0:
+		print(\"Signal connection error\")
+	if buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\") != 0:
+		print(\"Signal connection error\")
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -755,9 +761,12 @@ var headSpace = 230
 #Icon must also be changed
 
 func _ready():
-	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
-	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
-	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	if buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\") != 0:
+		print(\"Signal connection error\")
+	if iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\") != 0:
+		print(\"Signal connection error\")
+	if buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\") != 0:
+		print(\"Signal connection error\")
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -832,9 +841,12 @@ var headSpace = 180
 #Icon must also be changed
 
 func _ready():
-	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
-	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
-	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	if buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\") != 0:
+		print(\"Signal connection error\")
+	if iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\") != 0:
+		print(\"Signal connection error\")
+	if buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\") != 0:
+		print(\"Signal connection error\")
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -909,9 +921,12 @@ var headSpace = 230
 #Icon must also be changed
 
 func _ready():
-	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
-	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
-	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	if buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\") != 0:
+		print(\"Signal connection error\")
+	if iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\") != 0:
+		print(\"Signal connection error\")
+	if buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\") != 0:
+		print(\"Signal connection error\")
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -986,86 +1001,12 @@ var headSpace = 230
 #Icon must also be changed
 
 func _ready():
-	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
-	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
-	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
-	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	#Unlocked
-	if achievementName == \"default\":
-		unlocked = true
-	elif subMenuRoot.customize.achievementDict != null:
-		unlocked = subMenuRoot.customize.achievementDict[achievementName]
-	#Icon
-	if unlocked:
-		iconButton.modulate = Color.white
-		itemName.modulate = Color(0.43, 0.42, 0.67)
-	else:
-		iconButton.modulate = Color.darkgray
-		itemName.modulate = Color.darkgray
-
-func _on_button_select():
-	subMenuList.unselectButtons(self)
-	confirm.play()
-	subMenuRoot.changeResource(newResourceName, achievementName)
-
-func _on_iconButton_pressed():
-	if iconButton.pressed:
-		subMenuList.unselectPreviews(self)
-		subMenuRoot.muteMusic()
-	else:
-		subMenuRoot.restartMusic()
-
-func _on_button_unlock():
-	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
-
-func unselectButton():
-	buttonControl.unselect()
-
-func unselectPreview():
-	iconButton.unselect()
-
-func getName():
-	return achievementName
-
-func setItem():
-	buttonControl.select()
-	subMenuList.unselectButtons(self)
-	subMenuRoot.changeResource(newResourceName, achievementName)
-"
-
-[sub_resource type="GDScript" id=31]
-script/source = "extends Container
-
-#External
-onready var subMenuList : GridContainer = $\"..\"
-onready var subMenuRoot : Node2D = $\"../..\"
-onready var confirm: AudioStreamPlayer = $\"confirm\"
-onready var deny: AudioStreamPlayer = $\"deny\"
-
-#Internal
-onready var iconButton : TextureButton = $\"iconButton\"
-onready var buttonControl : Node2D = $\"buttonControl\"
-onready var itemName : RichTextLabel = $\"itemName\"
-
-var unlocked = false
-
-#Unique
-var newResourceName = \"res://music/blossomTheme.ogg\"
-var achievementName = \"blossomMusic\"
-var displayName = \"Blossom\"
-var achievementText = \"blossom achieve\"
-#230 for 1 line, 180 for 2, 100 for 3
-var headSpace = 230
-
-#Icon must also be changed
-
-func _ready():
-	buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\")
-	iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\")
-	buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\")
+	if buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\") != 0:
+		print(\"Signal connection error\")
+	if iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\") != 0:
+		print(\"Signal connection error\")
+	if buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\") != 0:
+		print(\"Signal connection error\")
 	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -1114,6 +1055,86 @@ func setItem():
 "
 
 [sub_resource type="GDScript" id=19]
+script/source = "extends Container
+
+#External
+onready var subMenuList : GridContainer = $\"..\"
+onready var subMenuRoot : Node2D = $\"../..\"
+onready var confirm: AudioStreamPlayer = $\"confirm\"
+onready var deny: AudioStreamPlayer = $\"deny\"
+
+#Internal
+onready var iconButton : TextureButton = $\"iconButton\"
+onready var buttonControl : Node2D = $\"buttonControl\"
+onready var itemName : RichTextLabel = $\"itemName\"
+
+var unlocked = false
+
+#Unique
+var newResourceName = \"res://music/blossomTheme.ogg\"
+var achievementName = \"blossomMusic\"
+var displayName = \"Blossom\"
+var achievementText = \"blossom achieve\"
+#230 for 1 line, 180 for 2, 100 for 3
+var headSpace = 230
+
+#Icon must also be changed
+
+func _ready():
+	if buttonControl.selectButton.connect(\"pressed\", self, \"_on_button_select\") != 0:
+		print(\"Signal connection error\")
+	if iconButton.connect(\"pressed\", self, \"_on_iconButton_pressed\") != 0:
+		print(\"Signal connection error\")
+	if buttonControl.unlockButton.connect(\"pressed\", self, \"_on_button_unlock\") != 0:
+		print(\"Signal connection error\")
+	itemName.bbcode_text = \"[center]\" + displayName + \"[/center]\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	#Unlocked
+	if achievementName == \"default\":
+		unlocked = true
+	elif subMenuRoot.customize.achievementDict != null:
+		unlocked = subMenuRoot.customize.achievementDict[achievementName]
+	#Icon
+	if unlocked:
+		iconButton.modulate = Color.white
+		itemName.modulate = Color(0.43, 0.42, 0.67)
+	else:
+		iconButton.modulate = Color.darkgray
+		itemName.modulate = Color.darkgray
+
+func _on_button_select():
+	subMenuList.unselectButtons(self)
+	confirm.play()
+	subMenuRoot.changeResource(newResourceName, achievementName)
+
+func _on_iconButton_pressed():
+	if iconButton.pressed:
+		subMenuList.unselectPreviews(self)
+		subMenuRoot.muteMusic()
+	else:
+		subMenuRoot.restartMusic()
+
+func _on_button_unlock():
+	subMenuRoot.customize.unlockMenuRoot.openUnlock(achievementText, headSpace, achievementName)
+
+func unselectButton():
+	buttonControl.unselect()
+
+func unselectPreview():
+	iconButton.unselect()
+
+func getName():
+	return achievementName
+
+func setItem():
+	buttonControl.select()
+	subMenuList.unselectButtons(self)
+	subMenuRoot.changeResource(newResourceName, achievementName)
+"
+
+[sub_resource type="GDScript" id=20]
 script/source = "extends Container
 
 #External
@@ -1180,13 +1201,13 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="DynamicFont" id=20]
+[sub_resource type="DynamicFont" id=21]
 size = 70
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 9 )
 
-[sub_resource type="GDScript" id=21]
+[sub_resource type="GDScript" id=22]
 script/source = "extends Container
 
 #External
@@ -1253,7 +1274,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=22]
+[sub_resource type="GDScript" id=23]
 script/source = "extends Container
 
 #External
@@ -1320,7 +1341,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName)
 "
 
-[sub_resource type="GDScript" id=23]
+[sub_resource type="GDScript" id=24]
 script/source = "extends Container
 
 #External
@@ -1387,7 +1408,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName, textColor)
 "
 
-[sub_resource type="GDScript" id=24]
+[sub_resource type="GDScript" id=25]
 script/source = "extends Container
 
 #External
@@ -1454,7 +1475,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName, textColor)
 "
 
-[sub_resource type="GDScript" id=25]
+[sub_resource type="GDScript" id=26]
 script/source = "extends Container
 
 #External
@@ -1521,7 +1542,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName, textColor)
 "
 
-[sub_resource type="GDScript" id=26]
+[sub_resource type="GDScript" id=27]
 script/source = "extends Container
 
 #External
@@ -1588,7 +1609,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName, textColor)
 "
 
-[sub_resource type="GDScript" id=27]
+[sub_resource type="GDScript" id=28]
 script/source = "extends Container
 
 #External
@@ -1655,7 +1676,7 @@ func setItem():
 	subMenuRoot.changeResource(newResourceName, achievementName, textColor)
 "
 
-[sub_resource type="DynamicFont" id=28]
+[sub_resource type="DynamicFont" id=29]
 size = 80
 outline_size = 8
 outline_color = Color( 0.427451, 0.415686, 0.666667, 1 )
@@ -1663,7 +1684,7 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 45 )
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=30]
 length = 0.166667
 step = 0.0333333
 tracks/0/type = "value"
@@ -1691,7 +1712,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=30]
+[sub_resource type="Animation" id=31]
 length = 0.166667
 step = 0.0333333
 tracks/0/type = "value"
@@ -2752,7 +2773,7 @@ margin_left = 441.0
 margin_top = 1340.0
 margin_right = 441.0
 margin_bottom = 1340.0
-script = SubResource( 31 )
+script = SubResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2852,7 +2873,7 @@ __meta__ = {
 }
 
 [node name="default" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
-script = SubResource( 19 )
+script = SubResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2865,7 +2886,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 20 )
+custom_fonts/normal_font = SubResource( 21 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -2911,7 +2932,7 @@ bus = "Effects"
 [node name="pixel" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
 margin_left = 441.0
 margin_right = 441.0
-script = SubResource( 21 )
+script = SubResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2924,7 +2945,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 20 )
+custom_fonts/normal_font = SubResource( 21 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -2970,7 +2991,7 @@ bus = "Effects"
 [node name="neon" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
 margin_left = 882.0
 margin_right = 882.0
-script = SubResource( 22 )
+script = SubResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2983,7 +3004,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 20 )
+custom_fonts/normal_font = SubResource( 21 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -3029,7 +3050,7 @@ bus = "Effects"
 [node name="juicy" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
 margin_top = 670.0
 margin_bottom = 670.0
-script = SubResource( 23 )
+script = SubResource( 24 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3042,7 +3063,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 20 )
+custom_fonts/normal_font = SubResource( 21 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -3090,7 +3111,7 @@ margin_left = 441.0
 margin_top = 670.0
 margin_right = 441.0
 margin_bottom = 670.0
-script = SubResource( 24 )
+script = SubResource( 25 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3103,7 +3124,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 20 )
+custom_fonts/normal_font = SubResource( 21 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -3151,7 +3172,7 @@ margin_left = 882.0
 margin_top = 670.0
 margin_right = 882.0
 margin_bottom = 670.0
-script = SubResource( 25 )
+script = SubResource( 26 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3164,7 +3185,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 20 )
+custom_fonts/normal_font = SubResource( 21 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -3210,7 +3231,7 @@ bus = "Effects"
 [node name="creepy" type="Container" parent="backgroundButton/backgroundRoot/backgroundList"]
 margin_top = 1340.0
 margin_bottom = 1340.0
-script = SubResource( 26 )
+script = SubResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3223,7 +3244,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 20 )
+custom_fonts/normal_font = SubResource( 21 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -3271,7 +3292,7 @@ margin_left = 441.0
 margin_top = 1340.0
 margin_right = 441.0
 margin_bottom = 1340.0
-script = SubResource( 27 )
+script = SubResource( 28 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3284,7 +3305,7 @@ margin_bottom = 100.0
 rect_clip_content = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_fonts/normal_font = SubResource( 20 )
+custom_fonts/normal_font = SubResource( 21 )
 bbcode_enabled = true
 bbcode_text = "[center] Default [/center]"
 text = " Default "
@@ -3376,8 +3397,8 @@ margin_left = -450.0
 margin_top = 230.0
 margin_right = 450.0
 margin_bottom = 450.0
+custom_fonts/normal_font = SubResource( 29 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
-custom_fonts/normal_font = SubResource( 28 )
 bbcode_enabled = true
 scroll_active = false
 __meta__ = {
@@ -3385,5 +3406,5 @@ __meta__ = {
 }
 
 [node name="unlockAnimator" type="AnimationPlayer" parent="unlockMenuRoot"]
-anims/close = SubResource( 29 )
-anims/open = SubResource( 30 )
+anims/close = SubResource( 30 )
+anims/open = SubResource( 31 )

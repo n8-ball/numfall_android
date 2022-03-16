@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/defaultPreview.png-cf277519a49c599e89040273fb2fbf7a.stex"
+path="res://.import/continueIcon.png-5b6187fbfd791a4095db08f4410f292d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pieceSets/default/sprites/defaultPreview.png"
-dest_files=[ "res://.import/defaultPreview.png-cf277519a49c599e89040273fb2fbf7a.stex" ]
+source_file="res://boosts/sprites/continueIcon.png"
+dest_files=[ "res://.import/continueIcon.png-5b6187fbfd791a4095db08f4410f292d.stex" ]
 
 [params]
 
@@ -28,7 +28,8 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

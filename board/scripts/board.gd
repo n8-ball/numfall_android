@@ -320,8 +320,10 @@ func saveBoosts():
 func loadBoosts(newBoosts):
 	if newBoosts.has("continue"):
 		continueBoosts = newBoosts["continue"]
+		continueBoosts = 2
 	if newBoosts.has("start"):
 		startBoosts = newBoosts["start"]
+		startBoosts = 2
 	if newBoosts.has("row"):
 		rowBoosts = newBoosts["row"]
 	if newBoosts.has("col"):

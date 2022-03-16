@@ -10,7 +10,8 @@ var achieveName = "default"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	unlockMenu.connect("pressed", self, "_on_menu_pressed")
+	if unlockMenu.connect("pressed", self, "_on_menu_pressed") != 0:
+		print("Signal connection error")
 
 func _process(_delta):
 	pass

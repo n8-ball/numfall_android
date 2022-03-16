@@ -2,7 +2,6 @@ extends Node2D
 
 onready var animator : AnimationPlayer = $"animator"
 onready var board : Node2D = $".."
-onready var startBoost : Node2D = $"../startBoost"
 var is_open = false
 var appStore
 onready var purchaseAnimator : AnimationPlayer = $"startBoostPopUp/yesButton/animator"
@@ -27,7 +26,6 @@ func yes():
 	if !animator.is_playing() && board.startBoosts > 0:
 		close()
 		startBoost()
-		startBoost.animator.play("pulse")
 		board.startBoosts -= 1
 	elif is_instance_valid(self.get_parent()):
 		if is_instance_valid(appStore):

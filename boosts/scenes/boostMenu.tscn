@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://boosts/sprites/boostMenu.png" type="Texture" id=1]
 [ext_resource path="res://boosts/sprites/99cPressed.png" type="Texture" id=2]
@@ -22,23 +22,59 @@ script/source = "extends TextureButton
 
 onready var animator : AnimationPlayer = $\"../animator\"
 var appStore
+export var boostName = \"row.boost\"
 
 func _ready():
 	if Engine.has_singleton(\"InAppStore\"):
 		appStore = Engine.get_singleton(\"InAppStore\")
+		
+		$timer.start()
+		
+		var allProducts = [boostName]
+		appStore.request_product_info({ \"product_ids\" : allProducts})
 
 func _pressed():
-	if is_instance_valid(appStore):
-		var result = appStore.purchase( { \"product_id\" : \"row.boost\" } )
-		if result == OK:
-			print(\"RowBoost: OK\")
-			animator.play(\"busy\") # show the \"waiting for response\" animation
-		else:
-			print(\"RowBoost: \" + str(result))
-			animator.play(\"error\")
-	
-	else:
+	if !appStore: 
 		print(\"InAppStore Singleton does not exist\")
+		return
+	
+	var result = appStore.purchase( {\"product_id\" : boostName} )
+	print(boostName)
+	if result == OK:
+		print(\"RowBoost: OK\")
+		animator.play(\"busy\") # show the \"waiting for response\" animation
+		$timer.start()
+	else:
+		print(\"RowBoost: \" + str(result))
+		animator.play(\"error\")
+
+func _on_timer_timeout():
+	while appStore.get_pending_event_count() > 0:
+		var event = appStore.pop_pending_event()
+		if event.type == \"purchase\":
+			if event.result == \"ok\":
+				print(event.product_id)
+			else:
+				print(\"error\")
+"
+
+[sub_resource type="GDScript" id=9]
+script/source = "extends Timer
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.connect(\"timeout\", get_parent(), \"_on_timer_timeout\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
 "
 
 [sub_resource type="GDScript" id=3]
@@ -176,6 +212,9 @@ script = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="timer" type="Timer" parent="rowButton"]
+script = SubResource( 9 )
 
 [node name="colButton" type="TextureButton" parent="."]
 margin_left = 808.0

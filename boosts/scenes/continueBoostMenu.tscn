@@ -13,10 +13,8 @@ script/source = "extends Node2D
 
 onready var animator : AnimationPlayer = $\"animator\"
 onready var board : Node2D = $\"..\"
-var is_open = false
 
-func _ready():
-	pass
+var is_open = false
 
 func open():
 	animator.play(\"open\")
@@ -31,9 +29,10 @@ func is_open():
 
 func yes():
 	if !animator.is_playing():
-		close()
 		continueBoost()
 		board.continueBoosts -= 1
+		resumeGame()
+		close()
 
 func no():
 	if !animator.is_playing():
@@ -41,8 +40,29 @@ func no():
 		board.menu.endGameMenu()
 
 func continueBoost():
-	if is_instance_valid(board):
-		board.find_node(\"continueBoost\").continueBoost()
+	var deleteCount = 0
+	var pieceMinimum = board.spawner.floorNum
+	board.boostActive = true
+	while deleteCount < 15:
+		for y in range(board.brdHt - 1, -1, -1):
+			for x in range(board.brdWd):
+				var curPiece = board.board[y][x]
+				if is_instance_valid(curPiece) and curPiece.value == pieceMinimum\\
+				&& deleteCount < 15:
+					deleteCount += 1
+					deletePiece(Vector2(x, y))
+		pieceMinimum += 1
+
+func deletePiece(vec):
+	var curPiece = board.board[vec.y][vec.x]
+	if is_instance_valid(curPiece):
+		curPiece.setState(curPiece.DELETE_STATE)
+
+func resumeGame():
+	board.setGameOver(false)
+	board.saveReady = true
+	board.saveLoad.saveGame()
+	board.boostActive = false
 "
 
 [sub_resource type="Animation" id=1]
@@ -109,8 +129,9 @@ resource_name = "busy"
 [sub_resource type="Animation" id=7]
 resource_name = "error"
 
-[node name="continueBoostMethod" type="Node2D"]
+[node name="continueBoostMenu" type="Node2D"]
 rotation = -0.00254742
+scale = Vector2( 1e-05, 1e-05 )
 z_index = 7
 script = SubResource( 5 )
 

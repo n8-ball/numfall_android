@@ -8,20 +8,25 @@
 script/source = "extends Node2D
 
 
-onready var board : Node2D = $\"..\"
+onready var menu : CanvasLayer = $\"..\"
 onready var count : RichTextLabel = $\"sprite/countCir/count\"
 onready var animator : AnimationPlayer = $\"animator\"
 
+var board
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	board = menu.board
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	var boostCount = board.startBoosts
-	count.bbcode_text = \"[center]\" + str(boostCount) + \"[/center]\"
+func _process(_delta):
+	if is_instance_valid(board):
+		count.bbcode_text = \"[center]\" + str(board.startBoosts) + \"[/center]\"
+	else:
+		board = menu.board
+	self.visible = menu.getOpen()
+	self.modulate.a = menu.overlay.color.a * (1/menu.overlay.maxOpacity)
 "
 
 [sub_resource type="DynamicFont" id=3]
@@ -49,7 +54,6 @@ tracks/0/keys = {
 
 [node name="startBoost" type="Node2D"]
 pause_mode = 2
-position = Vector2( 230, 200 )
 z_index = 7
 script = SubResource( 4 )
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://menu/sprites/gearNormal.png" type="Texture" id=1]
 [ext_resource path="res://menu/scripts/mainMenu.gd" type="Script" id=2]
@@ -51,8 +51,10 @@
 [ext_resource path="res://boosts/scenes/boostMenu.tscn" type="PackedScene" id=49]
 [ext_resource path="res://fonts/Poppins-ExtraBoldItalic.ttf" type="DynamicFontData" id=50]
 [ext_resource path="res://tutorials/scripts/pulse.gd" type="Script" id=51]
+[ext_resource path="res://boosts/scenes/continueBoost.tscn" type="PackedScene" id=52]
+[ext_resource path="res://boosts/scenes/startBoost.tscn" type="PackedScene" id=53]
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=1]
 resource_name = "boostsToMenu"
 length = 0.6
 step = 0.05
@@ -81,8 +83,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -84, 0 ), Vector2( -253, 0 ), Vector2( -506, 0 ), Vector2( -844, 0 ), Vector2( -1256, 0 ), Vector2( -1609, 0 ), Vector2( -1524, 0 ), Vector2( -1468, 0 ), Vector2( -1440, 0 ) ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "creditsToMenu"
+[sub_resource type="Animation" id=2]
 length = 0.6
 step = 0.05
 tracks/0/type = "value"
@@ -110,7 +111,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -2560 ), Vector2( 0, -2410 ), Vector2( 0, -2110 ), Vector2( 0, -1660 ), Vector2( 0, -1060 ), Vector2( 0, -310 ), Vector2( 0, 300 ), Vector2( 0, 150 ), Vector2( 0, 50 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 length = 0.6
 step = 0.05
 tracks/0/type = "value"
@@ -138,7 +139,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 84, 0 ), Vector2( 253, 0 ), Vector2( 506, 0 ), Vector2( 844, 0 ), Vector2( 1266, 0 ), Vector2( 1609, 0 ), Vector2( 1524, 0 ), Vector2( 1468, 0 ), Vector2( 1440, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.6
 step = 0.05
 tracks/0/type = "value"
@@ -166,7 +167,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 2560 ), Vector2( 0, 2410 ), Vector2( 0, 2110 ), Vector2( 0, 1660 ), Vector2( 0, 1060 ), Vector2( 0, 310 ), Vector2( 0, -300 ), Vector2( 0, -150 ), Vector2( 0, -50 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.6
 step = 0.05
 tracks/0/type = "value"
@@ -182,7 +183,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 2560 ), Vector2( 0, 2410 ), Vector2( 0, 2110 ), Vector2( 0, 1660 ), Vector2( 0, 1060 ), Vector2( 0, 310 ), Vector2( 0, -300 ), Vector2( 0, -150 ), Vector2( 0, -50 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 step = 1.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:offset")
@@ -233,7 +234,7 @@ tracks/3/keys = {
 "values": [ Vector2( -1440, 0 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=7]
 resource_name = "toBoosts"
 length = 0.6
 step = 0.05
@@ -262,7 +263,7 @@ tracks/1/keys = {
 "values": [ Vector2( -1440, 0 ), Vector2( -1356, 0 ), Vector2( -1187, 0 ), Vector2( -934, 0 ), Vector2( -556, 0 ), Vector2( -174, 0 ), Vector2( 169, 0 ), Vector2( 84, 0 ), Vector2( 28, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=8]
 length = 0.5
 step = 0.05
 tracks/0/type = "value"
@@ -290,16 +291,16 @@ tracks/1/keys = {
 "values": [ Vector2( 1440, 0 ), Vector2( 1356, 0 ), Vector2( 1187, 0 ), Vector2( 934, 0 ), Vector2( 556, 0 ), Vector2( 174, 0 ), Vector2( -169, 0 ), Vector2( -84, 0 ), Vector2( -28, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFont" id=9]
 size = 80
 outline_size = 7
 outline_color = Color( 0.427451, 0.415686, 0.666667, 1 )
 font_data = ExtResource( 50 )
 
-[sub_resource type="RichTextEffect" id=17]
+[sub_resource type="RichTextEffect" id=10]
 script = ExtResource( 51 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=11]
 length = 0.133333
 step = 0.0333333
 tracks/0/type = "value"
@@ -327,7 +328,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=12]
 length = 0.166667
 step = 0.0333333
 tracks/0/type = "value"
@@ -355,7 +356,7 @@ tracks/1/keys = {
 "values": [ true, true ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=13]
 length = 0.133333
 step = 0.0333333
 tracks/0/type = "value"
@@ -383,7 +384,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=14]
 length = 0.166667
 step = 0.0333333
 tracks/0/type = "value"
@@ -423,7 +424,7 @@ tracks/2/keys = {
 "values": [ Vector2( 106, 106 ), Vector2( -205, -500 ) ]
 }
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=17]
 size = 86
 outline_size = 10
 outline_color = Color( 0.427451, 0.415686, 0.666667, 1 )
@@ -432,13 +433,13 @@ use_filter = true
 extra_spacing_char = -1
 font_data = ExtResource( 47 )
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id=15]
 bg_color = Color( 0.6, 0.6, 0.501961, 0 )
 border_color = Color( 0.8, 0.8, 0.8, 0 )
 corner_detail = 1
 shadow_color = Color( 0, 0, 0, 0 )
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=16]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 draw_center = false
 border_color = Color( 0.8, 0.8, 0.8, 0 )
@@ -452,9 +453,9 @@ script = ExtResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1440.0
-margin_top = -2560.0
+margin_top = -2557.0
 margin_right = 1440.0
-margin_bottom = 2560.0
+margin_bottom = 2563.0
 mouse_filter = 2
 color = Color( 1, 1, 1, 0.490196 )
 script = ExtResource( 6 )
@@ -462,16 +463,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="continueBoost" parent="." instance=ExtResource( 52 )]
+pause_mode = 0
+position = Vector2( 160, 160 )
+
+[node name="startBoost" parent="." instance=ExtResource( 53 )]
+pause_mode = 0
+position = Vector2( 400, 160 )
+
 [node name="menuAnimator" type="AnimationPlayer" parent="."]
 autoplay = "starting"
-anims/boostsToMenu = SubResource( 15 )
-anims/creditsToMenu = SubResource( 1 )
-anims/customizeToMenu = SubResource( 2 )
-anims/dropToCredits = SubResource( 3 )
-anims/dropToMenu = SubResource( 4 )
-anims/starting = SubResource( 5 )
-anims/toBoosts = SubResource( 14 )
-anims/toCustomize = SubResource( 6 )
+anims/boostsToMenu = SubResource( 1 )
+anims/creditsToMenu = SubResource( 2 )
+anims/customizeToMenu = SubResource( 3 )
+anims/dropToCredits = SubResource( 4 )
+anims/dropToMenu = SubResource( 5 )
+anims/starting = SubResource( 6 )
+anims/toBoosts = SubResource( 7 )
+anims/toCustomize = SubResource( 8 )
 
 [node name="gameOver" type="Sprite" parent="."]
 position = Vector2( 720, -1600 )
@@ -488,13 +497,13 @@ margin_top = -274.0
 margin_right = -116.5
 margin_bottom = -161.0
 custom_colors/default_color = Color( 0.427451, 0.415686, 0.666667, 1 )
-custom_fonts/normal_font = SubResource( 16 )
+custom_fonts/normal_font = SubResource( 9 )
 bbcode_enabled = true
 bbcode_text = "[center][color=#ffffff][pulse color=#ffdc72 freq=6.0]New High-Score![/pulse][/color][/center]"
 text = "New High-Score!"
 fit_content_height = true
 scroll_active = false
-custom_effects = [ SubResource( 17 ) ]
+custom_effects = [ SubResource( 10 ) ]
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -620,8 +629,8 @@ __meta__ = {
 }
 
 [node name="confirmAnimation" type="AnimationPlayer" parent="newGameButton/newGameConfirm"]
-anims/close = SubResource( 7 )
-anims/open = SubResource( 8 )
+anims/close = SubResource( 11 )
+anims/open = SubResource( 12 )
 
 [node name="musicButton" type="TextureButton" parent="."]
 anchor_left = 0.5
@@ -674,8 +683,8 @@ texture = ExtResource( 42 )
 script = ExtResource( 43 )
 
 [node name="confirmAnimation" type="AnimationPlayer" parent="tutorialButton/tutorialConfirm"]
-anims/close = SubResource( 9 )
-anims/open = SubResource( 10 )
+anims/close = SubResource( 13 )
+anims/open = SubResource( 14 )
 
 [node name="tutorialConfirmButton" type="TextureButton" parent="tutorialButton/tutorialConfirm"]
 margin_left = -646.0
@@ -713,9 +722,9 @@ margin_right = 164.0
 margin_bottom = -382.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 0.843137, 0.843137, 0.843137, 1 )
-custom_fonts/font = SubResource( 13 )
-custom_styles/pressed = SubResource( 11 )
-custom_styles/focus = SubResource( 12 )
+custom_fonts/font = SubResource( 17 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 16 )
 text = "Credits"
 flat = true
 script = ExtResource( 48 )

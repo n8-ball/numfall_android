@@ -39,7 +39,8 @@ var board
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	blockAnimation.connect("animation_finished", self, "_animationEnd")
+	if blockAnimation.connect("animation_finished", self, "_animationEnd") != 0:
+		print("Signal connection error")
 	blockAnimation.updateValue()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

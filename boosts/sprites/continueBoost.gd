@@ -1,50 +1,19 @@
 extends Node2D
 
-onready var board : Node2D = $".."
-onready var animator : AnimationPlayer = $"animator"
+onready var menu : CanvasLayer = $".."
 onready var count : RichTextLabel = $"sprite/countCir/count"
 
+var board
 
 var deleteList = []
 
 func _ready():
-	animator.connect("animation_finished", self, "_on_finished")
+	pass
 
-func _process(delta):
-	count.bbcode_text = "[center]" + str(board.continueBoosts) + "[/center]"
-
-func continueBoost():
-	var deleteCount = 0
-	var pieceMinimum = board.spawner.floorNum
-	board.boostActive = true
-	deleteList = []
-	var deleteAnimation = animator.get_animation("delete")
-	while deleteCount < 15:
-		for y in range(board.brdHt - 1, -1, -1):
-			for x in range(board.brdWd):
-				var curPiece = board.board[y][x]
-				if is_instance_valid(curPiece) and curPiece.value == pieceMinimum\
-				&& deleteCount < 15:
-					var randX = rand_range(-50, 50)
-					var randY = rand_range(-50, 50)
-					deleteAnimation.track_set_key_value(1, 2 * deleteCount + 1, board.getPos(x, y) - Vector2(randX, 100 + randY))
-					deleteAnimation.track_set_key_value(1, 2 * deleteCount + 2, board.getPos(x, y) - Vector2(randX, 100 + randY))
-					deleteCount += 1
-					deleteList.append(Vector2(x, y))
-		pieceMinimum += 1
-	animator.play("delete")
-
-func deletePiece(i):
-	var curPiece = board.board[deleteList[i].y][deleteList[i].x]
-	if is_instance_valid(curPiece):
-		curPiece.setState(curPiece.DELETE_STATE)
-
-func resumeGame():
-	board.setGameOver(false)
-	board.saveReady = true
-	board.saveLoad.saveGame()
-	board.boostActive = false
-
-func _on_finished(animation):
-	if animation == "delete":
-		resumeGame()
+func _process(_delta):
+	if is_instance_valid(board):
+		count.bbcode_text = "[center]" + str(board.continueBoosts) + "[/center]"
+	else:
+		board = menu.board
+	self.visible = menu.getOpen()
+	self.modulate.a = menu.overlay.color.a * (1/menu.overlay.maxOpacity)
